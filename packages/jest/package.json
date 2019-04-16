@@ -1,0 +1,20 @@
+{
+  "name": "@bojagi/jests",
+  "version": "0.0.0",
+  "description": "bojagi jest plugin",
+  "homepage": "https://github.com/Bojagi/bojagi#readme",
+  "license": "MIT",
+  "main": "lib/jest.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bojagi/bojagi.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Bojagi/bojagi/issues"
+  },
+  "devDependencies": {
+  }
+}

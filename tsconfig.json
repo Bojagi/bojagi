@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "target": "es2015",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "allowJs": true
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

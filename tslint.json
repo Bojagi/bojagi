@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "tslint-plugin-prettier",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "prettier": true,
+    "import-name": false,
+    "variable-name": [
+      true,
+      "allow-pascal-case"
+    ]
+  },
+  "jsRules": {
+    "no-empty": true
+  }
+}

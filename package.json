@@ -1,0 +1,28 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "jest": "^24.7.1",
+    "lerna": "^3.13.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "jest": {
+    "transform": {
+      ".(ts|tsx|js)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testEnvironment": "node"
+  }
+}
