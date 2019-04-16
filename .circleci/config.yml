@@ -50,10 +50,10 @@ workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              ignore: master
+      - build
+          # filters:
+          #   branches:
+          #     ignore: master
       # - deploy:
       #     filters:
       #       tags:
