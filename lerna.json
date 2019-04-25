@@ -2,6 +2,15 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "*.txt",
+        "*.spec.ts"
+      ]
+    }
+  },
   "version": "0.0.1",
   "npmClient": "yarn",
   "useWorkspaces": true

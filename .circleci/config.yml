@@ -1,8 +1,11 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+executors:
+  base:
     docker:
-      - image: hyphe/ci-base-images:0.5.0
+      - image: hyphe/ci-base-images:0.5.0 
+commands: 
+  init:
+    description: 'sets up the environment'
     steps:
       - checkout
       - setup_remote_docker
@@ -19,42 +22,38 @@ jobs:
           key: yarn-cache-{{ .Branch }}-{{ .BuildNum }}
           paths:
             - /home/circleci/.cache/yarn/v1
+jobs:
+  test:
+    executor: base
+    steps:
+      - init
       - run:
           name: unit tests
           command: yarn test
-  # deploy:
-  #   docker:
-  #     - image: hyphe/ci-base-images:0.5.0
-  #   steps:
-  #     - checkout
-  #     - setup_remote_docker
-  #     - restore_cache:
-  #         keys:
-  #           - yarn-cache-master
-  #     - run:
-  #         name: install dependencies
-  #         command: |
-  #           yarn --pure-lockfile
-  #           lerna bootstrap -- --pure-lockfile
-  #     - save_cache:
-  #         key: yarn-cache-master-{{ .BuildNum }}
-  #         paths:
-  #           - /home/circleci/.cache/yarn/v1
-  #     - run:
-  #         name: build
-  #         command: ./bin/run-on-ci.sh build
-  #     - run:
-  #         name: deploy
-  #         command: ./bin/run-on-ci.sh deploy
+      # sometimes building breaks even if tests are green, this way we make sure builds wont fail
+      - run:
+          name: build test
+          command: yarn build
+  deploy:
+    executor: base
+    steps:
+      - init
+      - run:
+          name: unit tests
+          command: yarn test
+      - run:
+          name: deploy
+          command: yarn deploy
 workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - build
-          # filters:
-          #   branches:
-          #     ignore: master
-      # - deploy:
-      #     filters:
-      #       tags:
-      #         ignore: nothing
+      - test
+      - deploy:
+           requires:
+            - test
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
