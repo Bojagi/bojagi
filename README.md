@@ -13,4 +13,4 @@ public bojagi node modules
 
 (only works in master)
 
-`yarn publish`
+`yarn run publish`
