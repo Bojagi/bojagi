@@ -4,7 +4,8 @@
   "description": "bojagi jest plugin",
   "homepage": "https://github.com/Bojagi/bojagi#readme",
   "license": "MIT",
-  "main": "lib/jest.js",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js", 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bojagi/bojagi.git"

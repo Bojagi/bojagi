@@ -22,6 +22,9 @@ commands:
           key: yarn-cache-{{ .Branch }}-{{ .BuildNum }}
           paths:
             - /home/circleci/.cache/yarn/v1
+      - run:
+          name: build
+          command: yarn build
 jobs:
   test:
     executor: base
@@ -30,17 +33,10 @@ jobs:
       - run:
           name: unit tests
           command: yarn test
-      # sometimes building breaks even if tests are green, this way we make sure builds wont fail
-      - run:
-          name: build test
-          command: yarn build
   deploy:
     executor: base
     steps:
       - init
-      - run:
-          name: unit tests
-          command: yarn test
       - run:
           name: deploy
           command: yarn deploy
