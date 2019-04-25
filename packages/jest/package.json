@@ -15,5 +15,8 @@
   },
   "bugs": {
     "url": "https://github.com/Bojagi/bojagi/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
