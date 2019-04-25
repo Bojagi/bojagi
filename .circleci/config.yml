@@ -48,6 +48,11 @@ workflows:
   test_and_deploy:
     jobs:
       - test
+        filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
       - deploy:
           requires:
             - test
