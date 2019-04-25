@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "deploy": "lerna publish from-git",
+    "publish": "./bin/publish.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
