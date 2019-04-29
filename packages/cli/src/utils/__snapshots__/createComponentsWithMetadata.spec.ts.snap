@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fail to get components with metadata because entrypoint does not have correct syntax 1`] = `"Entrypoint does not follow right syntax"`;
+
+exports[`fail to get components with metadata because file path doesn't start with current path 1`] = `"File does not start with correct path"`;

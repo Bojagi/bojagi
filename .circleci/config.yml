@@ -31,6 +31,9 @@ jobs:
     steps:
       - init
       - run:
+          name: lint
+          command: yarn lint
+      - run:
           name: unit tests
           command: yarn test
   deploy:

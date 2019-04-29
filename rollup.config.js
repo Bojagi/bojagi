@@ -1,5 +1,11 @@
 const path = require('path')
 const babel = require('rollup-plugin-babel');
+const resolve = require('rollup-plugin-node-resolve');
+const commonjs = require('rollup-plugin-commonjs');
+
+const extensions = [
+  '.js', '.jsx', '.ts', '.tsx',
+];
 
 function getPackages() {
   // hardcoded for now
@@ -13,9 +19,18 @@ function getConfigForPackage(pkgSrc) {
     input: path.resolve(pkgSrc, 'src', 'index.ts'),
     external: Object.keys(pkg.dependencies || {}),
     plugins: [
+      resolve({
+        extensions,
+        jsnext: true,
+      }),
+
+      commonjs(),
+
       babel({
-        exclude: 'node_modules/**'
-      })
+        exclude: 'node_modules/**',
+        extensions
+      }),
+
     ],
     output: [
       { file: path.resolve(pkgSrc, pkg.main), format: 'cjs' },
