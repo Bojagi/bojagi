@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/jest",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "bojagi jest plugin",
   "homepage": "https://github.com/Bojagi/bojagi#readme",
   "license": "MIT",
@@ -18,7 +18,7 @@
   },
   "publishConfig": {
     "access": "public"
-  }, 
+  },
   "dependencies": {
     "adm-zip": "^0.4.13",
     "chalk": "2.4.2",
