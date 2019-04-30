@@ -6,6 +6,7 @@
     "declarationMap": true,
     "sourceMap": true,
     // These settings are totally up to you        
+    "allowSyntheticDefaultImports": false,
     "esModuleInterop": true,
     "target": "esnext",
     "module": "commonjs",
