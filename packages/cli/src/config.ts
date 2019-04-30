@@ -2,6 +2,8 @@ export type Config = {
   uploadApiUrl: string;
 };
 
-const config: Config = require('../config/config');
+const config: Config = {
+  uploadApiUrl: 'https://upload.bojagi.io'
+};
 
 export default config;
