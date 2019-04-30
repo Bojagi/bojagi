@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "blub": "tsc",
     "build": "rollup -c",
     "deploy": "lerna publish from-git -y",
     "publish": "./bin/publish.sh",
@@ -10,6 +11,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
     "@types/jest": "24.0.11",
@@ -23,6 +26,7 @@
     "rollup": "^1.10.1",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^4.2.3",
     "ts-jest": "24.0.2",
     "tslint": "^5.16.0",
