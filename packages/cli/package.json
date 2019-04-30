@@ -6,6 +6,9 @@
   "license": "MIT",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
+  "bin": {
+    "bojagi": "./bin/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bojagi/bojagi.git"

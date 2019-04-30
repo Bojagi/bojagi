@@ -3,7 +3,7 @@ export type Config = {
 };
 
 const config: Config = {
-  uploadApiUrl: 'https://upload.bojagi.io'
+  uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io'
 };
 
 export default config;
