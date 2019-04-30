@@ -9,11 +9,6 @@
     "lint": "tslint packages/*/src/**/*.ts"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-typescript": "^7.3.3",
     "@types/jest": "24.0.11",
     "@types/node": "9.6.46",
     "@types/request-promise": "4.1.42",
@@ -22,16 +17,10 @@
     "jest-extended": "^0.11.1",
     "lerna": "3.13.1",
     "prettier": "^1.17.0",
-    "rollup": "^1.10.1",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^4.2.3",
     "ts-jest": "24.0.2",
     "tslint": "^5.16.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "3.4.3",
-    "webpack": "3.11.0"
+    "typescript": "3.4.3"
   },
   "workspaces": [
     "packages/*"
