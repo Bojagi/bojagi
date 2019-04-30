@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "rebaseStalePrs": true,
+  "prConcurrentLimit": 2,
+  "prHourlyLimit": 10
+}
