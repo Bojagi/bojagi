@@ -21,13 +21,12 @@ function getConfigForPackage(pkgSrc) {
     plugins: [
       resolve({
         extensions,
-        jsnext: true,
       }),
 
       commonjs(),
 
       babel({
-        exclude: 'node_modules/**',
+        exclude: ['node_modules'],
         extensions
       }),
 
@@ -35,7 +34,7 @@ function getConfigForPackage(pkgSrc) {
     output: [
       { file: path.resolve(pkgSrc, pkg.main), format: 'cjs' },
       { file: path.resolve(pkgSrc, pkg.module), format: 'es' }
-    ]
+    ],  
   }
 } 
 

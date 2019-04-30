@@ -8,12 +8,15 @@
     "noImplicitAny": false,
     "moduleResolution": "node",
     "target": "es2015",
+    "lib": [
+      "es2017"
+    ],
     "module": "esnext",
     "esModuleInterop": true,
     "allowJs": true
   },
   "include": [
-    "./**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"
