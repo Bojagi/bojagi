@@ -1,3 +1,3 @@
-import injectComponentMocks from './lib/injectComponentMocks'
+import injectComponentMocks from './injectComponentMocks';
 
 injectComponentMocks();
