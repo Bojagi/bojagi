@@ -24,11 +24,11 @@
   },
   "devDependencies": {
     "@bojagi/cli": "^0.2.0",
-    "react": "16.8.4"
+    "react": "16.8.6"
   },
   "dependencies": {
-    "react-dom": "16.8.4",
-    "react-test-renderer": "16.8.4",
+    "react-dom": "16.8.6",
+    "react-test-renderer": "16.8.6",
     "react-testing-library": "6.1.2"
   }
 }
