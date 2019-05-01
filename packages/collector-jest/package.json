@@ -1,7 +1,7 @@
 {
-  "name": "@bojagi/jest",
+  "name": "@bojagi/collector-jest",
   "version": "0.1.2",
-  "description": "bojagi jest plugin",
+  "description": "bojagi collector jest",
   "homepage": "https://github.com/Bojagi/bojagi#readme",
   "license": "MIT",
   "main": "lib/index.js",
@@ -19,19 +19,16 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "@bojagi/cli": "^0.1.2"
+  },
+  "devDependencies": {
+    "@bojagi/cli": "^0.1.2",
+    "react": "16.8.4"
+  },
   "dependencies": {
-    "adm-zip": "^0.4.13",
-    "chalk": "2.4.2",
-    "cli-spinner": "0.2.8",
-    "cli-step": "1.0.2",
-    "commander": "2.19.0",
-    "inquirer": "5.2.0",
-    "mkdirp": "^0.5.1",
-    "request": "2.88.0",
-    "request-promise": "4.2.2",
-    "rimraf": "^2.6.3",
-    "typescript": "^3.4.1",
-    "util.promisify": "1.0.0",
-    "webpack": "3.12.0"
+    "react-dom": "16.8.4",
+    "react-test-renderer": "16.8.4",
+    "react-testing-library": "6.0.1"
   }
 }
