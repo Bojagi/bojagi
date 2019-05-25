@@ -67,7 +67,7 @@ function modifyValue(value: any): PropValue {
         modifiedValue.type,
         modifiedValue.value
       );
-    }
+    };
 
     const fnProp = createProp(PropType.FUNCTION, getCall());
 
