@@ -5,7 +5,7 @@ let extendedJestFn;
 
 beforeEach(() => {
   jestFn = jest.fn;
-  extendedJestFn = extendedJestFnFactory(jestFn);
+  extendedJestFn = extendedJestFnFactory({ jestFn });
 });
 
 test('inject callPromise', () => {

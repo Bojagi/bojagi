@@ -56,14 +56,18 @@ function modifyValue(value: any): PropValue {
       return createProp(PropType.UNKNOWN, {});
     }
 
-    const getCall = () =>
-      value.mock.calls[0]
-        ? createFunctionPropValue(
-            value.mock.calls[0],
-            value.mock.results[0].type,
-            value.mock.results[0].value
-          )
-        : {};
+    const getCall = () => {
+      const modifiedValue = modifyValue(value.mock.results[0].value);
+      if (!value.mock.calls[0]) {
+        return {};
+      }
+
+      return createFunctionPropValue(
+        value.mock.calls[0],
+        modifiedValue.type,
+        modifiedValue.value
+      );
+    };
 
     const fnProp = createProp(PropType.FUNCTION, getCall());
 
