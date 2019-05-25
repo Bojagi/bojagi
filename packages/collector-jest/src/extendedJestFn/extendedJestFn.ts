@@ -1,4 +1,4 @@
-const extendedJestFnFactory = jestFn => cb => {
+const extendedJestFnFactory = ({ jestFn }) => cb => {
   let extendedCb;
   const callPromise = new Promise(resolve => {
     extendedCb = (...args) => {
