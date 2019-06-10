@@ -3,3 +3,12 @@ export type Component = {
   exportName: string;
   props: Record<string, any>[];
 };
+
+export type Module = {
+  request: string;
+  resource: string;
+  isExternal: boolean;
+  isNodeModule: boolean;
+  packageName?: string;
+  dependencies?: Module[];
+};

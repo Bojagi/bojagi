@@ -116,15 +116,16 @@ export const bundleAction = ({
         const compileSteps = steps
           .advance('Compiling components', 'factory')
           .start();
-        const compilerOutput = (await runWebpackCompiler({
+        const { componentsContent, modules } = await runWebpackCompiler({
           compiler,
           entrypoints
-        })) as Record<string, string>;
+        });
         compileSteps.success('Components compiled', 'factory');
 
         const componentsWithMetadata = createComponentsWithMetadata(
           entrypointsWithMetadata,
-          compilerOutput
+          componentsContent,
+          modules
         );
         const componentsMetadata = componentsWithMetadata.map(
           ({ fileContent, ...componentMetadata }) => componentMetadata
@@ -135,7 +136,7 @@ export const bundleAction = ({
 
         const fileContent: FileContent[] = FILES.map(name => ({
           name,
-          fileContent: compilerOutput[name]
+          fileContent: componentsContent[name]
         }));
 
         await cleanTempFolder();
