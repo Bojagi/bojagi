@@ -5,9 +5,7 @@ const getEntrypointsFromComponents = components =>
       ...eps,
       [entrypointName]: {
         ...component,
-        entrypoint: `component-extract-loader?${entrypointName}!${
-          component.filePath
-        }`
+        entrypoint: `component-extract-loader?${entrypointName}!${component.filePath}`
       }
     };
   }, {});
