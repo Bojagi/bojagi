@@ -60,7 +60,7 @@ function filterActualModulecomponentFilePaths(componentFilePaths) {
   };
 }
 
-function mapModuleToResourceAndDependencies(resource = '') {
+function getFilePath(resource = '') {
   return resource.substr(process.cwd().length + 1) || undefined;
 }
 
@@ -79,7 +79,7 @@ function addDependencies(module): Module {
       ? `${pathParts[0]}/${pathParts[1]}`
       : pathParts[0];
   }
-  const filePath = mapModuleToResourceAndDependencies(module.resource);
+  const filePath = getFilePath(module.resource);
   return {
     request: module.request,
     filePath,
