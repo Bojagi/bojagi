@@ -7,6 +7,7 @@ export type Component = {
 export type Module = {
   request: string;
   resource: string;
+  gitPath: string;
   isExternal: boolean;
   isNodeModule: boolean;
   packageName?: string;

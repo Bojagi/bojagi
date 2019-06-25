@@ -1,4 +1,9 @@
 import runWebpackCompiler from './runWebpackCompiler';
+import getGitPath from './getGitPath';
+
+jest.mock('./getGitPath');
+
+(getGitPath as any).mockImplementation(resource => 'gitpath/' + resource);
 
 let compiler;
 let entrypoints;
@@ -103,16 +108,21 @@ test('run the webpack compiler', async () => {
     modules: [
       {
         resource: `bojagi/A.js`,
+        gitPath: 'gitpath/bojagi/A.js',
+        isExternal: false,
+        isNodeModule: false,
         dependencies: [
           {
-            resource: `${cwd}/node_modules/react/index.js`,
+            resource: `node_modules/react/index.js`,
+            gitPath: `gitpath/node_modules/react/index.js`,
             isExternal: true,
             isNodeModule: true,
             request: 'react',
             packageName: 'react'
           },
           {
-            resource: `${cwd}/node_modules/@material-ui/icons/MyIcon/index.js`,
+            resource: `node_modules/@material-ui/icons/MyIcon/index.js`,
+            gitPath: `gitpath/node_modules/@material-ui/icons/MyIcon/index.js`,
             isExternal: false,
             isNodeModule: true,
             request: '@material-ui/icons/MyIcon',
@@ -124,20 +134,23 @@ test('run the webpack compiler', async () => {
             isNodeModule: true,
             request: 'styled-components',
             packageName: 'styled-components',
-            resource: `${cwd}/node_modules/styled-components/index.js`
+            resource: `node_modules/styled-components/index.js`,
+            gitPath: `gitpath/node_modules/styled-components/index.js`
           },
           // project module
           {
             isExternal: false,
             isNodeModule: false,
             request: './test.js',
-            resource: `${cwd}/src/components/test.js`,
+            resource: `src/components/test.js`,
+            gitPath: `gitpath/src/components/test.js`,
             dependencies: [
               {
                 isExternal: false,
                 isNodeModule: false,
                 request: './otherTest.js',
-                resource: `${cwd}/src/components/otherTest.js`,
+                resource: `src/components/otherTest.js`,
+                gitPath: `gitpath/src/components/otherTest.js`,
                 dependencies: []
               }
             ]
