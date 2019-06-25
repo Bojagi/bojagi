@@ -94,4 +94,3 @@ function addDependencies(module): Module {
       : undefined
   };
 }
-
