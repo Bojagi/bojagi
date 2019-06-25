@@ -107,13 +107,13 @@ test('run the webpack compiler', async () => {
     },
     modules: [
       {
-        resource: `bojagi/A.js`,
+        filePath: `bojagi/A.js`,
         gitPath: 'gitpath/bojagi/A.js',
         isExternal: false,
         isNodeModule: false,
         dependencies: [
           {
-            resource: `node_modules/react/index.js`,
+            filePath: `node_modules/react/index.js`,
             gitPath: `gitpath/node_modules/react/index.js`,
             isExternal: true,
             isNodeModule: true,
@@ -121,7 +121,7 @@ test('run the webpack compiler', async () => {
             packageName: 'react'
           },
           {
-            resource: `node_modules/@material-ui/icons/MyIcon/index.js`,
+            filePath: `node_modules/@material-ui/icons/MyIcon/index.js`,
             gitPath: `gitpath/node_modules/@material-ui/icons/MyIcon/index.js`,
             isExternal: false,
             isNodeModule: true,
@@ -134,7 +134,7 @@ test('run the webpack compiler', async () => {
             isNodeModule: true,
             request: 'styled-components',
             packageName: 'styled-components',
-            resource: `node_modules/styled-components/index.js`,
+            filePath: `node_modules/styled-components/index.js`,
             gitPath: `gitpath/node_modules/styled-components/index.js`
           },
           // project module
@@ -142,14 +142,14 @@ test('run the webpack compiler', async () => {
             isExternal: false,
             isNodeModule: false,
             request: './test.js',
-            resource: `src/components/test.js`,
+            filePath: `src/components/test.js`,
             gitPath: `gitpath/src/components/test.js`,
             dependencies: [
               {
                 isExternal: false,
                 isNodeModule: false,
                 request: './otherTest.js',
-                resource: `src/components/otherTest.js`,
+                filePath: `src/components/otherTest.js`,
                 gitPath: `gitpath/src/components/otherTest.js`,
                 dependencies: []
               }

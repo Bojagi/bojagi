@@ -60,8 +60,8 @@ function filterActualModulecomponentFilePaths(componentFilePaths) {
   };
 }
 
-function mapModuleToResourceAndDependencies(resource) {
-  return resource.substr(process.cwd().length + 1);
+function mapModuleToResourceAndDependencies(resource = '') {
+  return resource.substr(process.cwd().length + 1) || undefined;
 }
 
 function addDependencies(module): Module {
@@ -79,11 +79,11 @@ function addDependencies(module): Module {
       ? `${pathParts[0]}/${pathParts[1]}`
       : pathParts[0];
   }
-  const resource = mapModuleToResourceAndDependencies(module.resource);
+  const filePath = mapModuleToResourceAndDependencies(module.resource);
   return {
     request: module.request,
-    resource,
-    gitPath: getGitPath(resource),
+    filePath,
+    gitPath: getGitPath(filePath),
     isExternal,
     isNodeModule,
     packageName,
