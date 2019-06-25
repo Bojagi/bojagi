@@ -4,6 +4,7 @@ const PREFIX_PATH = `${process.cwd()}/`;
 
 let entrypointsWithMetadata;
 let compilerOutput;
+let modules;
 
 beforeEach(() => {
   entrypointsWithMetadata = {
@@ -40,12 +41,14 @@ beforeEach(() => {
     MainComponent: 'content of main component',
     SmallerComponent: 'content of smaller component'
   };
+  modules = [];
 });
 
 test('get components with metadata', () => {
   const result = createComponentsWithMetadata(
     entrypointsWithMetadata,
-    compilerOutput
+    compilerOutput,
+    modules
   );
   expect(result).toEqual([
     {
@@ -86,7 +89,11 @@ test('get components with metadata', () => {
 test('fail to get components with metadata because entrypoint does not have correct syntax', () => {
   entrypointsWithMetadata.MainComponent.entrypoint = 'faulty_entrypoint';
   expect(() =>
-    createComponentsWithMetadata(entrypointsWithMetadata, compilerOutput)
+    createComponentsWithMetadata(
+      entrypointsWithMetadata,
+      compilerOutput,
+      modules
+    )
   ).toThrowErrorMatchingSnapshot();
 });
 
@@ -94,6 +101,10 @@ test("fail to get components with metadata because file path doesn't start with 
   entrypointsWithMetadata.MainComponent.entrypoint =
     'some-loader?MainComponent!not_prefixed_path';
   expect(() =>
-    createComponentsWithMetadata(entrypointsWithMetadata, compilerOutput)
+    createComponentsWithMetadata(
+      entrypointsWithMetadata,
+      compilerOutput,
+      modules
+    )
   ).toThrowErrorMatchingSnapshot();
 });
