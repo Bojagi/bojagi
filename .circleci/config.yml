@@ -2,7 +2,7 @@ version: 2.1
 executors:
   base:
     docker:
-      - image: hyphe/ci-base-images:0.5.0 
+      - image: hyphe/ci-base-images:0.6.0 
 commands: 
   init:
     description: 'sets up the environment'
