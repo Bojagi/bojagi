@@ -12,9 +12,18 @@ const deployAction = async ({
   markerPrefix,
   dir,
   commit,
-  steps
+  steps,
+  webpackConfig,
+  executionPath
 }: DeployCommandOptions) => {
-  await bundleAction({ marker, markerPrefix, dir, steps });
+  await bundleAction({
+    marker,
+    markerPrefix,
+    dir,
+    steps,
+    webpackConfig,
+    executionPath
+  });
   await uploadAction({ commit, steps });
 };
 
@@ -23,6 +32,10 @@ const deploy = program => {
     .command('deploy')
     .description('bundles and uploads your marked components to Bojagi')
     .option('-d, --dir [dir]', 'The root folder to search components in')
+    .option(
+      '--webpack-config [path]',
+      'Path to the webpack config file, defaults to webpack.config.js'
+    )
     .option('-c, --commit [commit]', 'The commit to upload the components for')
     .action(
       withSteps(4)(
