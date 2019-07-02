@@ -1,4 +1,5 @@
 import * as webpack from 'webpack';
+import * as fs from 'fs';
 
 const getWebpackConfig = (entry: object, resolve: object, module: object) => ({
   entry,
@@ -38,3 +39,23 @@ const getWebpackConfig = (entry: object, resolve: object, module: object) => ({
 });
 
 export default getWebpackConfig;
+
+function returnIfExists(path, continueFunction) {
+  try {
+    fs.accessSync(path, fs.constants.R_OK);
+    return path;
+  } catch (e) {
+    return continueFunction();
+  }
+}
+
+export function getWebpackConfigPath(executionPath) {
+  return returnIfExists(`${executionPath}/webpack.config.js`, () =>
+    returnIfExists(
+      `${executionPath}/node_modules/react-scripts/config/webpack.config.js`,
+      () => {
+        throw new Error('no valid webpack config file found!');
+      }
+    )
+  );
+}

@@ -26,6 +26,8 @@ export interface BundleCommandOptions extends BaseOptions {
   markerPrefix: string;
   dir: string;
   steps: any;
+  webpackConfig: string;
+  executionPath: string;
 }
 
 export type ComponentExportDescription = {
@@ -66,10 +68,11 @@ export const bundleAction = ({
   marker,
   markerPrefix,
   dir,
-  steps
+  steps,
+  webpackConfig,
+  executionPath
 }: BundleCommandOptions) => {
-  const executionPath = process.cwd();
-  const projectWebpackConfig = require(`${executionPath}/webpack.config.js`);
+  const projectWebpackConfig = require(webpackConfig);
   const entryFolder = `${executionPath}/${dir}`;
   const componentExtractStep = steps
     .advance('Figuring out what components to extract', 'mag')
@@ -165,6 +168,10 @@ const bundle = program => {
   program
     .command('bundle')
     .option('-d, --dir [dir]', 'The root folder to search components in')
+    .option(
+      '--webpack-config [path]',
+      'Path to the webpack config file, defaults to webpack.config.js'
+    )
     .description('bundles your marked components (does not upload to Bojagi)')
     .action(withSteps(2)(withHelloGoodbye(withDefaultArguments(bundleAction))));
 };
