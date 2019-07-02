@@ -1,10 +1,5 @@
 import withDefaultArguments from './withDefaultArguments';
 import defaultConfig from '../defaultConfig';
-import { getWebpackConfigPath } from './getWebpackConfig';
-
-jest.mock('./getWebpackConfig');
-
-(getWebpackConfigPath as any).mockReturnValue('default webpack');
 
 test('add default arguments when there are no arguments added', () => {
   const action = ({
@@ -18,7 +13,7 @@ test('add default arguments when there are no arguments added', () => {
     expect(markerPrefix).toBe(defaultConfig.markerPrefix);
     expect(dir).toBe(defaultConfig.dir);
     expect(executionPath).toBe(process.cwd());
-    expect(webpackConfig).toBe('default webpack');
+    expect(webpackConfig).toBe(undefined);
   };
   withDefaultArguments(action)({});
 });

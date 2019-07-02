@@ -54,7 +54,7 @@ export function getWebpackConfigPath(executionPath) {
     returnIfExists(
       `${executionPath}/node_modules/react-scripts/config/webpack.config.js`,
       () => {
-        throw new Error('no valid webpack config file found!');
+        return undefined
       }
     )
   );
