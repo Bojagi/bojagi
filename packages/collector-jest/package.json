@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/collector-jest",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "bojagi collector jest",
   "homepage": "https://github.com/Bojagi/bojagi#readme",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "@bojagi/cli": "^0.1.2"
   },
   "devDependencies": {
-    "@bojagi/cli": "^0.3.1",
+    "@bojagi/cli": "^0.4.0",
     "react": "16.8.6"
   },
   "dependencies": {
