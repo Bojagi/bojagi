@@ -1,9 +1,45 @@
+import * as fs from 'fs';
+import defaultConfig from './defaultConfig';
+
+const CWD = process.cwd();
+const CONFIG_FILE_PRIO = [
+  {
+    path: `${CWD}/.bojagirc.js`,
+    fn: loadJsConfig
+  },
+  {
+    path: `${CWD}/.bojagirc.json`,
+    fn: loadJsonConfig
+  }
+];
+
 export type Config = {
+  componentMarker: string;
+  dir: string;
+  webpackConfig: string;
+  executionPath: string;
   uploadApiUrl: string;
 };
 
 const config: Config = {
-  uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io'
+  ...defaultConfig,
+  ...loadConfigFile()
 };
 
 export default config;
+
+function loadConfigFile() {
+  const foundConfigFile = CONFIG_FILE_PRIO.find(fc => fs.existsSync(fc.path));
+  if (foundConfigFile) {
+    return foundConfigFile.fn(foundConfigFile.path);
+  }
+  return {};
+}
+
+function loadJsConfig(path) {
+  return require(path);
+}
+
+function loadJsonConfig(path) {
+  return JSON.parse(fs.readFileSync(path).toString());
+}

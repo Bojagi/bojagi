@@ -22,8 +22,7 @@ const outputFS = new MemoryFS();
 require('util.promisify').shim();
 
 export interface BundleCommandOptions extends BaseOptions {
-  marker: string;
-  markerPrefix: string;
+  componentMarker: string;
   dir: string;
   steps: any;
   webpackConfig: string;
@@ -65,8 +64,6 @@ export type ComponentWithMetadata = File & {
 const FILES = ['commons'];
 
 export const bundleAction = ({
-  marker,
-  markerPrefix,
   dir,
   steps,
   webpackConfig,
