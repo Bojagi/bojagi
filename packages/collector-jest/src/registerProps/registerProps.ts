@@ -1,12 +1,6 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import {
-  PropType,
-  createProp,
-  createFunctionPropValue,
-  PropValue,
-  getPropTypeForValue
-} from '@bojagi/cli';
+import { PropType, createProp, createFunctionPropValue, getPropTypeForValue } from '@bojagi/cli';
 
 const registerPropsFactory = ({ addProps }) => (
   filePath: string,
@@ -30,7 +24,7 @@ const registerPropsFactory = ({ addProps }) => (
 
     return {
       ...agg,
-      [key]: modifiedValue
+      [key]: modifiedValue,
     };
   }, {});
 
@@ -39,10 +33,7 @@ const registerPropsFactory = ({ addProps }) => (
 
 function modifyValue(value: any): PropValue {
   if (React.isValidElement(value)) {
-    return createProp(
-      PropType.HTML,
-      ReactDOMServer.renderToStaticMarkup(value)
-    );
+    return createProp(PropType.HTML, ReactDOMServer.renderToStaticMarkup(value));
   }
 
   if (Array.isArray(value)) {
@@ -62,11 +53,7 @@ function modifyValue(value: any): PropValue {
         return {};
       }
 
-      return createFunctionPropValue(
-        value.mock.calls[0],
-        modifiedValue.type,
-        modifiedValue.value
-      );
+      return createFunctionPropValue(value.mock.calls[0], modifiedValue.type, modifiedValue.value);
     };
 
     const fnProp = createProp(PropType.FUNCTION, getCall());

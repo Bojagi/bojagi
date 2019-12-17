@@ -19,8 +19,8 @@ const FALLBACK_CI: CiEnvironment = {
   readableName: 'No CI',
   check: env => !env.CI,
   getSettings: () => ({
-    ci: false
-  })
+    ci: false,
+  }),
 };
 
 const CI_ENVIRONMENTS: CiEnvironment[] = [
@@ -30,8 +30,8 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
     check: env => !!env.CI && !!env.CIRCLECI,
     getSettings: env => ({
       commit: env.CIRCLE_SHA1,
-      ci: true
-    })
+      ci: true,
+    }),
   },
   {
     name: 'travis_ci',
@@ -39,8 +39,8 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
     check: env => !!env.CI && !!env.TRAVIS,
     getSettings: env => ({
       commit: env.TRAVIS_COMMIT,
-      ci: true
-    })
+      ci: true,
+    }),
   },
   {
     name: 'gitlab_ci',
@@ -48,8 +48,8 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
     check: env => !!env.CI && !!env.GITLAB_CI,
     getSettings: env => ({
       commit: env.CI_COMMIT_SHA,
-      ci: true
-    })
+      ci: true,
+    }),
   },
   {
     name: 'github_actions',
@@ -57,8 +57,8 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
     check: env => !!env.GITHUB_ACTION && !!env.GITHUB_REPOSITORY,
     getSettings: env => ({
       commit: env.GITHUB_SHA,
-      ci: true
-    })
+      ci: true,
+    }),
   },
   {
     name: 'jenkins',
@@ -66,8 +66,8 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
     check: env => !!env.JENKINS_URL,
     getSettings: env => ({
       commit: env.GIT_COMMIT,
-      ci: true
-    })
+      ci: true,
+    }),
   },
   {
     name: 'teamcity',
@@ -75,17 +75,17 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
     check: env => !!env.TEAMCITY_VERSION && !!env.GIT_HASH,
     getSettings: env => ({
       commit: env.GIT_HASH,
-      ci: true
-    })
+      ci: true,
+    }),
   },
   {
     name: 'unknown_ci',
     readableName: 'Unknown CI',
     check: env => !!env.CI,
     getSettings: () => ({
-      ci: true
-    })
-  }
+      ci: true,
+    }),
+  },
 ];
 
 export default function getCiSettingsFactory(env) {

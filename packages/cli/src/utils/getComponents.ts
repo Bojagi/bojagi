@@ -5,15 +5,12 @@ const EXPORT_REG_EXP = /export(?:\s|\n|\/\*(?:.|\n)*?\*\/)+(?:const|var|let|clas
 const EXPORT_REG_EXP_GLOBAL = new RegExp(EXPORT_REG_EXP, 'g');
 
 const getExports = fileContent =>
-  (fileContent.match(EXPORT_REG_EXP_GLOBAL) || []).map(
-    match => match.match(EXPORT_REG_EXP)[1]
-  );
-const getDefaultExport = fileContent =>
-  (fileContent.match(EXPORT_DEFAULT_REG_EXP) || [])[1];
+  (fileContent.match(EXPORT_REG_EXP_GLOBAL) || []).map(match => match.match(EXPORT_REG_EXP)[1]);
+const getDefaultExport = fileContent => (fileContent.match(EXPORT_DEFAULT_REG_EXP) || [])[1];
 
 const buildCombinedExportData = (isDefaultExport = false) => exportSymbol => ({
   symbol: exportSymbol,
-  isDefaultExport
+  isDefaultExport,
 });
 
 const getComponents = fileContent => {
@@ -22,7 +19,7 @@ const getComponents = fileContent => {
     const defaultExport = getDefaultExport(fileContent);
 
     if (exports.length === 0 && !defaultExport) {
-      return;
+      return undefined;
     }
 
     const combinedExports = exports.map(buildCombinedExportData());
@@ -32,6 +29,7 @@ const getComponents = fileContent => {
     }
     return combinedExports;
   }
+  return undefined;
 };
 
 export default getComponents;

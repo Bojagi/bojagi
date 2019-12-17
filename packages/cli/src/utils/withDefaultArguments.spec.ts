@@ -12,11 +12,11 @@ test('add default arguments when there are no arguments added', () => {
 });
 
 test('add only default argument when argument is not set', () => {
-  const action = ({ componentMarker, markerPrefix, dir }) => {
+  const action = ({ componentMarker, dir }) => {
     expect(componentMarker).toBe(defaultConfig.componentMarker);
     expect(dir).toBe('dist');
   };
   withDefaultArguments(action)({
-    dir: 'dist'
+    dir: 'dist',
   });
 });

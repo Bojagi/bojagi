@@ -18,9 +18,7 @@ const getComponentsOfFile = filePath =>
     .then(components => (components ? { filePath, components } : undefined));
 
 const getComponentsOfFiles = (files: FileWithInformation[]): Promise<any> => {
-  return Promise.all(
-    files.map(({ filePath }) => getComponentsOfFile(filePath))
-  );
+  return Promise.all(files.map(({ filePath }) => getComponentsOfFile(filePath)));
 };
 
 const getFilesWithStats = (path: string): Promise<FileWithInformation[]> =>
@@ -48,18 +46,12 @@ const getComponentsOfFolder = (path: string) => {
     .then(directories =>
       Promise.all([
         ...directories.map(({ filePath }) => getComponentsOfFolder(filePath)),
-        jsxFilesPromise.then(getComponentsOfFiles)
+        jsxFilesPromise.then(getComponentsOfFiles),
       ])
     )
     .then(componentsOfFolders =>
       componentsOfFolders
-        .reduce(
-          (results: any[], componentOfFolder) => [
-            ...results,
-            ...componentOfFolder
-          ],
-          []
-        )
+        .reduce((results: any[], componentOfFolder) => [...results, ...componentOfFolder], [])
         .filter(component => !!component)
     );
 };

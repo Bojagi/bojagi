@@ -1,41 +1,39 @@
 import getComponentsOfFolder from './getComponentsOfFolder';
 
 test('Get components', async () => {
-  const components = await getComponentsOfFolder(
-    `${__dirname}/__testHelpers__/files`
-  );
+  const components = await getComponentsOfFolder(`${__dirname}/__testHelpers__/files`);
   const expectedComponents = [
     {
       filePath: `${__dirname}/__testHelpers__/files/abc/Cde.tsx`,
       components: [
         {
           symbol: 'Cdee',
-          isDefaultExport: false
-        }
-      ]
+          isDefaultExport: false,
+        },
+      ],
     },
     {
       filePath: `${__dirname}/__testHelpers__/files/abc/Xyz.jsx`,
       components: [
         {
           symbol: 'Xxx',
-          isDefaultExport: false
+          isDefaultExport: false,
         },
         {
           symbol: 'Xyz',
-          isDefaultExport: true
-        }
-      ]
+          isDefaultExport: true,
+        },
+      ],
     },
     {
       filePath: `${__dirname}/__testHelpers__/files/xyz/xxx/SomeComponent.tsx`,
       components: [
         {
           symbol: 'SomeComponent',
-          isDefaultExport: false
-        }
-      ]
-    }
+          isDefaultExport: false,
+        },
+      ],
+    },
   ];
 
   expect(components).toEqual(expectedComponents);

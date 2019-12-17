@@ -8,13 +8,13 @@ export const pitch = function(remainingRequest) {
     this.resourcePath,
     `.${path.sep}${path.relative(this.context, this.resourcePath)}`
   );
-  this.cacheable && this.cacheable();
+  if (this.cacheable) this.cacheable();
   if (!this.query) throw new Error('query parameter is missing');
 
   const moduleName = JSON.stringify(this.query.substr(1));
   const componentHubFn = 'registerComponent';
   const requirePath = JSON.stringify(`-!${newRequestPath}`);
-  let result = `
+  const result = `
     var componentModule = require(${requirePath});
     ${componentHubFn}(${moduleName}, componentModule);
     module.exports = componentModule;

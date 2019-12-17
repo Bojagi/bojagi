@@ -10,12 +10,7 @@ import createComponentsWithMetadata from '../utils/createComponentsWithMetadata'
 import withSteps from '../utils/withSteps';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import { getComponentCountText } from '../renderers/componentList';
-import {
-  writeComponent,
-  writeSharedFile,
-  writeJson,
-  cleanTempFolder
-} from '../utils/writeFile';
+import { writeComponent, writeSharedFile, writeJson, cleanTempFolder } from '../utils/writeFile';
 
 const outputFS = new MemoryFS();
 
@@ -67,7 +62,7 @@ export const bundleAction = ({
   dir,
   steps,
   webpackConfig,
-  executionPath
+  executionPath,
 }: BundleCommandOptions) => {
   const projectWebpackConfig = require(webpackConfig);
   const entryFolder = `${executionPath}/${dir}`;
@@ -76,89 +71,77 @@ export const bundleAction = ({
     .start();
   return getComponentsOfFolder(entryFolder)
     .then(getEntrypointsFromComponents)
-    .then(
-      async (
-        entrypointsWithMetadata: Record<string, EntrypointWithMetadata>
-      ) => {
-        const fileCount = Object.entries(entrypointsWithMetadata).length;
-        if (fileCount === 0) {
-          componentExtractStep.error('No components found', 'shrug');
-          throw new Error(
-            'No components found! Have you marked them correctly?'
-          );
-        }
-
-        const componentCount = Object.values(entrypointsWithMetadata).reduce(
-          (prev, current) => prev + current.components.length,
-          0
-        );
-
-        componentExtractStep.success(
-          getComponentCountText(componentCount, fileCount)
-        );
-
-        const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
-          (prev, [key, ep]) => ({
-            ...prev,
-            [key]: ep.entrypoint
-          }),
-          {}
-        );
-        const config = getWebpackConfig(
-          entrypoints,
-          projectWebpackConfig.resolve,
-          projectWebpackConfig.module
-        );
-
-        const compiler = webpack(config);
-        compiler.outputFileSystem = outputFS;
-
-        const compileSteps = steps
-          .advance('Compiling components', 'factory')
-          .start();
-        const { componentsContent, modules } = await runWebpackCompiler({
-          compiler,
-          entrypoints
-        });
-        compileSteps.success('Components compiled', 'factory');
-
-        const componentsWithMetadata = createComponentsWithMetadata(
-          entrypointsWithMetadata,
-          componentsContent,
-          modules
-        );
-        const componentsMetadata = componentsWithMetadata.map(
-          ({ fileContent, ...componentMetadata }) => componentMetadata
-        );
-        const files: File[] = FILES.map(name => ({
-          name
-        }));
-
-        const fileContent: FileContent[] = FILES.map(name => ({
-          name,
-          fileContent: componentsContent[name]
-        }));
-
-        await cleanTempFolder();
-
-        await fileContent.map(async file => {
-          await writeSharedFile(file);
-        });
-        await componentsWithMetadata.map(
-          async ({ exportName, filePath, fileContent }) => {
-            await writeComponent({ exportName, filePath, fileContent });
-          }
-        );
-
-        await writeJson('files', files);
-        await writeJson('components', componentsMetadata);
-
-        return {
-          files,
-          components: componentsWithMetadata
-        };
+    .then(async (entrypointsWithMetadata: Record<string, EntrypointWithMetadata>) => {
+      const fileCount = Object.entries(entrypointsWithMetadata).length;
+      if (fileCount === 0) {
+        componentExtractStep.error('No components found', 'shrug');
+        throw new Error('No components found! Have you marked them correctly?');
       }
-    );
+
+      const componentCount = Object.values(entrypointsWithMetadata).reduce(
+        (prev, current) => prev + current.components.length,
+        0
+      );
+
+      componentExtractStep.success(getComponentCountText(componentCount, fileCount));
+
+      const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
+        (prev, [key, ep]) => ({
+          ...prev,
+          [key]: ep.entrypoint,
+        }),
+        {}
+      );
+      const config = getWebpackConfig(
+        entrypoints,
+        projectWebpackConfig.resolve,
+        projectWebpackConfig.module
+      );
+
+      const compiler = webpack(config);
+      compiler.outputFileSystem = outputFS;
+
+      const compileSteps = steps.advance('Compiling components', 'factory').start();
+      const { componentsContent, modules } = await runWebpackCompiler({
+        compiler,
+        entrypoints,
+      });
+      compileSteps.success('Components compiled', 'factory');
+
+      const componentsWithMetadata = createComponentsWithMetadata(
+        entrypointsWithMetadata,
+        componentsContent,
+        modules
+      );
+      const componentsMetadata = componentsWithMetadata.map(
+        ({ fileContent, ...componentMetadata }) => componentMetadata
+      );
+      const files: File[] = FILES.map(name => ({
+        name,
+      }));
+
+      const fileContent: FileContent[] = FILES.map(name => ({
+        name,
+        fileContent: componentsContent[name],
+      }));
+
+      await cleanTempFolder();
+
+      await fileContent.map(async file => {
+        await writeSharedFile(file);
+      });
+      await componentsWithMetadata.map(async ({ exportName, filePath, fileContent: fc }) => {
+        await writeComponent({ exportName, filePath, fileContent: fc });
+      });
+
+      await writeJson('files', files);
+      await writeJson('components', componentsMetadata);
+
+      return {
+        files,
+        components: componentsWithMetadata,
+      };
+    });
 };
 
 const bundle = program => {

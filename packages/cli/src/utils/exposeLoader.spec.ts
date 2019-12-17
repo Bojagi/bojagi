@@ -10,7 +10,7 @@ beforeEach(() => {
     cacheable: jest.fn(),
     context: '/home/MyAccount/project/Abc',
     resourcePath: '/home/MyAccount/project/Abc/Abc.jsx',
-    query: '?MyComponent'
+    query: '?MyComponent',
   };
   pitch = _pitch.bind(self);
 });

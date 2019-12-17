@@ -1,14 +1,15 @@
-import { BaseOptions } from '../baseCmd';
-import withDefaultArguments from '../utils/withDefaultArguments';
+/* eslint-disable max-classes-per-file */
 import * as request from 'request-promise';
 import * as AdmZip from 'adm-zip';
+import * as path from 'path';
+import { BaseOptions } from '../baseCmd';
+import withDefaultArguments from '../utils/withDefaultArguments';
 import withSteps from '../utils/withSteps';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import withDeployValidator from '../validators/withDeployValidator';
 import config from '../config';
 import { getFS } from '../dependencies';
 import { TEMP_FOLDER } from '../constants';
-import * as path from 'path';
 
 const fs = getFS();
 
@@ -26,9 +27,7 @@ export class ServerError extends Error {
 }
 
 export const uploadAction = async ({ commit, steps }: UploadCommandOptions) => {
-  const createComponentsStep = steps
-    .advance('Creating components on Bojagi', 'seedling')
-    .start();
+  const createComponentsStep = steps.advance('Creating components on Bojagi', 'seedling').start();
 
   const apiSecret = process.env.BOJAGI_SECRET as string;
   let result;
@@ -38,8 +37,7 @@ export const uploadAction = async ({ commit, steps }: UploadCommandOptions) => {
   } catch (err) {
     createComponentsStep.error();
     const isAuthorizationError =
-      err.error.errors &&
-      err.error.errors[0].extensions.code === 'UNAUTHENTICATED';
+      err.error.errors && err.error.errors[0].extensions.code === 'UNAUTHENTICATED';
     if (isAuthorizationError) {
       throw new AuthorizationError(
         'It seems your secret is wrong. Maybe it was revoked or renewed?'
@@ -49,22 +47,17 @@ export const uploadAction = async ({ commit, steps }: UploadCommandOptions) => {
     throw new ServerError(err.message);
   }
 
-  const uploadComponentsStep = steps
-    .advance('Uploading components', 'truck')
-    .start();
+  const uploadComponentsStep = steps.advance('Uploading components', 'truck').start();
 
   try {
-    const uploadUrl = result.data.uploadCreate.uploadUrl;
+    const { uploadUrl } = result.data.uploadCreate;
     const zipFileContent = await createZipFile();
     await uploadZip(uploadUrl, zipFileContent);
   } catch (err) {
     uploadComponentsStep.error();
     throw new ServerError(err.message);
   }
-  uploadComponentsStep.success(
-    'Your components are ready to be viewed',
-    'information_desk_person'
-  );
+  uploadComponentsStep.success('Your components are ready to be viewed', 'information_desk_person');
 };
 
 async function createZipFile(): Promise<Buffer> {
@@ -75,7 +68,7 @@ async function createZipFile(): Promise<Buffer> {
   addFileToZip(zip, TEMP_FOLDER, 'components.json');
   fs.readdirSync(`${TEMP_FOLDER}/files`)
     .map(file => `files/${file}`)
-    .forEach(path => addFileToZip(zip, TEMP_FOLDER, path));
+    .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));
 
   fs.readdirSync(`${TEMP_FOLDER}/components`)
     .reduce((agg, folder) => {
@@ -83,10 +76,10 @@ async function createZipFile(): Promise<Buffer> {
         ...agg,
         ...fs
           .readdirSync(`${TEMP_FOLDER}/components/${folder}`)
-          .map(file => `components/${folder}/${file}`)
+          .map(file => `components/${folder}/${file}`),
       ];
     }, [])
-    .forEach(path => addFileToZip(zip, TEMP_FOLDER, path));
+    .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));
 
   const content = zip.toBuffer();
   fs.writeFileSync(zipFile, content);
@@ -103,9 +96,9 @@ function uploadZip(url: string, fileContent: Buffer) {
     method: 'PUT',
     url,
     headers: {
-      'Content-type': 'application/zip'
+      'Content-type': 'application/zip',
     },
-    body: fileContent
+    body: fileContent,
   });
 }
 
@@ -121,18 +114,18 @@ async function createComponentsApiCall(commit: string, apiSecret: string) {
 
   const variables = { commit };
 
-  return await request({
+  return request({
     method: 'POST',
     url: `${config.uploadApiUrl}/graphql`,
     headers: {
       'Content-type': 'application/json',
-      authorization: `Secret ${apiSecret}`
+      authorization: `Secret ${apiSecret}`,
     },
     json: true,
     body: {
       query,
-      variables
-    }
+      variables,
+    },
   });
 }
 
@@ -142,11 +135,7 @@ const upload = program => {
     .description('uploads your marked components to Bojagi (no bundling)')
     .option('-c, --commit [commit]', 'The commit to upload the components for')
     .action(
-      withSteps(2)(
-        withHelloGoodbye(
-          withDefaultArguments(withDeployValidator(uploadAction))
-        )
-      )
+      withSteps(2)(withHelloGoodbye(withDefaultArguments(withDeployValidator(uploadAction))))
     );
 };
 

@@ -8,14 +8,9 @@ export type AddPropsFn = (
   propSet: Record<string, any>
 ) => void;
 
-export const addProps = (generatorName: string): AddPropsFn => (
-  filePath,
-  exportName,
-  propSet
-) => {
+export const addProps = (generatorName: string): AddPropsFn => (filePath, exportName, propSet) => {
   const key = creatFilePropsKey(filePath, exportName);
-  const entry =
-    propsRegistry.get(key) || createFilePropList(filePath, exportName);
+  const entry = propsRegistry.get(key) || createFilePropList(filePath, exportName);
 
   entry.props.push({ propSet, createdBy: generatorName });
 

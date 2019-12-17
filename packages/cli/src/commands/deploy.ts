@@ -13,14 +13,14 @@ const deployAction = async ({
   commit,
   steps,
   webpackConfig,
-  executionPath
+  executionPath,
 }: DeployCommandOptions) => {
   await bundleAction({
     componentMarker,
     dir,
     steps,
     webpackConfig,
-    executionPath
+    executionPath,
   });
   await uploadAction({ commit, steps });
 };
@@ -36,11 +36,7 @@ const deploy = program => {
     )
     .option('-c, --commit [commit]', 'The commit to upload the components for')
     .action(
-      withSteps(4)(
-        withHelloGoodbye(
-          withDefaultArguments(withDeployValidator(deployAction))
-        )
-      )
+      withSteps(4)(withHelloGoodbye(withDefaultArguments(withDeployValidator(deployAction))))
     );
 };
 

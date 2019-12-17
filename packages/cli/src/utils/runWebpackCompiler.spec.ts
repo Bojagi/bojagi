@@ -3,7 +3,7 @@ import getGitPath from './getGitPath';
 
 jest.mock('./getGitPath');
 
-(getGitPath as any).mockImplementation(resource => 'gitpath/' + resource);
+(getGitPath as any).mockImplementation(resource => `gitpath/${resource}`);
 
 let compiler;
 let entrypoints;
@@ -22,7 +22,7 @@ beforeEach(() => {
         {
           rawRequest: `component-extract-loader?${cwd}/bojagi/A.js`,
           resource: `${cwd}/bojagi/A.js`,
-          dependencies: []
+          dependencies: [],
         },
         {
           rawRequest: `${cwd}/bojagi/A.js`,
@@ -34,24 +34,24 @@ beforeEach(() => {
               module: {
                 resource: `${cwd}/node_modules/react/index.js`,
                 external: true,
-                dependencies: []
-              }
+                dependencies: [],
+              },
             },
             // node module of org
             {
               request: '@material-ui/icons/MyIcon',
               module: {
                 resource: `${cwd}/node_modules/@material-ui/icons/MyIcon/index.js`,
-                dependencies: []
-              }
+                dependencies: [],
+              },
             },
             // node module (no org)
             {
               request: 'styled-components',
               module: {
                 resource: `${cwd}/node_modules/styled-components/index.js`,
-                dependencies: []
-              }
+                dependencies: [],
+              },
             },
             // project module
             {
@@ -64,35 +64,35 @@ beforeEach(() => {
                     request: './otherTest.js',
                     module: {
                       resource: `${cwd}/src/components/otherTest.js`,
-                      dependencies: []
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    }
+                      dependencies: [],
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
   };
   fileContents = {
     [`${cwd}/bojagi/A.js`]: 'file content a',
     [`${cwd}/bojagi/B.js`]: 'file content b',
     [`${cwd}/bojagi/C.js`]: 'file content c',
-    [`${cwd}/bojagi/commons.js`]: 'commons file content'
+    [`${cwd}/bojagi/commons.js`]: 'commons file content',
   };
 
   mockFs = {
-    readFileSync: jest.fn(path => fileContents[path])
+    readFileSync: jest.fn(path => fileContents[path]),
   };
   entrypoints = {
     A: `A!${cwd}/bojagi/A.js`,
     B: `B!${cwd}/bojagi/B.js`,
-    C: `C!${cwd}/bojagi/C.js`
+    C: `C!${cwd}/bojagi/C.js`,
   };
   compiler = {
     run: jest.fn(runCb => runCb(mockError, mockOutput)),
-    outputFileSystem: mockFs
+    outputFileSystem: mockFs,
   };
 });
 
@@ -103,7 +103,7 @@ test('run the webpack compiler', async () => {
       commons: 'commons file content',
       A: 'file content a',
       B: 'file content b',
-      C: 'file content c'
+      C: 'file content c',
     },
     modules: [
       {
@@ -118,7 +118,7 @@ test('run the webpack compiler', async () => {
             isExternal: true,
             isNodeModule: true,
             request: 'react',
-            packageName: 'react'
+            packageName: 'react',
           },
           {
             filePath: `node_modules/@material-ui/icons/MyIcon/index.js`,
@@ -126,7 +126,7 @@ test('run the webpack compiler', async () => {
             isExternal: false,
             isNodeModule: true,
             request: '@material-ui/icons/MyIcon',
-            packageName: '@material-ui/icons'
+            packageName: '@material-ui/icons',
           },
           // node module (no org)
           {
@@ -135,7 +135,7 @@ test('run the webpack compiler', async () => {
             request: 'styled-components',
             packageName: 'styled-components',
             filePath: `node_modules/styled-components/index.js`,
-            gitPath: `gitpath/node_modules/styled-components/index.js`
+            gitPath: `gitpath/node_modules/styled-components/index.js`,
           },
           // project module
           {
@@ -151,19 +151,17 @@ test('run the webpack compiler', async () => {
                 request: './otherTest.js',
                 filePath: `src/components/otherTest.js`,
                 gitPath: `gitpath/src/components/otherTest.js`,
-                dependencies: []
-              }
-            ]
-          }
-        ]
-      }
-    ]
+                dependencies: [],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   });
 });
 
 test('run webpack compiler with error', async () => {
   mockError = new Error('some error text');
-  await expect(runWebpackCompiler({ compiler, entrypoints })).rejects.toThrow(
-    'some error text'
-  );
+  await expect(runWebpackCompiler({ compiler, entrypoints })).rejects.toThrow('some error text');
 });

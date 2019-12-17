@@ -14,6 +14,6 @@ test('inject callPromise', () => {
   expect(mock('1', '2')).toBe('returnVal');
   expect(mock.mock.callPromise).resolves.toEqual({
     returnValue: 'returnVal',
-    args: ['1', '2']
+    args: ['1', '2'],
   });
 });
