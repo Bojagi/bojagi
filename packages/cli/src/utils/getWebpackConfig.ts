@@ -24,8 +24,8 @@ const getWebpackConfig = (entry: object, resolve: object, module: object) => ({
     splitChunks: {
       cacheGroups: {
         commons: {
-          filename: 'commons.js',
-          minChunks: m =>
+          name: 'commons',
+          test: m =>
             Object.keys(entry).reduce(
               (bool, ep) => bool && !!m.resource && !m.resource.includes(ep),
               true
