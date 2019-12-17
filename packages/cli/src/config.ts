@@ -1,14 +1,18 @@
 import * as fs from 'fs';
 import defaultConfig from './defaultConfig';
 
-const CWD = process.cwd();
+const { PWD } = process.env;
 const CONFIG_FILE_PRIO = [
   {
-    path: `${CWD}/.bojagirc.js`,
+    path: `${PWD}/.bojagirc.js`,
     fn: loadJsConfig
   },
   {
-    path: `${CWD}/.bojagirc.json`,
+    path: `${PWD}/.bojagirc.json`,
+    fn: loadJsonConfig
+  },
+  {
+    path: `${PWD}/.bojagirc`,
     fn: loadJsonConfig
   }
 ];
