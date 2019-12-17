@@ -13,10 +13,9 @@ const baseCmd = program => {
       '-R, --root [folder]',
       'root folder to search in (default is "./src")'
     )
-    .option('-M, --marker [marker]', 'marker to use (default is "component")')
     .option(
-      '--markerPrefix [markerPrefix]',
-      'prefix to use for the marker comment (default is "@"'
+      '-M, --componentMarker [marker]',
+      'marker that to mark a file containing components (default is "@component")'
     );
 };
 

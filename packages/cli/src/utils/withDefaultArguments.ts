@@ -1,10 +1,10 @@
-import defaultConfig from '../defaultConfig';
+import config from '../config';
 import getCiSettingsFactory from './getCiSettings';
 
 const getCiSettings = getCiSettingsFactory(process.env);
 
 const withDefaultArguments = action => args => {
-  const defaultedArgs = Object.assign({}, getCiSettings(), defaultConfig, args);
+  const defaultedArgs = Object.assign({}, getCiSettings(), config, args);
   return action(defaultedArgs);
 };
 

@@ -8,8 +8,7 @@ import withDeployValidator from '../validators/withDeployValidator';
 export type DeployCommandOptions = BundleCommandOptions & UploadCommandOptions;
 
 const deployAction = async ({
-  marker,
-  markerPrefix,
+  componentMarker,
   dir,
   commit,
   steps,
@@ -17,8 +16,7 @@ const deployAction = async ({
   executionPath
 }: DeployCommandOptions) => {
   await bundleAction({
-    marker,
-    markerPrefix,
+    componentMarker,
     dir,
     steps,
     webpackConfig,
