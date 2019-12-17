@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.15",
-    "@types/node": "9.6.49",
+    "@types/node": "9.6.55",
     "@types/request-promise": "4.1.44",
     "@typescript-eslint/eslint-plugin": "2.12.0",
     "@typescript-eslint/eslint-plugin-tslint": "2.12.0",
