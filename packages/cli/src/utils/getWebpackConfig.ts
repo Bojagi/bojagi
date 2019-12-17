@@ -24,6 +24,7 @@ const getWebpackConfig = (entry: object, resolve: object, module: object) => ({
     splitChunks: {
       cacheGroups: {
         commons: {
+          chunks: 'all',
           name: 'commons',
           test: m =>
             Object.keys(entry).reduce(
