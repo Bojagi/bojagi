@@ -1,17 +1,17 @@
 import chalk from 'chalk';
-import { emojiMesage, indentation } from './terminalUtils';
+import { emojiMessage, indentation } from './terminalUtils';
 
 export default function(action) {
   return async args => {
     try {
-      emojiMesage('👋', 'Welcome back!', true);
+      emojiMessage('👋', 'Welcome back!', true);
       await action(args);
       const timeMessage = args.steps
         ? chalk.gray(`Done in ${getDurationOfSteps(args.steps)}.`)
         : '';
-      emojiMesage('🙌', `We\'re done! Have a nice day! ${timeMessage}`, true);
+      emojiMessage('🙌', `We're done! Have a nice day! ${timeMessage}`, true);
     } catch (err) {
-      emojiMesage('🤷‍♀️', 'SORRY, WE FOUND AN ERROR', true);
+      emojiMessage('🤷‍♀️', 'SORRY, WE FOUND AN ERROR', true);
       console.error(indentation(chalk.bold(err.message)));
       if (!err.hideStackTrace) {
         console.error(indentation(chalk.gray(`${err.stack}\n`)));

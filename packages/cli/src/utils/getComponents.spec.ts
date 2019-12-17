@@ -18,7 +18,7 @@ test('get correctly marked components and exports', () => {
      // @component
     export const someCode = () => <div></div>
     export default () => <div></div>
-    export const otherCode () => <div></div>`
+    export const otherCode () => <div></div>`,
   ];
 
   const foundComponents = testFiles
@@ -30,28 +30,28 @@ test('get correctly marked components and exports', () => {
     [
       {
         symbol: 'someCode',
-        isDefaultExport: false
-      }
+        isDefaultExport: false,
+      },
     ],
     [
       {
         symbol: 'someCode',
-        isDefaultExport: false
-      }
+        isDefaultExport: false,
+      },
     ],
     [
       {
         symbol: 'someCode',
-        isDefaultExport: false
+        isDefaultExport: false,
       },
       {
         symbol: 'otherCode',
-        isDefaultExport: false
+        isDefaultExport: false,
       },
       {
         symbol: '()',
-        isDefaultExport: true
-      }
-    ]
+        isDefaultExport: true,
+      },
+    ],
   ]);
 });

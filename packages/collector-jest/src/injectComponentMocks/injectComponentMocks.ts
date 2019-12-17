@@ -1,14 +1,10 @@
 import * as React from 'react';
-import { ComponentFile } from '../types';
 import { Component } from '@bojagi/cli';
+import { ComponentFile } from '../types';
 
 export type InjectComponentMocksDeps = {
   executionPath: string;
-  registerProps(
-    filePath: string,
-    exportName: string,
-    props: Record<string, any>
-  ): void;
+  registerProps(filePath: string, exportName: string, props: Record<string, any>): void;
   componentsAvailable: () => boolean;
   getComponents: () => Component[];
   jest: {
@@ -24,7 +20,7 @@ const injectComponentMocksFactory = ({
   componentsAvailable,
   getComponents,
   jest,
-  extendedJestFn
+  extendedJestFn,
 }: InjectComponentMocksDeps) => () => {
   if (!componentsAvailable()) {
     return;
@@ -37,7 +33,7 @@ const injectComponentMocksFactory = ({
       .reduce((agg, { filePath, ...component }) => {
         const entry = agg.get(filePath) || {
           filePath,
-          exportNames: []
+          exportNames: [],
         };
         entry.exportNames.push(component.exportName);
         agg.set(filePath, entry);
@@ -58,7 +54,7 @@ const injectComponentMocksFactory = ({
             [key]:
               typeof value === 'function'
                 ? extendedJestFn((...args: any[]) => value(...args))
-                : value
+                : value,
           }),
           {}
         );
@@ -73,10 +69,10 @@ const injectComponentMocksFactory = ({
     const mock = file.exportNames.reduce(
       (agg: Record<string, any>, exportName) => ({
         ...agg,
-        [exportName]: createExportFunction(exportName)
+        [exportName]: createExportFunction(exportName),
       }),
       {
-        __esModule: true
+        __esModule: true,
       }
     );
     jest.setMock(fullFilePath, mock);

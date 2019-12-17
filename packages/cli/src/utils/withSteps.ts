@@ -6,6 +6,6 @@ export default function withSteps(totalStepCount: number) {
   return action => args =>
     action({
       ...args,
-      steps
+      steps,
     });
 }

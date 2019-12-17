@@ -1,8 +1,8 @@
+import { getComponents, componentsAvailable } from '@bojagi/cli';
 import injectComponentMocksFactory from './injectComponentMocks';
 import registerProps from '../registerProps';
 import { executionPath } from '../constants';
 import extendedJestFn from '../extendedJestFn';
-import { getComponents, componentsAvailable } from '@bojagi/cli';
 
 export default injectComponentMocksFactory({
   executionPath,
@@ -10,5 +10,5 @@ export default injectComponentMocksFactory({
   jest,
   extendedJestFn,
   getComponents,
-  componentsAvailable
+  componentsAvailable,
 });

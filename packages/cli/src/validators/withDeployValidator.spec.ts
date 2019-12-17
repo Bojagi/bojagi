@@ -25,7 +25,7 @@ afterEach(restoreProcess);
 test('fail because of missing commit', () => {
   expect(() =>
     wrappedAction({
-      commit: undefined
+      commit: undefined,
     })
   ).toThrowErrorMatchingSnapshot();
 });
@@ -34,7 +34,7 @@ test('fail because of missing secret', () => {
   process.env.BOJAGI_SECRET = undefined;
   expect(() =>
     wrappedAction({
-      commit: 'abc123'
+      commit: 'abc123',
     })
   ).toThrowErrorMatchingSnapshot();
 });
@@ -42,7 +42,7 @@ test('fail because of missing secret', () => {
 test('succeed and call action with args', () => {
   action.mockReturnValueOnce('action_result');
   const result = wrappedAction({
-    commit: 'abc123'
+    commit: 'abc123',
   });
   expect(result).toBe('action_result');
 });

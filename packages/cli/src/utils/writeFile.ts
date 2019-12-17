@@ -1,9 +1,9 @@
 import * as util from 'util';
-import { getFS } from '../dependencies';
-import { TEMP_FOLDER } from '../constants';
 import * as _rimraf from 'rimraf';
 import * as _mkdirp from 'mkdirp';
 import * as path from 'path';
+import { TEMP_FOLDER } from '../constants';
+import { getFS } from '../dependencies';
 
 export type WriteComponentPropsArgs = {
   exportName: string;
@@ -20,17 +20,12 @@ const readFile = util.promisify(fs.readFile.bind(fs));
 const rimraf = util.promisify(_rimraf);
 
 function getComponentFolder(filePath: string, exportName: string) {
-  const mappedPath = filePath.replace(/[\/\\]/g, '__');
+  const mappedPath = filePath.replace(/[/\\]/g, '__');
   const folder = `${mappedPath}___${exportName}`;
   return path.join(TEMP_FOLDER, 'components', folder);
 }
 
-async function writeComponentFile({
-  exportName,
-  filePath,
-  fileContent,
-  fileName
-}) {
+async function writeComponentFile({ exportName, filePath, fileContent, fileName }) {
   const componentFolder = getComponentFolder(filePath, exportName);
   await mkdirp(`${componentFolder}`, { fs });
   await writeFile(path.join(componentFolder, fileName), fileContent);
@@ -38,11 +33,11 @@ async function writeComponentFile({
 
 export async function writeComponent({ exportName, filePath, fileContent }) {
   const fileName = 'component.js';
-  return await writeComponentFile({
+  return writeComponentFile({
     exportName,
     filePath,
     fileContent,
-    fileName
+    fileName,
   });
 }
 
@@ -61,24 +56,19 @@ export function fileExistsSync(fileName: string): boolean {
 export async function writeComponentProps({
   exportName,
   filePath,
-  props
+  props,
 }: WriteComponentPropsArgs) {
   const fileName = 'props.json';
-  const fullPath = path.join(
-    getComponentFolder(filePath, exportName),
-    fileName
-  );
+  const fullPath = path.join(getComponentFolder(filePath, exportName), fileName);
 
-  const existingProps = (await exists(fullPath))
-    ? JSON.parse(readFile(fullPath))
-    : [];
+  const existingProps = (await exists(fullPath)) ? JSON.parse(readFile(fullPath)) : [];
 
   const fileContent = JSON.stringify([...existingProps, ...props]);
-  return await writeComponentFile({
+  return writeComponentFile({
     exportName,
     filePath,
     fileContent,
-    fileName
+    fileName,
   });
 }
 
@@ -89,10 +79,7 @@ export async function writeSharedFile({ name, fileContent }) {
 
 export async function writeJson(what: string, content: object | any[]) {
   await mkdirp(TEMP_FOLDER, { fs });
-  await writeFile(
-    path.join(TEMP_FOLDER, `${what}.json`),
-    JSON.stringify(content)
-  );
+  await writeFile(path.join(TEMP_FOLDER, `${what}.json`), JSON.stringify(content));
 }
 
 export function readJsonSync(what: string) {

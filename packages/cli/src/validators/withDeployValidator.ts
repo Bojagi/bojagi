@@ -1,4 +1,4 @@
-import { emojiMesage } from '../utils/terminalUtils';
+import { emojiMessage } from '../utils/terminalUtils';
 
 export class ValidationError extends Error {
   hideStackTrace: boolean = true;
@@ -8,9 +8,7 @@ export default function withDeployValidator(action) {
   return args => {
     if (!args.commit) {
       renderError();
-      throw new ValidationError(
-        'Please add a commit in your arguments (e.g. --commit f9xa5a7)'
-      );
+      throw new ValidationError('Please add a commit in your arguments (e.g. --commit f9xa5a7)');
     }
 
     if (!process.env.BOJAGI_SECRET) {
@@ -25,10 +23,5 @@ export default function withDeployValidator(action) {
 }
 
 function renderError() {
-  emojiMesage(
-    '❌',
-    'Your Inputs are not valid, please check the message below 👇',
-    false,
-    false
-  );
+  emojiMessage('❌', 'Your Inputs are not valid, please check the message below 👇', false, false);
 }

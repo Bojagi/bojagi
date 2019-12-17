@@ -1,7 +1,7 @@
 export function indentation(message: string) {
   return `  ${message}`;
 }
-export function emojiMesage(
+export function emojiMessage(
   emoji: string,
   message: string,
   hasTopMargin: boolean = false,
@@ -9,9 +9,5 @@ export function emojiMesage(
 ) {
   const topMarginString = hasTopMargin ? '\n' : '';
   const bottomMarginString = hasBottomMargin ? '\n' : '';
-  console.info(
-    `${topMarginString}${indentation(
-      `${emoji}   ${message}`
-    )}${bottomMarginString}`
-  );
+  console.info(`${topMarginString}${indentation(`${emoji}   ${message}`)}${bottomMarginString}`);
 }

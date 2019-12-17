@@ -1,8 +1,8 @@
+import { Spinner } from 'cli-spinner';
 import { BundleCommandOptions, EntrypointWithMetadata } from './bundle';
 import withDefaultArguments from '../utils/withDefaultArguments';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
-import { emojiMesage } from '../utils/terminalUtils';
-import { Spinner } from 'cli-spinner';
+import { emojiMessage } from '../utils/terminalUtils';
 import getComponentsOfFolder from '../utils/getComponentsOfFolder';
 import getEntrypointsFromComponents from '../utils/getEntrypointsFromComponents';
 import renderComponentList from '../renderers/componentList';
@@ -10,7 +10,7 @@ import renderComponentList from '../renderers/componentList';
 export type ListCommandOptions = BundleCommandOptions;
 
 const listAction = async ({ dir }: ListCommandOptions) => {
-  emojiMesage('🔎', 'Searching for components');
+  emojiMessage('🔎', 'Searching for components');
 
   const spinner = new Spinner('Searching...');
   spinner.setSpinnerString(18);

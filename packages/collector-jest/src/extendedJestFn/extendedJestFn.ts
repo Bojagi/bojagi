@@ -5,7 +5,7 @@ const extendedJestFnFactory = ({ jestFn }) => cb => {
       const returnValue = cb(...args);
       resolve({
         args,
-        returnValue
+        returnValue,
       });
       return returnValue;
     };

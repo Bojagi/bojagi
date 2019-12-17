@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { EntrypointWithMetadata } from '../commands/bundle';
 import { Module } from '../types';
 import getGitPath from './getGitPath';
@@ -12,7 +13,7 @@ export default function createComponentsWithMetadata(
 ) {
   return Object.entries(entrypointsWithMetadata).reduce((prev, [key, ep]) => {
     const fileContent = compilerOutput[key];
-    if (!/^.+?\?.+?\!.+?$/.test(ep.entrypoint)) {
+    if (!/^.+?\?.+?!.+?$/.test(ep.entrypoint)) {
       throw new EntrypointError('Entrypoint does not follow right syntax');
     }
 
@@ -33,7 +34,7 @@ export default function createComponentsWithMetadata(
       gitPath,
       dependencies,
       exportName: isDefaultExport ? 'default' : symbol,
-      name: symbol
+      name: symbol,
     }));
     return [...prev, ...components];
   }, []);
