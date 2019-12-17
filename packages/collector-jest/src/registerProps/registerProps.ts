@@ -1,6 +1,12 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
-import { PropType, createProp, createFunctionPropValue, getPropTypeForValue } from '@bojagi/cli';
+import {
+  PropType,
+  createProp,
+  createFunctionPropValue,
+  getPropTypeForValue,
+  PropValue,
+} from '@bojagi/cli';
 
 const registerPropsFactory = ({ addProps }) => (
   filePath: string,
