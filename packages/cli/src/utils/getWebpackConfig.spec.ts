@@ -1,4 +1,3 @@
-import * as webpack from 'webpack';
 import getWebpackConfig from './getWebpackConfig';
 
 const basicInput = {
@@ -44,39 +43,9 @@ const testCases = [
       });
 
       // Plugins
-      expect(config.plugins[0] instanceof webpack.optimize.CommonsChunkPlugin).toBe(true);
-      expect(config.plugins[0].chunkNames).toEqual(['commons']);
-
-      expect(config.plugins[1].definitions).toEqual({
+      expect(config.plugins[0].definitions).toEqual({
         'process.env': { NODE_ENV: '"production"' },
       });
-      expect(config.plugins[2] instanceof webpack.optimize.UglifyJsPlugin).toBe(true);
-    },
-  },
-  {
-    name: 'commons chunk plugin',
-    input: basicInput,
-    test: config => {
-      // with resource that includes entry
-      expect(
-        config.plugins[0].minChunks({
-          resource: 'no/noway/Xyzalsono',
-        })
-      ).toBe(false);
-
-      // with resource that does not include entry
-      expect(
-        config.plugins[0].minChunks({
-          resource: 'nono wayxyz also no',
-        })
-      ).toBe(true);
-
-      // with resource that does not include entry
-      expect(
-        config.plugins[0].minChunks({
-          resource: null,
-        })
-      ).toBe(false);
     },
   },
 ];

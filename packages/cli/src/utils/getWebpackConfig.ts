@@ -19,21 +19,27 @@ const getWebpackConfig = (entry: object, resolve: object, module: object) => ({
     react: 'React',
     'react-dom': 'ReactDOM',
   },
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          filename: 'commons.js',
+          minChunks: m =>
+            Object.keys(entry).reduce(
+              (bool, ep) => bool && !!m.resource && !m.resource.includes(ep),
+              true
+            ),
+        },
+      },
+    },
+  },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'commons',
-      minChunks: m =>
-        Object.keys(entry).reduce(
-          (bool, ep) => bool && !!m.resource && !m.resource.includes(ep),
-          true
-        ),
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin(),
   ],
 });
 
