@@ -5,17 +5,19 @@ const { PWD } = process.env;
 const CONFIG_FILE_PRIO = [
   {
     path: `${PWD}/.bojagirc.js`,
-    fn: loadJsConfig
+    fn: loadJsConfig,
   },
   {
     path: `${PWD}/.bojagirc.json`,
-    fn: loadJsonConfig
+    fn: loadJsonConfig,
   },
   {
     path: `${PWD}/.bojagirc`,
-    fn: loadJsonConfig
-  }
+    fn: loadJsonConfig,
+  },
 ];
+
+export type CollectorTuple = [string, Record<string, any>];
 
 export type Config = {
   componentMarker: string;
@@ -23,11 +25,12 @@ export type Config = {
   webpackConfig: string;
   executionPath: string;
   uploadApiUrl: string;
+  collectors: (string | CollectorTuple)[];
 };
 
 const config: Config = {
   ...defaultConfig,
-  ...loadConfigFile()
+  ...loadConfigFile(),
 };
 
 export default config;

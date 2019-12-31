@@ -6,6 +6,12 @@
       "path": "packages/cli"
     },
     {
+      "path": "packages/collector-base"
+    },
+    {
+      "path": "packages/collector-main"
+    },
+    {
       "path": "packages/collector-jest"
     }
   ]

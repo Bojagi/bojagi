@@ -1,8 +1,7 @@
-import { Component } from '../types';
 import { writeProps } from './writeProps';
 
 export type WriteRegisteredPropsFactoryDeps = {
-  propsRegistry: Map<string, Component>;
+  propsRegistry: Map<string, any>;
 };
 
 const writeRegisteredPropsFactory = ({ propsRegistry }: WriteRegisteredPropsFactoryDeps) => () => {

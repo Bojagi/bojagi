@@ -6,7 +6,8 @@ const defaultConfig: Config = {
   dir: 'src',
   webpackConfig: getWebpackConfigPath(process.cwd()),
   executionPath: process.cwd(),
-  uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io'
+  uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io',
+  collectors: [],
 };
 
 export default defaultConfig;

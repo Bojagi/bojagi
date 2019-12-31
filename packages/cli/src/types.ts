@@ -1,3 +1,6 @@
+import * as webpack from 'webpack';
+import { ComponentWithMetadata } from './commands/bundle';
+
 export type Component = {
   filePath: string;
   gitPath: string;
@@ -14,3 +17,11 @@ export type Module = {
   packageName?: string;
   dependencies?: Module[];
 };
+
+export type CollectorFunctionOptions = {
+  webpack: typeof webpack;
+  executionPath: string;
+  components: ComponentWithMetadata[];
+};
+
+export type CollectorFunction = (options: CollectorFunctionOptions) => Promise<void> | void;

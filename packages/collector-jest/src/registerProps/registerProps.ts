@@ -6,7 +6,7 @@ import {
   createFunctionPropValue,
   getPropTypeForValue,
   PropValue,
-} from '@bojagi/cli';
+} from '@bojagi/collector-base';
 
 const registerPropsFactory = ({ addProps }) => (
   filePath: string,

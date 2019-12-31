@@ -1,4 +1,4 @@
-import { addProps } from '@bojagi/cli';
+import { addProps } from '@bojagi/collector-base';
 import registerPropsFactory from './registerProps';
 import { GENERATOR_NAME } from '../constants';
 
