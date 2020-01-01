@@ -1,7 +1,11 @@
 import * as webpack from 'webpack';
 import * as fs from 'fs';
 
-const getWebpackConfig = (entry: object, resolve: object, module: object) => ({
+const getWebpackConfig = (
+  entry: webpack.Entry,
+  resolve: object,
+  module: webpack.Module
+): webpack.Configuration => ({
   entry,
   output: {
     path: `${process.cwd()}/bojagi`,

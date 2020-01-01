@@ -12,6 +12,8 @@ const mkdirPromise = promisify<string, { recursive: boolean }, void>(fs.mkdir as
 
 export * from './createExportFn';
 
+export const name = 'Bojagi';
+
 export default async ({ webpack, components, executionPath }: CollectorFunctionOptions) => {
   const entries = await getBojagiFilePaths(executionPath);
   if (entries.length === 0) {
@@ -37,7 +39,7 @@ export default async ({ webpack, components, executionPath }: CollectorFunctionO
     webpack,
   });
 
-  const compiler = webpack(config);
+  const compiler = webpack(config as any);
   await runCompiler(compiler);
 
   callBojagiStories(executionPath, entry);

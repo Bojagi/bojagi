@@ -9,7 +9,7 @@ import { CollectorFunction } from '../types';
 import { ComponentWithMetadata } from './bundle';
 import { CollectorTuple } from '../config';
 
-const STEP_TEXT = 'Running Collectors';
+const STEP_TEXT = ' Running Collectors';
 const COLLECTOR_MAIN_NAME = '@bojagi/collector-main';
 export type Collector = {
   fn: CollectorFunction;
@@ -36,10 +36,6 @@ export const runCollectorsAction = async ({
   const components: ComponentWithMetadata[] = getComponents();
 
   const collectorsStep = steps.advance(STEP_TEXT, 'chipmunk').start();
-  if (collectors.length === 0) {
-    collectorsStep.success('You have no collectors configured');
-    return;
-  }
 
   await collectors.reduce(
     (promise, collector) =>
@@ -54,7 +50,7 @@ export const runCollectorsAction = async ({
     Promise.resolve()
   );
 
-  collectorsStep.success('Collectors successfully run');
+  collectorsStep.success(' Collectors successfully run');
 };
 
 const runConnectors = program => {
