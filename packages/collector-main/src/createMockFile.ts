@@ -6,7 +6,7 @@ type Component = {
   gitPath: string;
 };
 
-export function createMockFileContent(components: Component[]) {
+export function createMockFileContent(components: Component[]): [string, string][] {
   const groupedComponents = components.reduce<Record<string, Component[]>>((agg, component) => {
     const fileComponents = agg[component.filePath] || [];
     fileComponents.push(component);
@@ -29,5 +29,5 @@ function stringifyExport(component: Component) {
   const prefix = component.isDefaultExport
     ? 'export default'
     : `export const ${component.symbol} =`;
-  return `${prefix} createExportFn(${JSON.stringify(component)})`;
+  return `${prefix} createExportFn(${JSON.stringify(component)});`;
 }

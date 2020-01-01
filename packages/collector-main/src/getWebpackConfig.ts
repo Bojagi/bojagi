@@ -1,7 +1,9 @@
+import { getMocksPath, getOutputPath } from './pathFactories';
+
 export const getWebpackConfig = ({ executionPath, entry, webpack, componentPaths }) => ({
   entry,
   output: {
-    path: `${executionPath}/.bojagi/tmp/collector/main/output`,
+    path: getOutputPath(executionPath),
     filename: '[name].js',
     libraryTarget: 'umd',
   },
@@ -23,7 +25,7 @@ export const getWebpackConfig = ({ executionPath, entry, webpack, componentPaths
       path =>
         new webpack.NormalModuleReplacementPlugin(
           new RegExp(path.replace(/\./g, '.').replace(/\//g, '/')),
-          `${executionPath}/.bojagi/tmp/collector/main/mocks/${path.replace(/\//g, '__')}`
+          getMocksPath(executionPath, path.replace(/\//g, '__'))
         )
     ),
     new webpack.DefinePlugin({

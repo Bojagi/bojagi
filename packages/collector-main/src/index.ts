@@ -1,16 +1,19 @@
 import { CollectorFunctionOptions } from '@bojagi/cli';
-import { getComponents } from '@bojagi/collector-base';
+import { getComponents, addProps, writeRegisteredProps } from '@bojagi/collector-base';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import { getWebpackConfig } from './getWebpackConfig';
 import { getBojagiFilePaths } from './getBojagiFilePaths';
 import { createMockFileContent } from './createMockFile';
 import { callBojagiStories } from './callBojagiStories';
+import { createEntry } from './createEntry';
+import { getMocksPath } from './pathFactories';
+
+import { createExportFnFactory } from './createExportFn';
 
 const writeFilePromise = promisify(fs.writeFile);
 const mkdirPromise = promisify<string, { recursive: boolean }, void>(fs.mkdir as any);
-
-export * from './createExportFn';
+export const createExportFn = createExportFnFactory(addProps('Bojagi Collector'));
 
 export const name = 'Bojagi';
 
@@ -22,13 +25,10 @@ export default async ({ webpack, components, executionPath }: CollectorFunctionO
   const entry: Record<string, string> = createEntry(entries);
   const componentPaths = components.map(component => component.filePath);
   const mockFileContent = createMockFileContent(getComponents());
-  await mkdirPromise(`${executionPath}/.bojagi/tmp/collector/main/mocks/`, { recursive: true });
+  await mkdirPromise(getMocksPath(executionPath), { recursive: true });
   await Promise.all(
     mockFileContent.map(([path, content]) =>
-      writeFilePromise(
-        `${executionPath}/.bojagi/tmp/collector/main/mocks/${path.replace(/\//g, '__')}`,
-        content
-      )
+      writeFilePromise(getMocksPath(executionPath, path.replace(/\//g, '__')), content)
     )
   );
 
@@ -43,17 +43,8 @@ export default async ({ webpack, components, executionPath }: CollectorFunctionO
   await runCompiler(compiler);
 
   callBojagiStories(executionPath, entry);
+  writeRegisteredProps();
 };
-
-function createEntry(entries: string[]) {
-  return entries.reduce(
-    (agg, path) => ({
-      ...agg,
-      [path.replace(/\//g, '__')]: `./${path}`,
-    }),
-    {}
-  );
-}
 
 function runCompiler(compiler) {
   return new Promise((resolve, reject) =>

@@ -1,9 +1,13 @@
-import { addProps, createProp, getPropTypeForValue, PropValue } from '@bojagi/collector-base';
+import {
+  createProp,
+  getPropTypeForValue,
+  PropValue,
+  createFunctionPropValue,
+} from '@bojagi/collector-base';
 import { getPropSetName } from './propSetNameContext';
 
-const registerProps = addProps('bojagi-main');
-export function createExportFn({ filePath, exportName }) {
-  return props => {
+export function createExportFnFactory(registerProps) {
+  return ({ filePath, exportName }) => props => {
     const propSet = propsToPropSet(props);
     registerProps(filePath, exportName, propSet, getPropSetName());
     return null;
@@ -12,10 +16,13 @@ export function createExportFn({ filePath, exportName }) {
 
 function propsToPropSet(props: Record<string, any>) {
   return Object.entries(props)
-    .map<[string, PropValue]>(([key, value]) => [
-      key,
-      createProp(getPropTypeForValue(value), value),
-    ])
+    .map<[string, PropValue]>(([key, value]) => {
+      const internalValue =
+        typeof value === 'function'
+          ? createFunctionPropValue([], getPropTypeForValue(undefined), undefined)
+          : value;
+      return [key, createProp(getPropTypeForValue(value), internalValue)];
+    })
     .reduce(
       (agg, [key, value]) => ({
         ...agg,
