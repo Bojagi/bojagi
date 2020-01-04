@@ -1,5 +1,6 @@
 import * as MemoryFS from 'memory-fs';
 import * as webpack from 'webpack';
+import { EntrypointWithMetadata, File, FileContent } from '@bojagi/types';
 import getComponentsOfFolder from '../utils/getComponentsOfFolder';
 import getWebpackConfig from '../utils/getWebpackConfig';
 import getEntrypointsFromComponents from '../utils/getEntrypointsFromComponents';
@@ -23,38 +24,6 @@ export interface BundleCommandOptions extends BaseOptions {
   webpackConfig: string;
   executionPath: string;
 }
-
-export type ComponentExportDescription = {
-  symbol: string;
-  isDefaultExport: boolean;
-};
-
-export type EntrypointWithMetadata = {
-  entrypoint: string;
-  filePath: string;
-  components: ComponentExportDescription[];
-};
-
-export type File = {
-  name: string;
-};
-
-export type FileContent = {
-  name: string;
-  fileContent: string;
-};
-
-export type ComponentContent = {
-  folder: string;
-  fileContent: string;
-};
-
-export type ComponentWithMetadata = File & {
-  symbol: string;
-  isDefaultExport: boolean;
-  filePath: string;
-  exportName: string;
-};
 
 const FILES = ['commons'];
 

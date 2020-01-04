@@ -1,5 +1,5 @@
 import { Spinner } from 'cli-spinner';
-import { BundleCommandOptions, EntrypointWithMetadata } from './bundle';
+import { BundleCommandOptions } from './bundle';
 import withDefaultArguments from '../utils/withDefaultArguments';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import { emojiMessage } from '../utils/terminalUtils';
@@ -21,7 +21,8 @@ const listAction = async ({ dir }: ListCommandOptions) => {
   const componentFiles = await getComponentsOfFolder(entryFolder);
   const entrypointsWithMetadata: Record<
     string,
-    EntrypointWithMetadata
+    any
+    // EntrypointWithMetadata
   > = await getEntrypointsFromComponents(componentFiles);
 
   spinner.stop(true);

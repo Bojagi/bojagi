@@ -1,9 +1,9 @@
-import { CollectorFunctionOptions } from '@bojagi/cli';
 import {
   getComponents,
   addProps,
   writeRegisteredProps,
   CollectorMetadata,
+  CollectorFunctionOptions,
 } from '@bojagi/collector-base';
 import * as fs from 'fs';
 import { promisify } from 'util';

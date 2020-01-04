@@ -23,7 +23,8 @@
     "@bojagi/cli": "^0.1.2"
   },
   "devDependencies": {
-    "@bojagi/cli": "^0.4.0"
+    "@bojagi/cli": "^0.4.0",
+    "@bojagi/types": "^0.4.0"
   },
   "dependencies": {
     "@bojagi/collector-base": "^0.4.0",

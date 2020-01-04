@@ -13,5 +13,3 @@ list(program);
 runCollectors(program);
 
 program.parse(process.argv);
-
-export * from './types';

@@ -1,12 +1,11 @@
 import * as webpack from 'webpack';
 import { isFunction } from 'util';
-import { getComponents } from '@bojagi/collector-base';
+import { getComponents, CollectorFunction } from '@bojagi/collector-base';
+import { ComponentWithMetadata } from '@bojagi/types';
 import { BaseOptions } from '../baseCmd';
 import withSteps from '../utils/withSteps';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import withDefaultArguments from '../utils/withDefaultArguments';
-import { CollectorFunction } from '../types';
-import { ComponentWithMetadata } from './bundle';
 import { CollectorTuple } from '../config';
 
 const STEP_TEXT = ' Running Collectors';
@@ -69,7 +68,7 @@ export default runConnectors;
 function mapCollectorConfigToCollector(collectorConfig: string | CollectorTuple): Collector {
   const packageName = Array.isArray(collectorConfig) ? collectorConfig[0] : collectorConfig;
   const collectorExports = require(packageName);
-  const fn: CollectorFunction = collectorExports.collector;
+  const fn = collectorExports.collector;
   if (!isFunction(fn)) {
     throw new Error(`Collector "${packageName}" does not export a function as default export.`);
   }
