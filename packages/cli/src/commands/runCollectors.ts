@@ -69,11 +69,12 @@ export default runConnectors;
 function mapCollectorConfigToCollector(collectorConfig: string | CollectorTuple): Collector {
   const packageName = Array.isArray(collectorConfig) ? collectorConfig[0] : collectorConfig;
   const collectorExports = require(packageName);
-  const fn: CollectorFunction = collectorExports.default || collectorExports;
+  const fn: CollectorFunction = collectorExports.collector;
   if (!isFunction(fn)) {
     throw new Error(`Collector "${packageName}" does not export a function as default export.`);
   }
-  const name = collectorExports.name || packageName;
+  const collectorMetadata = collectorExports.default || collectorExports;
+  const name = collectorMetadata.name || packageName;
   return {
     fn,
     packageName,

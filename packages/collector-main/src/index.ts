@@ -1,5 +1,10 @@
 import { CollectorFunctionOptions } from '@bojagi/cli';
-import { getComponents, addProps, writeRegisteredProps } from '@bojagi/collector-base';
+import {
+  getComponents,
+  addProps,
+  writeRegisteredProps,
+  CollectorMetadata,
+} from '@bojagi/collector-base';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import { getWebpackConfig } from './getWebpackConfig';
@@ -15,9 +20,15 @@ const writeFilePromise = promisify(fs.writeFile);
 const mkdirPromise = promisify<string, { recursive: boolean }, void>(fs.mkdir as any);
 export const createExportFn = createExportFnFactory(addProps('Bojagi Collector'));
 
-export const name = 'Bojagi';
+export default <CollectorMetadata>{
+  name: 'Bojagi',
+};
 
-export default async ({ webpack, components, executionPath }: CollectorFunctionOptions) => {
+export const collector = async ({
+  webpack,
+  components,
+  executionPath,
+}: CollectorFunctionOptions) => {
   const entries = await getBojagiFilePaths(executionPath);
   if (entries.length === 0) {
     return;
