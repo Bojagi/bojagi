@@ -52,7 +52,7 @@ export const runCollectorsAction = async ({
   collectorsStep.success(' Collectors successfully run');
 };
 
-const runConnectors = program => {
+const runCollectors = program => {
   program
     .command('runCollectors')
     .option(
@@ -63,7 +63,7 @@ const runConnectors = program => {
     .action(withSteps(1)(withHelloGoodbye(withDefaultArguments(runCollectorsAction))));
 };
 
-export default runConnectors;
+export default runCollectors;
 
 function mapCollectorConfigToCollector(collectorConfig: string | CollectorTuple): Collector {
   const packageName = Array.isArray(collectorConfig) ? collectorConfig[0] : collectorConfig;

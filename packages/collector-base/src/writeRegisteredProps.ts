@@ -1,7 +1,8 @@
+import { Component } from '@bojagi/types';
 import { writeProps } from './writeProps';
 
 export type WriteRegisteredPropsFactoryDeps = {
-  propsRegistry: Map<string, any>;
+  propsRegistry: Map<string, Component>;
 };
 
 const writeRegisteredPropsFactory = ({ propsRegistry }: WriteRegisteredPropsFactoryDeps) => () => {

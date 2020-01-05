@@ -1,7 +1,7 @@
 import { createExportFnFactory } from './createExportFn';
 import { setPropSetName } from './propSetNameContext';
 
-test('abc', () => {
+test('call created export fn with props and expect props to be registered', () => {
   const registerProps = jest.fn();
   const createExportFn = createExportFnFactory(registerProps);
   setPropSetName('some propset name');

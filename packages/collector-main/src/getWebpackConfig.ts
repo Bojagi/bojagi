@@ -24,7 +24,7 @@ export const getWebpackConfig = ({ executionPath, entry, webpack, componentPaths
     ...componentPaths.map(
       path =>
         new webpack.NormalModuleReplacementPlugin(
-          new RegExp(path.replace(/\./g, '.').replace(/\//g, '/')),
+          new RegExp(path.replace(/\./g, '\\.').replace(/\//g, '\\/')),
           getMocksPath(executionPath, path.replace(/\//g, '__'))
         )
     ),

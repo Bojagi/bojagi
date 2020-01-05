@@ -1,6 +1,6 @@
 import { callBojagiStoriesFactory } from './callBojagiStories';
 
-test('a', () => {
+test('call .bojagi.jsx files and make sure all functions except default are called', () => {
   const fileResponses = {
     '/some/path/.bojagi/tmp/collector/main/output/some/file.js': {
       a: jest.fn(() => null),
