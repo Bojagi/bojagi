@@ -14,7 +14,7 @@ export type PropValue = {
   value: any;
 };
 
-export function getPropTypeForValue(value: any) {
+export function getPropTypeForValue(value: any): PropType {
   switch (typeof value) {
     case 'boolean':
       return PropType.BOOLEAN;

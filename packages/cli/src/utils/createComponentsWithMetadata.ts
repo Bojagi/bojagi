@@ -1,6 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { EntrypointWithMetadata } from '../commands/bundle';
-import { Module } from '../types';
+import { Module, EntrypointWithMetadata } from '@bojagi/types';
 import getGitPath from './getGitPath';
 
 export class EntrypointError extends Error {}

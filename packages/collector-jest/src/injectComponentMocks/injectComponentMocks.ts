@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Component } from '@bojagi/cli';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Component } from '@bojagi/types';
 import { ComponentFile } from '../types';
 
 export type InjectComponentMocksDeps = {

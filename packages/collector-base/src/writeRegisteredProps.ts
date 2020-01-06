@@ -1,4 +1,4 @@
-import { Component } from '../types';
+import { Component } from '@bojagi/types';
 import { writeProps } from './writeProps';
 
 export type WriteRegisteredPropsFactoryDeps = {

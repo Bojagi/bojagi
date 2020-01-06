@@ -4,8 +4,11 @@ import withDefaultArguments from '../utils/withDefaultArguments';
 import withSteps from '../utils/withSteps';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import withDeployValidator from '../validators/withDeployValidator';
+import { runCollectorsAction, RunCollectorsCommandOptions } from './runCollectors';
 
-export type DeployCommandOptions = BundleCommandOptions & UploadCommandOptions;
+export type DeployCommandOptions = BundleCommandOptions &
+  UploadCommandOptions &
+  RunCollectorsCommandOptions;
 
 const deployAction = async ({
   componentMarker,
@@ -13,6 +16,7 @@ const deployAction = async ({
   commit,
   steps,
   webpackConfig,
+  collectors,
   executionPath,
 }: DeployCommandOptions) => {
   await bundleAction({
@@ -21,6 +25,11 @@ const deployAction = async ({
     steps,
     webpackConfig,
     executionPath,
+  });
+  await runCollectorsAction({
+    executionPath,
+    collectors,
+    steps,
   });
   await uploadAction({ commit, steps });
 };
@@ -36,7 +45,7 @@ const deploy = program => {
     )
     .option('-c, --commit [commit]', 'The commit to upload the components for')
     .action(
-      withSteps(4)(withHelloGoodbye(withDefaultArguments(withDeployValidator(deployAction))))
+      withSteps(5)(withHelloGoodbye(withDefaultArguments(withDeployValidator(deployAction))))
     );
 };
 

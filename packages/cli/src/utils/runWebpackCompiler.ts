@@ -1,4 +1,4 @@
-import { Module } from '../types';
+import { Module } from '@bojagi/types';
 import getGitPath from './getGitPath';
 
 export type RunWebpackCompilerOutput = {

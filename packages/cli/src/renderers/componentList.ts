@@ -1,6 +1,6 @@
 import chalk from 'chalk';
+import { EntrypointWithMetadata } from '@bojagi/types';
 import { indentation } from '../utils/terminalUtils';
-import { EntrypointWithMetadata } from '../commands/bundle';
 
 export default function renderComponentList(
   entrypointsWithMetadata: Record<string, EntrypointWithMetadata>,

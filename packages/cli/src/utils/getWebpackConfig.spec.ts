@@ -53,7 +53,7 @@ const testCases = [
 testCases.forEach(testCase => {
   test(`getWebpackConfig - ${testCase.name}`, () => {
     const { entry, resolve, module } = testCase.input;
-    const config = getWebpackConfig(entry, resolve, module);
+    const config = getWebpackConfig(entry, resolve, module as any);
     testCase.test(config);
   });
 });

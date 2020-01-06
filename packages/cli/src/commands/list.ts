@@ -1,5 +1,6 @@
 import { Spinner } from 'cli-spinner';
-import { BundleCommandOptions, EntrypointWithMetadata } from './bundle';
+import { EntrypointWithMetadata } from '@bojagi/types';
+import { BundleCommandOptions } from './bundle';
 import withDefaultArguments from '../utils/withDefaultArguments';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import { emojiMessage } from '../utils/terminalUtils';

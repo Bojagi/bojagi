@@ -23,6 +23,9 @@
     "access": "public"
   },
   "dependencies": {
+    "@bojagi/collector-base": "^0.4.0",
+    "@bojagi/collector-main": "^0.4.0",
+    "@bojagi/types": "^0.4.0",
     "adm-zip": "^0.4.13",
     "chalk": "2.4.2",
     "cli-spinner": "0.2.10",
@@ -37,5 +40,8 @@
     "typescript": "^3.7.3",
     "util.promisify": "1.0.0",
     "webpack": "4.41.3"
+  },
+  "devDependencies": {
+    "@types/webpack": "^4.41.1"
   }
 }

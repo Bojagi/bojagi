@@ -2,8 +2,7 @@
   "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib",
-    "jsx": "react"
+    "outDir": "lib"
   },
   "include": [
     "src/**/*"
@@ -11,13 +10,5 @@
   "exclude": [
     "src/**/__testHelpers__/*",
     "node_modules"
-  ],
-  "references": [
-    {
-      "path": "../cli"
-    },
-    {
-      "path": "../collector-base"
-    }
   ]
 }

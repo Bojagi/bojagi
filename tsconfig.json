@@ -3,10 +3,19 @@
   "files": [],
   "references": [
     {
-      "path": "packages/cli"
+      "path": "packages/types"
+    },
+    {
+      "path": "packages/collector-base"
+    },
+    {
+      "path": "packages/collector-main"
     },
     {
       "path": "packages/collector-jest"
+    },
+    {
+      "path": "packages/cli"
     }
   ]
 }

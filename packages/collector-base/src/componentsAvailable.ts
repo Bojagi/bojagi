@@ -1,4 +1,4 @@
-import { fileExistsSync } from '../utils/writeFile';
+import { fileExistsSync } from './fileUtils';
 
 export function componentsAvailable(): boolean {
   return fileExistsSync('components.json');
