@@ -30,7 +30,7 @@
     "chalk": "2.4.2",
     "cli-spinner": "0.2.10",
     "cli-step": "1.0.2",
-    "commander": "2.20.0",
+    "commander": "2.20.3",
     "inquirer": "6.4.1",
     "memory-fs": "^0.5.0",
     "mkdirp": "^0.5.1",
