@@ -9,7 +9,7 @@
     "lint": "eslint packages/*/src/**/*.ts"
   },
   "devDependencies": {
-    "@types/jest": "24.0.15",
+    "@types/jest": "24.0.25",
     "@types/node": "9.6.55",
     "@types/request-promise": "4.1.44",
     "@typescript-eslint/eslint-plugin": "2.12.0",
