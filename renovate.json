@@ -1,12 +1,12 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base", "group:allNonMajor", "schedule:nonOfficeHours"],
   "automerge": true,
   "major": {
     "automerge": false
   },
+  "masterIssue": true,
   "rebaseStalePrs": true,
   "prConcurrentLimit": 2,
-  "prHourlyLimit": 10
+  "prHourlyLimit": 2,
+  "timezone": "Europe/Berlin"
 }
