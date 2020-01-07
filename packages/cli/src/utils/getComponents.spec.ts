@@ -36,13 +36,16 @@ MyNewlineComponent () {<div></div>}`,
     `// @component
     export default function    /* test // test */
     MyCommentFunctionComponent () {<div></div>}`,
+    // named function export
+    `// @component
+    export function MyNamedFunctionComponent () {<div></div>}`,
   ];
 
   const foundComponents = testFiles
     .map(testFile => getComponents(testFile))
     .filter(testFile => !!testFile);
 
-  expect(foundComponents.length).toBe(6);
+  expect(foundComponents.length).toBe(7);
   expect(foundComponents).toEqual([
     [
       {
@@ -86,6 +89,12 @@ MyNewlineComponent () {<div></div>}`,
       {
         symbol: 'MyCommentFunctionComponent',
         isDefaultExport: true,
+      },
+    ],
+    [
+      {
+        symbol: 'MyNamedFunctionComponent',
+        isDefaultExport: false,
       },
     ],
   ]);
