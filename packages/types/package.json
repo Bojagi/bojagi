@@ -5,8 +5,8 @@
   "license": "MIT",
   "main": "lib/index.js",
   "devDependencies": {
-    "@types/webpack": "^4.41.1",
-    "webpack": "^4.41.5"
+    "@types/webpack": "4.41.1",
+    "webpack": "4.41.5"
   },
   "repository": {
     "type": "git",
