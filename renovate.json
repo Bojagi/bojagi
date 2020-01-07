@@ -8,5 +8,6 @@
   "rebaseStalePrs": true,
   "prConcurrentLimit": 2,
   "prHourlyLimit": 2,
-  "timezone": "Europe/Berlin"
+  "timezone": "Europe/Berlin",
+  "ignoreDeps": ["@types/jest", "@types/node"]
 }
