@@ -9,5 +9,5 @@
   "prConcurrentLimit": 2,
   "prHourlyLimit": 2,
   "timezone": "Europe/Berlin",
-  "ignoreDeps": ["@types/jest", "@types/node"]
+  "ignoreDeps": ["@types/jest", "@types/node", "lerna"]
 }
