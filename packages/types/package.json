@@ -4,6 +4,9 @@
   "homepage": "https://github.com/Bojagi/bojagi#readme",
   "license": "MIT",
   "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/webpack": "4.41.2",
     "webpack": "4.41.5"
