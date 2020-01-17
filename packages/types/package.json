@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/types",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "homepage": "https://github.com/Bojagi/bojagi#readme",
   "license": "MIT",
   "main": "lib/index.js",
