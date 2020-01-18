@@ -1,7 +1,7 @@
 {
   "name": "@bojagi/collector-main",
   "version": "0.5.1",
-  "homepage": "https://github.com/Bojagi/bojagi#readme",
+  "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
   "publishConfig": {
@@ -22,5 +22,8 @@
     "glob": "^7.1.6",
     "jsdom": "^15.2.1",
     "react-test-renderer": "^16.12.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Bojagi/issue-tracker/issues"
   }
 }

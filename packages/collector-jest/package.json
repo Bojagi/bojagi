@@ -2,7 +2,7 @@
   "name": "@bojagi/collector-jest",
   "version": "0.5.1",
   "description": "bojagi collector jest",
-  "homepage": "https://github.com/Bojagi/bojagi#readme",
+  "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -12,9 +12,6 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "bugs": {
-    "url": "https://github.com/Bojagi/bojagi/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -32,5 +29,8 @@
     "react-dom": "16.12.0",
     "react-test-renderer": "16.12.0",
     "react-testing-library": "8.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/Bojagi/issue-tracker/issues"
   }
 }

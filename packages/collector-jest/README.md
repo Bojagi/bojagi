@@ -1,11 +1,11 @@
-# `jest`
-
-> TODO: description
-
-## Usage
+# Bojagi Collector Jest
 
 ```
-const jest = require('jest');
-
-// TODO: DEMONSTRATE API
+yarn add -D @bojagi/collector-jest
 ```
+
+# Documentation
+
+For full docs go to
+
+https://bojagi.io/docs/collectorJest/
