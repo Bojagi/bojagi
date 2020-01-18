@@ -2,7 +2,7 @@
   "name": "@bojagi/cli",
   "version": "0.5.1",
   "description": "bojagi cli",
-  "homepage": "https://github.com/Bojagi/bojagi#readme",
+  "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",

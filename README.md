@@ -1,16 +1,11 @@
+https://bojagi.io
+
 # bojagi
-public bojagi node modules
 
-## tests
+public bojagi packages.
 
-`yarn test`
+This Repository includes the bojagi cli, different collectors and many more bojagi related packages.
 
-## build
+Official Documentation:
 
-`yarn build`
-
-## publish a new version
-
-(only works in master)
-
-`yarn run publish`
+https://bojagi.io/docs

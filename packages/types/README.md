@@ -1,4 +1,7 @@
-# `collector-base`
+# Bojagi Types
 
-> TODO: description
+Typescript types for bojagi packages
 
+```
+yarn add -D @bojagi/types
+```

@@ -1,11 +1,11 @@
-# `cli`
-
-> TODO: description
-
-## Usage
+# Bojagi CLI
 
 ```
-const cli = require('cli');
-
-// TODO: DEMONSTRATE API
+yarn add -D @bojagi/cli
 ```
+
+# Documentation
+
+For full docs go to
+
+https://bojagi.io/docs
