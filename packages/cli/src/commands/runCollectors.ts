@@ -9,7 +9,7 @@ import withDefaultArguments from '../utils/withDefaultArguments';
 import { CollectorTuple } from '../config';
 
 const STEP_TEXT = ' Running Collectors';
-const COLLECTOR_MAIN_NAME = '@bojagi/collector-main';
+
 export type Collector = {
   fn: CollectorFunction;
   name: string;
@@ -28,9 +28,6 @@ export const runCollectorsAction = async ({
   collectors: connectorConfig,
 }: RunCollectorsCommandOptions) => {
   const collectors = connectorConfig.map(mapCollectorConfigToCollector);
-  if (!collectors.find(collector => collector.name === COLLECTOR_MAIN_NAME)) {
-    collectors.unshift(mapCollectorConfigToCollector(COLLECTOR_MAIN_NAME));
-  }
 
   const components: ComponentWithMetadata[] = getComponents();
 
