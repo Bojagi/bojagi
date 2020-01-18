@@ -14,5 +14,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bojagi/bojagi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bojagi/issue-tracker/issues"
   }
 }

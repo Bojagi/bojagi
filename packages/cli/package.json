@@ -17,7 +17,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
-    "url": "https://github.com/Bojagi/bojagi/issues"
+    "url": "https://github.com/Bojagi/issue-tracker/issues"
   },
   "publishConfig": {
     "access": "public"
