@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/types",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
