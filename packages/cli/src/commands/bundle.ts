@@ -35,6 +35,8 @@ export const bundleAction = ({
 }: BundleCommandOptions) => {
   const projectWebpackConfig = require(webpackConfig);
   const entryFolder = `${executionPath}/${dir}`;
+
+  const dependencyPackages = getPackageJsonDependencies(executionPath);
   const componentExtractStep = steps
     .advance('Figuring out what components to extract', 'mag')
     .start();
@@ -74,6 +76,7 @@ export const bundleAction = ({
       const { componentsContent, modules } = await runWebpackCompiler({
         compiler,
         entrypoints,
+        dependencyPackages,
       });
       compileSteps.success('Components compiled', 'factory');
 
@@ -126,3 +129,12 @@ const bundle = program => {
 };
 
 export default bundle;
+
+function getPackageJsonDependencies(executionPath) {
+  try {
+    const { dependencies } = require(`${executionPath}/package.json`);
+    return Object.keys(dependencies);
+  } catch {
+    throw new Error('Can not read dependencies in package.json');
+  }
+}
