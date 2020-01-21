@@ -37,6 +37,14 @@ beforeEach(() => {
                 dependencies: [],
               },
             },
+            {
+              request: '@babel/core',
+              module: {
+                resource: `${cwd}/node_modules/@babel/core/index.js`,
+                external: false,
+                dependencies: [],
+              },
+            },
             // node module of org
             {
               request: '@material-ui/icons/MyIcon',
@@ -97,7 +105,11 @@ beforeEach(() => {
 });
 
 test('run the webpack compiler', async () => {
-  const componentsContent = await runWebpackCompiler({ compiler, entrypoints });
+  const componentsContent = await runWebpackCompiler({
+    compiler,
+    entrypoints,
+    dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
+  });
   expect(componentsContent).toEqual({
     componentsContent: {
       commons: 'commons file content',
@@ -163,5 +175,11 @@ test('run the webpack compiler', async () => {
 
 test('run webpack compiler with error', async () => {
   mockError = new Error('some error text');
-  await expect(runWebpackCompiler({ compiler, entrypoints })).rejects.toThrow('some error text');
+  await expect(
+    runWebpackCompiler({
+      compiler,
+      entrypoints,
+      dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
+    })
+  ).rejects.toThrow('some error text');
 });
