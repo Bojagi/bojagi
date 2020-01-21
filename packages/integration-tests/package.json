@@ -1,0 +1,26 @@
+{
+  "name": "@bojagi/integration-tests",
+  "version": "0.5.2",
+  "description": "integration tests",
+  "homepage": "https://bojagi.io/docs",
+  "license": "MIT",
+  "bin": {
+    "bojagi": "./bin/index.js"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bojagi/bojagi.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Bojagi/issue-tracker/issues"
+  },
+  "dependencies": {
+    "@bojagi/cli": "^0.5.2",
+    "@bojagi/types": "^0.5.2"
+  },
+  "devDependencies": {}
+}
