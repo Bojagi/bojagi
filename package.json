@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "integration": "jest --runInBand --config integration.jest.config.js",
     "build": "tsc -b",
     "deploy": "lerna publish from-git -y",
     "publish": "./bin/publish.sh",
@@ -10,7 +11,7 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.15",
-    "@types/node": "9.6.55",
+    "@types/node": "12.12.6",
     "@types/request-promise": "4.1.45",
     "@typescript-eslint/eslint-plugin": "2.17.0",
     "@typescript-eslint/eslint-plugin-tslint": "2.17.0",
@@ -34,16 +35,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "jest": {
-    "transform": {
-      ".(ts|tsx|js)": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "testEnvironment": "node"
-  }
+  ]
 }

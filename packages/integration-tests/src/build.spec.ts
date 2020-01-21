@@ -1,1 +1,0 @@
-test('build all components', () => {});
