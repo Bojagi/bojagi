@@ -37,8 +37,8 @@ jobs:
           name: unit tests
           command: yarn test
       - run:
-        name: integration tests
-        command: yarn integration
+          name: integration tests
+          command: yarn integration
   deploy:
     executor: base
     steps:
