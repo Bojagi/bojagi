@@ -14,6 +14,7 @@ exports[`bundle all components 2`] = `
   \\"symbol\\": \\"Box\\",
   \\"isDefaultExport\\": true,
   \\"filePath\\": \\"src/components/Box.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -119,6 +120,7 @@ exports[`bundle all components 2`] = `
   \\"symbol\\": \\"BoxWithButtons\\",
   \\"isDefaultExport\\": true,
   \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -219,6 +221,7 @@ exports[`bundle all components 2`] = `
    {
     \\"request\\": \\"./Box\\",
     \\"filePath\\": \\"src/components/Box.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"dependencies\\": [
@@ -323,6 +326,7 @@ exports[`bundle all components 2`] = `
    {
     \\"request\\": \\"./Button\\",
     \\"filePath\\": \\"src/components/Button.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"dependencies\\": [
@@ -432,6 +436,7 @@ exports[`bundle all components 2`] = `
   \\"symbol\\": \\"Button\\",
   \\"isDefaultExport\\": true,
   \\"filePath\\": \\"src/components/Button.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",

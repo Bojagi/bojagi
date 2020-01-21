@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "integration": "jest --runInBand --config integration.jest.config.js",
     "build": "tsc -b",
     "deploy": "lerna publish from-git -y",
     "publish": "./bin/publish.sh",
@@ -34,16 +35,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "jest": {
-    "transform": {
-      ".(ts|tsx|js)": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "testEnvironment": "node"
-  }
+  ]
 }
