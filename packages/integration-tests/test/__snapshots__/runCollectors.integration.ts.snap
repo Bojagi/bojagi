@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`bundle all components 1`] = `
+exports[`run main collector 1`] = `
 "[
  {
   \\"name\\": \\"commons\\"
@@ -8,7 +8,7 @@ exports[`bundle all components 1`] = `
 ]"
 `;
 
-exports[`bundle all components 2`] = `
+exports[`run main collector 2`] = `
 "[
  {
   \\"symbol\\": \\"Box\\",
@@ -541,10 +541,150 @@ exports[`bundle all components 2`] = `
 ]"
 `;
 
-exports[`bundle all components 3`] = `"8dab4e4aaa828c3bfee18a0e4145defa699bde4599049b18fea2f7e15ce82a59"`;
+exports[`run main collector 3`] = `"8dab4e4aaa828c3bfee18a0e4145defa699bde4599049b18fea2f7e15ce82a59"`;
 
-exports[`bundle all components 4`] = `"18ad033e831d21c22284f3b451295827d45d6ebda88543d80966bcf0a7b35054"`;
+exports[`run main collector 4`] = `"18ad033e831d21c22284f3b451295827d45d6ebda88543d80966bcf0a7b35054"`;
 
-exports[`bundle all components 5`] = `"02eb1e3f5471dafcdca134ab4cde0468e0f2da17726d5964a0e6566610f54131"`;
+exports[`run main collector 5`] = `
+"[
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"yellow\\"
+   },
+   \\"children\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"I am a yellow Box!\\"
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Yellow\\"
+ },
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"green\\"
+   },
+   \\"children\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"I am so green!\\"
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Green\\"
+ },
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"red\\"
+   },
+   \\"children\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"I am so green! I mean red...\\"
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Red\\"
+ },
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"blue\\"
+   },
+   \\"children\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"Blue.\\"
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Blue\\"
+ },
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"brown\\"
+   },
+   \\"children\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"Gasp\\"
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Brown\\"
+ }
+]"
+`;
 
-exports[`bundle all components 6`] = `"837df19c7ec7c539a295b3a56e6eaf980b05f4b03cf5c732c222ea8d36f29870"`;
+exports[`run main collector 6`] = `"02eb1e3f5471dafcdca134ab4cde0468e0f2da17726d5964a0e6566610f54131"`;
+
+exports[`run main collector 7`] = `
+"[
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"white\\"
+   },
+   \\"buttons\\": {
+    \\"type\\": \\"object\\",
+    \\"value\\": [
+     {
+      \\"text\\": \\"stop\\",
+      \\"color\\": \\"red\\"
+     },
+     {
+      \\"text\\": \\"ready\\",
+      \\"color\\": \\"yellow\\"
+     },
+     {
+      \\"text\\": \\"go\\",
+      \\"color\\": \\"green\\"
+     }
+    ]
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Traffic Light\\"
+ }
+]"
+`;
+
+exports[`run main collector 8`] = `"837df19c7ec7c539a295b3a56e6eaf980b05f4b03cf5c732c222ea8d36f29870"`;
+
+exports[`run main collector 9`] = `
+"[
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"yellow\\"
+   },
+   \\"children\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"click!\\"
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Button Yellow\\"
+ },
+ {
+  \\"propSet\\": {
+   \\"color\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"green\\"
+   },
+   \\"children\\": {
+    \\"type\\": \\"string\\",
+    \\"value\\": \\"click!\\"
+   }
+  },
+  \\"createdBy\\": \\"Bojagi Collector\\",
+  \\"name\\": \\"Button Green\\"
+ }
+]"
+`;
