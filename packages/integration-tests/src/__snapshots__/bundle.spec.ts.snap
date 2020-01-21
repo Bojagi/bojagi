@@ -1,0 +1,545 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bundle all components 1`] = `
+"[
+ {
+  \\"name\\": \\"commons\\"
+ }
+]"
+`;
+
+exports[`bundle all components 2`] = `
+"[
+ {
+  \\"symbol\\": \\"Box\\",
+  \\"isDefaultExport\\": true,
+  \\"filePath\\": \\"src/components/Box.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"filePath\\": \\"\\",
+    \\"isExternal\\": true
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"dependencies\\": [
+     {
+      \\"request\\": \\"stylis/stylis.min\\",
+      \\"filePath\\": \\"../../node_modules/stylis/stylis.min.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"stylis-rule-sheet\\",
+      \\"filePath\\": \\"../../node_modules/stylis-rule-sheet/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"react\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": true
+     },
+     {
+      \\"request\\": \\"@emotion/unitless\\",
+      \\"filePath\\": \\"../../node_modules/@emotion/unitless/dist/unitless.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"react-is\\",
+      \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"./cjs/react-is.production.min.js\\",
+        \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/cjs/react-is.production.min.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
+     },
+     {
+      \\"request\\": \\"memoize-one\\",
+      \\"filePath\\": \\"../../node_modules/memoize-one/dist/memoize-one.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"prop-types\\",
+      \\"filePath\\": \\"../../node_modules/prop-types/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"./factoryWithThrowingShims\\",
+        \\"filePath\\": \\"../../node_modules/prop-types/factoryWithThrowingShims.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"./lib/ReactPropTypesSecret\\",
+          \\"filePath\\": \\"../../node_modules/prop-types/lib/ReactPropTypesSecret.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      \\"request\\": \\"@emotion/is-prop-valid\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"merge-anything\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": false,
+      \\"dependencies\\": []
+     }
+    ]
+   }
+  ],
+  \\"exportName\\": \\"default\\",
+  \\"name\\": \\"Box\\"
+ },
+ {
+  \\"symbol\\": \\"BoxWithButtons\\",
+  \\"isDefaultExport\\": true,
+  \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"filePath\\": \\"\\",
+    \\"isExternal\\": true
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"dependencies\\": [
+     {
+      \\"request\\": \\"stylis/stylis.min\\",
+      \\"filePath\\": \\"../../node_modules/stylis/stylis.min.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"stylis-rule-sheet\\",
+      \\"filePath\\": \\"../../node_modules/stylis-rule-sheet/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"react\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": true
+     },
+     {
+      \\"request\\": \\"@emotion/unitless\\",
+      \\"filePath\\": \\"../../node_modules/@emotion/unitless/dist/unitless.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"react-is\\",
+      \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"./cjs/react-is.production.min.js\\",
+        \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/cjs/react-is.production.min.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
+     },
+     {
+      \\"request\\": \\"memoize-one\\",
+      \\"filePath\\": \\"../../node_modules/memoize-one/dist/memoize-one.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"prop-types\\",
+      \\"filePath\\": \\"../../node_modules/prop-types/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"./factoryWithThrowingShims\\",
+        \\"filePath\\": \\"../../node_modules/prop-types/factoryWithThrowingShims.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"./lib/ReactPropTypesSecret\\",
+          \\"filePath\\": \\"../../node_modules/prop-types/lib/ReactPropTypesSecret.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      \\"request\\": \\"@emotion/is-prop-valid\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"merge-anything\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": false,
+      \\"dependencies\\": []
+     }
+    ]
+   },
+   {
+    \\"request\\": \\"./Box\\",
+    \\"filePath\\": \\"src/components/Box.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"dependencies\\": [
+     {
+      \\"request\\": \\"react\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": true
+     },
+     {
+      \\"request\\": \\"styled-components\\",
+      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"stylis/stylis.min\\",
+        \\"filePath\\": \\"../../node_modules/stylis/stylis.min.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"stylis-rule-sheet\\",
+        \\"filePath\\": \\"../../node_modules/stylis-rule-sheet/index.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"react\\",
+        \\"filePath\\": \\"\\",
+        \\"isExternal\\": true
+       },
+       {
+        \\"request\\": \\"@emotion/unitless\\",
+        \\"filePath\\": \\"../../node_modules/@emotion/unitless/dist/unitless.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"react-is\\",
+        \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/index.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"./cjs/react-is.production.min.js\\",
+          \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/cjs/react-is.production.min.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
+       },
+       {
+        \\"request\\": \\"memoize-one\\",
+        \\"filePath\\": \\"../../node_modules/memoize-one/dist/memoize-one.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"prop-types\\",
+        \\"filePath\\": \\"../../node_modules/prop-types/index.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"./factoryWithThrowingShims\\",
+          \\"filePath\\": \\"../../node_modules/prop-types/factoryWithThrowingShims.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": [
+           {
+            \\"request\\": \\"./lib/ReactPropTypesSecret\\",
+            \\"filePath\\": \\"../../node_modules/prop-types/lib/ReactPropTypesSecret.js\\",
+            \\"isExternal\\": false,
+            \\"isNodeModule\\": false,
+            \\"dependencies\\": []
+           }
+          ]
+         }
+        ]
+       },
+       {
+        \\"request\\": \\"@emotion/is-prop-valid\\",
+        \\"filePath\\": \\"\\",
+        \\"isExternal\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"merge-anything\\",
+        \\"filePath\\": \\"\\",
+        \\"isExternal\\": false,
+        \\"dependencies\\": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"filePath\\": \\"src/components/Button.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"dependencies\\": [
+     {
+      \\"request\\": \\"react\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": true
+     },
+     {
+      \\"request\\": \\"styled-components\\",
+      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"stylis/stylis.min\\",
+        \\"filePath\\": \\"../../node_modules/stylis/stylis.min.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"stylis-rule-sheet\\",
+        \\"filePath\\": \\"../../node_modules/stylis-rule-sheet/index.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"react\\",
+        \\"filePath\\": \\"\\",
+        \\"isExternal\\": true
+       },
+       {
+        \\"request\\": \\"@emotion/unitless\\",
+        \\"filePath\\": \\"../../node_modules/@emotion/unitless/dist/unitless.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"react-is\\",
+        \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/index.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"./cjs/react-is.production.min.js\\",
+          \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/cjs/react-is.production.min.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
+       },
+       {
+        \\"request\\": \\"memoize-one\\",
+        \\"filePath\\": \\"../../node_modules/memoize-one/dist/memoize-one.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"prop-types\\",
+        \\"filePath\\": \\"../../node_modules/prop-types/index.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"./factoryWithThrowingShims\\",
+          \\"filePath\\": \\"../../node_modules/prop-types/factoryWithThrowingShims.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": [
+           {
+            \\"request\\": \\"./lib/ReactPropTypesSecret\\",
+            \\"filePath\\": \\"../../node_modules/prop-types/lib/ReactPropTypesSecret.js\\",
+            \\"isExternal\\": false,
+            \\"isNodeModule\\": false,
+            \\"dependencies\\": []
+           }
+          ]
+         }
+        ]
+       },
+       {
+        \\"request\\": \\"@emotion/is-prop-valid\\",
+        \\"filePath\\": \\"\\",
+        \\"isExternal\\": false,
+        \\"dependencies\\": []
+       },
+       {
+        \\"request\\": \\"merge-anything\\",
+        \\"filePath\\": \\"\\",
+        \\"isExternal\\": false,
+        \\"dependencies\\": []
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  \\"exportName\\": \\"default\\",
+  \\"name\\": \\"BoxWithButtons\\"
+ },
+ {
+  \\"symbol\\": \\"Button\\",
+  \\"isDefaultExport\\": true,
+  \\"filePath\\": \\"src/components/Button.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"filePath\\": \\"\\",
+    \\"isExternal\\": true
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"dependencies\\": [
+     {
+      \\"request\\": \\"stylis/stylis.min\\",
+      \\"filePath\\": \\"../../node_modules/stylis/stylis.min.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"stylis-rule-sheet\\",
+      \\"filePath\\": \\"../../node_modules/stylis-rule-sheet/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"react\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": true
+     },
+     {
+      \\"request\\": \\"@emotion/unitless\\",
+      \\"filePath\\": \\"../../node_modules/@emotion/unitless/dist/unitless.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"react-is\\",
+      \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"./cjs/react-is.production.min.js\\",
+        \\"filePath\\": \\"../../node_modules/styled-components/node_modules/react-is/cjs/react-is.production.min.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
+     },
+     {
+      \\"request\\": \\"memoize-one\\",
+      \\"filePath\\": \\"../../node_modules/memoize-one/dist/memoize-one.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"prop-types\\",
+      \\"filePath\\": \\"../../node_modules/prop-types/index.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"./factoryWithThrowingShims\\",
+        \\"filePath\\": \\"../../node_modules/prop-types/factoryWithThrowingShims.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"./lib/ReactPropTypesSecret\\",
+          \\"filePath\\": \\"../../node_modules/prop-types/lib/ReactPropTypesSecret.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
+       }
+      ]
+     },
+     {
+      \\"request\\": \\"@emotion/is-prop-valid\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": false,
+      \\"dependencies\\": []
+     },
+     {
+      \\"request\\": \\"merge-anything\\",
+      \\"filePath\\": \\"\\",
+      \\"isExternal\\": false,
+      \\"dependencies\\": []
+     }
+    ]
+   }
+  ],
+  \\"exportName\\": \\"default\\",
+  \\"name\\": \\"Button\\"
+ }
+]"
+`;
+
+exports[`bundle all components 3`] = `"8dab4e4aaa828c3bfee18a0e4145defa699bde4599049b18fea2f7e15ce82a59"`;
+
+exports[`bundle all components 4`] = `"18ad033e831d21c22284f3b451295827d45d6ebda88543d80966bcf0a7b35054"`;
+
+exports[`bundle all components 5`] = `"02eb1e3f5471dafcdca134ab4cde0468e0f2da17726d5964a0e6566610f54131"`;
+
+exports[`bundle all components 6`] = `"837df19c7ec7c539a295b3a56e6eaf980b05f4b03cf5c732c222ea8d36f29870"`;

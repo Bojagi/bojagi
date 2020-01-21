@@ -1,4 +1,5 @@
 import { Module } from '@bojagi/types';
+import * as path from 'path';
 import getGitPath from './getGitPath';
 
 export type RunWebpackCompilerOutput = {
@@ -58,7 +59,7 @@ function filterActualModulecomponentFilePaths(componentFilePaths) {
 }
 
 function getFilePath(resource = '') {
-  return resource.substr(process.cwd().length + 1) || undefined;
+  return path.relative(process.cwd(), resource);
 }
 
 function addDependencies(dependencyPackages) {
