@@ -28,7 +28,7 @@ export interface BundleCommandOptions extends BaseOptions {
   decoratorPath: string;
 }
 
-const FILES = ['commons', 'bojagiDecorator'];
+const FILES = ['commons'];
 
 export const bundleAction = ({
   dir,
