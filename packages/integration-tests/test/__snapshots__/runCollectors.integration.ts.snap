@@ -4,6 +4,9 @@ exports[`run main collector 1`] = `
 "[
  {
   \\"name\\": \\"commons\\"
+ },
+ {
+  \\"name\\": \\"bojagiDecorator\\"
  }
 ]"
 `;
@@ -541,9 +544,9 @@ exports[`run main collector 2`] = `
 ]"
 `;
 
-exports[`run main collector 3`] = `"8dab4e4aaa828c3bfee18a0e4145defa699bde4599049b18fea2f7e15ce82a59"`;
+exports[`run main collector 3`] = `"2e18e248727c4dc3e3b97632f6f4b96d597b7cefeba94b8086271a2a146a66cf"`;
 
-exports[`run main collector 4`] = `"18ad033e831d21c22284f3b451295827d45d6ebda88543d80966bcf0a7b35054"`;
+exports[`run main collector 4`] = `"7a78a7ffc083765bf35202dd1a6deef0b7bdd044b55ee43cf9a0f1700e839299"`;
 
 exports[`run main collector 5`] = `
 "[
@@ -620,7 +623,7 @@ exports[`run main collector 5`] = `
 ]"
 `;
 
-exports[`run main collector 6`] = `"02eb1e3f5471dafcdca134ab4cde0468e0f2da17726d5964a0e6566610f54131"`;
+exports[`run main collector 6`] = `"bd356c3bcdfe1bd26080fa5816c7545f5a6f84550a3220acff09fa37b2dad966"`;
 
 exports[`run main collector 7`] = `
 "[
@@ -654,7 +657,7 @@ exports[`run main collector 7`] = `
 ]"
 `;
 
-exports[`run main collector 8`] = `"837df19c7ec7c539a295b3a56e6eaf980b05f4b03cf5c732c222ea8d36f29870"`;
+exports[`run main collector 8`] = `"ad8ad1d26899bbbe5bceea76a4e2e7830879504246989f61eecd3467f4eb3c2b"`;
 
 exports[`run main collector 9`] = `
 "[
