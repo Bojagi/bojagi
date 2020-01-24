@@ -4,9 +4,6 @@ exports[`run main collector 1`] = `
 "[
  {
   \\"name\\": \\"commons\\"
- },
- {
-  \\"name\\": \\"bojagiDecorator\\"
  }
 ]"
 `;
