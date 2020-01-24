@@ -17,7 +17,11 @@ const runWebpackCompiler = ({
         reject(err);
       }
 
-      const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep.split('!')[1]);
+      if (output.compilation.errors.length > 0) {
+        reject(output.compilation.errors[0]);
+      }
+
+      const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
 
       const componentModules = output.compilation.modules.filter(
         filterActualModulecomponentFilePaths(componentFilePaths)

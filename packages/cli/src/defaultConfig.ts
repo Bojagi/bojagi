@@ -8,6 +8,7 @@ const defaultConfig: Config = {
   dir: 'src',
   webpackConfig: getWebpackConfigPath(process.cwd()),
   executionPath: process.cwd(),
+  decoratorPath: '.bojagi/decorator.@(tsx|ts|jsx|js)',
   uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io',
   collectors: [COLLECTOR_MAIN_NAME],
 };

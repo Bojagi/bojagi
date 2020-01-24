@@ -1,6 +1,7 @@
 import * as MemoryFS from 'memory-fs';
 import * as webpack from 'webpack';
 import { EntrypointWithMetadata, File, FileContent } from '@bojagi/types';
+import * as pathUtils from 'path';
 import getComponentsOfFolder from '../utils/getComponentsOfFolder';
 import getWebpackConfig from '../utils/getWebpackConfig';
 import getEntrypointsFromComponents from '../utils/getEntrypointsFromComponents';
@@ -12,6 +13,7 @@ import withSteps from '../utils/withSteps';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import { getComponentCountText } from '../renderers/componentList';
 import { writeComponent, writeSharedFile, writeJson, cleanTempFolder } from '../utils/writeFile';
+import glob from '../utils/glob';
 
 const outputFS = new MemoryFS();
 
@@ -23,15 +25,17 @@ export interface BundleCommandOptions extends BaseOptions {
   steps: any;
   webpackConfig: string;
   executionPath: string;
+  decoratorPath: string;
 }
 
-const FILES = ['commons'];
+const FILES = ['commons', 'bojagiDecorator'];
 
 export const bundleAction = ({
   dir,
   steps,
   webpackConfig,
   executionPath,
+  decoratorPath,
 }: BundleCommandOptions) => {
   const projectWebpackConfig = require(webpackConfig);
   const entryFolder = `${executionPath}/${dir}`;
@@ -56,17 +60,25 @@ export const bundleAction = ({
 
       componentExtractStep.success(getComponentCountText(componentCount, fileCount));
 
+      const decoratorFiles = await glob(decoratorPath, { cwd: executionPath });
+      const decoratorFileArray = decoratorFiles.length > 0 ? [
+        pathUtils.resolve(executionPath, decoratorFiles[0])
+      ] : [];
+
       const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
         (prev, [key, ep]) => ({
           ...prev,
-          [key]: ep.entrypoint,
+          [key]: [ep.entrypoint, ...decoratorFileArray],
         }),
         {}
       );
+
       const config = getWebpackConfig(
         entrypoints,
         projectWebpackConfig.resolve,
-        projectWebpackConfig.module
+        projectWebpackConfig.module,
+        executionPath,
+        decoratorFileArray[0],
       );
 
       const compiler = webpack(config);
