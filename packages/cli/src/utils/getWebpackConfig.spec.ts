@@ -58,25 +58,29 @@ const testCases = [
     test: config => {
       expect(config.module).toEqual({
         my: 'module config',
-        rules: [{
-          test: '/my/decorator/path.jsx',
-          use: [{
-            loader: 'expose-loader',
-            options: 'bojagiDecorator',
-          }],
-        }],
+        rules: [
+          {
+            test: '/my/decorator/path.jsx',
+            use: [
+              {
+                loader: 'expose-loader',
+                options: 'bojagiDecorator',
+              },
+            ],
+          },
+        ],
       });
     },
   },
   {
     name: 'with decoratorPath and existing rules (prepend decorator rule)',
-    input: { 
+    input: {
       ...basicInput,
       module: {
         my: 'module config',
         rules: [{ existing: 'rule' }],
       },
-      decoratorPath: '/my/decorator/path.jsx'
+      decoratorPath: '/my/decorator/path.jsx',
     },
     test: config => {
       expect(config.module).toEqual({
@@ -84,10 +88,12 @@ const testCases = [
         rules: [
           {
             test: '/my/decorator/path.jsx',
-            use: [{
-              loader: 'expose-loader',
-              options: 'bojagiDecorator',
-            }],
+            use: [
+              {
+                loader: 'expose-loader',
+                options: 'bojagiDecorator',
+              },
+            ],
           },
           { existing: 'rule' },
         ],
@@ -99,7 +105,13 @@ const testCases = [
 testCases.forEach(testCase => {
   test(`getWebpackConfig - ${testCase.name}`, () => {
     const { entry, resolve, module, decoratorPath } = testCase.input;
-    const config = getWebpackConfig(entry, resolve, module as any, '/my/project/path', decoratorPath);
+    const config = getWebpackConfig(
+      entry,
+      resolve,
+      module as any,
+      '/my/project/path',
+      decoratorPath
+    );
     testCase.test(config);
   });
 });

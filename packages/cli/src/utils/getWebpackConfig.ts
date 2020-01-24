@@ -7,7 +7,7 @@ const getWebpackConfig = (
   resolve: object,
   module: webpack.Module,
   executionPath: string,
-  decoratorFile?: string,
+  decoratorFile?: string
 ): webpack.Configuration => {
   const rules = [...module.rules];
   if (decoratorFile) {
@@ -22,7 +22,7 @@ const getWebpackConfig = (
       ],
     });
   }
-    
+
   return {
     entry,
     output: {

@@ -189,7 +189,7 @@ test('run webpack compiler with compilation error', async () => {
   mockOutput = {
     compilation: {
       errors: [new Error('some compilation error text')],
-    }
+    },
   };
   await expect(
     runWebpackCompiler({
@@ -199,4 +199,3 @@ test('run webpack compiler with compilation error', async () => {
     })
   ).rejects.toThrow('some compilation error text');
 });
-
