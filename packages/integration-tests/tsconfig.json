@@ -4,7 +4,7 @@
     "rootDir": "src",
     "outDir": "lib"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "test/**/*"],
   "exclude": ["src/**/__testHelpers__/*", "node_modules"],
   "references": [
     {
