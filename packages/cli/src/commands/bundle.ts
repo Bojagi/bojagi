@@ -61,9 +61,8 @@ export const bundleAction = ({
       componentExtractStep.success(getComponentCountText(componentCount, fileCount));
 
       const decoratorFiles = await glob(decoratorPath, { cwd: executionPath });
-      const decoratorFileArray = decoratorFiles.length > 0 ? [
-        pathUtils.resolve(executionPath, decoratorFiles[0])
-      ] : [];
+      const decoratorFileArray =
+        decoratorFiles.length > 0 ? [pathUtils.resolve(executionPath, decoratorFiles[0])] : [];
 
       const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
         (prev, [key, ep]) => ({
@@ -78,7 +77,7 @@ export const bundleAction = ({
         projectWebpackConfig.resolve,
         projectWebpackConfig.module,
         executionPath,
-        decoratorFileArray[0],
+        decoratorFileArray[0]
       );
 
       const compiler = webpack(config);
