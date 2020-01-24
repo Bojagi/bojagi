@@ -14,7 +14,7 @@ interface FileWithInformation {
 
 const getComponentsOfFile = filePath =>
   readFile(filePath)
-    .then(fileContent => getComponents(fileContent.toString()))
+    .then(fileContent => getComponents(filePath, fileContent.toString()))
     .then(components => (components ? { filePath, components } : undefined));
 
 const getComponentsOfFiles = (files: FileWithInformation[]): Promise<any> => {
