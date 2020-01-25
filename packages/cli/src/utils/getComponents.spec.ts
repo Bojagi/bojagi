@@ -39,13 +39,26 @@ MyNewlineComponent () {<div></div>}`,
     // named function export
     `// @component
     export function MyNamedFunctionComponent () {<div></div>}`,
+
+    // styled-components default export
+    `// @component
+    export default styled.h1\`
+      width: 100px;
+    \`;
+    `,
+    // named function export with TypeScript generic
+    `// @component
+    export function MyNamedFunctionComponent<string> () {<div></div>}`,
+    // default function with TypeScript generic
+    `// @component
+    export default function MyFnComponent<number> () { return <div></div> }`,
   ];
 
   const foundComponents = testFiles
-    .map(testFile => getComponents(testFile))
+    .map(testFile => getComponents('this/is/the/path/to.the.file.js', testFile))
     .filter(testFile => !!testFile);
 
-  expect(foundComponents.length).toBe(7);
+  expect(foundComponents.length).toBe(10);
   expect(foundComponents).toEqual([
     [
       {
@@ -69,7 +82,7 @@ MyNewlineComponent () {<div></div>}`,
         isDefaultExport: false,
       },
       {
-        symbol: 'default',
+        symbol: 'to.the.file',
         isDefaultExport: true,
       },
     ],
@@ -95,6 +108,24 @@ MyNewlineComponent () {<div></div>}`,
       {
         symbol: 'MyNamedFunctionComponent',
         isDefaultExport: false,
+      },
+    ],
+    [
+      {
+        symbol: 'to.the.file',
+        isDefaultExport: true,
+      },
+    ],
+    [
+      {
+        symbol: 'MyNamedFunctionComponent',
+        isDefaultExport: false,
+      },
+    ],
+    [
+      {
+        symbol: 'MyFnComponent',
+        isDefaultExport: true,
       },
     ],
   ]);

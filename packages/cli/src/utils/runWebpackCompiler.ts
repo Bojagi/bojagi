@@ -18,7 +18,11 @@ const runWebpackCompiler = ({
         reject(err);
       }
 
-      const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep.split('!')[1]);
+      if (output.compilation.errors.length > 0) {
+        reject(output.compilation.errors[0]);
+      }
+
+      const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
 
       const componentModules = output.compilation.modules.filter(
         filterActualModulecomponentFilePaths(componentFilePaths)
@@ -68,7 +72,7 @@ function addDependencies(dependencyPackages) {
     const isExternal = !!module.external;
     const isNodeModule = checkNodeModule(module.resource, nodeModulesPath);
     const packageName = isNodeModule ? getPackageName(module.resource, nodeModulesPath) : undefined;
-    const filePath = getFilePath(module.resource);
+    const filePath = module.resource && getFilePath(module.resource);
 
     return {
       request: module.request,

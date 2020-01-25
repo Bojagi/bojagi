@@ -18,6 +18,7 @@ const deployAction = async ({
   webpackConfig,
   collectors,
   executionPath,
+  decoratorPath,
 }: DeployCommandOptions) => {
   await bundleAction({
     componentMarker,
@@ -25,6 +26,7 @@ const deployAction = async ({
     steps,
     webpackConfig,
     executionPath,
+    decoratorPath,
   });
   await runCollectorsAction({
     executionPath,

@@ -18,6 +18,7 @@ beforeEach(() => {
   mockError = null;
   mockOutput = {
     compilation: {
+      errors: [],
       modules: [
         {
           rawRequest: `component-extract-loader?${cwd}/bojagi/A.js`,
@@ -94,9 +95,9 @@ beforeEach(() => {
     readFileSync: jest.fn(path => fileContents[path]),
   };
   entrypoints = {
-    A: `A!${cwd}/bojagi/A.js`,
-    B: `B!${cwd}/bojagi/B.js`,
-    C: `C!${cwd}/bojagi/C.js`,
+    A: [`A!${cwd}/bojagi/A.js`],
+    B: [`B!${cwd}/bojagi/B.js`],
+    C: [`C!${cwd}/bojagi/C.js`],
   };
   compiler = {
     run: jest.fn(runCb => runCb(mockError, mockOutput)),
@@ -182,4 +183,19 @@ test('run webpack compiler with error', async () => {
       dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
     })
   ).rejects.toThrow('some error text');
+});
+
+test('run webpack compiler with compilation error', async () => {
+  mockOutput = {
+    compilation: {
+      errors: [new Error('some compilation error text')],
+    },
+  };
+  await expect(
+    runWebpackCompiler({
+      compiler,
+      entrypoints,
+      dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
+    })
+  ).rejects.toThrow('some compilation error text');
 });

@@ -10,7 +10,9 @@ const basicInput = {
   },
   module: {
     my: 'module config',
+    rules: [],
   },
+  decoratorPath: undefined,
 };
 
 const testCases = [
@@ -27,9 +29,11 @@ const testCases = [
       });
       expect(config.module).toEqual({
         my: 'module config',
+        rules: [],
       });
       expect(config.resolveLoader.alias).toEqual({
-        'component-extract-loader': `${__dirname}/exposeLoader`,
+        'component-extract-loader': `${__dirname}/componentExtractLoader`,
+        'expose-loader': `${__dirname}/exposeLoader`,
       });
       expect(config.output).toEqual({
         path: `${process.cwd()}/bojagi`,
@@ -48,12 +52,66 @@ const testCases = [
       });
     },
   },
+  {
+    name: 'with decoratorPath',
+    input: { ...basicInput, decoratorPath: '/my/decorator/path.jsx' },
+    test: config => {
+      expect(config.module).toEqual({
+        my: 'module config',
+        rules: [
+          {
+            test: '/my/decorator/path.jsx',
+            use: [
+              {
+                loader: 'expose-loader',
+                options: 'bojagiDecorator',
+              },
+            ],
+          },
+        ],
+      });
+    },
+  },
+  {
+    name: 'with decoratorPath and existing rules (prepend decorator rule)',
+    input: {
+      ...basicInput,
+      module: {
+        my: 'module config',
+        rules: [{ existing: 'rule' }],
+      },
+      decoratorPath: '/my/decorator/path.jsx',
+    },
+    test: config => {
+      expect(config.module).toEqual({
+        my: 'module config',
+        rules: [
+          {
+            test: '/my/decorator/path.jsx',
+            use: [
+              {
+                loader: 'expose-loader',
+                options: 'bojagiDecorator',
+              },
+            ],
+          },
+          { existing: 'rule' },
+        ],
+      });
+    },
+  },
 ];
 
 testCases.forEach(testCase => {
   test(`getWebpackConfig - ${testCase.name}`, () => {
-    const { entry, resolve, module } = testCase.input;
-    const config = getWebpackConfig(entry, resolve, module as any);
+    const { entry, resolve, module, decoratorPath } = testCase.input;
+    const config = getWebpackConfig(
+      entry,
+      resolve,
+      module as any,
+      '/my/project/path',
+      decoratorPath
+    );
     testCase.test(config);
   });
 });

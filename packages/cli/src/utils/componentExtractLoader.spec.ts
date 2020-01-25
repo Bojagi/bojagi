@@ -1,4 +1,4 @@
-import { pitch as _pitch } from './exposeLoader';
+import { pitch as _pitch } from './componentExtractLoader';
 
 let self;
 let pitch;

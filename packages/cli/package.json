@@ -30,6 +30,8 @@
     "chalk": "2.4.2",
     "cli-spinner": "0.2.10",
     "cli-step": "1.0.2",
+    "expose-loader": "^0.7.5",
+    "glob": "^7.1.6",
     "commander": "4.1.0",
     "inquirer": "6.5.2",
     "memory-fs": "^0.5.0",
