@@ -47,6 +47,7 @@ const getWebpackConfig = (
     },
     optimization: {
       minimize: true,
+      concatenateModules: false,
       splitChunks: {
         cacheGroups: {
           commons: {

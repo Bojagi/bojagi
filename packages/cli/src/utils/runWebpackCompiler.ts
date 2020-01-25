@@ -72,7 +72,7 @@ function addDependencies(dependencyPackages) {
     const isExternal = !!module.external;
     const isNodeModule = checkNodeModule(module.resource, nodeModulesPath);
     const packageName = isNodeModule ? getPackageName(module.resource, nodeModulesPath) : undefined;
-    const filePath = getFilePath(module.resource);
+    const filePath = module.resource && getFilePath(module.resource);
 
     return {
       request: module.request,
