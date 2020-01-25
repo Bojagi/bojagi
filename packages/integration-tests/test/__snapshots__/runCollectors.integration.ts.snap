@@ -18,7 +18,6 @@ exports[`run main collector 2`] = `
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
-    \\"filePath\\": \\"\\",
     \\"isExternal\\": true
    },
    {
@@ -43,7 +42,6 @@ exports[`run main collector 2`] = `
      },
      {
       \\"request\\": \\"react\\",
-      \\"filePath\\": \\"\\",
       \\"isExternal\\": true
      },
      {
@@ -100,15 +98,33 @@ exports[`run main collector 2`] = `
      },
      {
       \\"request\\": \\"@emotion/is-prop-valid\\",
-      \\"filePath\\": \\"\\",
+      \\"filePath\\": \\"../../node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js\\",
       \\"isExternal\\": false,
-      \\"dependencies\\": []
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"@emotion/memoize\\",
+        \\"filePath\\": \\"../../node_modules/@emotion/memoize/dist/memoize.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
      },
      {
       \\"request\\": \\"merge-anything\\",
-      \\"filePath\\": \\"\\",
+      \\"filePath\\": \\"../../node_modules/merge-anything/dist/index.esm.js\\",
       \\"isExternal\\": false,
-      \\"dependencies\\": []
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"is-what\\",
+        \\"filePath\\": \\"../../node_modules/is-what/dist/index.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
      }
     ]
    }
@@ -124,7 +140,6 @@ exports[`run main collector 2`] = `
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
-    \\"filePath\\": \\"\\",
     \\"isExternal\\": true
    },
    {
@@ -149,7 +164,6 @@ exports[`run main collector 2`] = `
      },
      {
       \\"request\\": \\"react\\",
-      \\"filePath\\": \\"\\",
       \\"isExternal\\": true
      },
      {
@@ -206,15 +220,33 @@ exports[`run main collector 2`] = `
      },
      {
       \\"request\\": \\"@emotion/is-prop-valid\\",
-      \\"filePath\\": \\"\\",
+      \\"filePath\\": \\"../../node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js\\",
       \\"isExternal\\": false,
-      \\"dependencies\\": []
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"@emotion/memoize\\",
+        \\"filePath\\": \\"../../node_modules/@emotion/memoize/dist/memoize.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
      },
      {
       \\"request\\": \\"merge-anything\\",
-      \\"filePath\\": \\"\\",
+      \\"filePath\\": \\"../../node_modules/merge-anything/dist/index.esm.js\\",
       \\"isExternal\\": false,
-      \\"dependencies\\": []
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"is-what\\",
+        \\"filePath\\": \\"../../node_modules/is-what/dist/index.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
      }
     ]
    },
@@ -227,7 +259,6 @@ exports[`run main collector 2`] = `
     \\"dependencies\\": [
      {
       \\"request\\": \\"react\\",
-      \\"filePath\\": \\"\\",
       \\"isExternal\\": true
      },
      {
@@ -252,7 +283,6 @@ exports[`run main collector 2`] = `
        },
        {
         \\"request\\": \\"react\\",
-        \\"filePath\\": \\"\\",
         \\"isExternal\\": true
        },
        {
@@ -309,15 +339,33 @@ exports[`run main collector 2`] = `
        },
        {
         \\"request\\": \\"@emotion/is-prop-valid\\",
-        \\"filePath\\": \\"\\",
+        \\"filePath\\": \\"../../node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js\\",
         \\"isExternal\\": false,
-        \\"dependencies\\": []
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"@emotion/memoize\\",
+          \\"filePath\\": \\"../../node_modules/@emotion/memoize/dist/memoize.browser.esm.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
        },
        {
         \\"request\\": \\"merge-anything\\",
-        \\"filePath\\": \\"\\",
+        \\"filePath\\": \\"../../node_modules/merge-anything/dist/index.esm.js\\",
         \\"isExternal\\": false,
-        \\"dependencies\\": []
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"is-what\\",
+          \\"filePath\\": \\"../../node_modules/is-what/dist/index.esm.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
        }
       ]
      }
@@ -332,7 +380,6 @@ exports[`run main collector 2`] = `
     \\"dependencies\\": [
      {
       \\"request\\": \\"react\\",
-      \\"filePath\\": \\"\\",
       \\"isExternal\\": true
      },
      {
@@ -357,7 +404,6 @@ exports[`run main collector 2`] = `
        },
        {
         \\"request\\": \\"react\\",
-        \\"filePath\\": \\"\\",
         \\"isExternal\\": true
        },
        {
@@ -414,15 +460,33 @@ exports[`run main collector 2`] = `
        },
        {
         \\"request\\": \\"@emotion/is-prop-valid\\",
-        \\"filePath\\": \\"\\",
+        \\"filePath\\": \\"../../node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js\\",
         \\"isExternal\\": false,
-        \\"dependencies\\": []
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"@emotion/memoize\\",
+          \\"filePath\\": \\"../../node_modules/@emotion/memoize/dist/memoize.browser.esm.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
        },
        {
         \\"request\\": \\"merge-anything\\",
-        \\"filePath\\": \\"\\",
+        \\"filePath\\": \\"../../node_modules/merge-anything/dist/index.esm.js\\",
         \\"isExternal\\": false,
-        \\"dependencies\\": []
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": [
+         {
+          \\"request\\": \\"is-what\\",
+          \\"filePath\\": \\"../../node_modules/is-what/dist/index.esm.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": false,
+          \\"dependencies\\": []
+         }
+        ]
        }
       ]
      }
@@ -440,7 +504,6 @@ exports[`run main collector 2`] = `
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
-    \\"filePath\\": \\"\\",
     \\"isExternal\\": true
    },
    {
@@ -465,7 +528,6 @@ exports[`run main collector 2`] = `
      },
      {
       \\"request\\": \\"react\\",
-      \\"filePath\\": \\"\\",
       \\"isExternal\\": true
      },
      {
@@ -522,15 +584,33 @@ exports[`run main collector 2`] = `
      },
      {
       \\"request\\": \\"@emotion/is-prop-valid\\",
-      \\"filePath\\": \\"\\",
+      \\"filePath\\": \\"../../node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js\\",
       \\"isExternal\\": false,
-      \\"dependencies\\": []
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"@emotion/memoize\\",
+        \\"filePath\\": \\"../../node_modules/@emotion/memoize/dist/memoize.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
      },
      {
       \\"request\\": \\"merge-anything\\",
-      \\"filePath\\": \\"\\",
+      \\"filePath\\": \\"../../node_modules/merge-anything/dist/index.esm.js\\",
       \\"isExternal\\": false,
-      \\"dependencies\\": []
+      \\"isNodeModule\\": false,
+      \\"dependencies\\": [
+       {
+        \\"request\\": \\"is-what\\",
+        \\"filePath\\": \\"../../node_modules/is-what/dist/index.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
      }
     ]
    }
@@ -541,9 +621,9 @@ exports[`run main collector 2`] = `
 ]"
 `;
 
-exports[`run main collector 3`] = `"2e18e248727c4dc3e3b97632f6f4b96d597b7cefeba94b8086271a2a146a66cf"`;
+exports[`run main collector 3`] = `"c48edc2d38bf80980f4a319da3af6776543458f767d5f1888015b5e35d738430"`;
 
-exports[`run main collector 4`] = `"7a78a7ffc083765bf35202dd1a6deef0b7bdd044b55ee43cf9a0f1700e839299"`;
+exports[`run main collector 4`] = `"f0b000b21d8a3d7dbd5e6c7707a326ec6eee0acbfec3d010c6d1b8cdbebd7609"`;
 
 exports[`run main collector 5`] = `
 "[
@@ -620,7 +700,7 @@ exports[`run main collector 5`] = `
 ]"
 `;
 
-exports[`run main collector 6`] = `"bd356c3bcdfe1bd26080fa5816c7545f5a6f84550a3220acff09fa37b2dad966"`;
+exports[`run main collector 6`] = `"ac41292a1db29019c2fbdac8701e94e2d50d45a5a7c1378cfb9f442f133df59e"`;
 
 exports[`run main collector 7`] = `
 "[
@@ -654,7 +734,7 @@ exports[`run main collector 7`] = `
 ]"
 `;
 
-exports[`run main collector 8`] = `"ad8ad1d26899bbbe5bceea76a4e2e7830879504246989f61eecd3467f4eb3c2b"`;
+exports[`run main collector 8`] = `"0895e4600fffb6dcbea59eda167c2ca6866e4bbc4dd8ade699cee61875d62c2b"`;
 
 exports[`run main collector 9`] = `
 "[
