@@ -32,7 +32,7 @@ const getWebpackConfig = (
       {
         loader: `bojagi-expose-loader`,
         options: {
-          symbol: (path) => {
+          symbol: path => {
             const relacedPath = pathUtils
               .relative(executionPath, path)
               .replace(/(\/|\\)/g, '__')

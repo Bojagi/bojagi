@@ -45,10 +45,11 @@ export const pitch = function(remainingRequest) {
    */
   // eslint-disable-next-line no-underscore-dangle
   const originalUserRequest = this._module.userRequest;
+  // eslint-disable-next-line no-underscore-dangle
   this._module.userRequest = `${originalUserRequest}-exposed`;
-  const symbol = typeof this.query.symbol === 'function' ? this.query.symbol(originalUserRequest) : this.query.symbol;
-  return (
-    `${accesorString(symbol)} = ` +
-    `require(${JSON.stringify(`-!${newRequestPath}`)});`
-  );
+  const symbol =
+    typeof this.query.symbol === 'function'
+      ? this.query.symbol(originalUserRequest)
+      : this.query.symbol;
+  return `${accesorString(symbol)} = require(${JSON.stringify(`-!${newRequestPath}`)});`;
 };
