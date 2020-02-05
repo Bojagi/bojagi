@@ -621,9 +621,9 @@ exports[`run main collector 2`] = `
 ]"
 `;
 
-exports[`run main collector 3`] = `"c48edc2d38bf80980f4a319da3af6776543458f767d5f1888015b5e35d738430"`;
+exports[`run main collector 3`] = `"7cff20749cae6ce53e82385c266476cf3cb37e70f32b5bc0d4b97c8d925a1f8d"`;
 
-exports[`run main collector 4`] = `"f0b000b21d8a3d7dbd5e6c7707a326ec6eee0acbfec3d010c6d1b8cdbebd7609"`;
+exports[`run main collector 4`] = `"670bad93955069267698f7464e4b0242ef49f6d43e49b428db28aa34bd7f2a3b"`;
 
 exports[`run main collector 5`] = `
 "[
@@ -639,7 +639,10 @@ exports[`run main collector 5`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Yellow\\"
+  \\"name\\": \\"Yellow\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__Box_bojagi_js\\",
+  \\"storySymbol\\": \\"yellow\\"
  },
  {
   \\"propSet\\": {
@@ -653,7 +656,10 @@ exports[`run main collector 5`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Green\\"
+  \\"name\\": \\"Green\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__Box_bojagi_js\\",
+  \\"storySymbol\\": \\"green\\"
  },
  {
   \\"propSet\\": {
@@ -667,7 +673,10 @@ exports[`run main collector 5`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Red\\"
+  \\"name\\": \\"Red\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__Box_bojagi_js\\",
+  \\"storySymbol\\": \\"red\\"
  },
  {
   \\"propSet\\": {
@@ -681,7 +690,10 @@ exports[`run main collector 5`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Blue\\"
+  \\"name\\": \\"Blue\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__Box_bojagi_js\\",
+  \\"storySymbol\\": \\"blue\\"
  },
  {
   \\"propSet\\": {
@@ -695,12 +707,15 @@ exports[`run main collector 5`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Brown\\"
+  \\"name\\": \\"Brown\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__Box_bojagi_js\\",
+  \\"storySymbol\\": \\"brown\\"
  }
 ]"
 `;
 
-exports[`run main collector 6`] = `"ac41292a1db29019c2fbdac8701e94e2d50d45a5a7c1378cfb9f442f133df59e"`;
+exports[`run main collector 6`] = `"069e0da8be3f2f84036e9a196375b26e986ed230795b00b98df5780359a78cae"`;
 
 exports[`run main collector 7`] = `
 "[
@@ -729,12 +744,15 @@ exports[`run main collector 7`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Traffic Light\\"
+  \\"name\\": \\"Traffic Light\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__BoxWithButtons_bojagi_js\\",
+  \\"storySymbol\\": \\"trafficLight\\"
  }
 ]"
 `;
 
-exports[`run main collector 8`] = `"0895e4600fffb6dcbea59eda167c2ca6866e4bbc4dd8ade699cee61875d62c2b"`;
+exports[`run main collector 8`] = `"7d2e710e7aaf293ba3a0f6f75c80bd802edc19b451af362e7825356503f82716"`;
 
 exports[`run main collector 9`] = `
 "[
@@ -750,7 +768,10 @@ exports[`run main collector 9`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Button Yellow\\"
+  \\"name\\": \\"Button Yellow\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__Button_bojagi_js\\",
+  \\"storySymbol\\": \\"buttonYellow\\"
  },
  {
   \\"propSet\\": {
@@ -764,7 +785,10 @@ exports[`run main collector 9`] = `
    }
   },
   \\"createdBy\\": \\"Bojagi Collector\\",
-  \\"name\\": \\"Button Green\\"
+  \\"name\\": \\"Button Green\\",
+  \\"propSetType\\": \\"js\\",
+  \\"storyPath\\": \\"src__components__Button_bojagi_js\\",
+  \\"storySymbol\\": \\"buttonGreen\\"
  }
 ]"
 `;
