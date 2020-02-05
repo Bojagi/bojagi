@@ -8,7 +8,6 @@ import {
 import * as fs from 'fs';
 import { promisify } from 'util';
 import { getWebpackConfig } from './getWebpackConfig';
-import { getBojagiFilePaths } from './getBojagiFilePaths';
 import { createMockFileContent } from './createMockFile';
 import { callBojagiStories } from './callBojagiStories';
 import { createEntry } from './createEntry';
@@ -28,12 +27,12 @@ export const collector = async ({
   webpack,
   components,
   executionPath,
+  storyFiles,
 }: CollectorFunctionOptions) => {
-  const entries = await getBojagiFilePaths(executionPath);
-  if (entries.length === 0) {
+  if (storyFiles.length === 0) {
     return;
   }
-  const entry: Record<string, string> = createEntry(entries);
+  const entry: Record<string, string> = createEntry(storyFiles);
   const componentPaths = components.map(component => component.filePath);
   const mockFileContent = createMockFileContent(getComponents());
   await mkdirPromise(getMocksPath(executionPath), { recursive: true });

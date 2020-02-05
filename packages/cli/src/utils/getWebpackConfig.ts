@@ -7,7 +7,8 @@ const getWebpackConfig = (
   resolve: object,
   module: webpack.Module,
   executionPath: string,
-  decoratorFile?: string
+  decoratorFile: string | undefined,
+  storyFiles: string[]
 ): webpack.Configuration => {
   const rules = [...module.rules];
   if (decoratorFile) {
@@ -16,12 +17,32 @@ const getWebpackConfig = (
       test: pathUtils.resolve(executionPath, decoratorFile),
       use: [
         {
-          loader: `expose-loader`,
-          options: 'bojagiDecorator',
+          loader: `bojagi-expose-loader`,
+          options: {
+            symbol: 'bojagiDecorator',
+          },
         },
       ],
     });
   }
+
+  rules.unshift({
+    test: storyFiles.map(sf => pathUtils.resolve(executionPath, sf)),
+    use: [
+      {
+        loader: `bojagi-expose-loader`,
+        options: {
+          symbol: (path) => {
+            const relacedPath = pathUtils
+              .relative(executionPath, path)
+              .replace(/(\/|\\)/g, '__')
+              .replace(/\./g, '_');
+            return `bojagiStories.${relacedPath}`;
+          },
+        },
+      },
+    ],
+  });
 
   return {
     entry,
@@ -33,7 +54,7 @@ const getWebpackConfig = (
     resolveLoader: {
       alias: {
         'component-extract-loader': `${__dirname}/componentExtractLoader`,
-        'expose-loader': pathUtils.resolve(__dirname, './exposeLoader'),
+        'bojagi-expose-loader': pathUtils.resolve(__dirname, './exposeLoader'),
       },
     },
     resolve,

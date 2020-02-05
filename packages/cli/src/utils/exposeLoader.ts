@@ -44,9 +44,11 @@ export const pitch = function(remainingRequest) {
    * - https://github.com/webpack-contrib/expose-loader/issues/49
    */
   // eslint-disable-next-line no-underscore-dangle
-  this._module.userRequest = `${this._module.userRequest}-exposed`;
+  const originalUserRequest = this._module.userRequest;
+  this._module.userRequest = `${originalUserRequest}-exposed`;
+  const symbol = typeof this.query.symbol === 'function' ? this.query.symbol(originalUserRequest) : this.query.symbol;
   return (
-    `${accesorString(this.query.substr(1))} = ` +
+    `${accesorString(symbol)} = ` +
     `require(${JSON.stringify(`-!${newRequestPath}`)});`
   );
 };

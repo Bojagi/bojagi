@@ -25,6 +25,7 @@ export type Config = {
   webpackConfig: string;
   executionPath: string;
   decoratorPath: string;
+  storyPath: string;
   uploadApiUrl: string;
   collectors: (string | CollectorTuple)[];
 };

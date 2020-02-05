@@ -26,6 +26,7 @@ export interface BundleCommandOptions extends BaseOptions {
   webpackConfig: string;
   executionPath: string;
   decoratorPath: string;
+  storyPath: string;
 }
 
 const FILES = ['commons'];
@@ -36,6 +37,7 @@ export const bundleAction = ({
   webpackConfig,
   executionPath,
   decoratorPath,
+  storyPath,
 }: BundleCommandOptions) => {
   const projectWebpackConfig = require(webpackConfig);
   const entryFolder = `${executionPath}/${dir}`;
@@ -61,23 +63,26 @@ export const bundleAction = ({
       componentExtractStep.success(getComponentCountText(componentCount, fileCount));
 
       const decoratorFiles = await glob(decoratorPath, { cwd: executionPath });
+      const storyFiles = await glob(storyPath, { cwd: executionPath });
       const decoratorFileArray =
         decoratorFiles.length > 0 ? [pathUtils.resolve(executionPath, decoratorFiles[0])] : [];
+      const storyFileArray = storyFiles.map(sf => pathUtils.resolve(executionPath, sf));
 
-      const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
-        (prev, [key, ep]) => ({
+      const entrypoints = Object.entries(entrypointsWithMetadata).reduce((prev, [key, ep]) => {
+        const abc = storyFileArray.filter(sf => sf.includes(key));
+        return {
           ...prev,
-          [key]: [ep.entrypoint, ...decoratorFileArray],
-        }),
-        {}
-      );
+          [key]: [ep.entrypoint, ...decoratorFileArray, ...abc],
+        };
+      }, {});
 
       const config = getWebpackConfig(
         entrypoints,
         projectWebpackConfig.resolve,
         projectWebpackConfig.module,
         executionPath,
-        decoratorFileArray[0]
+        decoratorFileArray[0],
+        storyFileArray
       );
 
       const compiler = webpack(config);

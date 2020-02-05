@@ -4,12 +4,20 @@ import {
   PropValue,
   createFunctionPropValue,
 } from '@bojagi/collector-base';
-import { getPropSetName } from './propSetNameContext';
+import { getPropSetName, getPropSetKey, getStoryPath } from './propSetNameContext';
 
 export function createExportFnFactory(registerProps) {
   return ({ filePath, exportName }) => props => {
     const propSet = propsToPropSet(props);
-    registerProps(filePath, exportName, propSet, getPropSetName());
+    registerProps({
+      filePath,
+      exportName,
+      propSet,
+      name: getPropSetName(),
+      propSetType: 'js',
+      storyPath: getStoryPath(),
+      storySymbol: getPropSetKey(),
+    });
     return null;
   };
 }

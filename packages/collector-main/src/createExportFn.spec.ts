@@ -1,20 +1,21 @@
 import { createExportFnFactory } from './createExportFn';
-import { setPropSetName } from './propSetNameContext';
+import { setPropSetKey, setStoryPath } from './propSetNameContext';
 
 test('call created export fn with props and expect props to be registered', () => {
   const registerProps = jest.fn();
   const createExportFn = createExportFnFactory(registerProps);
-  setPropSetName('some propset name');
+  setPropSetKey('somePropsetName');
+  setStoryPath('some/story/path');
   createExportFn({ filePath: '/my/file/path.js', exportName: 'MyComponent' })({
     a: 'myComponent',
     b: () => 'hihi',
     c: 123,
     d: true,
   });
-  expect(registerProps).toHaveBeenCalledWith(
-    '/my/file/path.js',
-    'MyComponent',
-    {
+  expect(registerProps).toHaveBeenCalledWith({
+    filePath: '/my/file/path.js',
+    exportName: 'MyComponent',
+    propSet: {
       a: {
         value: 'myComponent',
         type: 'string',
@@ -36,6 +37,9 @@ test('call created export fn with props and expect props to be registered', () =
         type: 'boolean',
       },
     },
-    'some propset name'
-  );
+    name: 'Some Propset Name',
+    propSetType: 'js',
+    storyPath: 'some__story__path',
+    storySymbol: 'somePropsetName',
+  });
 });
