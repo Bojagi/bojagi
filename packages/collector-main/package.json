@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/collector-main",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
@@ -11,14 +11,14 @@
     "@bojagi/cli": "^0.4.0"
   },
   "devDependencies": {
-    "@bojagi/cli": "^0.5.3"
+    "@bojagi/cli": "^0.6.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bojagi/bojagi.git"
   },
   "dependencies": {
-    "@bojagi/collector-base": "^0.5.3",
+    "@bojagi/collector-base": "^0.6.0",
     "glob": "^7.1.6",
     "jsdom": "^15.2.1",
     "react-test-renderer": "^16.12.0"

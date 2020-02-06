@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/collector-base",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
