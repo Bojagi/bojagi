@@ -8,7 +8,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/webpack": "4.41.3",
+    "@types/webpack": "4.41.5",
     "webpack": "4.41.5"
   },
   "repository": {
