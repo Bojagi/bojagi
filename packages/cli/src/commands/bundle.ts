@@ -68,13 +68,13 @@ export const bundleAction = ({
         decoratorFiles.length > 0 ? [pathUtils.resolve(executionPath, decoratorFiles[0])] : [];
       const storyFileArray = storyFiles.map(sf => pathUtils.resolve(executionPath, sf));
 
-      const entrypoints = Object.entries(entrypointsWithMetadata).reduce((prev, [key, ep]) => {
-        const abc = storyFileArray.filter(sf => sf.includes(key));
-        return {
+      const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
+        (prev, [key, ep]) => ({
           ...prev,
-          [key]: [ep.entrypoint, ...decoratorFileArray, ...abc],
-        };
-      }, {});
+          [key]: [ep.entrypoint, ...decoratorFileArray, ...storyFileArray],
+        }),
+        {}
+      );
 
       const config = getWebpackConfig(
         entrypoints,
