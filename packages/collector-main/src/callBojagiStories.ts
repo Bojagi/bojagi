@@ -1,6 +1,6 @@
 import * as ReactTestRenderer from 'react-test-renderer';
 import { JSDOM } from 'jsdom';
-import { setPropSetName } from './propSetNameContext';
+import { setPropSetKey, setStoryPath } from './propSetNameContext';
 import { getOutputPath } from './pathFactories';
 
 export const callBojagiStories = callBojagiStoriesFactory(require);
@@ -13,15 +13,18 @@ export function callBojagiStoriesFactory(internalRequire: NodeRequire) {
     internalGlobal.document = document;
 
     Object.keys(entry)
-      .map(item => getOutputPath(executionPath, item))
-      .map(path => internalRequire(path))
-      .reduce((agg, fileExports) => [...agg, ...Object.entries(fileExports)], [])
-      .filter(([key]) => key !== 'default')
-      .forEach(([key, fn]) => {
-        const element = fn();
-        const propSetName = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-        setPropSetName(propSetName);
-        ReactTestRenderer.create(element);
-      });
+      .map(item => [item, getOutputPath(executionPath, item)])
+      .map(([item, path]) => [item, internalRequire(path)])
+      .forEach(callStoriesOfFile);
   };
+}
+
+function callStoriesOfFile([path, exp]: [string, Record<string, Function>]) {
+  setStoryPath(path);
+  return Object.entries(exp).filter(([key]) => key !== 'default')
+    .forEach(([key, fn]) => {
+      const element = fn();
+      setPropSetKey(key);
+      ReactTestRenderer.create(element);
+    });
 }

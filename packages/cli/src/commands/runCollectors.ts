@@ -7,6 +7,7 @@ import withSteps from '../utils/withSteps';
 import withHelloGoodbye from '../utils/withHelloGoodbye';
 import withDefaultArguments from '../utils/withDefaultArguments';
 import { CollectorTuple } from '../config';
+import glob from '../utils/glob';
 
 const STEP_TEXT = ' Running Collectors';
 
@@ -20,18 +21,22 @@ export interface RunCollectorsCommandOptions extends BaseOptions {
   collectors: string[];
   steps: any;
   executionPath: string;
+  storyPath: string;
 }
 
 export const runCollectorsAction = async ({
   steps,
   executionPath,
   collectors: connectorConfig,
+  storyPath,
 }: RunCollectorsCommandOptions) => {
   const collectors = connectorConfig.map(mapCollectorConfigToCollector);
 
   const components: ComponentWithMetadata[] = getComponents();
 
   const collectorsStep = steps.advance(STEP_TEXT, 'chipmunk').start();
+
+  const storyFiles = await glob(storyPath, { cwd: executionPath });
 
   await collectors.reduce(
     (promise, collector) =>
@@ -41,6 +46,7 @@ export const runCollectorsAction = async ({
           webpack,
           components,
           executionPath,
+          storyFiles,
         });
       }),
     Promise.resolve()

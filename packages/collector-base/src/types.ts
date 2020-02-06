@@ -10,6 +10,7 @@ export type CollectorFunctionOptions = {
   webpack: typeof webpack;
   executionPath: string;
   components: ComponentWithMetadata[];
+  storyFiles: string[];
 };
 
 export type CollectorFunction = (options: CollectorFunctionOptions) => Promise<void> | void;

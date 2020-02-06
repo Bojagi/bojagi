@@ -13,6 +13,7 @@ const basicInput = {
     rules: [],
   },
   decoratorPath: undefined,
+  storyFiles: ['src/abc.bojagi.jsx'],
 };
 
 const testCases = [
@@ -29,11 +30,23 @@ const testCases = [
       });
       expect(config.module).toEqual({
         my: 'module config',
-        rules: [],
+        rules: [
+          {
+            test: ['/my/project/path/src/abc.bojagi.jsx'],
+            use: [
+              {
+                loader: 'bojagi-expose-loader',
+                options: {
+                  symbol: expect.any(Function),
+                },
+              },
+            ],
+          },
+        ],
       });
       expect(config.resolveLoader.alias).toEqual({
         'component-extract-loader': `${__dirname}/componentExtractLoader`,
-        'expose-loader': `${__dirname}/exposeLoader`,
+        'bojagi-expose-loader': `${__dirname}/exposeLoader`,
       });
       expect(config.output).toEqual({
         path: `${process.cwd()}/bojagi`,
@@ -60,11 +73,24 @@ const testCases = [
         my: 'module config',
         rules: [
           {
+            test: ['/my/project/path/src/abc.bojagi.jsx'],
+            use: [
+              {
+                loader: 'bojagi-expose-loader',
+                options: {
+                  symbol: expect.any(Function),
+                },
+              },
+            ],
+          },
+          {
             test: '/my/decorator/path.jsx',
             use: [
               {
-                loader: 'expose-loader',
-                options: 'bojagiDecorator',
+                loader: 'bojagi-expose-loader',
+                options: {
+                  symbol: 'bojagiDecorator',
+                },
               },
             ],
           },
@@ -87,11 +113,24 @@ const testCases = [
         my: 'module config',
         rules: [
           {
+            test: ['/my/project/path/src/abc.bojagi.jsx'],
+            use: [
+              {
+                loader: 'bojagi-expose-loader',
+                options: {
+                  symbol: expect.any(Function),
+                },
+              },
+            ],
+          },
+          {
             test: '/my/decorator/path.jsx',
             use: [
               {
-                loader: 'expose-loader',
-                options: 'bojagiDecorator',
+                loader: 'bojagi-expose-loader',
+                options: {
+                  symbol: 'bojagiDecorator',
+                },
               },
             ],
           },
@@ -104,13 +143,14 @@ const testCases = [
 
 testCases.forEach(testCase => {
   test(`getWebpackConfig - ${testCase.name}`, () => {
-    const { entry, resolve, module, decoratorPath } = testCase.input;
+    const { entry, resolve, module, decoratorPath, storyFiles } = testCase.input;
     const config = getWebpackConfig(
       entry,
       resolve,
       module as any,
       '/my/project/path',
-      decoratorPath
+      decoratorPath,
+      storyFiles
     );
     testCase.test(config);
   });

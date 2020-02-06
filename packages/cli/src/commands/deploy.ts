@@ -19,6 +19,7 @@ const deployAction = async ({
   collectors,
   executionPath,
   decoratorPath,
+  storyPath,
 }: DeployCommandOptions) => {
   await bundleAction({
     componentMarker,
@@ -27,11 +28,13 @@ const deployAction = async ({
     webpackConfig,
     executionPath,
     decoratorPath,
+    storyPath,
   });
   await runCollectorsAction({
     executionPath,
     collectors,
     steps,
+    storyPath,
   });
   await uploadAction({ commit, steps });
 };
