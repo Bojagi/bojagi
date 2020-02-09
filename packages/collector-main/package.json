@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/collector-main",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "@bojagi/cli": "^0.4.0"
   },
   "devDependencies": {
-    "@bojagi/cli": "^0.6.0"
+    "@bojagi/cli": "^0.6.1"
   },
   "repository": {
     "type": "git",
