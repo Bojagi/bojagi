@@ -7,10 +7,10 @@ export const callBojagiStories = callBojagiStoriesFactory(require);
 
 export function callBojagiStoriesFactory(internalRequire: NodeRequire) {
   return (executionPath: string, entry: Record<string, string>) => {
-    const { window, document } = new JSDOM('<body></body>');
+    const { window } = new JSDOM('<body></body>');
     const internalGlobal = global as any;
     internalGlobal.window = window;
-    internalGlobal.document = document;
+    internalGlobal.document = window.document;
 
     Object.keys(entry)
       .map(item => [item, getOutputPath(executionPath, item)])
