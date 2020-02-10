@@ -1,5 +1,7 @@
+import * as React from 'react';
 import {
   createProp,
+  PropType,
   getPropTypeForValue,
   PropValue,
   createFunctionPropValue,
@@ -25,6 +27,12 @@ export function createExportFnFactory(registerProps) {
 function propsToPropSet(props: Record<string, any>) {
   return Object.entries(props)
     .map<[string, PropValue]>(([key, value]) => {
+      if (React.isValidElement(value)) {
+        // TODO: This is just temporary, There should be a new react component type that includes information
+        // about the passed component
+        return [key, createProp(PropType.UNKNOWN, {})];
+      }
+
       const internalValue =
         typeof value === 'function'
           ? createFunctionPropValue([], getPropTypeForValue(undefined), undefined)

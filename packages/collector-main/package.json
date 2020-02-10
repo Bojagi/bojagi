@@ -21,7 +21,9 @@
     "@bojagi/collector-base": "^0.6.0",
     "glob": "^7.1.6",
     "jsdom": "^15.2.1",
-    "react-test-renderer": "^16.12.0"
+    "react-test-renderer": "^16.12.0",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
   },
   "bugs": {
     "url": "https://github.com/Bojagi/issue-tracker/issues"
