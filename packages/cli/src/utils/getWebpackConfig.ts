@@ -84,6 +84,10 @@ const getWebpackConfig = (
           NODE_ENV: JSON.stringify('production'),
         },
       }),
+      new webpack.NormalModuleReplacementPlugin(
+        /@storybook\/addons/,
+        pathUtils.join(executionPath, 'node_modules/@bojagi/collector-main/fakeStorybookAddons.js'),
+      ),
     ],
   };
 };

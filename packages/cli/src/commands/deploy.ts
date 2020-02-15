@@ -35,6 +35,7 @@ const deployAction = async ({
     collectors,
     steps,
     storyPath,
+    webpackConfig,
   });
   await uploadAction({ commit, steps });
 };

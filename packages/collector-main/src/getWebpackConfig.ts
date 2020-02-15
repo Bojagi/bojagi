@@ -1,19 +1,24 @@
+import * as webpack from 'webpack';
 import { getMocksPath, getOutputPath } from './pathFactories';
 
-export const getWebpackConfig = ({ executionPath, entry, webpack, componentPaths }) => ({
+export type GetWebpackConfigOptions = {
+  executionPath: string;
+  entry: string[];
+  webpack: typeof webpack;
+  componentPaths: string[];
+  projectWebpackConfig: webpack.Configuration;
+};
+
+export const getWebpackConfig = ({ executionPath, entry, webpack, componentPaths, projectWebpackConfig }) => ({
   entry,
   output: {
     path: getOutputPath(executionPath),
     filename: '[name].js',
     libraryTarget: 'umd',
   },
+  resolve: projectWebpackConfig.resolve,
   module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-      },
-    ],
+    rules: projectWebpackConfig.module.rules,
   },
   externals: {
     '@bojagi/collector-main': '@bojagi/collector-main',
