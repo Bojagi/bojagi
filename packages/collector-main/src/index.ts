@@ -28,6 +28,7 @@ export const collector = async ({
   components,
   executionPath,
   storyFiles,
+  projectWebpackConfig,
 }: CollectorFunctionOptions) => {
   if (storyFiles.length === 0) {
     return;
@@ -47,6 +48,7 @@ export const collector = async ({
     entry,
     componentPaths,
     webpack,
+    projectWebpackConfig,
   });
 
   const compiler = webpack(config as any);

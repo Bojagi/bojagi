@@ -22,6 +22,7 @@ export interface RunCollectorsCommandOptions extends BaseOptions {
   steps: any;
   executionPath: string;
   storyPath: string;
+  webpackConfig: string;
 }
 
 export const runCollectorsAction = async ({
@@ -29,8 +30,10 @@ export const runCollectorsAction = async ({
   executionPath,
   collectors: connectorConfig,
   storyPath,
+  webpackConfig,
 }: RunCollectorsCommandOptions) => {
   const collectors = connectorConfig.map(mapCollectorConfigToCollector);
+  const projectWebpackConfig = require(webpackConfig);
 
   const components: ComponentWithMetadata[] = getComponents();
 
@@ -47,6 +50,7 @@ export const runCollectorsAction = async ({
           components,
           executionPath,
           storyFiles,
+          projectWebpackConfig,
         });
       }),
     Promise.resolve()

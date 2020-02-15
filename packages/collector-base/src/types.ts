@@ -11,6 +11,7 @@ export type CollectorFunctionOptions = {
   executionPath: string;
   components: ComponentWithMetadata[];
   storyFiles: string[];
+  projectWebpackConfig: webpack.Configuration;
 };
 
 export type CollectorFunction = (options: CollectorFunctionOptions) => Promise<void> | void;
