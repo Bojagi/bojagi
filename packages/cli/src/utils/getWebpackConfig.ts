@@ -86,7 +86,7 @@ const getWebpackConfig = (
       }),
       new webpack.NormalModuleReplacementPlugin(
         /@storybook\/addons/,
-        pathUtils.join(executionPath, 'node_modules/@bojagi/collector-main/fakeStorybookAddons.js'),
+        pathUtils.join(executionPath, 'node_modules/@bojagi/collector-main/fakeStorybookAddons.js')
       ),
     ],
   };
