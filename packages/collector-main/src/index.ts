@@ -51,9 +51,6 @@ export const collector = async ({
     projectWebpackConfig,
   });
 
-  console.log('config', config);
-  
-
   const compiler = webpack(config as any);
   await runCompiler(compiler);
 
