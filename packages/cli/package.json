@@ -36,12 +36,12 @@
     "inquirer": "7.0.4",
     "memory-fs": "^0.5.0",
     "mkdirp": "^0.5.1",
-    "request": "2.88.0",
+    "request": "2.88.2",
     "request-promise": "4.2.5",
     "rimraf": "^2.6.3",
     "typescript": "^3.7.3",
     "util.promisify": "1.0.1",
-    "webpack": "4.41.5"
+    "webpack": "4.41.6"
   },
   "devDependencies": {
     "@types/webpack": "4.41.6"
