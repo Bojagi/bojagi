@@ -17,8 +17,5 @@
     {
       "path": "packages/cli"
     },
-    {
-      "path": "packages/cli-react"
-    }
   ]
 }
