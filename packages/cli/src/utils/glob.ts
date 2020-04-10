@@ -1,4 +1,5 @@
-import * as glob from 'glob';
 import { promisify } from 'util';
+
+import glob = require('glob');
 
 export default promisify(glob);

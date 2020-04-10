@@ -1,5 +1,6 @@
 import * as fs from 'fs';
-import defaultConfig from './defaultConfig';
+import { defaultConfig } from './defaultConfig';
+import getCiSettingsFactory, { CiSettings } from './utils/getCiSettings';
 
 const { PWD } = process.env;
 const CONFIG_FILE_PRIO = [
@@ -19,7 +20,7 @@ const CONFIG_FILE_PRIO = [
 
 export type CollectorTuple = [string, Record<string, any>];
 
-export type Config = {
+export type BaseConfig = {
   componentMarker: string;
   dir: string;
   webpackConfig: string;
@@ -30,12 +31,15 @@ export type Config = {
   collectors: (string | CollectorTuple)[];
 };
 
-const config: Config = {
+export type Config = CiSettings & BaseConfig;
+
+const getCiSettings = getCiSettingsFactory(process.env);
+
+export const getConfig: () => Config = () => ({
   ...defaultConfig,
   ...loadConfigFile(),
-};
-
-export default config;
+  ...getCiSettings(),
+});
 
 function loadConfigFile() {
   const foundConfigFile = CONFIG_FILE_PRIO.find(fc => fs.existsSync(fc.path));

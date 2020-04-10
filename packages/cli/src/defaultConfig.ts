@@ -1,9 +1,9 @@
 import { getWebpackConfigPath } from './utils/getWebpackConfig';
-import { Config } from './config';
+import { BaseConfig } from './config';
 
 const COLLECTOR_MAIN_NAME = '@bojagi/collector-main';
 
-const defaultConfig: Config = {
+export const defaultConfig: BaseConfig = {
   componentMarker: '@component',
   dir: 'src',
   webpackConfig: getWebpackConfigPath(process.cwd()),
@@ -13,5 +13,3 @@ const defaultConfig: Config = {
   uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io',
   collectors: [COLLECTOR_MAIN_NAME],
 };
-
-export default defaultConfig;

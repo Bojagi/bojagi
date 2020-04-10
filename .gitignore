@@ -36,3 +36,4 @@ node_modules/
 ignore.*
 lib
 tmp
+.vscode
