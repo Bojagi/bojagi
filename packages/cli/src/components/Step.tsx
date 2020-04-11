@@ -4,7 +4,7 @@ import Spinner from 'ink-spinner';
 import { Emoji, EmojiCode } from './Emoji';
 
 export enum StepState {
-  NOT_STARTED,
+  PENDING,
   RUNNING,
   SUCCESS,
   FAILED,
@@ -24,9 +24,9 @@ export function Step({
   maxSteps,
   children,
   emoji,
-  state = StepState.NOT_STARTED,
+  state = StepState.PENDING,
 }: StepProps) {
-  if (state === StepState.NOT_STARTED) {
+  if (state === StepState.PENDING) {
     return null;
   }
 
