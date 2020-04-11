@@ -41,6 +41,7 @@ export type ComponentContent = {
 };
 
 export type ComponentWithMetadata = File & {
+  fileContent: string;
   symbol: string;
   isDefaultExport: boolean;
   filePath: string;

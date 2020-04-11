@@ -1,15 +1,9 @@
-import * as program from 'commander';
-import { bundle, upload, deploy, runCollectors, list } from './commands';
-import baseCmd from './baseCmd';
+import './commands/bundle';
+import './commands/deploy';
+import './commands/upload';
+import './commands/runCollectors';
+import './commands/list';
 
-// base cmd options
-baseCmd(program);
-
-// commands
-bundle(program);
-upload(program);
-deploy(program);
-list(program);
-runCollectors(program);
+import program = require('commander');
 
 program.parse(process.argv);

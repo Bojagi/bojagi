@@ -1,7 +1,7 @@
 import runWebpackCompiler from './runWebpackCompiler';
-import getGitPath from './getGitPath';
+import getGitPath from '../../utils/getGitPath';
 
-jest.mock('./getGitPath');
+jest.mock('../../utils/getGitPath');
 
 (getGitPath as any).mockImplementation(resource => `gitpath/${resource}`);
 

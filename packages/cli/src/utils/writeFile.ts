@@ -1,9 +1,10 @@
-import * as util from 'util';
-import * as _rimraf from 'rimraf';
-import * as _mkdirp from 'mkdirp';
-import * as path from 'path';
 import { TEMP_FOLDER } from '../constants';
 import { getFS } from '../dependencies';
+
+import path = require('path');
+import util = require('util');
+import _rimraf = require('rimraf');
+import _mkdirp = require('mkdirp');
 
 export type WriteComponentPropsArgs = {
   exportName: string;

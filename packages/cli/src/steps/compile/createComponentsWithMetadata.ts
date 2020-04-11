@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
-import { Module, EntrypointWithMetadata } from '@bojagi/types';
-import getGitPath from './getGitPath';
+import { Module, EntrypointWithMetadata, ComponentWithMetadata } from '@bojagi/types';
+import getGitPath from '../../utils/getGitPath';
 
 export class EntrypointError extends Error {}
 export class FilePathError extends Error {}
@@ -9,7 +9,7 @@ export default function createComponentsWithMetadata(
   entrypointsWithMetadata: Record<string, EntrypointWithMetadata>,
   compilerOutput: Record<string, string>,
   modules: Module[]
-) {
+): ComponentWithMetadata[] {
   return Object.entries(entrypointsWithMetadata).reduce((prev, [key, ep]) => {
     const fileContent = compilerOutput[key];
     if (!/^.+?\?.+?!.+?$/.test(ep.entrypoint)) {

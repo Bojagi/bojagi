@@ -1,6 +1,6 @@
 import { Module } from '@bojagi/types';
 import * as path from 'path';
-import getGitPath from './getGitPath';
+import getGitPath from '../../utils/getGitPath';
 
 export type RunWebpackCompilerOutput = {
   componentsContent: Record<string, string>;
@@ -22,28 +22,32 @@ const runWebpackCompiler = ({
         reject(output.compilation.errors[0]);
       }
 
-      const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
+      try {
+        const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
 
-      const componentModules = output.compilation.modules.filter(
-        filterActualModulecomponentFilePaths(componentFilePaths)
-      );
+        const componentModules = output.compilation.modules.filter(
+          filterActualModulecomponentFilePaths(componentFilePaths)
+        );
 
-      const modules = componentModules.map(addDependencies(dependencyPackages));
+        const modules = componentModules.map(addDependencies(dependencyPackages));
 
-      const components = Object.keys(entrypoints);
-      const componentsContent = [...components, 'commons'].reduce((contents, componentName) => {
-        const content = compiler.outputFileSystem
-          .readFileSync(`${process.cwd()}/bojagi/${componentName}.js`)
-          .toString();
-        // eslint-disable-next-line no-param-reassign
-        contents[componentName] = content;
-        return contents;
-      }, {});
+        const components = Object.keys(entrypoints);
+        const componentsContent = [...components, 'commons'].reduce((contents, componentName) => {
+          const content = compiler.outputFileSystem
+            .readFileSync(`${process.cwd()}/bojagi/${componentName}.js`)
+            .toString();
+          // eslint-disable-next-line no-param-reassign
+          contents[componentName] = content;
+          return contents;
+        }, {});
 
-      resolve({
-        componentsContent,
-        modules,
-      });
+        resolve({
+          componentsContent,
+          modules,
+        });
+      } catch (execError) {
+        reject(execError);
+      }
     });
   });
 
