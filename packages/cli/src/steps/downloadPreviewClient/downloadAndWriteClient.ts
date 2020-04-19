@@ -6,11 +6,11 @@ import { ZIP_PATH } from './constants';
 const fs = getFS();
 
 export async function downloadAndWriteClient(url): Promise<string> {
-  const writer = fs.createWriteStream(ZIP_PATH);
   const res = await axios.get(url, {
     responseType: 'stream',
   });
-  res.data.pipe(writer);
+  const writer = fs.createWriteStream(ZIP_PATH);
+  writer.on('open', () => res.data.pipe(writer));
   await waitForWriter(writer);
   return res.headers.etag;
 }
