@@ -4,17 +4,17 @@ import { Message } from '../components/Message';
 import { StepRunner, StepRunnerStep, OnSuccessOptions } from './StepRunner';
 import { ConfigProvider } from '../context/configContext';
 import { Config } from '../config';
-import { ValidationError } from '../validators/uploadValidator';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { SuccessMessage } from '../components/SuccessMessage';
+import { ValidationError } from '../errors';
 
 export type StepContainerProps = {
   steps: StepRunnerStep[];
-  commandArgs: any;
+  commandArgs?: any;
   validator?: (config: Config) => void;
 };
 
-export function StepContainer({ steps, commandArgs, validator }: StepContainerProps) {
+export function StepContainer({ steps, commandArgs = {}, validator }: StepContainerProps) {
   const [validationError, setValidationError] = React.useState<ValidationError>();
   const [validationDone, setValidationDone] = React.useState(false);
   const [runtime, setRuntime] = React.useState(0);

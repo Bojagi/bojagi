@@ -1,9 +1,17 @@
 import { isFunction } from 'util';
 import { ComponentWithMetadata } from '@bojagi/types';
-import { getComponents, CollectorFunction } from '@bojagi/collector-base';
+import {
+  getComponents,
+  CollectorFunction,
+  propsRegistry,
+  writeRegisteredProps,
+} from '@bojagi/collector-base';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import glob from '../../utils/glob';
 import { CollectorTuple } from '../../config';
+import { createComponentFolder } from '../../utils/writeFile';
+import { ScanStepOutput } from '../scan';
+import { NonVerboseError } from '../../errors';
 
 import webpack = require('webpack');
 
@@ -26,14 +34,38 @@ export const collectStep: StepRunnerStep<CollectStepOutput> = {
   },
 };
 
-async function action({ config }: StepRunnerActionOptions) {
+type DependencyStepOutputs = {
+  scan: ScanStepOutput;
+};
+
+async function action({ config, stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
   const { executionPath } = config;
   const collectors = config.collectors.map(mapCollectorConfigToCollector);
   const projectWebpackConfig = require(config.webpackConfig);
 
-  const components: ComponentWithMetadata[] = getComponents();
+  const hasScanOutput = !!stepOutputs.scan;
+
+  let components: ComponentWithMetadata[];
+  try {
+    components = hasScanOutput ? stepOutputs.scan.components : getComponents();
+  } catch {
+    throw new NonVerboseError(
+      'Could not get components. Have you ran the scan command beforehand?'
+    );
+  }
 
   const storyFiles = await glob(config.storyPath, { cwd: executionPath });
+
+  if (!config.dryRun) {
+    await Promise.all(
+      components.map(({ filePath, symbol, isDefaultExport }) =>
+        createComponentFolder({
+          exportName: isDefaultExport ? 'default' : symbol,
+          filePath,
+        })
+      )
+    );
+  }
 
   await collectors.reduce(
     (promise, collector) =>
@@ -49,7 +81,12 @@ async function action({ config }: StepRunnerActionOptions) {
     Promise.resolve()
   );
 
-  return {};
+  if (!config.dryRun) {
+    await writeRegisteredProps();
+  }
+  return {
+    componentProps: Array.from(propsRegistry.values()),
+  };
 }
 
 function mapCollectorConfigToCollector(collectorConfig: string | CollectorTuple): Collector {

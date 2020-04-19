@@ -12,19 +12,24 @@ export function callBojagiStoriesFactory(internalRequire: NodeRequire) {
     internalGlobal.window = window;
     internalGlobal.document = window.document;
 
-    Object.keys(entry)
-      .map(item => [item, getOutputPath(executionPath, item)])
-      .map(([item, path]) => [item, internalRequire(path)])
-      .forEach(callStoriesOfFile);
+    return Promise.all(
+      Object.keys(entry)
+        .map(item => [item, getOutputPath(executionPath, item)])
+        .map(([item, path]) => [item, internalRequire(path)])
+        .map(callStoriesOfFile)
+    );
   };
 }
 
 function callStoriesOfFile([path, exp]: [string, Record<string, Function>]) {
   setStoryPath(path);
-  return Object.entries(exp).filter(([key]) => key !== 'default')
-    .forEach(([key, fn]) => {
-      const element = fn();
-      setPropSetKey(key);
-      ReactTestRenderer.create(element);
-    });
+  return Promise.all(
+    Object.entries(exp)
+      .filter(([key]) => key !== 'default')
+      .map(async ([key, fn]) => {
+        const element = fn();
+        setPropSetKey(key);
+        await ReactTestRenderer.create(element);
+      })
+  );
 }

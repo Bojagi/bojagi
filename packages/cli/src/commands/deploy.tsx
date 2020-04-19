@@ -8,10 +8,12 @@ import { collectStep } from '../steps/collect';
 import { createComponentsStep } from '../steps/createComponents';
 import { uploadComponentsStep } from '../steps/uploadComponents';
 import { uploadValidator } from '../validators/uploadValidator';
+import { cleanupStep } from '../steps/cleanup';
 
 import program = require('commander');
 
 const steps: StepRunnerStep[] = [
+  cleanupStep,
   scanStep,
   compileStep,
   collectStep,

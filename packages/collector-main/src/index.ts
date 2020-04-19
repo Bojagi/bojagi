@@ -1,10 +1,4 @@
-import {
-  getComponents,
-  addProps,
-  writeRegisteredProps,
-  CollectorMetadata,
-  CollectorFunctionOptions,
-} from '@bojagi/collector-base';
+import { addProps, CollectorMetadata, CollectorFunctionOptions } from '@bojagi/collector-base';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import { getWebpackConfig } from './getWebpackConfig';
@@ -35,7 +29,8 @@ export const collector = async ({
   }
   const entry: Record<string, string> = createEntry(storyFiles);
   const componentPaths = components.map(component => component.filePath);
-  const mockFileContent = createMockFileContent(getComponents());
+
+  const mockFileContent = createMockFileContent(components);
   await mkdirPromise(getMocksPath(executionPath), { recursive: true });
   await Promise.all(
     mockFileContent.map(([path, content]) =>
@@ -55,7 +50,6 @@ export const collector = async ({
   await runCompiler(compiler);
 
   callBojagiStories(executionPath, entry);
-  writeRegisteredProps();
 };
 
 function runCompiler(compiler) {

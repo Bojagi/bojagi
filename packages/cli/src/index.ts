@@ -3,6 +3,9 @@ import './commands/deploy';
 import './commands/upload';
 import './commands/runCollectors';
 import './commands/list';
+import './commands/preview';
+import './commands/scan';
+import './commands/cleanup';
 
 import program = require('commander');
 

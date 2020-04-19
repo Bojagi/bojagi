@@ -1,4 +1,4 @@
-import getWebpackConfig from './getWebpackConfig';
+import composeWebpackConfig from './composeWebpackConfig';
 
 const basicInput = {
   entry: {
@@ -144,7 +144,7 @@ const testCases = [
 testCases.forEach(testCase => {
   test(`getWebpackConfig - ${testCase.name}`, () => {
     const { entry, resolve, module, decoratorPath, storyFiles } = testCase.input;
-    const config = getWebpackConfig(
+    const config = composeWebpackConfig(
       entry,
       resolve,
       module as any,

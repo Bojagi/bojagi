@@ -9,7 +9,6 @@ export type WriteComponentPropsArgs = {
   props: Record<string, any>[];
 };
 
-const exists = util.promisify(fs.exists.bind(fs));
 const readFile = util.promisify(fs.readFile.bind(fs));
 const mkdir = util.promisify(fs.mkdir.bind(fs));
 const writeFile = util.promisify(fs.writeFile.bind(fs));
@@ -39,7 +38,7 @@ export async function writeComponentProps({
   const fileName = 'props.json';
   const fullPath = path.join(getComponentFolder(filePath, exportName), fileName);
 
-  const existingProps = (await exists(fullPath)) ? JSON.parse(readFile(fullPath)) : [];
+  const existingProps = fs.existsSync(fullPath) ? JSON.parse(await readFile(fullPath)) : [];
 
   const fileContent = JSON.stringify([...existingProps, ...props]);
   return writeComponentFile({
@@ -59,5 +58,6 @@ function getComponentFolder(filePath: string, exportName: string) {
 async function writeComponentFile({ exportName, filePath, fileContent, fileName }) {
   const componentFolder = getComponentFolder(filePath, exportName);
   await mkdir(`${componentFolder}`, { recursive: true });
+
   await writeFile(path.join(componentFolder, fileName), fileContent);
 }

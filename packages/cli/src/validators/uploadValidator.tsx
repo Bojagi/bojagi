@@ -1,6 +1,4 @@
-export class ValidationError extends Error {
-  hideStackTrace: boolean = true;
-}
+import { ValidationError } from '../errors';
 
 export function uploadValidator(config) {
   if (!config.commit) {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import differenceInMilliseconds from 'date-fns/differenceInMilliseconds';
-import { Color, Box } from 'ink';
+import { Box } from 'ink';
 import { Steps } from '../components/Steps';
 import { Step, StepState } from '../components/Step';
 import { EmojiCode } from '../components/Emoji';
@@ -63,9 +63,10 @@ export type OnSuccessOptions<O = any> = {
 export type StepRunnerProps<O = any> = {
   steps: StepRunnerStep[];
   onSuccess?: (options: OnSuccessOptions<O>) => void;
+  hideStepCount?: boolean;
 };
 
-export function StepRunner({ steps, onSuccess }: StepRunnerProps) {
+export function StepRunner({ steps, onSuccess, hideStepCount = false }: StepRunnerProps) {
   const config = useConfig();
   const [currentStep, setCurrentStep] = React.useState<number>(0);
   const [stepStatuses, setStepStatus] = React.useReducer(stepStatusReducer, []);
@@ -132,7 +133,13 @@ export function StepRunner({ steps, onSuccess }: StepRunnerProps) {
     <>
       <Steps>
         {steps.map((step, i) => (
-          <Step key={step.name} name={step.name} emoji={step.emoji} state={stepStatuses[i]}>
+          <Step
+            key={step.name}
+            name={step.name}
+            emoji={step.emoji}
+            state={stepStatuses[i]}
+            hideStepCount={hideStepCount}
+          >
             {getStepMessage(step, stepStatuses[i], stepOutputs[step.name])}
           </Step>
         ))}
@@ -140,9 +147,6 @@ export function StepRunner({ steps, onSuccess }: StepRunnerProps) {
       {error && (
         <Box flexDirection="column">
           <ErrorMessage error={error} />
-          <Box marginX={3} marginBottom={1}>
-            <Color red>{error.stack}</Color>
-          </Box>
         </Box>
       )}
     </>

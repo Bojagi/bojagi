@@ -1,112 +1,50 @@
-import * as webpack from 'webpack';
-import * as fs from 'fs';
 import * as pathUtils from 'path';
+import { EntrypointWithMetadata } from '@bojagi/types';
+import composeWebpackConfig from './composeWebpackConfig';
+import glob from './glob';
+import { Config } from '../config';
 
-const getWebpackConfig = (
-  entry: webpack.Entry,
-  resolve: object,
-  module: webpack.Module,
-  executionPath: string,
-  decoratorFile: string | undefined,
-  storyFiles: string[]
-): webpack.Configuration => {
-  const rules = [...module.rules];
-  if (decoratorFile) {
-    // Needs to be prepended because otherwise the babel loader wouldn't have run before
-    rules.unshift({
-      test: pathUtils.resolve(executionPath, decoratorFile),
-      use: [
-        {
-          loader: `bojagi-expose-loader`,
-          options: {
-            symbol: 'bojagiDecorator',
-          },
-        },
-      ],
-    });
-  }
+import webpack = require('webpack');
 
-  rules.unshift({
-    test: storyFiles.map(sf => pathUtils.resolve(executionPath, sf)),
-    use: [
-      {
-        loader: `bojagi-expose-loader`,
-        options: {
-          symbol: path => {
-            const relacedPath = pathUtils
-              .relative(executionPath, path)
-              .replace(/(\/|\\)/g, '__')
-              .replace(/\./g, '_');
-            return `bojagiStories.${relacedPath}`;
-          },
-        },
-      },
-    ],
-  });
-
-  return {
-    entry,
-    output: {
-      path: `${process.cwd()}/bojagi`,
-      filename: '[name].js',
-      jsonpFunction: 'bojagiComponents',
-    },
-    resolveLoader: {
-      alias: {
-        'component-extract-loader': `${__dirname}/componentExtractLoader`,
-        'bojagi-expose-loader': pathUtils.resolve(__dirname, './exposeLoader'),
-      },
-    },
-    resolve,
-    module: {
-      ...module,
-      rules,
-    },
-    externals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-    },
-    optimization: {
-      minimize: true,
-      concatenateModules: false,
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            chunks: 'all',
-            name: 'commons',
-          },
-        },
-      },
-    },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production'),
-        },
-      }),
-      new webpack.NormalModuleReplacementPlugin(
-        /@storybook\/addons/,
-        pathUtils.join(executionPath, 'node_modules/@bojagi/collector-main/fakeStorybookAddons.js')
-      ),
-    ],
-  };
+export type GetWebpackConfigOptions = {
+  config: Config;
+  entrypointsWithMetadata: Record<string, EntrypointWithMetadata>;
 };
 
-export default getWebpackConfig;
+export type GetWebpackConfigOutput = {
+  entrypoints: Record<string, string>;
+  webpackConfig: webpack.Configuration;
+};
 
-function returnIfExists(path, continueFunction) {
-  try {
-    fs.accessSync(path, fs.constants.R_OK);
-    return path;
-  } catch (e) {
-    return continueFunction();
-  }
-}
-
-export function getWebpackConfigPath(executionPath) {
-  return returnIfExists(`${executionPath}/webpack.config.js`, () =>
-    returnIfExists(`${executionPath}/node_modules/react-scripts/config/webpack.config.js`, () => {
-      return undefined;
-    })
+export async function getWebpackConfig({
+  config,
+  entrypointsWithMetadata,
+}: GetWebpackConfigOptions): Promise<GetWebpackConfigOutput> {
+  const projectWebpackConfig = require(config.webpackConfig);
+  const decoratorFiles = await glob(config.decoratorPath, { cwd: config.executionPath });
+  const decoratorFileArray =
+    decoratorFiles.length > 0 ? [pathUtils.resolve(config.executionPath, decoratorFiles[0])] : [];
+  const storyFiles = await glob(config.storyPath, { cwd: config.executionPath });
+  const storyFileArray = storyFiles.map(sf => pathUtils.resolve(config.executionPath, sf));
+  const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
+    (prev, [key, ep]) => ({
+      ...prev,
+      [key]: [ep.entrypoint, ...decoratorFileArray, ...storyFileArray],
+    }),
+    {}
   );
+
+  const webpackConfig = composeWebpackConfig(
+    entrypoints,
+    projectWebpackConfig.resolve,
+    projectWebpackConfig.module,
+    config.executionPath,
+    decoratorFileArray[0],
+    storyFileArray
+  );
+
+  return {
+    entrypoints,
+    webpackConfig,
+  };
 }

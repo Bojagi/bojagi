@@ -1,57 +1,38 @@
 import * as React from 'react';
 import { Box, Text, Color } from 'ink';
-import { ComponentExportDescription } from '@bojagi/types';
+
 import { Message } from '../components/Message';
-import { StepRunner, StepRunnerStep } from './StepRunner';
-import { scanStep, ScanStepOutput } from '../steps/scan';
-import { useConfig } from '../context/configContext';
 import { SuccessMessage } from '../components/SuccessMessage';
-
-const steps: StepRunnerStep[] = [scanStep];
-
-type FoundComponent = {
-  name: string;
-  filePath: string;
-  components: ComponentExportDescription[];
-};
+import { useComponentScan } from '../utils/useComponentScan';
 
 export function ListContainer() {
-  const config = useConfig();
-  const [foundComponents, setFoundComponents] = React.useState<FoundComponent[]>();
-  const handleStepSuccess = React.useCallback(
-    (options: { stepOutputs: { scan: ScanStepOutput } }) => {
-      console.log('options.istepOutputs.scan.entrypointsWithMetadata', options.stepOutputs.scan);
+  const { components, getCurrentMessage } = useComponentScan();
 
-      setFoundComponents(
-        Object.entries(options.stepOutputs.scan.entrypointsWithMetadata).map(
-          ([name, entrypoint]) => {
-            const prefixPath = `${config.executionPath}/`;
-            const filePath = entrypoint.filePath.replace(new RegExp(`^${prefixPath}`), '');
-            return {
-              name,
-              filePath,
-              components: entrypoint.components,
-            };
-          }
-        )
+  const groupedComponentsByFile: Record<string, any> = !components
+    ? {}
+    : components.reduce(
+        (acc, component) => ({
+          ...acc,
+          [component.fileName]: acc[component.fileName]
+            ? [...acc[component.fileName], component]
+            : [component],
+        }),
+        {}
       );
-    },
-    [config.executionPath]
-  );
 
   return (
     <Box flexDirection="column" marginTop={1}>
       <Message emoji="wave">Welcome back!</Message>
-      <StepRunner steps={steps} onSuccess={handleStepSuccess} />
-      {foundComponents && foundComponents.length && (
+      {getCurrentMessage()}
+      {components && components.length && (
         <>
           <Box flexDirection="column" marginX={3} marginBottom={1}>
-            {foundComponents.map(({ name, filePath, components }) => (
-              <Box flexDirection="column" marginBottom={1}>
-                <EntryPointTitle name={name} filePath={filePath} />
+            {Object.entries(groupedComponentsByFile).map(([fileName, componentsOfFile]) => (
+              <Box key={fileName} flexDirection="column" marginBottom={1}>
+                <EntryPointTitle name={fileName} filePath={componentsOfFile[0].filePath} />
                 <Box marginLeft={2} flexDirection="column">
-                  {components.map(component => (
-                    <EntrypointComponent component={component} />
+                  {componentsOfFile.map(component => (
+                    <EntrypointComponent key={component.symbol} component={component} />
                   ))}
                 </Box>
               </Box>

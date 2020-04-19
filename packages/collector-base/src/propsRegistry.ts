@@ -1,6 +1,21 @@
 import { creatFilePropsKey, createFilePropList } from './createFilePropList';
 
-export const propsRegistry = new Map();
+export type ComponentPropsInfoPropset = {
+  propSet: Record<string, any>;
+  createdBy: string;
+  propSetType: PropSetType;
+  storyPath?: string;
+  storySymbol?: string;
+  name?: string;
+};
+
+export type ComponentPropsInfo = {
+  filePath: string;
+  exportName: string;
+  props: ComponentPropsInfoPropset[];
+};
+
+export const propsRegistry = new Map<string, ComponentPropsInfo>();
 
 export type PropSetType = 'json' | 'js';
 
@@ -28,7 +43,14 @@ export const addProps = (generatorName: string): AddPropsFn => ({
   const key = creatFilePropsKey(filePath, exportName);
   const entry = propsRegistry.get(key) || createFilePropList(filePath, exportName);
 
-  entry.props.push({ propSet, createdBy: generatorName, name, propSetType, storyPath, storySymbol });
+  entry.props.push({
+    propSet,
+    createdBy: generatorName,
+    name,
+    propSetType,
+    storyPath,
+    storySymbol,
+  });
 
   propsRegistry.set(key, entry);
 };

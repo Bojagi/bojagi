@@ -20,16 +20,28 @@ const exists = util.promisify(fs.exists.bind(fs));
 const readFile = util.promisify(fs.readFile.bind(fs));
 const rimraf = util.promisify(_rimraf);
 
-function getComponentFolder(filePath: string, exportName: string) {
+export function getComponentFolder(filePath: string, exportName: string) {
   const mappedPath = filePath.replace(/[/\\]/g, '__');
   const folder = `${mappedPath}___${exportName}`;
   return path.join(TEMP_FOLDER, 'components', folder);
 }
 
 async function writeComponentFile({ exportName, filePath, fileContent, fileName }) {
-  const componentFolder = getComponentFolder(filePath, exportName);
+  const componentFolder = await createComponentFolder({ filePath, exportName });
   await mkdirp(`${componentFolder}`, { fs });
   await writeFile(path.join(componentFolder, fileName), fileContent);
+}
+
+export async function createComponentFolder({ exportName, filePath }): Promise<string> {
+  const componentFolder = getComponentFolder(filePath, exportName);
+
+  const folderExists = fs.existsSync(componentFolder);
+
+  if (!folderExists) {
+    await mkdirp(`${componentFolder}`, { fs });
+  }
+
+  return componentFolder;
 }
 
 export async function writeComponent({ exportName, filePath, fileContent }) {
@@ -71,6 +83,17 @@ export async function writeComponentProps({
     fileContent,
     fileName,
   });
+}
+
+export function readComponentProps({ componentPath, symbol }): Record<string, any>[] {
+  const componentFolder = getComponentFolder(componentPath, symbol);
+  let props = [];
+  try {
+    props = require(path.join(componentFolder, 'props.json')) as any;
+  } catch {
+    props = [];
+  }
+  return props;
 }
 
 export async function writeSharedFile({ name, fileContent }) {
