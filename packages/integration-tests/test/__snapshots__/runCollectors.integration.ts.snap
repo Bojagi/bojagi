@@ -14,7 +14,10 @@ exports[`run main collector 2`] = `
   \\"symbol\\": \\"Box\\",
   \\"isDefaultExport\\": true,
   \\"filePath\\": \\"src/components/Box.js\\",
+  \\"fileName\\": \\"Box\\",
   \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
+  \\"exportName\\": \\"default\\",
+  \\"name\\": \\"Box\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -128,15 +131,16 @@ exports[`run main collector 2`] = `
      }
     ]
    }
-  ],
-  \\"exportName\\": \\"default\\",
-  \\"name\\": \\"Box\\"
+  ]
  },
  {
   \\"symbol\\": \\"BoxWithButtons\\",
   \\"isDefaultExport\\": true,
   \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
+  \\"fileName\\": \\"BoxWithButtons\\",
   \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
+  \\"exportName\\": \\"default\\",
+  \\"name\\": \\"BoxWithButtons\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -492,15 +496,16 @@ exports[`run main collector 2`] = `
      }
     ]
    }
-  ],
-  \\"exportName\\": \\"default\\",
-  \\"name\\": \\"BoxWithButtons\\"
+  ]
  },
  {
   \\"symbol\\": \\"Button\\",
   \\"isDefaultExport\\": true,
   \\"filePath\\": \\"src/components/Button.js\\",
+  \\"fileName\\": \\"Button\\",
   \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
+  \\"exportName\\": \\"default\\",
+  \\"name\\": \\"Button\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -614,9 +619,7 @@ exports[`run main collector 2`] = `
      }
     ]
    }
-  ],
-  \\"exportName\\": \\"default\\",
-  \\"name\\": \\"Button\\"
+  ]
  }
 ]"
 `;
