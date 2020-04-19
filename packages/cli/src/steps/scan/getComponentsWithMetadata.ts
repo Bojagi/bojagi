@@ -1,7 +1,7 @@
 import { EntrypointWithMetadata } from '@bojagi/types';
 import getGitPath from '../../utils/getGitPath';
 import { Config } from '../../config';
-import { ScannedComponent } from '.';
+import { ScannedComponent } from './types';
 
 export function getComponentsWithMetadata(
   config: Config,

@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { Color } from 'ink';
-import { EntrypointWithMetadata, ComponentExportDescription } from '@bojagi/types';
+import { EntrypointWithMetadata } from '@bojagi/types';
 import getComponentsOfFolder from './getComponentsOfFolder';
 import getEntrypointsFromComponents from './getEntrypointsFromComponents';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { writeJson } from '../../utils/writeFile';
 import { getComponentsWithMetadata } from './getComponentsWithMetadata';
-
-export type ScannedComponent = ComponentExportDescription & {
-  fileName: string;
-  name: string;
-  filePath: string;
-  exportName: string;
-  gitPath: string;
-};
+import { ScannedComponent } from './types';
 
 export type ScanStepOutput = {
   entrypointsWithMetadata: Record<string, EntrypointWithMetadata>;
