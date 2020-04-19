@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { Module, ComponentWithMetadata } from '@bojagi/types';
-import { ScannedComponent } from '../scan';
+import { ScannedComponent } from '../scan/types';
 
 export class EntrypointError extends Error {}
 export class FilePathError extends Error {}
