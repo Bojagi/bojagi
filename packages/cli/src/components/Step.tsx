@@ -17,6 +17,7 @@ export type StepProps = {
   emoji: EmojiCode;
   state?: StepState;
   children: React.ReactNode;
+  hideStepCount?: boolean;
 };
 
 export function Step({
@@ -25,26 +26,27 @@ export function Step({
   children,
   emoji,
   state = StepState.PENDING,
+  hideStepCount = false,
 }: StepProps) {
   if (state === StepState.PENDING) {
     return null;
   }
 
   return (
-    <Box margin={0}>
+    <Box marginBottom={1}>
       <Box marginRight={1}>
         <StepStateComponent state={state} />
       </Box>
-      {maxSteps !== 1 && (
-        <Box marginRight={1}>
+      <Emoji code={emoji} marginRight={1} />
+      <Box>{children}</Box>
+      {!hideStepCount && maxSteps !== 1 && (
+        <Box marginLeft={1}>
           <Color grey>
-            [{stepNumber}
-            {maxSteps && <>/{maxSteps}</>}]
+            ({stepNumber}
+            {maxSteps && <>/{maxSteps}</>})
           </Color>
         </Box>
       )}
-      <Emoji code={emoji} marginRight={1} />
-      <Box>{children}</Box>
     </Box>
   );
 }

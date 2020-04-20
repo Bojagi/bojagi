@@ -1,97 +1,96 @@
 import createComponentsWithMetadata from './createComponentsWithMetadata';
 
-const PREFIX_PATH = `${process.cwd()}/`;
-
-let entrypointsWithMetadata;
+let scanComponents;
 let compilerOutput;
 let modules;
 
 beforeEach(() => {
-  entrypointsWithMetadata = {
-    MainComponent: {
-      entrypoint: `some-loader?MainComponent!${PREFIX_PATH}mc-endpoint`,
+  scanComponents = [
+    {
+      fileName: 'MainComponent',
       filePath: 'mc-filePath',
-      components: [
-        {
-          symbol: 'mc-c1-symbol',
-          isDefaultExport: true,
-        },
-        {
-          symbol: 'mc-c2-symbol',
-          isDefaultExport: false,
-        },
-      ],
+      symbol: 'mc-c1-symbol',
+      exportName: 'default',
+      name: 'mc-c1-symbol',
+      isDefaultExport: true,
     },
-    SmallerComponent: {
-      entrypoint: `some-loader?MainComponent!${PREFIX_PATH}sc-endpoint`,
+    {
+      fileName: 'MainComponent',
+      filePath: 'mc-filePath',
+      exportName: 'mc-c2-symbol',
+      symbol: 'mc-c2-symbol',
+      name: 'mc-c2-symbol',
+      isDefaultExport: false,
+    },
+    {
+      fileName: 'SmallerComponent',
       filePath: 'sc-filePath',
-      components: [
-        {
-          symbol: 'sc-c1-symbol',
-          isDefaultExport: false,
-        },
-        {
-          symbol: 'sc-c2-symbol',
-          isDefaultExport: true,
-        },
-      ],
+      symbol: 'sc-c1-symbol',
+      exportName: 'sc-c1-symbol',
+      name: 'sc-c1-symbol',
+      isDefaultExport: false,
     },
-  };
+    {
+      fileName: 'SmallerComponent',
+      filePath: 'sc-filePath',
+      symbol: 'sc-c2-symbol',
+      exportName: 'default',
+      name: 'sc-c2-symbol',
+      isDefaultExport: true,
+    },
+  ];
   compilerOutput = {
     MainComponent: 'content of main component',
     SmallerComponent: 'content of smaller component',
   };
-  modules = [];
+  modules = [
+    {
+      filePath: 'sc-filePath',
+      dependencies: 'some deps',
+    },
+  ];
 });
 
 test('get components with metadata', () => {
-  const result = createComponentsWithMetadata(entrypointsWithMetadata, compilerOutput, modules);
+  const result = createComponentsWithMetadata(scanComponents, compilerOutput, modules);
   expect(result).toEqual([
     {
+      fileName: 'MainComponent',
       symbol: 'mc-c1-symbol',
       isDefaultExport: true,
-      filePath: 'mc-endpoint',
+      filePath: 'mc-filePath',
       fileContent: 'content of main component',
       exportName: 'default',
       name: 'mc-c1-symbol',
     },
     {
+      fileName: 'MainComponent',
       symbol: 'mc-c2-symbol',
       isDefaultExport: false,
-      filePath: 'mc-endpoint',
+      filePath: 'mc-filePath',
       fileContent: 'content of main component',
       exportName: 'mc-c2-symbol',
       name: 'mc-c2-symbol',
     },
     {
+      fileName: 'SmallerComponent',
       symbol: 'sc-c1-symbol',
       isDefaultExport: false,
-      filePath: 'sc-endpoint',
+      filePath: 'sc-filePath',
       fileContent: 'content of smaller component',
       exportName: 'sc-c1-symbol',
       name: 'sc-c1-symbol',
+      dependencies: 'some deps',
     },
     {
+      fileName: 'SmallerComponent',
       symbol: 'sc-c2-symbol',
       isDefaultExport: true,
-      filePath: 'sc-endpoint',
+      filePath: 'sc-filePath',
       fileContent: 'content of smaller component',
       exportName: 'default',
       name: 'sc-c2-symbol',
+      dependencies: 'some deps',
     },
   ]);
-});
-
-test('fail to get components with metadata because entrypoint does not have correct syntax', () => {
-  entrypointsWithMetadata.MainComponent.entrypoint = 'faulty_entrypoint';
-  expect(() =>
-    createComponentsWithMetadata(entrypointsWithMetadata, compilerOutput, modules)
-  ).toThrowErrorMatchingSnapshot();
-});
-
-test("fail to get components with metadata because file path doesn't start with current path", () => {
-  entrypointsWithMetadata.MainComponent.entrypoint = 'some-loader?MainComponent!not_prefixed_path';
-  expect(() =>
-    createComponentsWithMetadata(entrypointsWithMetadata, compilerOutput, modules)
-  ).toThrowErrorMatchingSnapshot();
 });

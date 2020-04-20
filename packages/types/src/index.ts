@@ -46,4 +46,5 @@ export type ComponentWithMetadata = File & {
   isDefaultExport: boolean;
   filePath: string;
   exportName: string;
+  gitPath: string;
 };

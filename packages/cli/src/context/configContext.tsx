@@ -14,9 +14,22 @@ export type ConfigProviderProps = {
 
 export function ConfigProvider({ config: customConfig, children }: ConfigProviderProps) {
   const { Provider } = configContext;
+  const configWithoutUndefined = removeUndefinedFromObject(customConfig);
   const config = {
     ...getConfig(),
-    ...customConfig,
+    ...configWithoutUndefined,
   };
   return <Provider value={config}>{children}</Provider>;
+}
+
+function removeUndefinedFromObject<T extends Record<any, any>>(obj: T) {
+  return Object.entries(obj)
+    .filter(([_, value]) => value !== undefined)
+    .reduce<Partial<T>>(
+      (acc, [key, value]) => ({
+        ...acc,
+        [key]: value,
+      }),
+      {}
+    );
 }

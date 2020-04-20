@@ -1,13 +1,11 @@
-import * as pathUtils from 'path';
 import MemoryFS from 'memory-fs';
 import { File, FileContent, ComponentWithMetadata } from '@bojagi/types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import runWebpackCompiler from './runWebpackCompiler';
-import glob from '../../utils/glob';
-import getWebpackConfig from '../../utils/getWebpackConfig';
 import createComponentsWithMetadata from './createComponentsWithMetadata';
 import { ScanStepOutput } from '../scan';
-import { cleanTempFolder, writeSharedFile, writeComponent, writeJson } from '../../utils/writeFile';
+import { writeSharedFile, writeComponent, writeJson } from '../../utils/writeFile';
+import { getWebpackConfig } from '../../utils/getWebpackConfig';
 
 import webpack = require('webpack');
 
@@ -37,31 +35,14 @@ type DependencyStepOutputs = {
 
 async function action({
   config,
-  stepOutputs,
+  stepOutputs: {
+    scan: { entrypointsWithMetadata, components: scanComponents },
+  },
 }: StepRunnerActionOptions<DependencyStepOutputs>): Promise<CompileStepOutput> {
-  const decoratorFiles = await glob(config.decoratorPath, { cwd: config.executionPath });
-  const storyFiles = await glob(config.storyPath, { cwd: config.executionPath });
-  const decoratorFileArray =
-    decoratorFiles.length > 0 ? [pathUtils.resolve(config.executionPath, decoratorFiles[0])] : [];
-  const storyFileArray = storyFiles.map(sf => pathUtils.resolve(config.executionPath, sf));
-
-  const entrypoints = Object.entries(stepOutputs.scan.entrypointsWithMetadata).reduce(
-    (prev, [key, ep]) => ({
-      ...prev,
-      [key]: [ep.entrypoint, ...decoratorFileArray, ...storyFileArray],
-    }),
-    {}
-  );
-
-  const projectWebpackConfig = require(config.webpackConfig);
-  const webpackConfig = getWebpackConfig(
-    entrypoints,
-    projectWebpackConfig.resolve,
-    projectWebpackConfig.module,
-    config.executionPath,
-    decoratorFileArray[0],
-    storyFileArray
-  );
+  const { entrypoints, webpackConfig } = await getWebpackConfig({
+    config,
+    entrypointsWithMetadata,
+  });
 
   const compiler = webpack(webpackConfig);
   compiler.outputFileSystem = outputFS;
@@ -75,7 +56,7 @@ async function action({
   });
 
   const componentsWithMetadata = createComponentsWithMetadata(
-    stepOutputs.scan.entrypointsWithMetadata,
+    scanComponents,
     componentsContent,
     modules
   );
@@ -90,8 +71,6 @@ async function action({
     name,
     fileContent: componentsContent[name],
   }));
-
-  await cleanTempFolder();
 
   await Promise.all(
     fileContent.map(async file => {

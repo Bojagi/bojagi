@@ -2,21 +2,20 @@ import * as React from 'react';
 import { render } from 'ink';
 import { StepRunnerStep } from '../containers/StepRunner';
 import { scanStep } from '../steps/scan';
-import { compileStep } from '../steps/compile';
 import { StepContainer } from '../containers/StepContainer';
 import { cleanupStep } from '../steps/cleanup';
 
 import program = require('commander');
 
-const steps: StepRunnerStep[] = [cleanupStep, scanStep, compileStep];
+const steps: StepRunnerStep[] = [cleanupStep, scanStep];
 program
-  .command('bundle')
+  .command('scan')
   .option('-d, --dir [dir]', 'The root folder to search components in')
   .option(
     '--webpack-config [path]',
     'Path to the webpack config file, defaults to webpack.config.js'
   )
-  .description('bundles your marked components (does NOT upload to Bojagi)')
+  .description('Scans for components')
   .action(args => {
     render(<StepContainer steps={steps} commandArgs={args} />);
   });

@@ -21,7 +21,7 @@ export function Steps({ children }: StepsProps) {
     );
   }, [children, setInnerChildren]);
   return (
-    <Box flexDirection="column" marginX={1} marginBottom={1}>
+    <Box flexDirection="column" marginX={1}>
       {innerChildren}
     </Box>
   );

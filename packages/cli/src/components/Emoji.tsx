@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Box } from 'ink';
 import * as nodeEmoji from 'node-emoji';
-import { useConfig } from '../context/configContext';
 
 export type EmojiCode = keyof typeof nodeEmoji.emoji | 'woman-shrugging';
 
@@ -11,11 +10,6 @@ export type EmojiProps = {
 };
 
 export function Emoji({ code, marginRight = 0 }: EmojiProps) {
-  const config = useConfig();
-  if (config.ci) {
-    return null;
-  }
-
   const emoji = nodeEmoji.get(code);
 
   return (
