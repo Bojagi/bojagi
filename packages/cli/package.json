@@ -48,6 +48,7 @@
     "request": "2.88.2",
     "request-promise": "4.2.5",
     "rimraf": "^2.6.3",
+    "simple-git": "^2.4.0",
     "typescript": "^3.7.3",
     "webpack": "4.41.6"
   },

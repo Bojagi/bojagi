@@ -5,6 +5,7 @@ import { scanStep } from '../steps/scan';
 import { compileStep } from '../steps/compile';
 import { StepContainer } from '../containers/StepContainer';
 import { cleanupStep } from '../steps/cleanup';
+import { ConfigProvider } from '../context/configContext';
 
 import program = require('commander');
 
@@ -18,5 +19,9 @@ program
   )
   .description('bundles your marked components (does NOT upload to Bojagi)')
   .action(args => {
-    render(<StepContainer steps={steps} commandArgs={args} />);
+    render(
+      <ConfigProvider config={args}>
+        <StepContainer steps={steps} />
+      </ConfigProvider>
+    );
   });
