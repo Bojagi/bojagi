@@ -9,6 +9,7 @@ import { createComponentsStep } from '../steps/createComponents';
 import { uploadComponentsStep } from '../steps/uploadComponents';
 import { uploadValidator } from '../validators/uploadValidator';
 import { cleanupStep } from '../steps/cleanup';
+import { ConfigProvider } from '../context/configContext';
 
 import program = require('commander');
 
@@ -31,5 +32,9 @@ program
   )
   .option('-c, --commit [commit]', 'The commit to upload the components for')
   .action(args => {
-    render(<StepContainer steps={steps} commandArgs={args} validator={uploadValidator} />);
+    render(
+      <ConfigProvider config={args}>
+        <StepContainer steps={steps} validator={uploadValidator} />
+      </ConfigProvider>
+    );
   });

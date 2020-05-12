@@ -2,6 +2,8 @@ import * as fs from 'fs';
 import { defaultConfig } from './defaultConfig';
 import getCiSettingsFactory, { CiSettings } from './utils/getCiSettings';
 
+import simpleGit = require('simple-git/promise');
+
 const { PWD } = process.env;
 const CONFIG_FILE_PRIO = [
   {
@@ -38,11 +40,23 @@ export type Config = CiSettings & BaseConfig;
 
 const getCiSettings = getCiSettingsFactory(process.env);
 
-export const getConfig: () => Config = () => ({
-  ...defaultConfig,
-  ...loadConfigFile(),
-  ...getCiSettings(),
-});
+export const getConfig: () => Promise<Config> = async () => {
+  const configFile = loadConfigFile();
+  return {
+    ...(await getGitSettings(configFile.executionPath || defaultConfig.executionPath)),
+    ...defaultConfig,
+    ...configFile,
+    ...getCiSettings(),
+  };
+};
+
+async function getGitSettings(executionPath: string) {
+  const git = simpleGit(executionPath);
+  const result = await git.log();
+  return {
+    commit: result.latest.hash,
+  };
+}
 
 function loadConfigFile() {
   const foundConfigFile = CONFIG_FILE_PRIO.find(fc => fs.existsSync(fc.path));

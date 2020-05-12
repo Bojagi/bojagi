@@ -55,7 +55,7 @@ MyNewlineComponent () {<div></div>}`,
   ];
 
   const foundComponents = testFiles
-    .map(testFile => getComponents('this/is/the/path/to.the.file.js', testFile))
+    .map(testFile => getComponents('@component', 'this/is/the/path/to.the.file.js', testFile))
     .filter(testFile => !!testFile);
 
   expect(foundComponents.length).toBe(10);

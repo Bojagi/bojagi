@@ -4,6 +4,7 @@ import { StepRunnerStep } from '../containers/StepRunner';
 import { scanStep } from '../steps/scan';
 import { StepContainer } from '../containers/StepContainer';
 import { cleanupStep } from '../steps/cleanup';
+import { ConfigProvider } from '../context/configContext';
 
 import program = require('commander');
 
@@ -17,5 +18,9 @@ program
   )
   .description('Scans for components')
   .action(args => {
-    render(<StepContainer steps={steps} commandArgs={args} />);
+    render(
+      <ConfigProvider config={args}>
+        <StepContainer steps={steps} />
+      </ConfigProvider>
+    );
   });
