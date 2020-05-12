@@ -51,11 +51,15 @@ export const getConfig: () => Promise<Config> = async () => {
 };
 
 async function getGitSettings(executionPath: string) {
-  const git = simpleGit(executionPath);
-  const result = await git.log();
-  return {
-    commit: result.latest.hash,
-  };
+  try {
+    const git = simpleGit(executionPath);
+    const result = await git.log();
+    return {
+      commit: result.latest.hash,
+    };
+  } catch {
+    return {};
+  }
 }
 
 function loadConfigFile() {
