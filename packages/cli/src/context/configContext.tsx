@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Config, getConfig } from '../config';
 
-export const configContext = React.createContext<Config>(getConfig());
+export const configContext = React.createContext<Config>(undefined as any);
 
 export function useConfig() {
   return React.useContext(configContext);
@@ -14,11 +14,21 @@ export type ConfigProviderProps = {
 
 export function ConfigProvider({ config: customConfig, children }: ConfigProviderProps) {
   const { Provider } = configContext;
-  const configWithoutUndefined = removeUndefinedFromObject(customConfig);
-  const config = {
-    ...getConfig(),
-    ...configWithoutUndefined,
-  };
+  const [config, setConfig] = React.useState<Config | undefined>();
+  React.useEffect(() => {
+    const configWithoutUndefined = removeUndefinedFromObject(customConfig);
+    getConfig().then(baseConfig => {
+      setConfig({
+        ...baseConfig,
+        ...configWithoutUndefined,
+      });
+    });
+  }, [customConfig]);
+
+  if (!config) {
+    return null;
+  }
+
   return <Provider value={config}>{children}</Provider>;
 }
 

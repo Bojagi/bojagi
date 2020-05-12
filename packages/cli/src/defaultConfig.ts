@@ -4,7 +4,7 @@ import { BaseConfig } from './config';
 const COLLECTOR_MAIN_NAME = '@bojagi/collector-main';
 
 export const defaultConfig: BaseConfig = {
-  componentMarker: '@component',
+  componentMarker: '@bojagi',
   dir: 'src',
   webpackConfig: getWebpackConfigPath(process.cwd()),
   executionPath: process.cwd(),

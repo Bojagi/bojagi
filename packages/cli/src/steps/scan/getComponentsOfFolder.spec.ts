@@ -1,7 +1,10 @@
 import getComponentsOfFolder from './getComponentsOfFolder';
 
 test('Get components', async () => {
-  const components = await getComponentsOfFolder(`${__dirname}/__testHelpers__/files`);
+  const components = await getComponentsOfFolder(
+    '@component',
+    `${__dirname}/__testHelpers__/files`
+  );
   const expectedComponents = [
     {
       filePath: `${__dirname}/__testHelpers__/files/abc/Cde.tsx`,

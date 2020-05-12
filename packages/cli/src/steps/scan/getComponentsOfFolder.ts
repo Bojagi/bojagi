@@ -12,13 +12,15 @@ interface FileWithInformation {
   stats: any;
 }
 
-const getComponentsOfFile = filePath =>
+const getComponentsOfFile = (componentMarker: string, filePath: string) =>
   readFile(filePath)
-    .then(fileContent => getComponents(filePath, fileContent.toString()))
+    .then(fileContent => getComponents(componentMarker, filePath, fileContent.toString()))
     .then(components => (components ? { filePath, components } : undefined));
 
-const getComponentsOfFiles = (files: FileWithInformation[]): Promise<any> => {
-  return Promise.all(files.map(({ filePath }) => getComponentsOfFile(filePath)));
+const getComponentsOfFiles = (componentMarker: string) => (
+  files: FileWithInformation[]
+): Promise<any> => {
+  return Promise.all(files.map(({ filePath }) => getComponentsOfFile(componentMarker, filePath)));
 };
 
 const getFilesWithStats = (path: string): Promise<FileWithInformation[]> =>
@@ -31,7 +33,7 @@ const getFilesWithStats = (path: string): Promise<FileWithInformation[]> =>
     )
   );
 
-const getComponentsOfFolder = (path: string) => {
+const getComponentsOfFolder = (componentMarker: string, path: string) => {
   const filesWithStats = getFilesWithStats(path);
 
   const directoriesPromise = filesWithStats.then(files =>
@@ -45,8 +47,8 @@ const getComponentsOfFolder = (path: string) => {
   return directoriesPromise
     .then(directories =>
       Promise.all([
-        ...directories.map(({ filePath }) => getComponentsOfFolder(filePath)),
-        jsxFilesPromise.then(getComponentsOfFiles),
+        ...directories.map(({ filePath }) => getComponentsOfFolder(componentMarker, filePath)),
+        jsxFilesPromise.then(getComponentsOfFiles(componentMarker)),
       ])
     )
     .then(componentsOfFolders =>

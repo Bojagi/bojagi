@@ -3,6 +3,7 @@ import { render } from 'ink';
 import { StepContainer } from '../containers/StepContainer';
 import { StepRunnerStep } from '../containers/StepRunner';
 import { collectStep } from '../steps/collect';
+import { ConfigProvider } from '../context/configContext';
 
 const steps: StepRunnerStep[] = [collectStep];
 
@@ -16,5 +17,9 @@ program
   )
   .description('Runs all the registered collectors')
   .action(args => {
-    render(<StepContainer steps={steps} commandArgs={args} />);
+    render(
+      <ConfigProvider config={args}>
+        <StepContainer steps={steps} />
+      </ConfigProvider>
+    );
   });

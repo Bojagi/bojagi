@@ -1,5 +1,3 @@
-const FILE_MARKER = /^(\s*\/\/.*?\n)*(\s*\/\/\s@component\s*\n)/;
-
 const COMMENT_REGEXP = /\/\*(?:.|\n|\r)*?\*\/|(?:\/\/.*)/g;
 const EXPORT_DEFAULT_REG_EXP = /export(?:\s|\n|\r)+default(?:\s|\n|\r)+(?:function(?:\s|\n|\r)+){0,1}(.*?)(?:;|\s|\n|\r|=|\(|<)/;
 const EXPORT_REG_EXP = /export(?:\s|\n|\r)+(?:const|var|let|class|function)(?:\s|\n)+(.*?)(?:\s|\n|\r|<)/;
@@ -26,8 +24,11 @@ const buildCombinedExportData = (isDefaultExport = false) => exportSymbol => ({
   isDefaultExport,
 });
 
-const getComponents = (filePath: string, fileContent: string) => {
-  if (FILE_MARKER.test(fileContent)) {
+const getComponents = (componentMarker: string, filePath: string, fileContent: string) => {
+  const componentMarkerRegExp = new RegExp(
+    `^(\\s*\\/\\/.*?\\n)*(\\s*\\/\\/\\s${componentMarker}\\s*\\n)`
+  );
+  if (componentMarkerRegExp.test(fileContent)) {
     const fileContentWithoutComments = fileContent.replace(COMMENT_REGEXP, '');
     const exports = getExports(fileContentWithoutComments);
     const defaultExport = getDefaultExport(filePath, fileContentWithoutComments);
