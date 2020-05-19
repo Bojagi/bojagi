@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/cli",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "bojagi cli",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
@@ -23,9 +23,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@bojagi/collector-base": "^0.7.0",
-    "@bojagi/collector-main": "^0.7.0",
-    "@bojagi/types": "^0.7.0",
+    "@bojagi/collector-base": "^0.8.0",
+    "@bojagi/collector-main": "^0.8.0",
+    "@bojagi/types": "^0.8.0",
     "adm-zip": "^0.4.13",
     "axios": "^0.19.2",
     "chalk": "2.4.2",
