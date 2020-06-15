@@ -25,7 +25,6 @@ export async function getWebpackConfig({
   const decoratorFiles = await glob(config.decoratorPath, { cwd: config.executionPath });
   const decoratorFileArray =
     decoratorFiles.length > 0 ? [pathUtils.resolve(config.executionPath, decoratorFiles[0])] : [];
-  console.log('config', config);
 
   const storyFiles = await getStoryFiles(config);
   const storyFileArray = storyFiles.map(sf => pathUtils.resolve(config.executionPath, sf));

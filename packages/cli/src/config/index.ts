@@ -30,11 +30,7 @@ const getCiSettings = getCiSettingsFactory(process.env);
 export const getConfig: (customConfig: Partial<BaseConfig>) => Promise<Config> = async (
   customConfig = {}
 ) => {
-  console.log('XXXXXXXXXX');
-
   const configFile = loadConfigFile({ configFilePrio: CONFIG_FILE_PRIO, fs });
-  console.log('get me', defaultConfig);
-
   return normaliseConfig({
     ...(await getGitSettings(configFile.executionPath || defaultConfig.executionPath)),
     ...defaultConfig,

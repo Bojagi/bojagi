@@ -17,16 +17,10 @@ export function ConfigProvider({ config: customConfig, children }: ConfigProvide
   const [config, setConfig] = React.useState<Config | undefined>();
   React.useEffect(() => {
     const configWithoutUndefined = removeUndefinedFromObject(customConfig);
-    console.log('effect me', getConfig);
-
     getConfig(configWithoutUndefined).then(cfg => {
-      console.log('cfg', cfg);
-
       setConfig(cfg);
     });
   }, [customConfig]);
-
-  console.log('provider config', config);
 
   if (!config) {
     return null;
