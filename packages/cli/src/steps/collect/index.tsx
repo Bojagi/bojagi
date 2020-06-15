@@ -54,7 +54,9 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
     );
   }
 
-  const storyFiles = await glob(config.storyPath, { cwd: executionPath });
+  const storyFiles = (
+    await Promise.all(config.storyPath.map(storyPath => glob(storyPath, { cwd: executionPath })))
+  ).flat();
 
   if (!config.dryRun) {
     await Promise.all(

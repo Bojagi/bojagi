@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Config, getConfig } from '../config';
+import { getConfig, Config } from '../config';
 
 export const configContext = React.createContext<Config>(undefined as any);
 
