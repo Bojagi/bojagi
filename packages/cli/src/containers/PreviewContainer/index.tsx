@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Color, Text } from 'ink';
 import { Message } from '../../components/Message';
 import { useWebpackDevServer } from './useWebpackDevServer';
-import { useConfig } from '../../context/configContext';
+import { useConfig } from '../../config/configContext';
 import { scanStep } from '../../steps/scan';
 import { StepRunnerStep, StepRunner } from '../StepRunner';
 import { collectStep } from '../../steps/collect';

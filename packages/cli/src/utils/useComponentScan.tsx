@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useConfig } from '../context/configContext';
+import { useConfig } from '../config/configContext';
 import { ScanStepOutput, scanStep } from '../steps/scan';
 import { Message } from '../components/Message';
 

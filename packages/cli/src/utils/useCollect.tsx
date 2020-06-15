@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { collectStep } from '../steps/collect';
-import { useConfig } from '../context/configContext';
+import { useConfig } from '../config/configContext';
 
 export type UseCollectOutput = {
   done: boolean;

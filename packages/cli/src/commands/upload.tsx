@@ -5,7 +5,7 @@ import { StepContainer } from '../containers/StepContainer';
 import { createComponentsStep } from '../steps/createComponents';
 import { uploadComponentsStep } from '../steps/uploadComponents';
 import { uploadValidator } from '../validators/uploadValidator';
-import { ConfigProvider } from '../context/configContext';
+import { ConfigProvider } from '../config/configContext';
 
 import program = require('commander');
 

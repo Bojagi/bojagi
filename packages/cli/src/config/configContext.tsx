@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Config, getConfig } from '../config';
+import { getConfig, Config } from '.';
 
 export const configContext = React.createContext<Config>(undefined as any);
 
@@ -17,11 +17,8 @@ export function ConfigProvider({ config: customConfig, children }: ConfigProvide
   const [config, setConfig] = React.useState<Config | undefined>();
   React.useEffect(() => {
     const configWithoutUndefined = removeUndefinedFromObject(customConfig);
-    getConfig().then(baseConfig => {
-      setConfig({
-        ...baseConfig,
-        ...configWithoutUndefined,
-      });
+    getConfig(configWithoutUndefined).then(cfg => {
+      setConfig(cfg);
     });
   }, [customConfig]);
 

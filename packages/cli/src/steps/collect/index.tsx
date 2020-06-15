@@ -7,11 +7,11 @@ import {
   writeRegisteredProps,
 } from '@bojagi/collector-base';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
-import glob from '../../utils/glob';
 import { CollectorTuple } from '../../config';
 import { createComponentFolder } from '../../utils/writeFile';
 import { ScanStepOutput } from '../scan';
 import { NonVerboseError } from '../../errors';
+import getStoryFiles from '../../utils/getStoryFiles';
 
 import webpack = require('webpack');
 
@@ -54,7 +54,7 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
     );
   }
 
-  const storyFiles = await glob(config.storyPath, { cwd: executionPath });
+  const storyFiles = await getStoryFiles(config);
 
   if (!config.dryRun) {
     await Promise.all(

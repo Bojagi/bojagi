@@ -33,7 +33,7 @@ const getFilesWithStats = (path: string): Promise<FileWithInformation[]> =>
     )
   );
 
-const getComponentsOfFolder = (componentMarker: string, path: string) => {
+const getComponentsOfFolder = (componentMarker: string, path: string, ignoreFiles: string[]) => {
   const filesWithStats = getFilesWithStats(path);
 
   const directoriesPromise = filesWithStats.then(files =>
@@ -41,13 +41,18 @@ const getComponentsOfFolder = (componentMarker: string, path: string) => {
   );
 
   const jsxFilesPromise = filesWithStats.then(files =>
-    files.filter(file => file.stats.isFile && FILE_REGEXP.test(file.filePath))
+    files.filter(
+      file =>
+        file.stats.isFile && !ignoreFiles.includes(file.filePath) && FILE_REGEXP.test(file.filePath)
+    )
   );
 
   return directoriesPromise
     .then(directories =>
       Promise.all([
-        ...directories.map(({ filePath }) => getComponentsOfFolder(componentMarker, filePath)),
+        ...directories.map(({ filePath }) =>
+          getComponentsOfFolder(componentMarker, filePath, ignoreFiles)
+        ),
         jsxFilesPromise.then(getComponentsOfFiles(componentMarker)),
       ])
     )

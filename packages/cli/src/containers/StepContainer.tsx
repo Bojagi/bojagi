@@ -6,7 +6,7 @@ import { Config } from '../config';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { SuccessMessage } from '../components/SuccessMessage';
 import { ValidationError } from '../errors';
-import { useConfig } from '../context/configContext';
+import { useConfig } from '../config/configContext';
 
 export type StepContainerProps = {
   steps: StepRunnerStep[];

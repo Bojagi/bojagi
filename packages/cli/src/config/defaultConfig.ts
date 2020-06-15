@@ -1,5 +1,5 @@
-import { getWebpackConfigPath } from './utils/composeWebpackConfig';
-import { BaseConfig } from './config';
+import { getWebpackConfigPath } from '../utils/composeWebpackConfig';
+import { BaseConfig } from './types';
 
 const COLLECTOR_MAIN_NAME = '@bojagi/collector-main';
 
@@ -10,7 +10,8 @@ export const defaultConfig: BaseConfig = {
   executionPath: process.cwd(),
   dryRun: false,
   decoratorPath: '.bojagi/decorator.@(tsx|ts|jsx|js)',
-  storyPath: 'src/**/*.bojagi.@(tsx|ts|jsx|js)',
+  storyPath: ['src/**/*.stories.@(tsx|ts|jsx|js)', 'src/**/*.bojagi.@(tsx|ts|jsx|js)'],
+  storyPathIgnorePatterns: [],
   uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io',
   previewPort: 5002,
   previewDownloadUrl:

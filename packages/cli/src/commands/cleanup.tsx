@@ -3,7 +3,7 @@ import { render } from 'ink';
 import { StepRunnerStep } from '../containers/StepRunner';
 import { StepContainer } from '../containers/StepContainer';
 import { cleanupStep } from '../steps/cleanup';
-import { ConfigProvider } from '../context/configContext';
+import { ConfigProvider } from '../config/configContext';
 
 import program = require('commander');
 
