@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'ink';
 import { PreviewContainer } from '../containers/PreviewContainer';
-import { ConfigProvider } from '../context/configContext';
+import { ConfigProvider } from '../config/configContext';
 
 import program = require('commander');
 

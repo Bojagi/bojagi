@@ -3,6 +3,7 @@ import { EntrypointWithMetadata } from '@bojagi/types';
 import composeWebpackConfig from './composeWebpackConfig';
 import glob from './glob';
 import { Config } from '../config';
+import getStoryFiles from './getStoryFiles';
 
 import webpack = require('webpack');
 
@@ -24,7 +25,9 @@ export async function getWebpackConfig({
   const decoratorFiles = await glob(config.decoratorPath, { cwd: config.executionPath });
   const decoratorFileArray =
     decoratorFiles.length > 0 ? [pathUtils.resolve(config.executionPath, decoratorFiles[0])] : [];
-  const storyFiles = await glob(config.storyPath, { cwd: config.executionPath });
+  console.log('config', config);
+
+  const storyFiles = await getStoryFiles(config);
   const storyFileArray = storyFiles.map(sf => pathUtils.resolve(config.executionPath, sf));
   const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
     (prev, [key, ep]) => ({

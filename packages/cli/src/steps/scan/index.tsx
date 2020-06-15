@@ -33,7 +33,7 @@ export const scanStep: StepRunnerStep<ScanStepOutput> = {
 
 function action({ config }: StepRunnerActionOptions) {
   const entryFolder = `${config.executionPath}/${config.dir}`;
-  return getComponentsOfFolder(config.componentMarker, entryFolder)
+  return getComponentsOfFolder(config.componentMarker, entryFolder, [])
     .then(getEntrypointsFromComponents)
     .then(async (entrypointsWithMetadata: Record<string, EntrypointWithMetadata>) => {
       const fileCount = Object.entries(entrypointsWithMetadata).length;

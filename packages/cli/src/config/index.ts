@@ -5,7 +5,7 @@ import { normaliseConfig } from './normaliseConfig';
 
 import { getGitSettings } from './getGitSettings';
 import { loadConfigFile } from './loadConfigFile';
-import { Config } from './types';
+import { Config, BaseConfig } from './types';
 
 export * from './types';
 
@@ -27,13 +27,20 @@ export const CONFIG_FILE_PRIO = [
 
 const getCiSettings = getCiSettingsFactory(process.env);
 
-export const getConfig: () => Promise<Config> = async () => {
+export const getConfig: (customConfig: Partial<BaseConfig>) => Promise<Config> = async (
+  customConfig = {}
+) => {
+  console.log('XXXXXXXXXX');
+
   const configFile = loadConfigFile({ configFilePrio: CONFIG_FILE_PRIO, fs });
+  console.log('get me', defaultConfig);
+
   return normaliseConfig({
     ...(await getGitSettings(configFile.executionPath || defaultConfig.executionPath)),
     ...defaultConfig,
     ...configFile,
     ...getCiSettings(),
+    ...customConfig,
   });
 };
 

@@ -11,14 +11,16 @@ export type BaseConfig = {
   decoratorPath: string;
   uploadApiUrl: string;
   storyPath: string | string[];
+  storyPathIgnorePatterns: string | string[];
   previewPort: number;
   previewDownloadUrl: string;
   collectors: (string | CollectorTuple)[];
 };
 
 export type Config = CiSettings &
-  Omit<BaseConfig, 'storyPath'> & {
+  Omit<BaseConfig, 'storyPath' | 'storyPathIgnorePatterns'> & {
     storyPath: string[];
+    storyPathIgnorePatterns: string[];
   };
 
 export type ConfigFilePrio = {

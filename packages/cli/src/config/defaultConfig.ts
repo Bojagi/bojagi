@@ -11,6 +11,7 @@ export const defaultConfig: BaseConfig = {
   dryRun: false,
   decoratorPath: '.bojagi/decorator.@(tsx|ts|jsx|js)',
   storyPath: ['src/**/*.stories.@(tsx|ts|jsx|js)', 'src/**/*.bojagi.@(tsx|ts|jsx|js)'],
+  storyPathIgnorePatterns: [],
   uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io',
   previewPort: 5002,
   previewDownloadUrl:

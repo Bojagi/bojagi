@@ -5,7 +5,7 @@ import { Steps } from '../components/Steps';
 import { Step, StepState } from '../components/Step';
 import { EmojiCode } from '../components/Emoji';
 import { Config } from '../config';
-import { useConfig } from '../context/configContext';
+import { useConfig } from '../config/configContext';
 import { ErrorMessage } from '../components/ErrorMessage';
 
 export type StepOutput = Record<string, any>;

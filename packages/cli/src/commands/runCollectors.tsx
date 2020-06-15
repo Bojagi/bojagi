@@ -3,7 +3,7 @@ import { render } from 'ink';
 import { StepContainer } from '../containers/StepContainer';
 import { StepRunnerStep } from '../containers/StepRunner';
 import { collectStep } from '../steps/collect';
-import { ConfigProvider } from '../context/configContext';
+import { ConfigProvider } from '../config/configContext';
 
 const steps: StepRunnerStep[] = [collectStep];
 
