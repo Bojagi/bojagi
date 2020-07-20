@@ -6,6 +6,8 @@ import './commands/list';
 import './commands/preview';
 import './commands/scan';
 import './commands/cleanup';
+import './commands/init';
+import './commands/docs';
 
 import program = require('commander');
 
