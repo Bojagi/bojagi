@@ -33,7 +33,7 @@ test('create decorator with .bojagi folder existing', () => {
 
   expect(fsMock.copyFileSync).toHaveBeenCalledTimes(1);
   expect(fsMock.copyFileSync).toHaveBeenCalledWith(
-    path.join(__dirname, '../../../boilerplateDecorator.jsx'),
+    path.resolve(__dirname, '../../../boilerplateDecorator.jsx'),
     '/abc/.bojagi/decorator.js'
   );
 });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, Color, Box } from 'ink';
-import { InputQuestion } from './InputQuestionProps';
+import { InputQuestion } from './InputQuestion';
 import { SelectQuestion } from './SelectQuestion';
 import { Question, Answer } from './types';
 import { getDisplayableValue } from './getDisplayableValue';

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as path from 'path';
+import Link from 'ink-link';
 import { Box, Text } from 'ink';
 
 import { useConfig } from '../../config/configContext';
@@ -29,7 +30,12 @@ const QUESTIONS: Question[] = [
   {
     type: 'select',
     name: 'createDecorator',
-    message: '📸 Should I create a boilerplate global decorator?',
+    message: (
+      <Text>
+        📸 Should I create a boilerplate global decorator (
+        <Link url="https://bojagi.io/docs/stories/#decorators">see docs</Link>)?
+      </Text>
+    ),
     items: [
       {
         label: 'Yes',

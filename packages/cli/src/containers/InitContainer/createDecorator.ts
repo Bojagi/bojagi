@@ -10,7 +10,7 @@ export function createDecorator(fs: typeof fileSystem, executionPath: string) {
   }
 
   fs.copyFileSync(
-    path.join(__dirname, '../../../boilerplateDecorator.jsx'),
+    path.resolve(__dirname, '../../../boilerplateDecorator.jsx'),
     path.join(bojagiFolder, 'decorator.js')
   );
 }

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export type QuestionType = 'input' | 'select';
 
 export type QuestionSelectItem<T = any> = {
@@ -8,7 +10,7 @@ export type QuestionSelectItem<T = any> = {
 export type Question<T = any> = {
   type: QuestionType;
   name: string;
-  message: string;
+  message: React.ReactNode;
   default: T;
   items?: QuestionSelectItem[];
 };
