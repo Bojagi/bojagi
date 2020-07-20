@@ -46,10 +46,12 @@ export function Inkuirer({ questions, onCompletion }: InkuirerProps) {
   return (
     <>
       {answers.map(answer => (
-        <Box marginBottom={1} key={answer.name} flexDirection="column">
-          <Text>
-            <Color gray>{answer.message}:</Color>
-          </Text>
+        <Box marginBottom={1} key={answer.name}>
+          <Box marginRight={1}>
+            <Text>
+              <Color gray>{answer.message}:</Color>
+            </Text>
+          </Box>
           <Text>{getDisplayableValue(answer)}</Text>
         </Box>
       ))}

@@ -23,13 +23,13 @@ const QUESTIONS: Question[] = [
   {
     type: 'input',
     name: 'srcFolder',
-    message: 'In what folder is your code located',
+    message: '💾 In what folder is your code located',
     default: './src',
   },
   {
     type: 'select',
     name: 'createDecorator',
-    message: 'Should I create a boilerplate global decorator?',
+    message: '📸 Should I create a boilerplate global decorator?',
     items: [
       {
         label: 'Yes',
@@ -73,13 +73,16 @@ export function InitContainer() {
   if (answers) {
     return (
       <Box margin={2} flexDirection="column">
-        <Text>{done ? 'Everything done' : 'Write configs'}</Text>
+        <Text>{done ? '🙌  Your project is set up for Bojagi now' : '📚 Writing configs'}</Text>
       </Box>
     );
   }
 
   return (
     <Box margin={2} flexDirection="column">
+      <Box marginBottom={1}>
+        <Text>Setting up Bojagi in your project 🏗</Text>
+      </Box>
       <Inkuirer questions={QUESTIONS} onCompletion={setAnswer} />
     </Box>
   );
