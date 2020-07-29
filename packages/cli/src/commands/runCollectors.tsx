@@ -7,19 +7,19 @@ import { ConfigProvider } from '../config/configContext';
 
 const steps: StepRunnerStep[] = [collectStep];
 
-import program = require('commander');
-
-program
-  .command('runCollectors')
-  .option(
-    '--webpack-config [path]',
-    'Path to the webpack config file, defaults to webpack.config.js'
-  )
-  .description('Runs all the registered collectors')
-  .action(args => {
-    render(
-      <ConfigProvider config={args}>
-        <StepContainer steps={steps} />
-      </ConfigProvider>
-    );
-  });
+export default function runCollectors(program) {
+  program
+    .command('runCollectors')
+    .option(
+      '--webpack-config [path]',
+      'Path to the webpack config file, defaults to webpack.config.js'
+    )
+    .description('Runs all the registered collectors')
+    .action(args => {
+      render(
+        <ConfigProvider config={args}>
+          <StepContainer steps={steps} />
+        </ConfigProvider>
+      );
+    });
+}

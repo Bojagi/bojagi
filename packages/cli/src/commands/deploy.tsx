@@ -11,8 +11,6 @@ import { uploadValidator } from '../validators/uploadValidator';
 import { cleanupStep } from '../steps/cleanup';
 import { ConfigProvider } from '../config/configContext';
 
-import program = require('commander');
-
 const steps: StepRunnerStep[] = [
   cleanupStep,
   scanStep,
@@ -22,19 +20,21 @@ const steps: StepRunnerStep[] = [
   uploadComponentsStep,
 ];
 
-program
-  .command('deploy')
-  .description('bundles and uploads your marked components to Bojagi')
-  .option('-d, --dir [dir]', 'The root folder to search components in')
-  .option(
-    '--webpack-config [path]',
-    'Path to the webpack config file, defaults to webpack.config.js'
-  )
-  .option('-c, --commit [commit]', 'The commit to upload the components for')
-  .action(args => {
-    render(
-      <ConfigProvider config={args}>
-        <StepContainer steps={steps} validator={uploadValidator} />
-      </ConfigProvider>
-    );
-  });
+export default function deploy(program) {
+  program
+    .command('deploy')
+    .description('bundles and uploads your marked components to Bojagi')
+    .option('-d, --dir [dir]', 'The root folder to search components in')
+    .option(
+      '--webpack-config [path]',
+      'Path to the webpack config file, defaults to webpack.config.js'
+    )
+    .option('-c, --commit [commit]', 'The commit to upload the components for')
+    .action(args => {
+      render(
+        <ConfigProvider config={args}>
+          <StepContainer steps={steps} validator={uploadValidator} />
+        </ConfigProvider>
+      );
+    });
+}
