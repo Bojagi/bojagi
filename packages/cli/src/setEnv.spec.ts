@@ -9,7 +9,7 @@ afterAll(() => {
 test('set NODE_ENV to development if not set', () => {
   delete process.env.NODE_ENV;
   setEnv();
-  expect(process.env.NODE_ENV).toBe('development');
+  expect(process.env.NODE_ENV).toBe('production');
 });
 
 test('not set NODE_ENV if set', () => {
