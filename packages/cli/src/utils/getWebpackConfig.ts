@@ -17,11 +17,19 @@ export type GetWebpackConfigOutput = {
   webpackConfig: webpack.Configuration;
 };
 
+async function buildProjectWebpackConfig(projectWebpackConfig) {
+  return typeof projectWebpackConfig === 'function'
+    ? projectWebpackConfig({ env: 'production' }, {}) // TODO read from args etc
+    : projectWebpackConfig;
+}
+
 export async function getWebpackConfig({
   config,
   entrypointsWithMetadata,
 }: GetWebpackConfigOptions): Promise<GetWebpackConfigOutput> {
   const projectWebpackConfig = require(config.webpackConfig);
+  const processedProjectConfig = await buildProjectWebpackConfig(projectWebpackConfig);
+
   const decoratorFiles = await glob(config.decoratorPath, { cwd: config.executionPath });
   const decoratorFileArray =
     decoratorFiles.length > 0 ? [pathUtils.resolve(config.executionPath, decoratorFiles[0])] : [];
@@ -38,8 +46,8 @@ export async function getWebpackConfig({
 
   const webpackConfig = composeWebpackConfig(
     entrypoints,
-    projectWebpackConfig.resolve,
-    projectWebpackConfig.module,
+    processedProjectConfig.resolve,
+    processedProjectConfig.module,
     config.executionPath,
     decoratorFileArray[0],
     storyFileArray
