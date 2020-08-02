@@ -12,9 +12,9 @@ export const collectStep: StepRunnerStep<CollectStepOutput> = {
   emoji: 'chipmunk',
   name: 'collect',
   messages: {
-    running: () => 'Running Collectors',
-    success: () => 'Collectors successfully run',
-    error: () => 'Error running collectors',
+    running: () => 'Collect metadata',
+    success: () => 'Story metadata collected',
+    error: () => 'Error collecting metadata',
   },
 };
 
