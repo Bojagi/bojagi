@@ -23,8 +23,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@bojagi/collector-base": "^0.9.0",
-    "@bojagi/collector-main": "^0.9.1",
     "@bojagi/types": "^0.9.0",
     "adm-zip": "^0.4.13",
     "axios": "^0.19.2",

@@ -20,10 +20,13 @@ export type ComponentExportDescription = {
   isDefaultExport: boolean;
 };
 
-export type EntrypointWithMetadata = {
+export type StoryWithMetadata = {
   entrypoint: string;
+  name: string;
+  stories: string[];
   filePath: string;
-  components: ComponentExportDescription[];
+  fileName: string;
+  gitPath: string;
 };
 
 export type File = {
@@ -31,8 +34,8 @@ export type File = {
 };
 
 export type FileContent = {
-  name: string;
   fileContent: string;
+  name: string;
 };
 
 export type ComponentContent = {
@@ -40,11 +43,9 @@ export type ComponentContent = {
   fileContent: string;
 };
 
-export type ComponentWithMetadata = File & {
+export type StoryFileWithMetadata = File & {
   fileContent: string;
-  symbol: string;
-  isDefaultExport: boolean;
+  stories: string[];
   filePath: string;
-  exportName: string;
   gitPath: string;
 };

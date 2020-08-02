@@ -1,4 +1,4 @@
-import runWebpackCompiler from './runWebpackCompiler';
+import { runWebpackCompiler } from './runWebpackCompiler';
 import getGitPath from '../../utils/getGitPath';
 
 jest.mock('../../utils/getGitPath');

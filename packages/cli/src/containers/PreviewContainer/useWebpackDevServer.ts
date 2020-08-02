@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { EntrypointWithMetadata } from '@bojagi/types';
 import * as pathUtils from 'path';
 
-import { ComponentPropsInfo } from '@bojagi/collector-base';
 import { Config } from '../../config';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 import { setupApi } from './setupApi';
@@ -12,8 +10,8 @@ import webpack = require('webpack');
 
 export type UseWebpackDevServerOptions = {
   config: Config;
-  componentProps?: ComponentPropsInfo[];
-  entrypointsWithMetadata?: Record<string, EntrypointWithMetadata>;
+  componentProps?: any[];
+  entrypointsWithMetadata?: Record<string, any>;
 };
 
 export type UseWebpackDevServerOutput = {
@@ -40,7 +38,7 @@ export function useWebpackDevServer({
     if (entrypointsWithMetadata && componentProps && !established) {
       getWebpackConfig({
         config,
-        entrypointsWithMetadata,
+        storyFiles: [],
       }).then(({ webpackConfig }) => {
         setCompiler(webpack(webpackConfig));
       });

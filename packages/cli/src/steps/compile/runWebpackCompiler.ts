@@ -3,11 +3,11 @@ import * as path from 'path';
 import getGitPath from '../../utils/getGitPath';
 
 export type RunWebpackCompilerOutput = {
-  componentsContent: Record<string, string>;
+  outputContent: Record<string, string>;
   modules: Module[];
 };
 
-const runWebpackCompiler = ({
+export const runWebpackCompiler = ({
   compiler,
   entrypoints,
   dependencyPackages,
@@ -32,17 +32,17 @@ const runWebpackCompiler = ({
         const modules = componentModules.map(addDependencies(dependencyPackages));
 
         const components = Object.keys(entrypoints);
-        const componentsContent = [...components, 'commons'].reduce((contents, componentName) => {
+        const outputContent = [...components, 'commons'].reduce((contents, fileName) => {
           const content = compiler.outputFileSystem
-            .readFileSync(`${process.cwd()}/bojagi/${componentName}.js`)
+            .readFileSync(`${process.cwd()}/bojagi/${fileName}.js`)
             .toString();
           // eslint-disable-next-line no-param-reassign
-          contents[componentName] = content;
+          contents[fileName] = content;
           return contents;
         }, {});
 
         resolve({
-          componentsContent,
+          outputContent,
           modules,
         });
       } catch (execError) {
@@ -50,8 +50,6 @@ const runWebpackCompiler = ({
       }
     });
   });
-
-export default runWebpackCompiler;
 
 function filterActualModulecomponentFilePaths(componentFilePaths) {
   return module => {

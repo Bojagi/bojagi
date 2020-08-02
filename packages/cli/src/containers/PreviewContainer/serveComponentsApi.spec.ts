@@ -1,4 +1,3 @@
-import { PropSetType } from '@bojagi/collector-base';
 import { serveComponentsApi } from './serveComponentsApi';
 
 test('get components API output', () => {
@@ -41,7 +40,7 @@ test('get components API output', () => {
       props: [
         {
           name: 'Y',
-          propSetType: 'js' as PropSetType,
+          any: 'js' as any,
           createdBy: 'test-collector',
           propSet: {
             a: 1,
@@ -50,7 +49,7 @@ test('get components API output', () => {
         },
         {
           name: 'Z',
-          propSetType: 'js' as PropSetType,
+          any: 'js' as any,
           createdBy: 'test-collector',
           propSet: {
             a: 10,
@@ -65,7 +64,7 @@ test('get components API output', () => {
       props: [
         {
           name: 'K',
-          propSetType: 'json' as PropSetType,
+          any: 'json' as any,
           createdBy: 'test-collector',
           propSet: {
             a: 3,
@@ -104,7 +103,7 @@ test('get components API output', () => {
         props: [
           {
             name: 'K',
-            propSetType: 'json' as PropSetType,
+            any: 'json' as any,
             createdBy: 'test-collector',
             propSet: JSON.stringify({
               a: 3,
@@ -121,7 +120,7 @@ test('get components API output', () => {
         props: [
           {
             name: 'Y',
-            propSetType: 'js' as PropSetType,
+            any: 'js' as any,
             createdBy: 'test-collector',
             propSet: JSON.stringify({
               a: 1,
@@ -130,7 +129,7 @@ test('get components API output', () => {
           },
           {
             name: 'Z',
-            propSetType: 'js' as PropSetType,
+            any: 'js' as any,
             createdBy: 'test-collector',
             propSet: JSON.stringify({
               a: 10,

@@ -6,7 +6,8 @@ import { SuccessMessage } from '../components/SuccessMessage';
 import { useComponentScan } from '../utils/useComponentScan';
 
 export function ListContainer() {
-  const { components, getCurrentMessage } = useComponentScan();
+  const { getCurrentMessage } = useComponentScan();
+  const components: any = [];
 
   const groupedComponentsByFile: Record<string, any> = !components
     ? {}

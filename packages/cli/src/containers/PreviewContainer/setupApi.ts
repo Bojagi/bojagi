@@ -1,6 +1,4 @@
 import * as express from 'express';
-import { EntrypointWithMetadata } from '@bojagi/types';
-import { ComponentPropsInfo } from '@bojagi/collector-base';
 import { Config } from '../../config';
 import { PREVIEW_CLIENT_OUTPUT_FOLDER } from '../../constants';
 import { serveComponentsApi } from './serveComponentsApi';
@@ -8,8 +6,8 @@ import { serveComponentsApi } from './serveComponentsApi';
 import history = require('connect-history-api-fallback');
 
 export type SetupApiOptions = {
-  entrypointsWithMetadata: Record<string, EntrypointWithMetadata>;
-  componentProps: ComponentPropsInfo[];
+  entrypointsWithMetadata: Record<string, any>;
+  componentProps: any[];
   config: Config;
 };
 
