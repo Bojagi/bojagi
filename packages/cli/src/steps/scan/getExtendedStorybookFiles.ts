@@ -19,6 +19,7 @@ const getEntrypointsFromFiles = (config: Config, files: string[]): StoryWithMeta
 
       const fileName = matchResult[1];
       return {
+        name: fileName,
         filePath,
         gitPath,
         fileName,

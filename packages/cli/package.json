@@ -41,6 +41,7 @@
     "ink-select-input": "^3.1.2",
     "ink-spinner": "^3.0.1",
     "ink-text-input": "^3.3.0",
+    "jsdom": "^16.3.0",
     "memory-fs": "^0.5.0",
     "mkdirp": "^0.5.1",
     "node-emoji": "^1.10.0",

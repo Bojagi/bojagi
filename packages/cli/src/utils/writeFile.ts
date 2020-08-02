@@ -6,34 +6,36 @@ import util = require('util');
 import _rimraf = require('rimraf');
 import _mkdirp = require('mkdirp');
 
-export type WriteComponentPropsArgs = {
-  exportName: string;
+export type WriteStoryMetadataArgs = {
   filePath: string;
-  props: Record<string, any>[];
+  metadata: Record<string, any>;
 };
 
 const fs = getFS();
 
 const mkdirp = util.promisify(_mkdirp);
 const writeFile = util.promisify(fs.writeFile.bind(fs));
-const exists = util.promisify(fs.exists.bind(fs));
-const readFile = util.promisify(fs.readFile.bind(fs));
+// const exists = util.promisify(fs.exists.bind(fs));
+// const readFile = util.promisify(fs.readFile.bind(fs));
 const rimraf = util.promisify(_rimraf);
 
-export function getComponentFolder(filePath: string, exportName: string) {
+export function getComponentFolder(filePath: string) {
   const mappedPath = filePath.replace(/[/\\]/g, '__');
-  const folder = `${mappedPath}___${exportName}`;
+  const folder = `${mappedPath}`;
   return path.join(TEMP_FOLDER, 'components', folder);
 }
 
-async function writeComponentFile({ exportName, filePath, fileContent, fileName }) {
-  const componentFolder = await createComponentFolder({ filePath, exportName });
-  await mkdirp(`${componentFolder}`, { fs });
-  await writeFile(path.join(componentFolder, fileName), fileContent);
+async function writeStoryFile({ filePath, fileContent, fileName }) {
+  const componentFolder = await createComponentFolder({ filePath });
+  const outputFilePath = path.join(componentFolder, fileName);
+  await mkdirp(componentFolder, { fs });
+
+  await writeFile(outputFilePath, fileContent);
+  return outputFilePath;
 }
 
-export async function createComponentFolder({ exportName, filePath }): Promise<string> {
-  const componentFolder = getComponentFolder(filePath, exportName);
+export async function createComponentFolder({ filePath }): Promise<string> {
+  const componentFolder = getComponentFolder(filePath);
 
   const folderExists = fs.existsSync(componentFolder);
 
@@ -44,10 +46,9 @@ export async function createComponentFolder({ exportName, filePath }): Promise<s
   return componentFolder;
 }
 
-export async function writeComponent({ exportName, filePath, fileContent }) {
-  const fileName = 'component.js';
-  return writeComponentFile({
-    exportName,
+export async function writeStories({ filePath, fileContent }) {
+  const fileName = 'stories.js';
+  return writeStoryFile({
     filePath,
     fileContent,
     fileName,
@@ -66,27 +67,20 @@ export function fileExistsSync(fileName: string): boolean {
   return fs.existsSync(path.join(TEMP_FOLDER, fileName));
 }
 
-export async function writeComponentProps({
-  exportName,
-  filePath,
-  props,
-}: WriteComponentPropsArgs) {
-  const fileName = 'props.json';
-  const fullPath = path.join(getComponentFolder(filePath, exportName), fileName);
+export async function writeStoryMetadata({ filePath, metadata }: WriteStoryMetadataArgs) {
+  const fileName = 'metadata.json';
+  // const fullPath = path.join(getComponentFolder(filePath), fileName);
 
-  const existingProps = (await exists(fullPath)) ? JSON.parse(readFile(fullPath)) : [];
-
-  const fileContent = JSON.stringify([...existingProps, ...props]);
-  return writeComponentFile({
-    exportName,
+  const fileContent = JSON.stringify(metadata);
+  return writeStoryFile({
     filePath,
     fileContent,
     fileName,
   });
 }
 
-export function readComponentProps({ componentPath, symbol }): Record<string, any>[] {
-  const componentFolder = getComponentFolder(componentPath, symbol);
+export function readComponentProps({ componentPath }): Record<string, any>[] {
+  const componentFolder = getComponentFolder(componentPath);
   let props = [];
   try {
     props = require(path.join(componentFolder, 'props.json')) as any;
@@ -96,9 +90,12 @@ export function readComponentProps({ componentPath, symbol }): Record<string, an
   return props;
 }
 
-export async function writeSharedFile({ name, fileContent }) {
-  await mkdirp(path.join(TEMP_FOLDER, 'files'), { fs });
-  await writeFile(path.join(TEMP_FOLDER, 'files', `${name}.js`), fileContent);
+export async function writeSharedFile(name, fileContent) {
+  const filesFolder = path.join(TEMP_FOLDER, 'files');
+  const filePath = path.join(filesFolder, `${name}.js`);
+  await mkdirp(filesFolder, { fs });
+  await writeFile(filePath, fileContent);
+  return filePath;
 }
 
 export async function writeJson(what: string, content: object | any[]) {

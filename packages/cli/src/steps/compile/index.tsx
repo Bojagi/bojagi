@@ -1,11 +1,9 @@
 import MemoryFS from 'memory-fs';
-import { File, StoryFileWithMetadata, FileContent } from '@bojagi/types';
+import { File, StoryFileWithMetadata, FileContent, OutputFileContent } from '@bojagi/types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
-// import createComponentsWithMetadata from './createComponentsWithMetadata';
 import { ScanStepOutput } from '../scan';
-// import { writeSharedFile, writeComponent, writeJson } from '../../utils/writeFile';
-import { writeSharedFile, writeJson } from '../../utils/writeFile';
+import { writeSharedFile, writeJson, writeStories } from '../../utils/writeFile';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 
 import webpack = require('webpack');
@@ -13,8 +11,8 @@ import webpack = require('webpack');
 const outputFS = new MemoryFS();
 
 export type CompileStepOutput = {
-  files: File[];
-  stories: StoryFileWithMetadata[];
+  files: OutputFileContent<FileContent>[];
+  stories: OutputFileContent<StoryFileWithMetadata>[];
 };
 
 const FILES = ['commons'];
@@ -62,16 +60,37 @@ async function action({
     name,
   }));
 
-  const fileContent: FileContent[] = FILES.map(name => ({
-    name,
-    fileContent: fileContent[name],
+  const filesWithMetadata = await Promise.all(
+    FILES.filter(name => outputContent[name]).map(async name => {
+      const fileContent = outputContent[name];
+      const outputFilePath = await writeSharedFile(name, fileContent);
+      return {
+        name,
+        fileContent,
+        outputFilePath,
+      };
+    })
+  );
+
+  console.log('outputContent', outputContent);
+
+  const storyFileWithMetadata: StoryFileWithMetadata[] = storyFiles.map(sf => ({
+    fileName: sf.fileName,
+    gitPath: sf.gitPath,
+    name: sf.name,
+    filePath: sf.filePath,
+    fileContent: outputContent[sf.fileName],
   }));
 
-  await Promise.all(fileContent.map(writeSharedFile));
+  console.log('storyFileWithMetadata', storyFileWithMetadata);
 
-  await Promise.all(
-    fileContent.map(async ({ exportName, filePath, fileContent: fc }) => {
-      await writeComponent({ exportName, filePath, fileContent: fc });
+  const storyFileWithOutputFilePath = await Promise.all(
+    storyFileWithMetadata.map(async sf => {
+      const outputFilePath = await writeStories(sf);
+      return {
+        ...sf,
+        outputFilePath,
+      };
     })
   );
 
@@ -79,47 +98,9 @@ async function action({
   await writeJson('stories', storiesWithoutEntrypoint);
 
   return {
-    files: FILES.map(name => ({
-      name,
-    })),
-    stories: storiesWithoutEntrypoint,
+    files: filesWithMetadata,
+    stories: storyFileWithOutputFilePath,
   };
-
-  // const   = createComponentsWithMetadata(
-  //   scanComponents,
-  //   componentsContent,
-  //   modules
-  // );
-  // const componentsMetadata = componentsWithMetadata.map(
-  //   ({ fileContent, ...componentMetadata }) => componentMetadata
-  // );
-  // const files: File[] = FILES.map(name => ({
-  //   name,
-  // }));
-
-  // const fileContent: FileContent[] = FILES.map(name => ({
-  //   name,
-  //   fileContent: componentsContent[name],
-  // }));
-
-  // await Promise.all(
-  //   fileContent.map(async file => {
-  //     await writeSharedFile(file);
-  //   })
-  // );
-  // await Promise.all(
-  //   componentsWithMetadata.map(async ({ exportName, filePath, fileContent: fc }) => {
-  //     await writeComponent({ exportName, filePath, fileContent: fc });
-  //   })
-  // );
-
-  // await writeJson('files', files);
-  // await writeJson('components', componentsMetadata);
-
-  // return {
-  //   files,
-  //   components: componentsWithMetadata,
-  // };
 }
 
 function getPackageJsonDependencies(executionPath: string) {

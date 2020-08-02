@@ -1,13 +1,9 @@
-// import { isFunction } from 'util';
-// import { ComponentWithMetadata } from '@bojagi/types';
+import * as React from 'react';
+import { JSDOM } from 'jsdom';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
-// import { CollectorTuple } from '../../config';
-// import { createComponentFolder } from '../../utils/writeFile';
 import { ScanStepOutput } from '../scan';
-// import { NonVerboseError } from '../../errors';
-// import getStoryFiles from '../../utils/getStoryFiles';
-
-// import webpack = require('webpack');
+import { CompileStepOutput } from '../compile';
+import { writeStoryMetadata } from '../../utils/writeFile';
 
 export type CollectStepOutput = {};
 
@@ -24,72 +20,52 @@ export const collectStep: StepRunnerStep<CollectStepOutput> = {
 
 type DependencyStepOutputs = {
   scan: ScanStepOutput;
+  compile: CompileStepOutput;
 };
 
-async function action({ config, stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
-  return {};
-  //   const { executionPath } = config;
-  //   const collectors = config.collectors.map(mapCollectorConfigToCollector);
-  //   const projectWebpackConfig = require(config.webpackConfig);
+async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
+  const componentModules = new Map<string, Record<string, any>>();
+  const { window } = new JSDOM('<body></body>');
+  const internalGlobal = global as any;
+  internalGlobal.window = window;
+  internalGlobal.React = React;
+  internalGlobal.registerComponent = (moduleName: string, moduleContent) => {
+    componentModules.set(moduleName, moduleContent);
+  };
+  internalGlobal.document = window.document;
 
-  //   const hasScanOutput = !!stepOutputs.scan;
+  stepOutputs.compile.files.forEach(file => require(file.outputFilePath));
+  stepOutputs.compile.stories.forEach(s => require(s.outputFilePath));
 
-  //   let components: ComponentWithMetadata[];
-  //   try {
-  //     components = hasScanOutput ? stepOutputs.scan.components : getComponents();
-  //   } catch {
-  //     throw new NonVerboseError(
-  //       'Could not get components. Have you ran the scan command beforehand?'
-  //     );
-  //   }
+  const storiesMetadata: Record<string, any> = stepOutputs.compile.stories.reduce(
+    (acc, { fileContent, outputFilePath, ...s }) => {
+      const module = componentModules.get(s.fileName);
+      const metadata = module
+        ? {
+            title: module.default.title,
+            stories: Object.entries(module)
+              .filter(([exportName]) => exportName !== 'default')
+              .map(([exportName, storyFn]) => ({
+                exportName,
+                storyName: storyFn.storyName || exportName,
+              })),
+          }
+        : {};
+      return {
+        ...acc,
+        [s.filePath]: metadata,
+      };
+    },
+    {}
+  );
 
-  //   const storyFiles = await getStoryFiles(config);
+  await Promise.all(
+    Object.entries(storiesMetadata).map(([filePath, metadata]) =>
+      writeStoryMetadata({ filePath, metadata })
+    )
+  );
 
-  //   if (!config.dryRun) {
-  //     await Promise.all(
-  //       components.map(({ filePath, symbol, isDefaultExport }) =>
-  //         createComponentFolder({
-  //           exportName: isDefaultExport ? 'default' : symbol,
-  //           filePath,
-  //         })
-  //       )
-  //     );
-  //   }
-
-  //   await collectors.reduce(
-  //     (promise, collector) =>
-  //       promise.then(() => {
-  //         return collector.fn({
-  //           webpack,
-  //           components,
-  //           executionPath,
-  //           storyFiles,
-  //           projectWebpackConfig,
-  //         });
-  //       }),
-  //     Promise.resolve()
-  //   );
-
-  //   if (!config.dryRun) {
-  //     await writeRegisteredProps();
-  //   }
-  //   return {
-  //     componentProps: Array.from(propsRegistry.values()),
-  //   };
-  // }
-
-  // function mapCollectorConfigToCollector(collectorConfig: string | CollectorTuple): Collector {
-  //   const packageName = Array.isArray(collectorConfig) ? collectorConfig[0] : collectorConfig;
-  //   const collectorExports = require(packageName);
-  //   const fn = collectorExports.collector;
-  //   if (!isFunction(fn)) {
-  //     throw new Error(`Collector "${packageName}" does not export a function as default export.`);
-  //   }
-  //   const collectorMetadata = collectorExports.default || collectorExports;
-  //   const name = collectorMetadata.name || packageName;
-  //   return {
-  //     fn,
-  //     packageName,
-  //     name,
-  //   };
+  return {
+    storiesMetadata,
+  };
 }

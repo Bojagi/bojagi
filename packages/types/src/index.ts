@@ -23,7 +23,6 @@ export type ComponentExportDescription = {
 export type StoryWithMetadata = {
   entrypoint: string;
   name: string;
-  stories: string[];
   filePath: string;
   fileName: string;
   gitPath: string;
@@ -31,6 +30,10 @@ export type StoryWithMetadata = {
 
 export type File = {
   name: string;
+};
+
+export type OutputFileContent<T> = T & {
+  outputFilePath: string;
 };
 
 export type FileContent = {
@@ -45,7 +48,7 @@ export type ComponentContent = {
 
 export type StoryFileWithMetadata = File & {
   fileContent: string;
-  stories: string[];
+  fileName: string;
   filePath: string;
   gitPath: string;
 };

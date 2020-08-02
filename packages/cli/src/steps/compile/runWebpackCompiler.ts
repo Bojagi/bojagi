@@ -32,12 +32,15 @@ export const runWebpackCompiler = ({
         const modules = componentModules.map(addDependencies(dependencyPackages));
 
         const components = Object.keys(entrypoints);
+
         const outputContent = [...components, 'commons'].reduce((contents, fileName) => {
-          const content = compiler.outputFileSystem
-            .readFileSync(`${process.cwd()}/bojagi/${fileName}.js`)
-            .toString();
-          // eslint-disable-next-line no-param-reassign
-          contents[fileName] = content;
+          const filePath = `${process.cwd()}/bojagi/${fileName}.js`;
+
+          if (compiler.outputFileSystem.existsSync(filePath)) {
+            const content = compiler.outputFileSystem.readFileSync(filePath).toString();
+            // eslint-disable-next-line no-param-reassign
+            contents[fileName] = content;
+          }
           return contents;
         }, {});
 
