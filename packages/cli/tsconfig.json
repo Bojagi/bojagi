@@ -13,9 +13,5 @@
     "src/**/__testHelpers__/*",
     "node_modules"
   ],
-  "references": [
-    {
-      "path": "../types"
-    }
-  ]
+  "references": []
 }

@@ -1,4 +1,4 @@
-import { StoryFileWithMetadata, OutputFileContent } from '@bojagi/types';
+import { StoryFileWithMetadata, OutputFileContent } from '../../types';
 
 export function getStoriesMetadata(
   stories: OutputFileContent<StoryFileWithMetadata>[],

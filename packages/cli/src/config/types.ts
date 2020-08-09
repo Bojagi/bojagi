@@ -1,8 +1,6 @@
 import { CiSettings } from './getCiSettings';
 
 export type BaseConfig = {
-  componentMarker: string;
-  dir: string;
   dryRun: boolean;
   webpackConfig: string;
   executionPath: string;

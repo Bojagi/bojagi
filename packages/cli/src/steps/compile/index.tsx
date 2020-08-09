@@ -1,5 +1,5 @@
 import MemoryFS from 'memory-fs';
-import { StoryFileWithMetadata, FileContent, OutputFileContent } from '@bojagi/types';
+import { StoryFileWithMetadata, FileContent, OutputFileContent, Module } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
@@ -48,7 +48,7 @@ async function action({
 
   const dependencyPackages = getPackageJsonDependencies(config.executionPath);
 
-  const { outputContent } = await runWebpackCompiler({
+  const { outputContent, modules } = await runWebpackCompiler({
     compiler,
     entrypoints,
     dependencyPackages,
@@ -67,6 +67,7 @@ async function action({
   );
 
   const storyFileWithMetadata: StoryFileWithMetadata[] = storyFiles.map(sf => ({
+    dependencies: getDependenciesForFilePath(modules, sf.filePath),
     fileName: sf.fileName,
     gitPath: sf.gitPath,
     name: sf.name,
@@ -97,4 +98,9 @@ function getPackageJsonDependencies(executionPath: string) {
   } catch {
     throw new Error('Can not read dependencies in package.json');
   }
+}
+
+function getDependenciesForFilePath(modules: Module[], filePath: string): Module[] {
+  const module = modules.find(m => m.filePath === filePath);
+  return (module && module.dependencies) || [];
 }

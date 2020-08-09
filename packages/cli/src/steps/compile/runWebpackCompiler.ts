@@ -1,5 +1,5 @@
-import { Module } from '@bojagi/types';
 import * as path from 'path';
+import { Module } from '../../types';
 import getGitPath from '../../utils/getGitPath';
 
 export type RunWebpackCompilerOutput = {
@@ -76,11 +76,11 @@ function addDependencies(dependencyPackages) {
     const nodeModulesPath = `${process.cwd()}/node_modules/`;
     const isExternal = !!module.external;
     const isNodeModule = checkNodeModule(module.resource, nodeModulesPath);
-    const packageName = isNodeModule ? getPackageName(module.resource, nodeModulesPath) : undefined;
+    const packageName =
+      isNodeModule || isExternal ? getPackageName(module, nodeModulesPath) : undefined;
     const filePath = module.resource && getFilePath(module.resource);
 
     return {
-      request: module.request,
       filePath,
       gitPath: getGitPath(filePath),
       isExternal,
@@ -115,8 +115,12 @@ function onlyUnique(dep, index, self) {
   return self.findIndex(selfDep => selfDep.request === dep.request) === index;
 }
 
-function getPackageName(resource: string, nodeModulesPath: string) {
-  const pathParts = resource.substring(nodeModulesPath.length).split('/');
+function getPackageName(module: any, nodeModulesPath: string) {
+  if (module.external) {
+    return module.request;
+  }
+
+  const pathParts = module.resource.substring(nodeModulesPath.length).split('/');
   const isOrgPackage = pathParts[0].startsWith('@');
   return isOrgPackage ? `${pathParts[0]}/${pathParts[1]}` : pathParts[0];
 }

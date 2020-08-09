@@ -1,4 +1,4 @@
-import { FileContent, StoryFileWithMetadata } from '@bojagi/types';
+import { FileContent, StoryFileWithMetadata } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { ScanStepOutput } from '../scan';
 import { CompileStepOutput } from '../compile';
@@ -34,6 +34,7 @@ const STORY_PROPERTY_WHITELIST: (keyof StoryFileWithMetadata | keyof StoryCollec
   'name',
   'stories',
   'title',
+  'dependencies',
 ];
 const FILE_PROPERTY_WHITELIST: (keyof FileContent)[] = ['name'];
 

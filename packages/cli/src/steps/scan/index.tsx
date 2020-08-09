@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Color } from 'ink';
-import { StoryWithMetadata } from '@bojagi/types';
+import { StoryWithMetadata } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import getEntrypointsFromFiles from './getExtendedStorybookFiles';
 import getStoryFiles from '../../utils/getStoryFiles';

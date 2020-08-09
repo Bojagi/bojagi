@@ -1,5 +1,5 @@
-import { StoryWithMetadata } from '@bojagi/types';
 import * as path from 'path';
+import { StoryWithMetadata } from '../../types';
 import getGitPath from '../../utils/getGitPath';
 import { Config } from '../../config';
 

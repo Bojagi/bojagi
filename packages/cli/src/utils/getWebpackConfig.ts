@@ -1,5 +1,5 @@
 import * as pathUtils from 'path';
-import { StoryWithMetadata } from '@bojagi/types';
+import { StoryWithMetadata } from '../types';
 import composeWebpackConfig from './composeWebpackConfig';
 import glob from './glob';
 import { Config } from '../config';

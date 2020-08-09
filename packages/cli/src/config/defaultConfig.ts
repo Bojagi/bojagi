@@ -2,8 +2,6 @@ import { getWebpackConfigPath } from '../utils/composeWebpackConfig';
 import { BaseConfig } from './types';
 
 export const defaultConfig: BaseConfig = {
-  componentMarker: '@bojagi',
-  dir: 'src',
   webpackConfig: getWebpackConfigPath(process.cwd()),
   executionPath: process.cwd(),
   dryRun: false,
