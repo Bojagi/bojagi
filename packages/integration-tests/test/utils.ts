@@ -8,7 +8,7 @@ export const BOJAGI_BIN = path.resolve(EXEC_PATH, 'node_modules', '.bin', 'bojag
 export const RESULT_FOLDER = path.resolve(EXEC_PATH, '.bojagi', 'tmp');
 
 export function deleteTmpFolder() {
-  (fs.rmdirSync)(RESULT_FOLDER, { recursive: true });
+  fs.rmdirSync(RESULT_FOLDER, { recursive: true });
 }
 
 export function hash(aString) {
@@ -37,43 +37,24 @@ export function snapShotTmpFolder() {
   // TODO read all the files in dynamically, snapshot jsons, hash snapshots js files
 
   snapShotFileJSON(path.resolve(RESULT_FOLDER, 'files.json'));
-  snapShotFileJSON(path.resolve(RESULT_FOLDER, 'components.json'));
+  snapShotFileJSON(path.resolve(RESULT_FOLDER, 'stories.json'));
 
   snapShotFileHash(path.resolve(RESULT_FOLDER, 'files', 'commons.js'));
 
   snapShotFileHash(
-    path.resolve(RESULT_FOLDER, 'components', 'src__components__Box.js___default', 'component.js')
-  );
-  snapShotFileJSON(
-    path.resolve(RESULT_FOLDER, 'components', 'src__components__Box.js___default', 'props.json')
+    path.resolve(RESULT_FOLDER, 'stories', 'src__components__Box.js___default', 'stories.js')
   );
 
   snapShotFileHash(
     path.resolve(
       RESULT_FOLDER,
-      'components',
+      'stories',
       'src__components__BoxWithButtons.js___default',
       'component.js'
-    )
-  );
-  snapShotFileJSON(
-    path.resolve(
-      RESULT_FOLDER,
-      'components',
-      'src__components__BoxWithButtons.js___default',
-      'props.json'
     )
   );
 
   snapShotFileHash(
-    path.resolve(
-      RESULT_FOLDER,
-      'components',
-      'src__components__Button.js___default',
-      'component.js'
-    )
-  );
-  snapShotFileJSON(
-    path.resolve(RESULT_FOLDER, 'components', 'src__components__Button.js___default', 'props.json')
+    path.resolve(RESULT_FOLDER, 'stories', 'src__components__Button.js___default', 'stories.js')
   );
 }

@@ -41,7 +41,7 @@ test('get components API output', () => {
         {
           name: 'Y',
           any: 'js' as any,
-          createdBy: 'test-collector',
+          createdBy: 'cli',
           propSet: {
             a: 1,
             b: 'x',
@@ -50,7 +50,7 @@ test('get components API output', () => {
         {
           name: 'Z',
           any: 'js' as any,
-          createdBy: 'test-collector',
+          createdBy: 'cli',
           propSet: {
             a: 10,
             b: 'y',
@@ -65,7 +65,7 @@ test('get components API output', () => {
         {
           name: 'K',
           any: 'json' as any,
-          createdBy: 'test-collector',
+          createdBy: 'cli',
           propSet: {
             a: 3,
             b: 'z',

@@ -31,9 +31,9 @@ export const runWebpackCompiler = ({
 
         const modules = componentModules.map(addDependencies(dependencyPackages));
 
-        const components = Object.keys(entrypoints);
+        const entrypointNames = Object.keys(entrypoints);
 
-        const outputContent = [...components, 'commons'].reduce((contents, fileName) => {
+        const outputContent = [...entrypointNames, 'commons'].reduce((contents, fileName) => {
           const filePath = `${process.cwd()}/bojagi/${fileName}.js`;
 
           if (compiler.outputFileSystem.existsSync(filePath)) {

@@ -2,17 +2,17 @@ import axios from 'axios';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { Config } from '../../config';
 
-export type CreateComponentsStepOutput = {
+export type CreateStoriesStepOutput = {
   uploadUrl: string;
 };
 
-export const createComponentsStep: StepRunnerStep<CreateComponentsStepOutput> = {
+export const createStoriesStep: StepRunnerStep<CreateStoriesStepOutput> = {
   action,
   emoji: 'seedling',
-  name: 'createComponents',
+  name: 'createStories',
   messages: {
-    running: () => 'Creating components on Bojagi',
-    success: () => 'Components created on Bojagi',
+    running: () => 'Creating stories on Bojagi',
+    success: () => 'Stories created on Bojagi',
     error: ({ error }) => {
       const isAuthorizationError =
         error &&
@@ -29,14 +29,14 @@ export const createComponentsStep: StepRunnerStep<CreateComponentsStepOutput> = 
 async function action({ config }: StepRunnerActionOptions) {
   const apiSecret = process.env.BOJAGI_SECRET as string;
 
-  const result = await createComponentsApiCall(config, apiSecret);
+  const result = await createStoriesApiCall(config, apiSecret);
 
   return {
     uploadUrl: result.data.data.uploadCreate.uploadUrl,
   };
 }
 
-async function createComponentsApiCall({ commit, uploadApiUrl }: Config, apiSecret: string) {
+async function createStoriesApiCall({ commit, uploadApiUrl }: Config, apiSecret: string) {
   const query = `
 	  mutation CreateUpload($commit: String!) {
       uploadCreate(commitId: $commit) {

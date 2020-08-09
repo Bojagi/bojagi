@@ -1,8 +1,7 @@
 import { deleteTmpFolder, execBojagi, snapShotTmpFolder } from './utils';
 
-test('run main collector', () => {
+test('run bundle command', () => {
   deleteTmpFolder();
   execBojagi('bundle');
-  execBojagi('runCollectors');
   snapShotTmpFolder();
 });

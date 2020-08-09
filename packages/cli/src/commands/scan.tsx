@@ -10,11 +10,7 @@ export default function scan(program) {
   const steps: StepRunnerStep[] = [cleanupStep, scanStep];
   program
     .command('scan')
-    .option('-d, --dir [dir]', 'The root folder to search components in')
-    .option(
-      '--webpack-config [path]',
-      'Path to the webpack config file, defaults to webpack.config.js'
-    )
+    .option('--storyPath [pathPattern]', 'path pattern to search for stories in')
     .description('Scans for components')
     .action(args => {
       render(

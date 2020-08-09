@@ -19,31 +19,31 @@ const writeFile = util.promisify(fs.writeFile.bind(fs));
 // const readFile = util.promisify(fs.readFile.bind(fs));
 const rimraf = util.promisify(_rimraf);
 
-export function getComponentFolder(filePath: string) {
+export function getStoryFolder(filePath: string) {
   const mappedPath = filePath.replace(/[/\\]/g, '__');
   const folder = `${mappedPath}`;
-  return path.join(TEMP_FOLDER, 'components', folder);
+  return path.join(TEMP_FOLDER, 'stories', folder);
 }
 
 async function writeStoryFile({ filePath, fileContent, fileName }) {
-  const componentFolder = await createComponentFolder({ filePath });
-  const outputFilePath = path.join(componentFolder, fileName);
-  await mkdirp(componentFolder, { fs });
+  const storyFolder = await createStoryFolder({ filePath });
+  const outputFilePath = path.join(storyFolder, fileName);
+  await mkdirp(storyFolder, { fs });
 
   await writeFile(outputFilePath, fileContent);
   return outputFilePath;
 }
 
-export async function createComponentFolder({ filePath }): Promise<string> {
-  const componentFolder = getComponentFolder(filePath);
+export async function createStoryFolder({ filePath }): Promise<string> {
+  const storyFolder = getStoryFolder(filePath);
 
-  const folderExists = fs.existsSync(componentFolder);
+  const folderExists = fs.existsSync(storyFolder);
 
   if (!folderExists) {
-    await mkdirp(`${componentFolder}`, { fs });
+    await mkdirp(`${storyFolder}`, { fs });
   }
 
-  return componentFolder;
+  return storyFolder;
 }
 
 export async function writeStories({ filePath, fileContent }) {
@@ -53,41 +53,6 @@ export async function writeStories({ filePath, fileContent }) {
     fileContent,
     fileName,
   });
-}
-
-export function readComponentsSync() {
-  return readJsonSync('components');
-}
-
-export function fileExistsSync(fileName: string): boolean {
-  if (!fs.existsSync(TEMP_FOLDER)) {
-    return false;
-  }
-
-  return fs.existsSync(path.join(TEMP_FOLDER, fileName));
-}
-
-export async function writeStoryMetadata({ filePath, metadata }: WriteStoryMetadataArgs) {
-  const fileName = 'metadata.json';
-  // const fullPath = path.join(getComponentFolder(filePath), fileName);
-
-  const fileContent = JSON.stringify(metadata);
-  return writeStoryFile({
-    filePath,
-    fileContent,
-    fileName,
-  });
-}
-
-export function readComponentProps({ componentPath }): Record<string, any>[] {
-  const componentFolder = getComponentFolder(componentPath);
-  let props = [];
-  try {
-    props = require(path.join(componentFolder, 'props.json')) as any;
-  } catch {
-    props = [];
-  }
-  return props;
 }
 
 export async function writeSharedFile(name, fileContent) {

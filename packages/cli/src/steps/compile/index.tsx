@@ -1,9 +1,9 @@
 import MemoryFS from 'memory-fs';
-import { File, StoryFileWithMetadata, FileContent, OutputFileContent } from '@bojagi/types';
+import { StoryFileWithMetadata, FileContent, OutputFileContent } from '@bojagi/types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
-import { writeSharedFile, writeJson, writeStories } from '../../utils/writeFile';
+import { writeSharedFile, writeStories } from '../../utils/writeFile';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 
 import webpack = require('webpack');
@@ -22,8 +22,8 @@ export const compileStep: StepRunnerStep<CompileStepOutput> = {
   emoji: 'factory',
   name: 'compile',
   messages: {
-    running: () => 'Compiling components',
-    success: () => 'Components compiled',
+    running: () => 'Compiling stories and components',
+    success: () => 'Stories and components compiled',
     error: () => 'Error during compilation',
   },
 };
@@ -54,12 +54,6 @@ async function action({
     dependencyPackages,
   });
 
-  const storiesWithoutEntrypoint = storyFiles.map(({ entrypoint, ...sf }) => sf);
-
-  const files: File[] = FILES.map(name => ({
-    name,
-  }));
-
   const filesWithMetadata = await Promise.all(
     FILES.filter(name => outputContent[name]).map(async name => {
       const fileContent = outputContent[name];
@@ -72,8 +66,6 @@ async function action({
     })
   );
 
-  console.log('outputContent', outputContent);
-
   const storyFileWithMetadata: StoryFileWithMetadata[] = storyFiles.map(sf => ({
     fileName: sf.fileName,
     gitPath: sf.gitPath,
@@ -81,8 +73,6 @@ async function action({
     filePath: sf.filePath,
     fileContent: outputContent[sf.fileName],
   }));
-
-  console.log('storyFileWithMetadata', storyFileWithMetadata);
 
   const storyFileWithOutputFilePath = await Promise.all(
     storyFileWithMetadata.map(async sf => {
@@ -93,9 +83,6 @@ async function action({
       };
     })
   );
-
-  await writeJson('files', files);
-  await writeJson('stories', storiesWithoutEntrypoint);
 
   return {
     files: filesWithMetadata,

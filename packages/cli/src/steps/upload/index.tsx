@@ -2,18 +2,18 @@ import axios from 'axios';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { TEMP_FOLDER } from '../../constants';
 import { getFS } from '../../dependencies';
-import { CreateComponentsStepOutput } from '../createComponents';
+import { CreateStoriesStepOutput } from '../createStories';
 
 import path = require('path');
 import AdmZip = require('adm-zip');
 const fs = getFS();
 
-export type UploadComponentsStepOutput = {};
+export type UploadStepOutput = {};
 
-export const uploadComponentsStep: StepRunnerStep<UploadComponentsStepOutput> = {
+export const uploadStep: StepRunnerStep<UploadStepOutput> = {
   action,
   emoji: 'truck',
-  name: 'uploadComponents',
+  name: 'upload',
   messages: {
     running: () => 'Uploading components',
     success: () => 'Components successfully uploaded',
@@ -22,11 +22,11 @@ export const uploadComponentsStep: StepRunnerStep<UploadComponentsStepOutput> = 
 };
 
 type DependencyStepOutputs = {
-  createComponents: CreateComponentsStepOutput;
+  createStories: CreateStoriesStepOutput;
 };
 
 async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
-  const { uploadUrl } = stepOutputs.createComponents;
+  const { uploadUrl } = stepOutputs.createStories;
   const zipFileContent = await createZipFile();
   await uploadZip(uploadUrl, zipFileContent);
 
@@ -37,19 +37,24 @@ async function createZipFile(): Promise<Buffer> {
   const zipFile = path.join(TEMP_FOLDER, 'upload.zip');
   const zip = new AdmZip();
 
+  // Add metadata files to
+  addFileToZip(zip, TEMP_FOLDER, 'manifest.json');
   addFileToZip(zip, TEMP_FOLDER, 'files.json');
-  addFileToZip(zip, TEMP_FOLDER, 'components.json');
+  addFileToZip(zip, TEMP_FOLDER, 'stories.json');
+
+  // Add files to zip
   fs.readdirSync(`${TEMP_FOLDER}/files`)
     .map(file => `files/${file}`)
     .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));
 
-  fs.readdirSync(`${TEMP_FOLDER}/components`)
+  // Add stories to zip
+  fs.readdirSync(`${TEMP_FOLDER}/stories`)
     .reduce((agg, folder) => {
       return [
         ...agg,
         ...fs
-          .readdirSync(`${TEMP_FOLDER}/components/${folder}`)
-          .map(file => `components/${folder}/${file}`),
+          .readdirSync(`${TEMP_FOLDER}/stories/${folder}`)
+          .map(file => `stories/${folder}/${file}`),
       ];
     }, [])
     .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));

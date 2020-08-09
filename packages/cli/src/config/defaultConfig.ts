@@ -1,8 +1,6 @@
 import { getWebpackConfigPath } from '../utils/composeWebpackConfig';
 import { BaseConfig } from './types';
 
-const COLLECTOR_MAIN_NAME = '@bojagi/collector-main';
-
 export const defaultConfig: BaseConfig = {
   componentMarker: '@bojagi',
   dir: 'src',
@@ -17,5 +15,4 @@ export const defaultConfig: BaseConfig = {
   previewDownloadUrl:
     process.env.BOJAGI_PREVIEW_DOWNLOAD_URL ||
     'https://dev-bojagi-local-dev-releases.s3.amazonaws.com',
-  collectors: [COLLECTOR_MAIN_NAME],
 };

@@ -61,5 +61,8 @@
     "@types/react-intl": "^3.0.0",
     "@types/webpack": "4.41.6",
     "@types/webpack-dev-server": "^3.10.1"
+  },
+  "peerDependencies": {
+    "react-dom": "^16.13.1"
   }
 }

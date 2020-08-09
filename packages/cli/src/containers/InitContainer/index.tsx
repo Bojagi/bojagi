@@ -23,9 +23,9 @@ const REQUIRED_FILES: [string, string][] = [
 const QUESTIONS: Question[] = [
   {
     type: 'input',
-    name: 'srcFolder',
-    message: '💾 In what folder is your code located',
-    default: './src',
+    name: 'storyPath',
+    message: '💾 Where are your stories located? (Please provide glob pattern)',
+    default: 'src/**/*.stories.@(jsx|js|tsx|ts)',
   },
   {
     type: 'select',

@@ -5,7 +5,7 @@ import { useWebpackDevServer } from './useWebpackDevServer';
 import { useConfig } from '../../config/configContext';
 import { scanStep } from '../../steps/scan';
 import { StepRunnerStep, StepRunner } from '../StepRunner';
-import { collectStep } from '../../steps/collect';
+import { analyzeStep } from '../../steps/analyze';
 import { downloadPreviewClientStep } from '../../steps/downloadPreviewClient';
 import { DevServerMessage } from './DevServerMessage';
 
@@ -13,7 +13,7 @@ import BorderBox = require('ink-box');
 
 export type PreviewContainerProps = {};
 
-const steps: StepRunnerStep[] = [scanStep, collectStep, downloadPreviewClientStep];
+const steps: StepRunnerStep[] = [scanStep, analyzeStep, downloadPreviewClientStep];
 
 export function PreviewContainer() {
   const config = useConfig();
