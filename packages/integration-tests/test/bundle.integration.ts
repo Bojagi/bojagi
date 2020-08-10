@@ -2,6 +2,8 @@ import { deleteTmpFolder, execBojagi, snapShotTmpFolder } from './utils';
 
 test('run bundle command', () => {
   deleteTmpFolder();
-  execBojagi('bundle');
+  const result = execBojagi('bundle');
+  console.log('result', result);
+
   snapShotTmpFolder();
 });

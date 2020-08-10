@@ -4,14 +4,16 @@ import * as pathUtils from 'path';
 import { Config } from '../../config';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 import { setupApi } from './setupApi';
+import { StoryCollectionMetadata } from '../../steps/analyze';
+import { StoryWithMetadata } from '../../types';
 
 import WebpackDevServer = require('webpack-dev-server');
 import webpack = require('webpack');
 
 export type UseWebpackDevServerOptions = {
   config: Config;
-  componentProps?: any[];
-  entrypointsWithMetadata?: Record<string, any>;
+  storyFiles?: StoryWithMetadata[];
+  storiesMetadata?: Record<string, StoryCollectionMetadata>;
 };
 
 export type UseWebpackDevServerOutput = {
@@ -23,8 +25,8 @@ export type UseWebpackDevServerOutput = {
 
 export function useWebpackDevServer({
   config,
-  entrypointsWithMetadata,
-  componentProps,
+  storiesMetadata,
+  storyFiles,
 }: UseWebpackDevServerOptions): UseWebpackDevServerOutput {
   const [devServer, setDevServer] = React.useState<any>();
   const [compiler, setCompiler] = React.useState<webpack.Compiler>();
@@ -35,18 +37,18 @@ export function useWebpackDevServer({
 
   // Setup dev server
   React.useEffect(() => {
-    if (entrypointsWithMetadata && componentProps && !established) {
+    if (storyFiles && storiesMetadata && !established) {
       getWebpackConfig({
         config,
-        storyFiles: [],
+        storyFiles,
       }).then(({ webpackConfig }) => {
         setCompiler(webpack(webpackConfig));
       });
     }
-  }, [config, componentProps, entrypointsWithMetadata, established]);
+  }, [config, storiesMetadata, storyFiles, established]);
 
   React.useEffect(() => {
-    if (!entrypointsWithMetadata || !componentProps || !compiler) {
+    if (!storiesMetadata || !compiler) {
       return;
     }
 
@@ -69,12 +71,12 @@ export function useWebpackDevServer({
         hot: false,
         open: true,
         contentBase: pathUtils.join(__dirname, 'public'),
-        before: setupApi({ entrypointsWithMetadata, componentProps, config }),
+        before: setupApi({ storiesMetadata, config }),
       });
       setDevServer(server);
       server.listen(config.previewPort);
     }
-  }, [compiler, componentProps, entrypointsWithMetadata, established, config]);
+  }, [compiler, storiesMetadata, established, config]);
 
   // Close dev server on unmount
   React.useEffect(() => {

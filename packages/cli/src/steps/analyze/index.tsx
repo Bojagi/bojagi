@@ -11,7 +11,8 @@ export type StoryMetadata = {
 
 export type StoryCollectionMetadata = {
   title: string;
-  stories: StoryMetadata;
+  fileName: string;
+  stories: StoryMetadata[];
 };
 
 export type AnalyzeStepOutput = {

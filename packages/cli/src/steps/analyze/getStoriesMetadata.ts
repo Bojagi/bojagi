@@ -8,7 +8,8 @@ export function getStoriesMetadata(
     const module = componentModules.get(s.fileName);
     const metadata = module
       ? {
-          title: module.default.title || s.name,
+          title: (module.default && module.default.title) || s.name,
+          fileName: s.fileName,
           stories: Object.entries(module)
             .filter(([exportName]) => exportName !== 'default')
             .map(([exportName, storyFn]) => ({

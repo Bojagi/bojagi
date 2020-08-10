@@ -42,19 +42,19 @@ export function snapShotTmpFolder() {
   snapShotFileHash(path.resolve(RESULT_FOLDER, 'files', 'commons.js'));
 
   snapShotFileHash(
-    path.resolve(RESULT_FOLDER, 'stories', 'src__components__Box.js___default', 'stories.js')
+    path.resolve(RESULT_FOLDER, 'stories', 'src__components__Box.bojagi.js', 'stories.js')
   );
 
   snapShotFileHash(
     path.resolve(
       RESULT_FOLDER,
       'stories',
-      'src__components__BoxWithButtons.js___default',
-      'component.js'
+      'src__components__BoxWithButtons.bojagi.js',
+      'stories.js'
     )
   );
 
   snapShotFileHash(
-    path.resolve(RESULT_FOLDER, 'stories', 'src__components__Button.js___default', 'stories.js')
+    path.resolve(RESULT_FOLDER, 'stories', 'src__components__Button.bojagi.js', 'stories.js')
   );
 }

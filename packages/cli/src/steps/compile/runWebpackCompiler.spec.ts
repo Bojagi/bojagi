@@ -93,6 +93,7 @@ beforeEach(() => {
 
   mockFs = {
     readFileSync: jest.fn(path => fileContents[path]),
+    existsSync: jest.fn(() => true),
   };
   entrypoints = {
     A: [`A!${cwd}/bojagi/A.js`],
@@ -112,7 +113,7 @@ test('run the webpack compiler', async () => {
     dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
   });
   expect(componentsContent).toEqual({
-    componentsContent: {
+    outputContent: {
       commons: 'commons file content',
       A: 'file content a',
       B: 'file content b',

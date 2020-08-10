@@ -8,29 +8,28 @@ import { StepRunnerStep, StepRunner } from '../StepRunner';
 import { analyzeStep } from '../../steps/analyze';
 import { downloadPreviewClientStep } from '../../steps/downloadPreviewClient';
 import { DevServerMessage } from './DevServerMessage';
+import { compileStep } from '../../steps/compile';
 
 import BorderBox = require('ink-box');
 
 export type PreviewContainerProps = {};
 
-const steps: StepRunnerStep[] = [scanStep, analyzeStep, downloadPreviewClientStep];
+const steps: StepRunnerStep[] = [scanStep, compileStep, analyzeStep, downloadPreviewClientStep];
 
 export function PreviewContainer() {
   const config = useConfig();
-  const [entrypointsWithMetadata, setEntrypointsWithMetadata] = React.useState();
-  const [foundComponents, setFoundComponents] = React.useState();
-  const [componentProps, setComponentProps] = React.useState();
+  const [storiesMetadata, setStoriesMetadata] = React.useState();
+  const [storyFiles, setStoryFiles] = React.useState();
 
   const { devServer, established, ready, errors } = useWebpackDevServer({
     config,
-    entrypointsWithMetadata,
-    componentProps,
+    storyFiles,
+    storiesMetadata,
   });
 
   const handleStepSucccess = React.useCallback(({ stepOutputs }) => {
-    setEntrypointsWithMetadata(stepOutputs.scan.entrypointsWithMetadata);
-    setFoundComponents(stepOutputs.scan.components);
-    setComponentProps(stepOutputs.collect.componentProps);
+    setStoriesMetadata(stepOutputs.analyze.storiesMetadata);
+    setStoryFiles(stepOutputs.scan.storyFiles);
   }, []);
 
   return (
@@ -38,7 +37,7 @@ export function PreviewContainer() {
       <Message emoji="wave">Welcome back!</Message>
       <StepRunner steps={steps} onSuccess={handleStepSucccess} hideStepCount />
       <DevServerMessage
-        foundComponents={foundComponents}
+        storyFiles={storyFiles}
         devServer={devServer}
         established={established}
         ready={ready}

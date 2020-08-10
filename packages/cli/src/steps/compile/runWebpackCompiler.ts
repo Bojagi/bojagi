@@ -86,6 +86,7 @@ function addDependencies(dependencyPackages) {
       isExternal,
       isNodeModule,
       packageName,
+      request: module.request,
       dependencies: !(isNodeModule || isExternal)
         ? module.dependencies
             .filter(dep => dep.module)

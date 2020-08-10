@@ -1,4 +1,5 @@
 export type Module = {
+  request?: any;
   filePath?: string;
   gitPath?: string;
   isExternal: boolean;

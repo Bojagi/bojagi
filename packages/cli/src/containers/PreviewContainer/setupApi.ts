@@ -1,22 +1,22 @@
 import * as express from 'express';
 import { Config } from '../../config';
 import { PREVIEW_CLIENT_OUTPUT_FOLDER } from '../../constants';
-import { serveComponentsApi } from './serveComponentsApi';
+import { serveStoriesApi } from './serveStoryApi';
+import { StoryCollectionMetadata } from '../../steps/analyze';
 
 import history = require('connect-history-api-fallback');
 
 export type SetupApiOptions = {
-  entrypointsWithMetadata: Record<string, any>;
-  componentProps: any[];
+  storiesMetadata: Record<string, StoryCollectionMetadata>;
   config: Config;
 };
 
 export function setupApi(options: SetupApiOptions) {
   return (app: express.Application) => {
-    handleStaticServer(app);
-    app.get('/api/components', (_req, res) => {
-      res.json(serveComponentsApi(options));
+    app.get('/api/stories', (_req, res) => {
+      res.json(serveStoriesApi(options));
     });
+    handleStaticServer(app);
   };
 }
 
