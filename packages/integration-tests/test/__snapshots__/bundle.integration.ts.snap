@@ -41,7 +41,7 @@ exports[`run bundle command 2`] = `
     \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
-    \\"request\\": \\"-!/Users/simon.jentsch/Documents/bjg/public-bojagi/node_modules/babel-loader/lib/index.js!./Box.bojagi.js\\",
+    \\"request\\": \\"./Box.bojagi.js\\",
     \\"dependencies\\": [
      {
       \\"isExternal\\": true,
@@ -193,7 +193,7 @@ exports[`run bundle command 2`] = `
     \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
-    \\"request\\": \\"-!/Users/simon.jentsch/Documents/bjg/public-bojagi/node_modules/babel-loader/lib/index.js!./BoxWithButtons.bojagi.js\\",
+    \\"request\\": \\"./BoxWithButtons.bojagi.js\\",
     \\"dependencies\\": [
      {
       \\"isExternal\\": true,
@@ -595,7 +595,7 @@ exports[`run bundle command 2`] = `
     \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
-    \\"request\\": \\"-!/Users/simon.jentsch/Documents/bjg/public-bojagi/node_modules/babel-loader/lib/index.js!./Button.bojagi.js\\",
+    \\"request\\": \\"./Button.bojagi.js\\",
     \\"dependencies\\": [
      {
       \\"isExternal\\": true,

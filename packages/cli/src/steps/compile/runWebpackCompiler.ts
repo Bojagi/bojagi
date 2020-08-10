@@ -86,7 +86,7 @@ function addDependencies(dependencyPackages) {
       isExternal,
       isNodeModule,
       packageName,
-      request: module.request,
+      request: getRequest(module),
       dependencies: !(isNodeModule || isExternal)
         ? module.dependencies
             .filter(dep => dep.module)
@@ -98,6 +98,15 @@ function addDependencies(dependencyPackages) {
         : undefined,
     };
   };
+}
+
+function getRequest(module) {
+  if (module.request) {
+    const requestSplit = module.request.split('!');
+    return requestSplit[requestSplit.length - 1];
+  }
+
+  return undefined;
 }
 
 function checkNodeModule(resource, nodeModulesPath) {
