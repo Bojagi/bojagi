@@ -39,8 +39,6 @@ export function snapShotTmpFolder() {
   snapShotFileJSON(path.resolve(RESULT_FOLDER, 'files.json'));
   snapShotFileJSON(path.resolve(RESULT_FOLDER, 'stories.json'));
 
-  snapShotFileHash(path.resolve(RESULT_FOLDER, 'files', 'commons.js'));
-
   snapShotFileHash(
     path.resolve(RESULT_FOLDER, 'stories', 'src__components__Box.bojagi.js', 'stories.js')
   );
