@@ -21,6 +21,8 @@ export function Emoji({ code, marginRight = 0 }: EmojiProps) {
 
 function getEmojiWidth(code: EmojiCode, emoji: string) {
   switch (code) {
+    case 'warning' as any:
+      return 3;
     case 'woman_in_lotus_position' as any:
       return 4;
     case 'x':

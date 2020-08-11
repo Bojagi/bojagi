@@ -34,30 +34,31 @@ async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOut
 }
 
 async function createZipFile(): Promise<Buffer> {
-  const zipFile = path.join(TEMP_FOLDER, 'upload.zip');
+  const namespaceFolder = path.join(TEMP_FOLDER, 'default');
+  const zipFile = path.join(namespaceFolder, 'upload.zip');
   const zip = new AdmZip();
 
   // Add metadata files to
   addFileToZip(zip, TEMP_FOLDER, 'manifest.json');
-  addFileToZip(zip, TEMP_FOLDER, 'files.json');
-  addFileToZip(zip, TEMP_FOLDER, 'stories.json');
+  addFileToZip(zip, namespaceFolder, 'files.json');
+  addFileToZip(zip, namespaceFolder, 'stories.json');
 
   // Add files to zip
-  fs.readdirSync(`${TEMP_FOLDER}/files`)
+  fs.readdirSync(`${namespaceFolder}/files`)
     .map(file => `files/${file}`)
-    .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));
+    .forEach(p => addFileToZip(zip, namespaceFolder, p));
 
   // Add stories to zip
-  fs.readdirSync(`${TEMP_FOLDER}/stories`)
+  fs.readdirSync(`${namespaceFolder}/stories`)
     .reduce((agg, folder) => {
       return [
         ...agg,
         ...fs
-          .readdirSync(`${TEMP_FOLDER}/stories/${folder}`)
+          .readdirSync(`${namespaceFolder}/stories/${folder}`)
           .map(file => `stories/${folder}/${file}`),
       ];
     }, [])
-    .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));
+    .forEach(p => addFileToZip(zip, namespaceFolder, p));
 
   const content = zip.toBuffer();
   fs.writeFileSync(zipFile, content);

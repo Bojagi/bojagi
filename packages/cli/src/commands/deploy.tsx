@@ -11,8 +11,10 @@ import { uploadValidator } from '../validators/uploadValidator';
 import { cleanupStep } from '../steps/cleanup';
 import { ConfigProvider } from '../config/configContext';
 import { writeFilesStep } from '../steps/writeFiles';
+import { validateStep } from '../steps/validate';
 
 const steps: StepRunnerStep[] = [
+  validateStep,
   cleanupStep,
   scanStep,
   compileStep,

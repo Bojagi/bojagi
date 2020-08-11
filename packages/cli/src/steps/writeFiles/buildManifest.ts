@@ -1,3 +1,5 @@
+import { MANIFEST_VERSION } from '../../constants';
+
 export type Framework = {
   name: 'react';
   version: string;
@@ -15,7 +17,7 @@ export type BojagiManifest = {
 
 export function buildManifest(dependencies: Record<string, string>): BojagiManifest {
   return {
-    version: '2',
+    version: MANIFEST_VERSION,
     namespaces: [
       {
         name: 'default',

@@ -6,8 +6,9 @@ import { createStoriesStep } from '../steps/createStories';
 import { uploadStep } from '../steps/upload';
 import { uploadValidator } from '../validators/uploadValidator';
 import { ConfigProvider } from '../config/configContext';
+import { validateStep } from '../steps/validate';
 
-const steps: StepRunnerStep[] = [createStoriesStep, uploadStep];
+const steps: StepRunnerStep[] = [validateStep, createStoriesStep, uploadStep];
 
 export default function upload(program) {
   program
