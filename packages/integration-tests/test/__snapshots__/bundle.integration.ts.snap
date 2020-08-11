@@ -3,7 +3,8 @@
 exports[`run bundle command 1`] = `
 "[
  {
-  \\"name\\": \\"commons\\"
+  \\"name\\": \\"commons\\",
+  \\"namespace\\": \\"default\\"
  }
 ]"
 `;
@@ -176,6 +177,7 @@ exports[`run bundle command 2`] = `
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
   \\"name\\": \\"Box.bojagi\\",
+  \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Box.bojagi.js\\"
  },
  {
@@ -574,6 +576,7 @@ exports[`run bundle command 2`] = `
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
   \\"name\\": \\"BoxWithButtons.bojagi\\",
+  \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\"
  },
  {
@@ -730,15 +733,8 @@ exports[`run bundle command 2`] = `
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
   \\"name\\": \\"Button.bojagi\\",
+  \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Button.bojagi.js\\"
  }
 ]"
 `;
-
-exports[`run bundle command 3`] = `"6eec7dc6b8aa643ceb08abd636163e36e2830dfae803f4b93e543ff531e9c5fe"`;
-
-exports[`run bundle command 4`] = `"670bad93955069267698f7464e4b0242ef49f6d43e49b428db28aa34bd7f2a3b"`;
-
-exports[`run bundle command 5`] = `"069e0da8be3f2f84036e9a196375b26e986ed230795b00b98df5780359a78cae"`;
-
-exports[`run bundle command 6`] = `"7d2e710e7aaf293ba3a0f6f75c80bd802edc19b451af362e7825356503f82716"`;
