@@ -18,6 +18,7 @@ export type StoryWithMetadata = {
 
 export type File = {
   name: string;
+  namespace: string;
 };
 
 export type OutputFileContent<T> = T & {
@@ -26,6 +27,7 @@ export type OutputFileContent<T> = T & {
 
 export type FileContent = {
   fileContent: string;
+  namespace: string;
   name: string;
 };
 

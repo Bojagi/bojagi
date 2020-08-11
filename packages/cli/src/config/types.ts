@@ -2,6 +2,7 @@ import { CiSettings } from './getCiSettings';
 
 export type BaseConfig = {
   dryRun: boolean;
+  namespace: 'default';
   webpackConfig: string;
   executionPath: string;
   decoratorPath: string;

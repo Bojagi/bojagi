@@ -4,39 +4,21 @@ import { ScanStepOutput } from '../scan';
 import { CompileStepOutput } from '../compile';
 import { AnalyzeStepOutput, StoryCollectionMetadata } from '../analyze';
 import { writeJson } from '../../utils/writeFile';
+import { buildManifest } from './buildManifest';
 
 export type WriteFilesStepOutput = {};
-
-export type BojagiNamespace = {
-  name: string;
-  framework: 'react';
-};
-
-export type BojagiManifest = {
-  version: '2';
-  namespaces: BojagiNamespace[];
-};
-
-const DEFAULT_MANIFEST: BojagiManifest = {
-  version: '2',
-  namespaces: [
-    {
-      name: 'default',
-      framework: 'react',
-    },
-  ],
-};
 
 const STORY_PROPERTY_WHITELIST: (keyof StoryFileWithMetadata | keyof StoryCollectionMetadata)[] = [
   'fileName',
   'filePath',
   'gitPath',
   'name',
+  'namespace',
   'stories',
   'title',
   'dependencies',
 ];
-const FILE_PROPERTY_WHITELIST: (keyof FileContent)[] = ['name'];
+const FILE_PROPERTY_WHITELIST: (keyof FileContent)[] = ['name', 'namespace'];
 
 export const writeFilesStep: StepRunnerStep<WriteFilesStepOutput> = {
   action,
@@ -55,7 +37,7 @@ type DependencyStepOutputs = {
   analyze: AnalyzeStepOutput;
 };
 
-async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
+async function action({ config, stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
   const storiesMetadata = (stepOutputs.analyze && stepOutputs.analyze.storiesMetadata) || {};
 
   // Filter object properties by whitelist (so only relevant data is added to json files)
@@ -70,9 +52,11 @@ async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOut
     })
     .map(mapObjectWithWhitelist(STORY_PROPERTY_WHITELIST));
 
-  await writeJson('manifest', DEFAULT_MANIFEST);
-  await writeJson('files', cleanFiles);
-  await writeJson('stories', cleanStories);
+  const manifest = buildManifest(stepOutputs.scan.dependencies);
+
+  await writeJson('manifest', manifest);
+  await writeJson('files', cleanFiles, config.namespace);
+  await writeJson('stories', cleanStories, config.namespace);
 
   return {};
 }

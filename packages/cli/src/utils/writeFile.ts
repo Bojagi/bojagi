@@ -19,14 +19,15 @@ const writeFile = util.promisify(fs.writeFile.bind(fs));
 // const readFile = util.promisify(fs.readFile.bind(fs));
 const rimraf = util.promisify(_rimraf);
 
-export function getStoryFolder(filePath: string) {
+export async function getStoryFolder(namespace: string, filePath: string) {
   const mappedPath = filePath.replace(/[/\\]/g, '__');
   const folder = `${mappedPath}`;
-  return path.join(TEMP_FOLDER, 'stories', folder);
+  const namespaceFolder = await createNamespaceFolder(namespace);
+  return path.join(namespaceFolder, 'stories', folder);
 }
 
-async function writeStoryFile({ filePath, fileContent, fileName }) {
-  const storyFolder = await createStoryFolder({ filePath });
+async function writeStoryFile({ namespace, filePath, fileContent, fileName }) {
+  const storyFolder = await createStoryFolder({ namespace, filePath });
   const outputFilePath = path.join(storyFolder, fileName);
   await mkdirp(storyFolder, { fs });
 
@@ -34,10 +35,10 @@ async function writeStoryFile({ filePath, fileContent, fileName }) {
   return outputFilePath;
 }
 
-export async function createStoryFolder({ filePath }): Promise<string> {
-  const storyFolder = getStoryFolder(filePath);
+export async function createStoryFolder({ namespace, filePath }): Promise<string> {
+  const storyFolder = getStoryFolder(namespace, filePath);
 
-  const folderExists = fs.existsSync(storyFolder);
+  const folderExists = fs.existsSync(await storyFolder);
 
   if (!folderExists) {
     await mkdirp(`${storyFolder}`, { fs });
@@ -46,26 +47,28 @@ export async function createStoryFolder({ filePath }): Promise<string> {
   return storyFolder;
 }
 
-export async function writeStories({ filePath, fileContent }) {
+export async function writeStories(namespace: string, { filePath, fileContent }) {
   const fileName = 'stories.js';
   return writeStoryFile({
     filePath,
+    namespace,
     fileContent,
     fileName,
   });
 }
 
-export async function writeSharedFile(name, fileContent) {
-  const filesFolder = path.join(TEMP_FOLDER, 'files');
+export async function writeSharedFile(namespace, name, fileContent) {
+  const namespaceFolder = await createNamespaceFolder(namespace);
+  const filesFolder = path.join(namespaceFolder, 'files');
   const filePath = path.join(filesFolder, `${name}.js`);
   await mkdirp(filesFolder, { fs });
   await writeFile(filePath, fileContent);
   return filePath;
 }
 
-export async function writeJson(what: string, content: object | any[]) {
-  await mkdirp(TEMP_FOLDER, { fs });
-  await writeFile(path.join(TEMP_FOLDER, `${what}.json`), JSON.stringify(content));
+export async function writeJson(what: string, content: object | any[], namespace?: string) {
+  const namespaceFolder = await createNamespaceFolder(namespace);
+  await writeFile(path.join(namespaceFolder, `${what}.json`), JSON.stringify(content));
 }
 
 export function readJsonSync(what: string) {
@@ -75,4 +78,11 @@ export function readJsonSync(what: string) {
 
 export async function cleanTempFolder() {
   await rimraf(TEMP_FOLDER, fs);
+}
+
+async function createNamespaceFolder(namespace?: string) {
+  const segments: string[] = [TEMP_FOLDER, namespace].filter(a => a) as any;
+  const namespaceFolder = path.join(...segments);
+  await mkdirp(namespaceFolder, { fs });
+  return namespaceFolder;
 }

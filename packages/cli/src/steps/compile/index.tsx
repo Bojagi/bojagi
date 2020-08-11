@@ -38,6 +38,7 @@ async function action({
     scan: { storyFiles },
   },
 }: StepRunnerActionOptions<DependencyStepOutputs>): Promise<CompileStepOutput> {
+  const { namespace } = config;
   const { entrypoints, webpackConfig } = await getWebpackConfig({
     config,
     storyFiles,
@@ -57,9 +58,10 @@ async function action({
   const filesWithMetadata = await Promise.all(
     FILES.filter(name => outputContent[name]).map(async name => {
       const fileContent = outputContent[name];
-      const outputFilePath = await writeSharedFile(name, fileContent);
+      const outputFilePath = await writeSharedFile(namespace, name, fileContent);
       return {
         name,
+        namespace,
         fileContent,
         outputFilePath,
       };
@@ -71,13 +73,14 @@ async function action({
     fileName: sf.fileName,
     gitPath: sf.gitPath,
     name: sf.name,
+    namespace,
     filePath: sf.filePath,
     fileContent: outputContent[sf.fileName],
   }));
 
   const storyFileWithOutputFilePath = await Promise.all(
     storyFileWithMetadata.map(async sf => {
-      const outputFilePath = await writeStories(sf);
+      const outputFilePath = await writeStories(namespace, sf);
       return {
         ...sf,
         outputFilePath,

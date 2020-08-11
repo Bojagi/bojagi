@@ -5,7 +5,7 @@ import * as crypto from 'crypto';
 
 export const EXEC_PATH = path.resolve(__dirname, '..');
 export const BOJAGI_BIN = path.resolve(EXEC_PATH, 'node_modules', '.bin', 'bojagi');
-export const RESULT_FOLDER = path.resolve(EXEC_PATH, '.bojagi', 'tmp');
+export const RESULT_FOLDER = path.resolve(EXEC_PATH, '.bojagi', 'tmp', 'default');
 
 export function deleteTmpFolder() {
   fs.rmdirSync(RESULT_FOLDER, { recursive: true });
