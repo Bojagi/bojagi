@@ -11,7 +11,7 @@ test('get components API output', () => {
       fileName: 'file1',
       title: 'FILE ONE',
       filePath: '/some/path/some/file.ts',
-      stories: [
+      storyItems: [
         {
           exportName: 'story1',
           storyName: 'story eins',
@@ -26,7 +26,7 @@ test('get components API output', () => {
       fileName: 'file2',
       title: 'FILE TWO',
       filePath: '/some/path/some/feli.ts',
-      stories: [
+      storyItems: [
         {
           exportName: 'story3',
           storyName: 'story drei',

@@ -14,7 +14,7 @@ const STORY_PROPERTY_WHITELIST: (keyof StoryFileWithMetadata | keyof StoryCollec
   'gitPath',
   'name',
   'namespace',
-  'stories',
+  'storyItems',
   'title',
   'dependencies',
 ];

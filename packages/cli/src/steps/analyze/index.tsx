@@ -4,7 +4,7 @@ import { CompileStepOutput } from '../compile';
 import { getStoriesMetadata } from './getStoriesMetadata';
 import { setupFakeBrowserEnvironment } from './setupFakeBrowserEnvironment';
 
-export type StoryMetadata = {
+export type StoryItem = {
   exportName: string;
   storyName: string;
 };
@@ -12,7 +12,7 @@ export type StoryMetadata = {
 export type StoryCollectionMetadata = {
   title: string;
   fileName: string;
-  stories: StoryMetadata[];
+  storyItems: StoryItem[];
 };
 
 export type AnalyzeStepOutput = {

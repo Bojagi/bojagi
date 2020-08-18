@@ -9,7 +9,7 @@ export function serveStoriesApi({ storiesMetadata, config }: SetupApiOptions) {
     ],
     stories: Object.entries(storiesMetadata).map(([filePath, meta]) => ({
       url: `http://localhost:${config.previewPort}/${meta.fileName}.js`,
-      stories: meta.stories,
+      storyItems: meta.storyItems,
       filePath,
       title: meta.title,
     })),

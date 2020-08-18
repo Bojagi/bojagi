@@ -35,7 +35,7 @@ async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOut
 
 async function createZipFile(): Promise<Buffer> {
   const namespaceFolder = path.join(TEMP_FOLDER, 'default');
-  const zipFile = path.join(namespaceFolder, 'upload.zip');
+  const zipFile = path.join(TEMP_FOLDER, 'upload.zip');
   const zip = new AdmZip();
 
   // Add metadata files to

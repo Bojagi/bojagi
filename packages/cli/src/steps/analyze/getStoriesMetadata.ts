@@ -10,7 +10,7 @@ export function getStoriesMetadata(
       ? {
           title: (module.default && module.default.title) || s.name,
           fileName: s.fileName,
-          stories: Object.entries(module)
+          storyItems: Object.entries(module)
             .filter(([exportName]) => exportName !== 'default')
             .map(([exportName, storyFn]) => ({
               exportName,

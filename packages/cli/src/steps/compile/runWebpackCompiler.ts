@@ -29,7 +29,12 @@ export const runWebpackCompiler = ({
           filterActualModulecomponentFilePaths(componentFilePaths)
         );
 
-        const modules = componentModules.map(addDependencies(dependencyPackages));
+        const modules = componentModules
+          // Filter out components without dependencies (somehow double in webpack output)
+          .filter(cm => cm.dependencies[0].module)
+          // Map first dependency, because webpack module has self dependency somehow
+          .map(cm => ({ ...cm.dependencies[0].module, request: cm.dependencies[0].request }))
+          .map(addDependencies(dependencyPackages));
 
         const entrypointNames = Object.keys(entrypoints);
 
@@ -110,7 +115,7 @@ function getRequest(module) {
 }
 
 function checkNodeModule(resource, nodeModulesPath) {
-  return resource && resource.startsWith(nodeModulesPath);
+  return !!resource && resource.startsWith(nodeModulesPath);
 }
 
 function ignoreDevDependencies(nodeModulesPath, dependencyPackages) {
