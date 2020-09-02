@@ -29,51 +29,59 @@ beforeEach(() => {
           rawRequest: `${cwd}/bojagi/A.js`,
           resource: `${cwd}/bojagi/A.js`,
           dependencies: [
-            // External module (react)
             {
-              request: 'react',
               module: {
-                resource: `${cwd}/node_modules/react/index.js`,
-                external: true,
-                dependencies: [],
-              },
-            },
-            {
-              request: '@babel/core',
-              module: {
-                resource: `${cwd}/node_modules/@babel/core/index.js`,
-                external: false,
-                dependencies: [],
-              },
-            },
-            // node module of org
-            {
-              request: '@material-ui/icons/MyIcon',
-              module: {
-                resource: `${cwd}/node_modules/@material-ui/icons/MyIcon/index.js`,
-                dependencies: [],
-              },
-            },
-            // node module (no org)
-            {
-              request: 'styled-components',
-              module: {
-                resource: `${cwd}/node_modules/styled-components/index.js`,
-                dependencies: [],
-              },
-            },
-            // project module
-            {
-              request: './test.js',
-              module: {
-                resource: `${cwd}/src/components/test.js`,
+                rawRequest: `${cwd}/bojagi/A.js`,
+                resource: `${cwd}/bojagi/A.js`,
                 dependencies: [
+                  // External module (react)
+                  {
+                    request: 'react',
+                    module: {
+                      resource: `${cwd}/node_modules/react/index.js`,
+                      external: true,
+                      dependencies: [],
+                    },
+                  },
+                  {
+                    request: '@babel/core',
+                    module: {
+                      resource: `${cwd}/node_modules/@babel/core/index.js`,
+                      external: false,
+                      dependencies: [],
+                    },
+                  },
+                  // node module of org
+                  {
+                    request: '@material-ui/icons/MyIcon',
+                    module: {
+                      resource: `${cwd}/node_modules/@material-ui/icons/MyIcon/index.js`,
+                      dependencies: [],
+                    },
+                  },
+                  // node module (no org)
+                  {
+                    request: 'styled-components',
+                    module: {
+                      resource: `${cwd}/node_modules/styled-components/index.js`,
+                      dependencies: [],
+                    },
+                  },
                   // project module
                   {
-                    request: './otherTest.js',
+                    request: './test.js',
                     module: {
-                      resource: `${cwd}/src/components/otherTest.js`,
-                      dependencies: [],
+                      resource: `${cwd}/src/components/test.js`,
+                      dependencies: [
+                        // project module
+                        {
+                          request: './otherTest.js',
+                          module: {
+                            resource: `${cwd}/src/components/otherTest.js`,
+                            dependencies: [],
+                          },
+                        },
+                      ],
                     },
                   },
                 ],

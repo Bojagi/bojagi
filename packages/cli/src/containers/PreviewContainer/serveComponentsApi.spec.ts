@@ -51,7 +51,7 @@ test('get components API output', () => {
         url: `http://localhost:1234/file1.js`,
         filePath: 'file1',
         title: 'FILE ONE',
-        stories: [
+        storyItems: [
           {
             exportName: 'story1',
             storyName: 'story eins',
@@ -66,7 +66,7 @@ test('get components API output', () => {
         url: `http://localhost:1234/file2.js`,
         filePath: 'file2',
         title: 'FILE TWO',
-        stories: [
+        storyItems: [
           {
             exportName: 'story3',
             storyName: 'story drei',
