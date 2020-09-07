@@ -3,7 +3,7 @@ import { StoryFileWithMetadata, FileContent, OutputFileContent, Module } from '.
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
-import { writeBojagiFile, writeStories } from '../../utils/writeFile';
+import { writeBojagiFile } from '../../utils/writeFile';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 
 import webpack = require('webpack');
@@ -58,18 +58,23 @@ async function action({
   const filesWithMetadata = await Promise.all(
     FILES.filter(name => outputContent[name]).map(async name => {
       const fileContent = outputContent[name];
-      const outputFilePath = await writeBojagiFile(namespace, name, fileContent);
+      const { outputFilePath, fullOutputFilePath } = await writeBojagiFile({
+        namespace,
+        name,
+        fileContent,
+        folder: 'files',
+      });
       return {
         name,
         namespace,
         fileContent,
-        compileLocation: outputFilePath,
         outputFilePath,
+        fullOutputFilePath,
       };
     })
   );
 
-  const storyFileWithMetadata: Omit<StoryFileWithMetadata, 'compileLocation'>[] = storyFiles.map(
+  const storyFileWithMetadata: Omit<StoryFileWithMetadata, 'outputFilePath'>[] = storyFiles.map(
     sf => ({
       dependencies: getDependenciesForFilePath(modules, sf.filePath),
       fileName: sf.fileName,
@@ -83,11 +88,16 @@ async function action({
 
   const storyFileWithOutputFilePath = await Promise.all(
     storyFileWithMetadata.map(async sf => {
-      const outputFilePath = await writeStories(namespace, sf);
+      const { outputFilePath, fullOutputFilePath } = await writeBojagiFile({
+        namespace,
+        folder: 'stories',
+        fileContent: sf.fileContent,
+        name: sf.filePath.replace(/\.[a-zA-Z]*$/, '').replace(/[/\\]/g, '__'),
+      });
       return {
         ...sf,
-        compileLocation: outputFilePath,
         outputFilePath,
+        fullOutputFilePath,
       };
     })
   );
@@ -108,6 +118,8 @@ function getPackageJsonDependencies(executionPath: string) {
 }
 
 function getDependenciesForFilePath(modules: Module[], filePath: string): Module[] {
+  console.log(modules.map(m => m.filePath));
   const module = modules.find(m => m.filePath === filePath);
+  console.log('DEPS', filePath, module);
   return (module && module.dependencies) || [];
 }

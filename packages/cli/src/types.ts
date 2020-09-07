@@ -23,12 +23,13 @@ export type File = {
 
 export type OutputFileContent<T> = T & {
   outputFilePath: string;
+  fullOutputFilePath: string;
 };
 
 export type FileContent = {
   fileContent: string;
   namespace: string;
-  compileLocation: string;
+  outputFilePath: string;
   name: string;
 };
 
@@ -37,6 +38,6 @@ export type StoryFileWithMetadata = File & {
   fileName: string;
   filePath: string;
   gitPath: string;
-  compileLocation: string;
+  outputFilePath: string;
   dependencies: Module[];
 };

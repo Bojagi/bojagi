@@ -38,8 +38,8 @@ type DependencyStepOutputs = {
 async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
   const componentModules = setupFakeBrowserEnvironment(global);
 
-  stepOutputs.compile.files.forEach(file => require(file.outputFilePath));
-  stepOutputs.compile.stories.forEach(s => require(s.outputFilePath));
+  stepOutputs.compile.files.forEach(file => require(file.fullOutputFilePath));
+  stepOutputs.compile.stories.forEach(s => require(s.fullOutputFilePath));
 
   const storiesMetadata = getStoriesMetadata(stepOutputs.compile.stories, componentModules);
 

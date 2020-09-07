@@ -29,59 +29,58 @@ beforeEach(() => {
           rawRequest: `${cwd}/bojagi/A.js`,
           resource: `${cwd}/bojagi/A.js`,
           dependencies: [
+            // External module (react)
             {
+              request: 'react',
               module: {
-                rawRequest: `${cwd}/bojagi/A.js`,
-                resource: `${cwd}/bojagi/A.js`,
+                resource: `${cwd}/node_modules/react/index.js`,
+                external: true,
+                dependencies: [],
+              },
+            },
+            {
+              request: '@babel/core',
+              module: {
+                resource: `${cwd}/node_modules/@babel/core/index.js`,
+                external: false,
+                dependencies: [],
+              },
+            },
+            {
+              request: 'foreignNodeModules',
+              module: {
+                resource: `../../node_modules/foreignNodeModules/index.js`,
+                dependencies: [],
+              },
+            },
+            // node module of org
+            {
+              request: '@material-ui/icons/MyIcon',
+              module: {
+                resource: `${cwd}/node_modules/@material-ui/icons/MyIcon/index.js`,
+                dependencies: [],
+              },
+            },
+            // node module (no org)
+            {
+              request: 'styled-components',
+              module: {
+                resource: `${cwd}/node_modules/styled-components/index.js`,
+                dependencies: [],
+              },
+            },
+            // project module
+            {
+              request: './test.js',
+              module: {
+                resource: `${cwd}/src/components/test.js`,
                 dependencies: [
-                  // External module (react)
-                  {
-                    request: 'react',
-                    module: {
-                      resource: `${cwd}/node_modules/react/index.js`,
-                      external: true,
-                      dependencies: [],
-                    },
-                  },
-                  {
-                    request: '@babel/core',
-                    module: {
-                      resource: `${cwd}/node_modules/@babel/core/index.js`,
-                      external: false,
-                      dependencies: [],
-                    },
-                  },
-                  // node module of org
-                  {
-                    request: '@material-ui/icons/MyIcon',
-                    module: {
-                      resource: `${cwd}/node_modules/@material-ui/icons/MyIcon/index.js`,
-                      dependencies: [],
-                    },
-                  },
-                  // node module (no org)
-                  {
-                    request: 'styled-components',
-                    module: {
-                      resource: `${cwd}/node_modules/styled-components/index.js`,
-                      dependencies: [],
-                    },
-                  },
                   // project module
                   {
-                    request: './test.js',
+                    request: './otherTest.js',
                     module: {
-                      resource: `${cwd}/src/components/test.js`,
-                      dependencies: [
-                        // project module
-                        {
-                          request: './otherTest.js',
-                          module: {
-                            resource: `${cwd}/src/components/otherTest.js`,
-                            dependencies: [],
-                          },
-                        },
-                      ],
+                      resource: `${cwd}/src/components/otherTest.js`,
+                      dependencies: [],
                     },
                   },
                 ],
@@ -118,7 +117,7 @@ test('run the webpack compiler', async () => {
   const componentsContent = await runWebpackCompiler({
     compiler,
     entrypoints,
-    dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
+    dependencyPackages: ['react', '@material-ui/icons', 'styled-components', 'foreignNodeModules'],
   });
   expect(componentsContent).toEqual({
     outputContent: {
@@ -141,6 +140,14 @@ test('run the webpack compiler', async () => {
             isNodeModule: true,
             request: 'react',
             packageName: 'react',
+          },
+          {
+            filePath: `../../node_modules/foreignNodeModules/index.js`,
+            gitPath: `gitpath/../../node_modules/foreignNodeModules/index.js`,
+            isExternal: false,
+            isNodeModule: true,
+            request: 'foreignNodeModules',
+            packageName: 'foreignNodeModules',
           },
           {
             filePath: `node_modules/@material-ui/icons/MyIcon/index.js`,
