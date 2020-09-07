@@ -1,11 +1,5 @@
 import composeWebpackConfig from './composeWebpackConfig';
 
-const storyFiles: any = [
-  {
-    filePath: 'src/abc.bojagi.jsx',
-  },
-];
-
 const basicInput = {
   entry: {
     Abc: 'src/abc.bojagi.js',
@@ -149,7 +143,6 @@ testCases.forEach(testCase => {
     const { entry, resolve, module, decoratorPath } = testCase.input;
     const config = composeWebpackConfig(
       entry,
-      storyFiles,
       resolve,
       module as any,
       '/my/project/path',

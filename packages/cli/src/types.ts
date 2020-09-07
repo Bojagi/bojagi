@@ -28,6 +28,7 @@ export type OutputFileContent<T> = T & {
 export type FileContent = {
   fileContent: string;
   namespace: string;
+  compileLocation: string;
   name: string;
 };
 
@@ -36,5 +37,6 @@ export type StoryFileWithMetadata = File & {
   fileName: string;
   filePath: string;
   gitPath: string;
+  compileLocation: string;
   dependencies: Module[];
 };

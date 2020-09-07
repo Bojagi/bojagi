@@ -3,7 +3,7 @@ import { StoryFileWithMetadata, FileContent, OutputFileContent, Module } from '.
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
-import { writeSharedFile, writeStories } from '../../utils/writeFile';
+import { writeBojagiFile, writeStories } from '../../utils/writeFile';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 
 import webpack = require('webpack');
@@ -58,31 +58,35 @@ async function action({
   const filesWithMetadata = await Promise.all(
     FILES.filter(name => outputContent[name]).map(async name => {
       const fileContent = outputContent[name];
-      const outputFilePath = await writeSharedFile(namespace, name, fileContent);
+      const outputFilePath = await writeBojagiFile(namespace, name, fileContent);
       return {
         name,
         namespace,
         fileContent,
+        compileLocation: outputFilePath,
         outputFilePath,
       };
     })
   );
 
-  const storyFileWithMetadata: StoryFileWithMetadata[] = storyFiles.map(sf => ({
-    dependencies: getDependenciesForFilePath(modules, sf.filePath),
-    fileName: sf.fileName,
-    gitPath: sf.gitPath,
-    name: sf.name,
-    namespace,
-    filePath: sf.filePath,
-    fileContent: outputContent[sf.fileName],
-  }));
+  const storyFileWithMetadata: Omit<StoryFileWithMetadata, 'compileLocation'>[] = storyFiles.map(
+    sf => ({
+      dependencies: getDependenciesForFilePath(modules, sf.filePath),
+      fileName: sf.fileName,
+      gitPath: sf.gitPath,
+      name: sf.name,
+      namespace,
+      filePath: sf.filePath,
+      fileContent: outputContent[sf.fileName],
+    })
+  );
 
   const storyFileWithOutputFilePath = await Promise.all(
     storyFileWithMetadata.map(async sf => {
       const outputFilePath = await writeStories(namespace, sf);
       return {
         ...sf,
+        compileLocation: outputFilePath,
         outputFilePath,
       };
     })

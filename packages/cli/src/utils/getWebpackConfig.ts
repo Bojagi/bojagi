@@ -43,7 +43,6 @@ export async function getWebpackConfig({
 
   const webpackConfig = composeWebpackConfig(
     entrypoints,
-    storyFiles,
     processedProjectConfig.resolve,
     processedProjectConfig.module,
     config.executionPath,

@@ -1,11 +1,9 @@
 import * as webpack from 'webpack';
 import * as fs from 'fs';
 import * as pathUtils from 'path';
-import { StoryWithMetadata } from '../types';
 
 const composeWebpackConfig = (
   entry: webpack.Entry,
-  storyFiles: StoryWithMetadata[],
   resolve: object,
   module: webpack.Module,
   executionPath: string,
@@ -26,24 +24,6 @@ const composeWebpackConfig = (
       ],
     });
   }
-
-  rules.unshift({
-    test: storyFiles.map(sf => pathUtils.resolve(executionPath, sf.filePath)),
-    use: [
-      {
-        loader: `bojagi-expose-loader`,
-        options: {
-          symbol: path => {
-            const relacedPath = pathUtils
-              .relative(executionPath, path)
-              .replace(/(\/|\\)/g, '__')
-              .replace(/\./g, '_');
-            return `bojagiStories.${relacedPath}`;
-          },
-        },
-      },
-    ],
-  });
 
   return {
     entry,
