@@ -27,19 +27,7 @@ const testCases = [
       });
       expect(config.module).toEqual({
         my: 'module config',
-        rules: [
-          {
-            test: ['/my/project/path/src/abc.bojagi.jsx'],
-            use: [
-              {
-                loader: 'bojagi-expose-loader',
-                options: {
-                  symbol: expect.any(Function),
-                },
-              },
-            ],
-          },
-        ],
+        rules: [],
       });
       expect(config.resolveLoader.alias).toEqual({
         'component-extract-loader': `${__dirname}/componentExtractLoader`,
@@ -70,17 +58,6 @@ const testCases = [
         my: 'module config',
         rules: [
           {
-            test: ['/my/project/path/src/abc.bojagi.jsx'],
-            use: [
-              {
-                loader: 'bojagi-expose-loader',
-                options: {
-                  symbol: expect.any(Function),
-                },
-              },
-            ],
-          },
-          {
             test: '/my/decorator/path.jsx',
             use: [
               {
@@ -109,17 +86,6 @@ const testCases = [
       expect(config.module).toEqual({
         my: 'module config',
         rules: [
-          {
-            test: ['/my/project/path/src/abc.bojagi.jsx'],
-            use: [
-              {
-                loader: 'bojagi-expose-loader',
-                options: {
-                  symbol: expect.any(Function),
-                },
-              },
-            ],
-          },
           {
             test: '/my/decorator/path.jsx',
             use: [
