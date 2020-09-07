@@ -118,8 +118,6 @@ function getPackageJsonDependencies(executionPath: string) {
 }
 
 function getDependenciesForFilePath(modules: Module[], filePath: string): Module[] {
-  console.log(modules.map(m => m.filePath));
   const module = modules.find(m => m.filePath === filePath);
-  console.log('DEPS', filePath, module);
   return (module && module.dependencies) || [];
 }
