@@ -8,7 +8,11 @@ export const BOJAGI_BIN = path.resolve(EXEC_PATH, 'node_modules', '.bin', 'bojag
 export const RESULT_FOLDER = path.resolve(EXEC_PATH, '.bojagi', 'tmp', 'default');
 
 export function deleteTmpFolder() {
-  fs.rmdirSync(RESULT_FOLDER, { recursive: true });
+  try {
+    fs.rmdirSync(RESULT_FOLDER, { recursive: true });
+  } catch (e) {
+    console.log('test fresh,no tmp folder to be deleted');
+  }
 }
 
 export function hash(aString) {
