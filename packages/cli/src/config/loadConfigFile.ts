@@ -1,4 +1,5 @@
 import * as fileSystem from 'fs';
+import * as path from 'path';
 import { ConfigFilePrio, BaseConfig } from './types';
 
 export type LoadConfigFileOptions = {
@@ -6,10 +7,23 @@ export type LoadConfigFileOptions = {
   fs: typeof fileSystem;
 };
 
-export function loadConfigFile({ configFilePrio, fs }: LoadConfigFileOptions): Partial<BaseConfig> {
+export type LoadConfigFile = {
+  configFile: Partial<BaseConfig>;
+  configFilePath?: string;
+  configFileDirectory: string;
+};
+
+export function loadConfigFile({ configFilePrio, fs }: LoadConfigFileOptions): LoadConfigFile {
   const foundConfigFile = configFilePrio.find(fc => fs.existsSync(fc.path));
   if (foundConfigFile) {
-    return foundConfigFile.fn(foundConfigFile.path);
+    return {
+      configFile: foundConfigFile.fn(foundConfigFile.path),
+      configFilePath: foundConfigFile.path,
+      configFileDirectory: path.dirname(foundConfigFile.path),
+    };
   }
-  return {};
+  return {
+    configFile: {},
+    configFileDirectory: process.cwd(),
+  };
 }

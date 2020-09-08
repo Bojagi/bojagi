@@ -17,7 +17,7 @@ beforeEach(() => {
   };
 });
 
-test('Return config file content if file was found', () => {
+test('Return config file content and the path of the file if file was found', () => {
   fsMock.existsSync.mockReturnValue(true);
   const result = loadConfigFile({
     fs: fsMock,
@@ -26,10 +26,12 @@ test('Return config file content if file was found', () => {
 
   expect(configContentResolverMock).toHaveBeenCalledTimes(1);
   expect(configContentResolverMock).toHaveBeenCalledWith('/abc/123.js');
-  expect(result).toEqual({ some: 'thing' });
+  expect(result.configFile).toEqual({ some: 'thing' });
+  expect(result.configFilePath).toEqual('/abc/123.js');
+  expect(result.configFileDirectory).toEqual('/abc');
 });
 
-test('Return empty object if file was not found', () => {
+test('Return empty object for config file content if file was not found', () => {
   fsMock.existsSync.mockReturnValue(false);
   const result = loadConfigFile({
     fs: fsMock,
@@ -37,5 +39,5 @@ test('Return empty object if file was not found', () => {
   });
 
   expect(configContentResolverMock).toHaveBeenCalledTimes(0);
-  expect(result).toEqual({});
+  expect(result).toEqual({ configFile: {}, configFileDirectory: process.cwd() });
 });
