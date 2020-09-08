@@ -3,7 +3,22 @@ import { Box, Color } from 'ink';
 import Spinner from 'ink-spinner';
 import { Message } from '../../components/Message';
 
-export function DevServerMessage({ storyFiles, devServer, established, ready, errors }) {
+export function DevServerMessage({
+  storyFiles,
+  devServer,
+  established,
+  ready,
+  errors,
+  setupError,
+}) {
+  if (setupError) {
+    return (
+      <Box marginX={3} marginBottom={1} flexDirection="column">
+        <Color red>Something went wrong:</Color>
+        <Box>{setupError.message}</Box>
+      </Box>
+    );
+  }
   if (!storyFiles || !devServer) {
     return null;
   }
