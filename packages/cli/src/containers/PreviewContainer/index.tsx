@@ -21,7 +21,7 @@ export function PreviewContainer() {
   const [storiesMetadata, setStoriesMetadata] = React.useState();
   const [storyFiles, setStoryFiles] = React.useState();
 
-  const { devServer, established, ready, errors } = useWebpackDevServer({
+  const { devServer, established, ready, errors, setupError } = useWebpackDevServer({
     config,
     storyFiles,
     storiesMetadata,
@@ -42,6 +42,7 @@ export function PreviewContainer() {
         established={established}
         ready={ready}
         errors={errors}
+        setupError={setupError}
       />
       {devServer && (
         <BorderBox
