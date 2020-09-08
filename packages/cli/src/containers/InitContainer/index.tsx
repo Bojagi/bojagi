@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as path from 'path';
-import Link from 'ink-link';
+// import Link from 'ink-link';
 import { Box, Text } from 'ink';
 
 import { useConfig } from '../../config/configContext';
@@ -23,31 +23,31 @@ const REQUIRED_FILES: [string, string][] = [
 const QUESTIONS: Question[] = [
   {
     type: 'input',
-    name: 'srcFolder',
-    message: '💾 In what folder is your code located',
-    default: './src',
+    name: 'storyPath',
+    message: '💾 Where are your stories located? (Please provide glob pattern)',
+    default: 'src/**/*.stories.@(jsx|js|tsx|ts)',
   },
-  {
-    type: 'select',
-    name: 'createDecorator',
-    message: (
-      <Text>
-        📸 Should I create a boilerplate global decorator (
-        <Link url="https://bojagi.io/docs/stories/#decorators">see docs</Link>)?
-      </Text>
-    ),
-    items: [
-      {
-        label: 'Yes',
-        value: true,
-      },
-      {
-        label: 'No',
-        value: false,
-      },
-    ],
-    default: true,
-  },
+  // {
+  //   type: 'select',
+  //   name: 'createDecorator',
+  //   message: (
+  //     <Text>
+  //       📸 Should I create a boilerplate global decorator (
+  //       <Link url="https://bojagi.io/docs/stories/#decorators">see docs</Link>)?
+  //     </Text>
+  //   ),
+  //   items: [
+  //     {
+  //       label: 'Yes',
+  //       value: true,
+  //     },
+  //     {
+  //       label: 'No',
+  //       value: false,
+  //     },
+  //   ],
+  //   default: true,
+  // },
 ];
 
 export function InitContainer() {

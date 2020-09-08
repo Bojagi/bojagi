@@ -1,14 +1,11 @@
 import { getWebpackConfigPath } from '../utils/composeWebpackConfig';
 import { BaseConfig } from './types';
 
-const COLLECTOR_MAIN_NAME = '@bojagi/collector-main';
-
 export const defaultConfig: BaseConfig = {
-  componentMarker: '@bojagi',
-  dir: 'src',
   webpackConfig: getWebpackConfigPath(process.cwd()),
   executionPath: process.cwd(),
   dryRun: false,
+  namespace: 'default',
   decoratorPath: '.bojagi/decorator.@(tsx|ts|jsx|js)',
   storyPath: ['src/**/*.stories.@(tsx|ts|jsx|js)', 'src/**/*.bojagi.@(tsx|ts|jsx|js)'],
   storyPathIgnorePatterns: [],
@@ -17,5 +14,4 @@ export const defaultConfig: BaseConfig = {
   previewDownloadUrl:
     process.env.BOJAGI_PREVIEW_DOWNLOAD_URL ||
     'https://dev-bojagi-local-dev-releases.s3.amazonaws.com',
-  collectors: [COLLECTOR_MAIN_NAME],
 };

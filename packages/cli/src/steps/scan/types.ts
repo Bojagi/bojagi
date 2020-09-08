@@ -1,9 +1,7 @@
-import { ComponentExportDescription } from '@bojagi/types';
-
-export type ScannedComponent = ComponentExportDescription & {
+export type ScannedStoryFile = {
   fileName: string;
   name: string;
+  stories: string[];
   filePath: string;
-  exportName: string;
   gitPath: string;
 };

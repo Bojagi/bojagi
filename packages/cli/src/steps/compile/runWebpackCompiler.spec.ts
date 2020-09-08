@@ -1,4 +1,4 @@
-import runWebpackCompiler from './runWebpackCompiler';
+import { runWebpackCompiler } from './runWebpackCompiler';
 import getGitPath from '../../utils/getGitPath';
 
 jest.mock('../../utils/getGitPath');
@@ -43,6 +43,13 @@ beforeEach(() => {
               module: {
                 resource: `${cwd}/node_modules/@babel/core/index.js`,
                 external: false,
+                dependencies: [],
+              },
+            },
+            {
+              request: 'foreignNodeModules',
+              module: {
+                resource: `../../node_modules/foreignNodeModules/index.js`,
                 dependencies: [],
               },
             },
@@ -93,6 +100,7 @@ beforeEach(() => {
 
   mockFs = {
     readFileSync: jest.fn(path => fileContents[path]),
+    existsSync: jest.fn(() => true),
   };
   entrypoints = {
     A: [`A!${cwd}/bojagi/A.js`],
@@ -109,10 +117,10 @@ test('run the webpack compiler', async () => {
   const componentsContent = await runWebpackCompiler({
     compiler,
     entrypoints,
-    dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
+    dependencyPackages: ['react', '@material-ui/icons', 'styled-components', 'foreignNodeModules'],
   });
   expect(componentsContent).toEqual({
-    componentsContent: {
+    outputContent: {
       commons: 'commons file content',
       A: 'file content a',
       B: 'file content b',
@@ -132,6 +140,14 @@ test('run the webpack compiler', async () => {
             isNodeModule: true,
             request: 'react',
             packageName: 'react',
+          },
+          {
+            filePath: `../../node_modules/foreignNodeModules/index.js`,
+            gitPath: `gitpath/../../node_modules/foreignNodeModules/index.js`,
+            isExternal: false,
+            isNodeModule: true,
+            request: 'foreignNodeModules',
+            packageName: 'foreignNodeModules',
           },
           {
             filePath: `node_modules/@material-ui/icons/MyIcon/index.js`,

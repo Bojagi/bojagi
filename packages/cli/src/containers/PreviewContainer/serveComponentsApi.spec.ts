@@ -1,5 +1,4 @@
-import { PropSetType } from '@bojagi/collector-base';
-import { serveComponentsApi } from './serveComponentsApi';
+import { serveStoriesApi } from './serveStoryApi';
 
 test('get components API output', () => {
   const config: any = {
@@ -7,79 +6,38 @@ test('get components API output', () => {
     executionPath: '/some/path',
   };
 
-  const entrypointsWithMetadata = {
+  const storiesMetadata = {
     file1: {
-      entrypoint: 'file1',
+      fileName: 'file1',
+      title: 'FILE ONE',
       filePath: '/some/path/some/file.ts',
-      components: [
+      storyItems: [
         {
-          symbol: 'sym1',
-          isDefaultExport: true,
+          exportName: 'story1',
+          storyName: 'story eins',
         },
         {
-          symbol: 'sym2',
-          isDefaultExport: false,
+          exportName: 'story2',
+          storyName: 'story zwei',
         },
       ],
     },
     file2: {
-      entrypoint: 'file1',
+      fileName: 'file2',
+      title: 'FILE TWO',
       filePath: '/some/path/some/feli.ts',
-      components: [
+      storyItems: [
         {
-          symbol: 'sym3',
-          isDefaultExport: false,
+          exportName: 'story3',
+          storyName: 'story drei',
         },
       ],
     },
   };
 
-  const componentProps: any = [
-    {
-      filePath: 'some/feli.ts',
-      exportName: 'sym3',
-      props: [
-        {
-          name: 'Y',
-          propSetType: 'js' as PropSetType,
-          createdBy: 'test-collector',
-          propSet: {
-            a: 1,
-            b: 'x',
-          },
-        },
-        {
-          name: 'Z',
-          propSetType: 'js' as PropSetType,
-          createdBy: 'test-collector',
-          propSet: {
-            a: 10,
-            b: 'y',
-          },
-        },
-      ],
-    },
-    {
-      filePath: 'some/file.ts',
-      exportName: 'sym2',
-      props: [
-        {
-          name: 'K',
-          propSetType: 'json' as PropSetType,
-          createdBy: 'test-collector',
-          propSet: {
-            a: 3,
-            b: 'z',
-          },
-        },
-      ],
-    },
-  ];
-
-  const result = serveComponentsApi({
-    entrypointsWithMetadata,
+  const result = serveStoriesApi({
+    storiesMetadata,
     config,
-    componentProps,
   });
 
   expect(result).toEqual({
@@ -88,54 +46,30 @@ test('get components API output', () => {
         url: 'http://localhost:1234/commons.js',
       },
     ],
-    components: [
+    stories: [
       {
-        url: `http://localhost:1234/sym1.js`,
-        id: 'sym1',
-        exportName: 'default',
-        symbol: 'sym1',
-        props: [],
-      },
-      {
-        url: `http://localhost:1234/sym2.js`,
-        id: 'sym2',
-        exportName: 'sym2',
-        symbol: 'sym2',
-        props: [
+        url: `http://localhost:1234/file1.js`,
+        filePath: 'file1',
+        title: 'FILE ONE',
+        storyItems: [
           {
-            name: 'K',
-            propSetType: 'json' as PropSetType,
-            createdBy: 'test-collector',
-            propSet: JSON.stringify({
-              a: 3,
-              b: 'z',
-            }),
+            exportName: 'story1',
+            storyName: 'story eins',
+          },
+          {
+            exportName: 'story2',
+            storyName: 'story zwei',
           },
         ],
       },
       {
-        url: `http://localhost:1234/sym3.js`,
-        id: 'sym3',
-        exportName: 'sym3',
-        symbol: 'sym3',
-        props: [
+        url: `http://localhost:1234/file2.js`,
+        filePath: 'file2',
+        title: 'FILE TWO',
+        storyItems: [
           {
-            name: 'Y',
-            propSetType: 'js' as PropSetType,
-            createdBy: 'test-collector',
-            propSet: JSON.stringify({
-              a: 1,
-              b: 'x',
-            }),
-          },
-          {
-            name: 'Z',
-            propSetType: 'js' as PropSetType,
-            createdBy: 'test-collector',
-            propSet: JSON.stringify({
-              a: 10,
-              b: 'y',
-            }),
+            exportName: 'story3',
+            storyName: 'story drei',
           },
         ],
       },

@@ -3,8 +3,8 @@ import { Box, Color } from 'ink';
 import Spinner from 'ink-spinner';
 import { Message } from '../../components/Message';
 
-export function DevServerMessage({ foundComponents, devServer, established, ready, errors }) {
-  if (!foundComponents || !devServer) {
+export function DevServerMessage({ storyFiles, devServer, established, ready, errors }) {
+  if (!storyFiles || !devServer) {
     return null;
   }
   if (!established) {

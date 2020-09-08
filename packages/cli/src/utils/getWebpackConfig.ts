@@ -1,15 +1,14 @@
 import * as pathUtils from 'path';
-import { EntrypointWithMetadata } from '@bojagi/types';
+import { StoryWithMetadata } from '../types';
 import composeWebpackConfig from './composeWebpackConfig';
 import glob from './glob';
 import { Config } from '../config';
-import getStoryFiles from './getStoryFiles';
 
 import webpack = require('webpack');
 
 export type GetWebpackConfigOptions = {
   config: Config;
-  entrypointsWithMetadata: Record<string, EntrypointWithMetadata>;
+  storyFiles: StoryWithMetadata[];
 };
 
 export type GetWebpackConfigOutput = {
@@ -25,7 +24,7 @@ async function buildProjectWebpackConfig(projectWebpackConfig) {
 
 export async function getWebpackConfig({
   config,
-  entrypointsWithMetadata,
+  storyFiles,
 }: GetWebpackConfigOptions): Promise<GetWebpackConfigOutput> {
   const projectWebpackConfig = require(config.webpackConfig);
   const processedProjectConfig = await buildProjectWebpackConfig(projectWebpackConfig);
@@ -34,12 +33,10 @@ export async function getWebpackConfig({
   const decoratorFileArray =
     decoratorFiles.length > 0 ? [pathUtils.resolve(config.executionPath, decoratorFiles[0])] : [];
 
-  const storyFiles = await getStoryFiles(config);
-  const storyFileArray = storyFiles.map(sf => pathUtils.resolve(config.executionPath, sf));
-  const entrypoints = Object.entries(entrypointsWithMetadata).reduce(
-    (prev, [key, ep]) => ({
+  const entrypoints = storyFiles.reduce(
+    (prev, storyFile) => ({
       ...prev,
-      [key]: [ep.entrypoint, ...decoratorFileArray, ...storyFileArray],
+      [storyFile.fileName]: [storyFile.entrypoint, ...decoratorFileArray],
     }),
     {}
   );
@@ -49,8 +46,7 @@ export async function getWebpackConfig({
     processedProjectConfig.resolve,
     processedProjectConfig.module,
     config.executionPath,
-    decoratorFileArray[0],
-    storyFileArray
+    decoratorFileArray[0]
   );
 
   return {

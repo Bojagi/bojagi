@@ -6,16 +6,13 @@ import { ConfigProvider } from '../config/configContext';
 export default function preview(program) {
   program
     .command('preview')
-    .option('-d, --dir [dir]', 'The root folder to search components in')
-    .option(
-      '--webpack-config [path]',
-      'Path to the webpack config file, defaults to webpack.config.js'
-    )
+    .option('--storyPath [pathPattern]', 'path pattern to search for stories in')
+    .option('--webpackConfig [path]', 'Path to the webpack config file')
     .option('--port [port]', 'Port that the preview server is going to be available in')
     .description('starts a local preview server')
-    .action(({ port }) => {
+    .action(({ webpackConfig, storyPath, port }) => {
       render(
-        <ConfigProvider config={{ dryRun: true, previewPort: port }}>
+        <ConfigProvider config={{ webpackConfig, storyPath, dryRun: true, previewPort: port }}>
           <PreviewContainer />
         </ConfigProvider>
       );

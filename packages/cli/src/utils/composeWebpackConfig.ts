@@ -7,8 +7,7 @@ const composeWebpackConfig = (
   resolve: object,
   module: webpack.Module,
   executionPath: string,
-  decoratorFile: string | undefined,
-  storyFiles: string[]
+  decoratorFile: string | undefined
 ): webpack.Configuration => {
   const rules = [...module.rules];
   if (decoratorFile) {
@@ -25,24 +24,6 @@ const composeWebpackConfig = (
       ],
     });
   }
-
-  rules.unshift({
-    test: storyFiles.map(sf => pathUtils.resolve(executionPath, sf)),
-    use: [
-      {
-        loader: `bojagi-expose-loader`,
-        options: {
-          symbol: path => {
-            const relacedPath = pathUtils
-              .relative(executionPath, path)
-              .replace(/(\/|\\)/g, '__')
-              .replace(/\./g, '_');
-            return `bojagiStories.${relacedPath}`;
-          },
-        },
-      },
-    ],
-  });
 
   return {
     entry,
@@ -86,7 +67,7 @@ const composeWebpackConfig = (
       }),
       new webpack.NormalModuleReplacementPlugin(
         /@storybook\/addons/,
-        pathUtils.join(executionPath, 'node_modules/@bojagi/collector-main/fakeStorybookAddons.js')
+        pathUtils.join(executionPath, 'node_modules/@bojagi/cli/fakeStorybookAddons.js')
       ),
     ],
   };

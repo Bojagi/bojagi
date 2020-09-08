@@ -4,7 +4,7 @@ import { getFS } from '../../dependencies';
 const fileSystem = getFS();
 
 export function writeBojagiRc(fs: typeof fileSystem, executionPath: string, answers: any) {
-  const options = [['src', answers.srcFolder]];
+  const options = [['storyPath', answers.storyPath]];
   const bojagiRcContent = [
     'module.exports = {',
     ...options.map(o => `  ${o[0]}: '${o[1]}',`),

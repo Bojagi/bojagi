@@ -4,106 +4,36 @@ import { getFS } from '../dependencies';
 import path = require('path');
 import util = require('util');
 import _rimraf = require('rimraf');
-import _mkdirp = require('mkdirp');
 
-export type WriteComponentPropsArgs = {
-  exportName: string;
+export type WriteStoryMetadataArgs = {
   filePath: string;
-  props: Record<string, any>[];
+  metadata: Record<string, any>;
 };
 
 const fs = getFS();
 
-const mkdirp = util.promisify(_mkdirp);
-const writeFile = util.promisify(fs.writeFile.bind(fs));
-const exists = util.promisify(fs.exists.bind(fs));
-const readFile = util.promisify(fs.readFile.bind(fs));
 const rimraf = util.promisify(_rimraf);
 
-export function getComponentFolder(filePath: string, exportName: string) {
-  const mappedPath = filePath.replace(/[/\\]/g, '__');
-  const folder = `${mappedPath}___${exportName}`;
-  return path.join(TEMP_FOLDER, 'components', folder);
-}
-
-async function writeComponentFile({ exportName, filePath, fileContent, fileName }) {
-  const componentFolder = await createComponentFolder({ filePath, exportName });
-  await mkdirp(`${componentFolder}`, { fs });
-  await writeFile(path.join(componentFolder, fileName), fileContent);
-}
-
-export async function createComponentFolder({ exportName, filePath }): Promise<string> {
-  const componentFolder = getComponentFolder(filePath, exportName);
-
-  const folderExists = fs.existsSync(componentFolder);
-
-  if (!folderExists) {
-    await mkdirp(`${componentFolder}`, { fs });
+function ensureDirectoryExistence(filePath) {
+  const dirname = path.dirname(filePath);
+  if (fs.existsSync(dirname)) {
+    return true;
   }
-
-  return componentFolder;
+  return fs.promises.mkdir(dirname, { recursive: true });
 }
 
-export async function writeComponent({ exportName, filePath, fileContent }) {
-  const fileName = 'component.js';
-  return writeComponentFile({
-    exportName,
-    filePath,
-    fileContent,
-    fileName,
-  });
+export async function writeBojagiFile({ namespace, folder, name, fileContent }) {
+  const namespaceFolder = await createBojagiTempFolder(namespace);
+  const outputFilePath = path.join(folder, `${name}.js`);
+  const fullOutputFilePath = path.join(namespaceFolder, outputFilePath);
+  await ensureDirectoryExistence(fullOutputFilePath);
+  await fs.promises.writeFile(fullOutputFilePath, fileContent);
+  return { outputFilePath, fullOutputFilePath };
 }
 
-export function readComponentsSync() {
-  return readJsonSync('components');
-}
-
-export function fileExistsSync(fileName: string): boolean {
-  if (!fs.existsSync(TEMP_FOLDER)) {
-    return false;
-  }
-
-  return fs.existsSync(path.join(TEMP_FOLDER, fileName));
-}
-
-export async function writeComponentProps({
-  exportName,
-  filePath,
-  props,
-}: WriteComponentPropsArgs) {
-  const fileName = 'props.json';
-  const fullPath = path.join(getComponentFolder(filePath, exportName), fileName);
-
-  const existingProps = (await exists(fullPath)) ? JSON.parse(readFile(fullPath)) : [];
-
-  const fileContent = JSON.stringify([...existingProps, ...props]);
-  return writeComponentFile({
-    exportName,
-    filePath,
-    fileContent,
-    fileName,
-  });
-}
-
-export function readComponentProps({ componentPath, symbol }): Record<string, any>[] {
-  const componentFolder = getComponentFolder(componentPath, symbol);
-  let props = [];
-  try {
-    props = require(path.join(componentFolder, 'props.json')) as any;
-  } catch {
-    props = [];
-  }
-  return props;
-}
-
-export async function writeSharedFile({ name, fileContent }) {
-  await mkdirp(path.join(TEMP_FOLDER, 'files'), { fs });
-  await writeFile(path.join(TEMP_FOLDER, 'files', `${name}.js`), fileContent);
-}
-
-export async function writeJson(what: string, content: object | any[]) {
-  await mkdirp(TEMP_FOLDER, { fs });
-  await writeFile(path.join(TEMP_FOLDER, `${what}.json`), JSON.stringify(content));
+export async function writeJson(what: string, content: object | any[], namespace?: string) {
+  const namespaceFolder = await createBojagiTempFolder(namespace);
+  await fs.promises.writeFile(path.join(namespaceFolder, `${what}.json`), JSON.stringify(content));
 }
 
 export function readJsonSync(what: string) {
@@ -113,4 +43,11 @@ export function readJsonSync(what: string) {
 
 export async function cleanTempFolder() {
   await rimraf(TEMP_FOLDER, fs);
+}
+
+async function createBojagiTempFolder(internalPath?: string) {
+  const segments: string[] = [TEMP_FOLDER, internalPath].filter(a => a) as any;
+  const namespaceFolder = path.join(...segments);
+  await ensureDirectoryExistence(namespaceFolder);
+  return namespaceFolder;
 }

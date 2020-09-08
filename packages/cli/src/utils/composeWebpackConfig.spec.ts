@@ -2,8 +2,7 @@ import composeWebpackConfig from './composeWebpackConfig';
 
 const basicInput = {
   entry: {
-    Abc: 'src/abc.js',
-    Xyz: 'src/xyz.js',
+    Abc: 'src/abc.bojagi.js',
   },
   resolve: {
     my: 'resolve config',
@@ -13,7 +12,6 @@ const basicInput = {
     rules: [],
   },
   decoratorPath: undefined,
-  storyFiles: ['src/abc.bojagi.jsx'],
 };
 
 const testCases = [
@@ -22,27 +20,14 @@ const testCases = [
     input: basicInput,
     test: config => {
       expect(config.entry).toEqual({
-        Abc: 'src/abc.js',
-        Xyz: 'src/xyz.js',
+        Abc: 'src/abc.bojagi.js',
       });
       expect(config.resolve).toEqual({
         my: 'resolve config',
       });
       expect(config.module).toEqual({
         my: 'module config',
-        rules: [
-          {
-            test: ['/my/project/path/src/abc.bojagi.jsx'],
-            use: [
-              {
-                loader: 'bojagi-expose-loader',
-                options: {
-                  symbol: expect.any(Function),
-                },
-              },
-            ],
-          },
-        ],
+        rules: [],
       });
       expect(config.resolveLoader.alias).toEqual({
         'component-extract-loader': `${__dirname}/componentExtractLoader`,
@@ -73,17 +58,6 @@ const testCases = [
         my: 'module config',
         rules: [
           {
-            test: ['/my/project/path/src/abc.bojagi.jsx'],
-            use: [
-              {
-                loader: 'bojagi-expose-loader',
-                options: {
-                  symbol: expect.any(Function),
-                },
-              },
-            ],
-          },
-          {
             test: '/my/decorator/path.jsx',
             use: [
               {
@@ -113,17 +87,6 @@ const testCases = [
         my: 'module config',
         rules: [
           {
-            test: ['/my/project/path/src/abc.bojagi.jsx'],
-            use: [
-              {
-                loader: 'bojagi-expose-loader',
-                options: {
-                  symbol: expect.any(Function),
-                },
-              },
-            ],
-          },
-          {
             test: '/my/decorator/path.jsx',
             use: [
               {
@@ -143,14 +106,13 @@ const testCases = [
 
 testCases.forEach(testCase => {
   test(`getWebpackConfig - ${testCase.name}`, () => {
-    const { entry, resolve, module, decoratorPath, storyFiles } = testCase.input;
+    const { entry, resolve, module, decoratorPath } = testCase.input;
     const config = composeWebpackConfig(
       entry,
       resolve,
       module as any,
       '/my/project/path',
-      decoratorPath,
-      storyFiles
+      decoratorPath
     );
     testCase.test(config);
   });

@@ -1,13 +1,13 @@
-import { Module } from '@bojagi/types';
 import * as path from 'path';
+import { Module } from '../../types';
 import getGitPath from '../../utils/getGitPath';
 
 export type RunWebpackCompilerOutput = {
-  componentsContent: Record<string, string>;
+  outputContent: Record<string, string>;
   modules: Module[];
 };
 
-const runWebpackCompiler = ({
+export const runWebpackCompiler = ({
   compiler,
   entrypoints,
   dependencyPackages,
@@ -31,18 +31,21 @@ const runWebpackCompiler = ({
 
         const modules = componentModules.map(addDependencies(dependencyPackages));
 
-        const components = Object.keys(entrypoints);
-        const componentsContent = [...components, 'commons'].reduce((contents, componentName) => {
-          const content = compiler.outputFileSystem
-            .readFileSync(`${process.cwd()}/bojagi/${componentName}.js`)
-            .toString();
-          // eslint-disable-next-line no-param-reassign
-          contents[componentName] = content;
+        const entrypointNames = Object.keys(entrypoints);
+
+        const outputContent = [...entrypointNames, 'commons'].reduce((contents, fileName) => {
+          const filePath = `${process.cwd()}/bojagi/${fileName}.js`;
+
+          if (compiler.outputFileSystem.existsSync(filePath)) {
+            const content = compiler.outputFileSystem.readFileSync(filePath).toString();
+            // eslint-disable-next-line no-param-reassign
+            contents[fileName] = content;
+          }
           return contents;
         }, {});
 
         resolve({
-          componentsContent,
+          outputContent,
           modules,
         });
       } catch (execError) {
@@ -50,8 +53,6 @@ const runWebpackCompiler = ({
       }
     });
   });
-
-export default runWebpackCompiler;
 
 function filterActualModulecomponentFilePaths(componentFilePaths) {
   return module => {
@@ -72,23 +73,22 @@ function getFilePath(resource = '') {
 
 function addDependencies(dependencyPackages) {
   return (module): Module => {
-    const nodeModulesPath = `${process.cwd()}/node_modules/`;
     const isExternal = !!module.external;
-    const isNodeModule = checkNodeModule(module.resource, nodeModulesPath);
-    const packageName = isNodeModule ? getPackageName(module.resource, nodeModulesPath) : undefined;
+    const isNodeModule = checkNodeModule(module.resource);
+    const packageName = isNodeModule || isExternal ? getPackageName(module) : undefined;
     const filePath = module.resource && getFilePath(module.resource);
 
     return {
-      request: module.request,
       filePath,
       gitPath: getGitPath(filePath),
       isExternal,
       isNodeModule,
       packageName,
+      request: getRequest(module),
       dependencies: !(isNodeModule || isExternal)
         ? module.dependencies
             .filter(dep => dep.module)
-            .filter(ignoreDevDependencies(nodeModulesPath, dependencyPackages))
+            .filter(ignoreDevDependencies(dependencyPackages))
             .filter(onlyUnique)
             .map(dep =>
               addDependencies(dependencyPackages)({ ...dep.module, request: dep.request })
@@ -98,14 +98,23 @@ function addDependencies(dependencyPackages) {
   };
 }
 
-function checkNodeModule(resource, nodeModulesPath) {
-  return resource && resource.startsWith(nodeModulesPath);
+function getRequest(module) {
+  if (module.request) {
+    const requestSplit = module.request.split('!');
+    return requestSplit[requestSplit.length - 1];
+  }
+
+  return undefined;
 }
 
-function ignoreDevDependencies(nodeModulesPath, dependencyPackages) {
+function checkNodeModule(resource) {
+  return !!resource && resource.includes('node_modules');
+}
+
+function ignoreDevDependencies(dependencyPackages) {
   return dep =>
     // Module is part of project (no node_modules)
-    !checkNodeModule(dep.module.resource, nodeModulesPath) ||
+    !checkNodeModule(dep.module.resource) ||
     // Module is part of package.json "dependencies"
     dependencyPackages.find(depName => dep.request.startsWith(depName));
 }
@@ -114,8 +123,12 @@ function onlyUnique(dep, index, self) {
   return self.findIndex(selfDep => selfDep.request === dep.request) === index;
 }
 
-function getPackageName(resource: string, nodeModulesPath: string) {
-  const pathParts = resource.substring(nodeModulesPath.length).split('/');
+function getPackageName(module: any) {
+  if (module.external) {
+    return module.request;
+  }
+
+  const pathParts = module.resource.replace(/.*?node_modules\//, '').split('/');
   const isOrgPackage = pathParts[0].startsWith('@');
   return isOrgPackage ? `${pathParts[0]}/${pathParts[1]}` : pathParts[0];
 }

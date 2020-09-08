@@ -1,11 +1,8 @@
 import { CiSettings } from './getCiSettings';
 
-export type CollectorTuple = [string, Record<string, any>];
-
 export type BaseConfig = {
-  componentMarker: string;
-  dir: string;
   dryRun: boolean;
+  namespace: 'default';
   webpackConfig: string;
   executionPath: string;
   decoratorPath: string;
@@ -14,7 +11,6 @@ export type BaseConfig = {
   storyPathIgnorePatterns: string | string[];
   previewPort: number;
   previewDownloadUrl: string;
-  collectors: (string | CollectorTuple)[];
 };
 
 export type Config = CiSettings &
