@@ -43,6 +43,7 @@
     "ink-text-input": "^3.3.0",
     "jsdom": "^16.3.0",
     "memory-fs": "^0.5.0",
+    "mkdirp": "^0.5.1",
     "node-emoji": "^1.10.0",
     "opn": "^6.0.0",
     "react": "^16.13.1",
