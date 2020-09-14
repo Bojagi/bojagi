@@ -18,23 +18,23 @@ exports[`run bundle command 2`] = `
   \\"storyItems\\": [
    {
     \\"exportName\\": \\"yellow\\",
-    \\"storyName\\": \\"yellow\\"
+    \\"storyName\\": \\"Yellow\\"
    },
    {
     \\"exportName\\": \\"green\\",
-    \\"storyName\\": \\"green\\"
+    \\"storyName\\": \\"Green\\"
    },
    {
     \\"exportName\\": \\"red\\",
-    \\"storyName\\": \\"red\\"
+    \\"storyName\\": \\"Red\\"
    },
    {
     \\"exportName\\": \\"blue\\",
-    \\"storyName\\": \\"blue\\"
+    \\"storyName\\": \\"Blue\\"
    },
    {
     \\"exportName\\": \\"brown\\",
-    \\"storyName\\": \\"brown\\"
+    \\"storyName\\": \\"Brown\\"
    }
   ],
   \\"dependencies\\": [
@@ -74,12 +74,12 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"stories/src__components__Box.bojagi.js\\"
  },
  {
-  \\"title\\": \\"BoxWithButtons.bojagi\\",
+  \\"title\\": \\"Box With Buttons.bojagi\\",
   \\"fileName\\": \\"BoxWithButtons.bojagi\\",
   \\"storyItems\\": [
    {
     \\"exportName\\": \\"trafficLight\\",
-    \\"storyName\\": \\"trafficLight\\"
+    \\"storyName\\": \\"Traffic Light\\"
    }
   ],
   \\"dependencies\\": [
@@ -168,11 +168,11 @@ exports[`run bundle command 2`] = `
   \\"storyItems\\": [
    {
     \\"exportName\\": \\"buttonYellow\\",
-    \\"storyName\\": \\"buttonYellow\\"
+    \\"storyName\\": \\"Button Yellow\\"
    },
    {
     \\"exportName\\": \\"buttonGreen\\",
-    \\"storyName\\": \\"buttonGreen\\"
+    \\"storyName\\": \\"Button Green\\"
    }
   ],
   \\"dependencies\\": [
