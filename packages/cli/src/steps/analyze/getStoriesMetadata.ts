@@ -1,4 +1,5 @@
 import { StoryFileWithMetadata, OutputFileContent } from '../../types';
+import { camelCaseToSpaces } from '../../utils/camelCaseToSpaces';
 
 export function getStoriesMetadata(
   stories: OutputFileContent<StoryFileWithMetadata>[],
@@ -8,13 +9,13 @@ export function getStoriesMetadata(
     const module = componentModules.get(s.fileName);
     const metadata = module
       ? {
-          title: (module.default && module.default.title) || s.name,
+          title: (module.default && module.default.title) || camelCaseToSpaces(s.name),
           fileName: s.fileName,
           storyItems: Object.entries(module)
             .filter(([exportName]) => exportName !== 'default')
             .map(([exportName, storyFn]) => ({
               exportName,
-              storyName: storyFn.storyName || exportName,
+              storyName: storyFn.storyName || camelCaseToSpaces(exportName),
             })),
         }
       : {};
