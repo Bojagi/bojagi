@@ -18,7 +18,7 @@ export type GetWebpackConfigOutput = {
 
 async function buildProjectWebpackConfig(projectWebpackConfig) {
   return typeof projectWebpackConfig === 'function'
-    ? projectWebpackConfig({ env: 'production' }, {}) // TODO read from args etc
+    ? projectWebpackConfig('development') // TODO read from args etc
     : projectWebpackConfig;
 }
 
