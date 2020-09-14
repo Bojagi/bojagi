@@ -35,7 +35,7 @@ async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutp
 
   if (storyFiles.length === 0) {
     throw new NonVerboseError(
-      'No stories found. Could they be in a different directory? They can be configured: \n https://dev.bojagi.io/docs/cliConfigFile/#storypath'
+      'No stories found. Could they be in a different directory? They can be configured: \n https://bojagi.io/docs/cliConfigFile/#storypath'
     );
   }
 
