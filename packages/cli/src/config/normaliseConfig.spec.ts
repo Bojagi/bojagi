@@ -77,3 +77,11 @@ test('When webpackConfig is a relative path 2 prepend config file path', () => {
       .webpackConfig
   ).toEqual(`/x/a/b/c`);
 });
+
+test("When webpackConfig file couldn't be resolved, throw error", () => {
+  expect(() =>
+    normaliseConfig({ ...DEFAULT_CONFIG, webpackConfig: undefined } as any, CONFIG_FILE_DIR)
+  ).toThrow(
+    'No webpack file found. Please specify the webpack configuration file location: https://bojagi.io/docs/cliConfigFile/#webpackconfig'
+  );
+});
