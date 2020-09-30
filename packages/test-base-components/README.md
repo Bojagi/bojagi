@@ -1,1 +1,0 @@
-# Bojagi Integration Tests
