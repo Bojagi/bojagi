@@ -54,12 +54,12 @@
     "webpack": "4.41.6"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
-    "@types/node-emoji": "^1.8.1",
-    "@types/react": "^16.9.34",
-    "@types/react-intl": "^3.0.0",
+    "@types/axios": "0.14.0",
+    "@types/node-emoji": "1.8.1",
+    "@types/react": "16.9.34",
+    "@types/react-intl": "3.0.0",
     "@types/webpack": "4.41.6",
-    "@types/webpack-dev-server": "^3.10.1"
+    "@types/webpack-dev-server": "3.10.1"
   },
   "peerDependencies": {
     "react-dom": "^16.13.1"
