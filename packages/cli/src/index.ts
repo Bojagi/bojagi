@@ -1,4 +1,8 @@
+/* eslint-disable import/first */
 import setEnv from './setEnv';
+
+setEnv(); // set before the rest is loaded
+
 import bundle from './commands/bundle';
 import deploy from './commands/deploy';
 import upload from './commands/upload';
@@ -9,8 +13,6 @@ import init from './commands/init';
 import docs from './commands/docs';
 
 import program = require('commander');
-
-setEnv();
 
 bundle(program);
 deploy(program);

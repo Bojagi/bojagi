@@ -1,9 +1,13 @@
 import setEnv from './setEnv';
 
-const originalNodeEnv = process.env.NODE_ENV;
+let orgEnv;
 
-afterAll(() => {
-  process.env.NODE_ENV = originalNodeEnv;
+beforeEach(() => {
+  orgEnv = { ...process.env };
+});
+
+afterEach(() => {
+  Object.assign(process.env, { ...orgEnv });
 });
 
 test('set NODE_ENV to development if not set', () => {
@@ -16,4 +20,22 @@ test('not set NODE_ENV if set', () => {
   process.env.NODE_ENV = 'something';
   setEnv();
   expect(process.env.NODE_ENV).toBe('something');
+});
+
+test('auto set CI option if debug is set', () => {
+  delete process.env.CI;
+  process.env.DEBUG = 'sth';
+  setEnv();
+  expect(process.env.CI).toBe('true');
+  delete process.env.CI;
+  delete process.env.DEBUG;
+});
+
+test('dont auto set CI option if debug is not set', () => {
+  delete process.env.CI;
+  delete process.env.DEBUG;
+  setEnv();
+  expect(process.env.CI).toBe(undefined);
+  delete process.env.CI;
+  delete process.env.DEBUG;
 });
