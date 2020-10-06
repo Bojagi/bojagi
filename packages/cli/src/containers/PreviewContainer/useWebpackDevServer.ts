@@ -66,11 +66,13 @@ export function useWebpackDevServer({
 
       try {
         // dynamic require so we can use all other cli commands without having webpack dev server installed
+        // eslint-disable-next-line import/no-extraneous-dependencies
         const WebpackDevServer = require('webpack-dev-server');
         const server = new WebpackDevServer(compiler as any, {
           noInfo: true,
           stats: 'none',
           liveReload: false,
+          inline: false,
           hot: false,
           open: !config.previewNoOpen,
           contentBase: pathUtils.join(__dirname, 'public'),

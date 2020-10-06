@@ -5,6 +5,7 @@ import { StoryWithMetadata } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import getEntrypointsFromFiles from './getExtendedStorybookFiles';
 import getStoryFiles from '../../utils/getStoryFiles';
+import { NonVerboseError } from '../../errors';
 
 export type ScanStepOutput = {
   storyFiles: StoryWithMetadata[];
@@ -31,6 +32,12 @@ async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutp
   const storyFiles = await getStoryFiles(config);
   const extendedStoryFiles = getEntrypointsFromFiles(config, storyFiles);
   const packageJson = require(path.join(config.executionPath, 'package.json'));
+
+  if (storyFiles.length === 0) {
+    throw new NonVerboseError(
+      'No stories found. Could they be in a different directory? They can be configured: \n https://bojagi.io/docs/cliConfigFile/#storypath'
+    );
+  }
 
   return {
     storyFiles: extendedStoryFiles,

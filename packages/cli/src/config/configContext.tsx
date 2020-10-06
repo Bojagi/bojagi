@@ -1,5 +1,7 @@
+import { Box } from 'ink';
 import * as React from 'react';
 import { getConfig, Config } from '.';
+import { ErrorMessage } from '../components/ErrorMessage';
 
 export const configContext = React.createContext<Config>(undefined as any);
 
@@ -15,12 +17,23 @@ export type ConfigProviderProps = {
 export function ConfigProvider({ config: customConfig, children }: ConfigProviderProps) {
   const { Provider } = configContext;
   const [config, setConfig] = React.useState<Config | undefined>();
+  const [err, setError] = React.useState<Error | undefined>();
   React.useEffect(() => {
     const configWithoutUndefined = removeUndefinedFromObject(customConfig);
-    getConfig(configWithoutUndefined).then(cfg => {
-      setConfig(cfg);
-    });
+    getConfig(configWithoutUndefined)
+      .then(cfg => {
+        setConfig(cfg);
+      })
+      .catch(setError);
   }, [customConfig]);
+
+  if (err) {
+    return (
+      <Box marginTop={1}>
+        <ErrorMessage error={err} />
+      </Box>
+    );
+  }
 
   if (!config) {
     return null;
