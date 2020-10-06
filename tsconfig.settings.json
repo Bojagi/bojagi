@@ -7,7 +7,7 @@
     "sourceMap": true,
     // These settings are totally up to you
     "allowSyntheticDefaultImports": false,
-    "target": "esnext",
+    "target": "ES5",
     "module": "commonjs",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,

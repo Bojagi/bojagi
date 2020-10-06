@@ -13,6 +13,175 @@ exports[`run bundle command 1`] = `
 exports[`run bundle command 2`] = `
 "[
  {
+  \\"title\\": \\"App.bojagi\\",
+  \\"fileName\\": \\"App.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"RenderApp\\",
+    \\"storyName\\": \\"Render App\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"isExternal\\": true,
+    \\"isNodeModule\\": false,
+    \\"packageName\\": \\"react\\",
+    \\"request\\": \\"react\\"
+   },
+   {
+    \\"filePath\\": \\"src/App.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/App.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"request\\": \\"./App\\",
+    \\"dependencies\\": [
+     {
+      \\"isExternal\\": true,
+      \\"isNodeModule\\": false,
+      \\"packageName\\": \\"react\\",
+      \\"request\\": \\"react\\"
+     },
+     {
+      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": true,
+      \\"packageName\\": \\"styled-components\\",
+      \\"request\\": \\"styled-components\\"
+     },
+     {
+      \\"filePath\\": \\"src/components/Box.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./components/Box\\",
+      \\"dependencies\\": [
+       {
+        \\"isExternal\\": true,
+        \\"isNodeModule\\": false,
+        \\"packageName\\": \\"react\\",
+        \\"request\\": \\"react\\"
+       },
+       {
+        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": true,
+        \\"packageName\\": \\"styled-components\\",
+        \\"request\\": \\"styled-components\\"
+       }
+      ]
+     },
+     {
+      \\"filePath\\": \\"src/components/Button.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./components/Button\\",
+      \\"dependencies\\": [
+       {
+        \\"isExternal\\": true,
+        \\"isNodeModule\\": false,
+        \\"packageName\\": \\"react\\",
+        \\"request\\": \\"react\\"
+       },
+       {
+        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": true,
+        \\"packageName\\": \\"styled-components\\",
+        \\"request\\": \\"styled-components\\"
+       }
+      ]
+     },
+     {
+      \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./components/BoxWithButtons\\",
+      \\"dependencies\\": [
+       {
+        \\"isExternal\\": true,
+        \\"isNodeModule\\": false,
+        \\"packageName\\": \\"react\\",
+        \\"request\\": \\"react\\"
+       },
+       {
+        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": true,
+        \\"packageName\\": \\"styled-components\\",
+        \\"request\\": \\"styled-components\\"
+       },
+       {
+        \\"filePath\\": \\"src/components/Box.js\\",
+        \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"request\\": \\"./Box\\",
+        \\"dependencies\\": [
+         {
+          \\"isExternal\\": true,
+          \\"isNodeModule\\": false,
+          \\"packageName\\": \\"react\\",
+          \\"request\\": \\"react\\"
+         },
+         {
+          \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": true,
+          \\"packageName\\": \\"styled-components\\",
+          \\"request\\": \\"styled-components\\"
+         }
+        ]
+       },
+       {
+        \\"filePath\\": \\"src/components/Button.js\\",
+        \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"request\\": \\"./Button\\",
+        \\"dependencies\\": [
+         {
+          \\"isExternal\\": true,
+          \\"isNodeModule\\": false,
+          \\"packageName\\": \\"react\\",
+          \\"request\\": \\"react\\"
+         },
+         {
+          \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+          \\"isExternal\\": false,
+          \\"isNodeModule\\": true,
+          \\"packageName\\": \\"styled-components\\",
+          \\"request\\": \\"styled-components\\"
+         }
+        ]
+       }
+      ]
+     },
+     {
+      \\"filePath\\": \\"src/App.css\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/App.css\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./App.css\\",
+      \\"dependencies\\": [
+       {
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"dependencies\\": []
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/App.bojagi.js\\",
+  \\"name\\": \\"App.bojagi\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/App.bojagi.js\\",
+  \\"outputFilePath\\": \\"stories/src__App.bojagi.js\\"
+ },
+ {
   \\"title\\": \\"Box.bojagi\\",
   \\"fileName\\": \\"Box.bojagi\\",
   \\"storyItems\\": [

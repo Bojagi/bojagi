@@ -10,6 +10,7 @@ export enum DebugNamespaces {
   SCAN = 'scan',
   UPLOAD = 'upload',
   VALIDATE = 'validate',
+  WEBPACK_CONFIG = 'webpackConfig',
 }
 
 const debuggers = Object.values(DebugNamespaces).reduce(

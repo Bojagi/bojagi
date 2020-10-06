@@ -42,9 +42,8 @@ export async function getWebpackConfig({
   );
 
   const webpackConfig = composeWebpackConfig(
+    processedProjectConfig,
     entrypoints,
-    processedProjectConfig.resolve,
-    processedProjectConfig.module,
     config.executionPath,
     decoratorFileArray[0]
   );
