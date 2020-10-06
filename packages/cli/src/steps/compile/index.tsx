@@ -47,7 +47,8 @@ async function action({
     storyFiles,
   });
   debug('entry points: %O', entrypoints);
-  debug('loaders: %O', webpackConfig && webpackConfig.module && webpackConfig.module.rules);
+  debug('webpack config: %O', webpackConfig);
+  debug('webpack rules: %O', webpackConfig.module?.rules);
 
   // console.log('++++++++++++');
   // console.log(JSON.stringify(webpackConfig, null, '  '));
