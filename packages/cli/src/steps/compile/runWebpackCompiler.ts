@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import { Module } from '../../types';
 import getGitPath from '../../utils/getGitPath';
 import debuggers, { DebugNamespaces } from '../../debug';
@@ -27,6 +28,12 @@ export const runWebpackCompiler = ({
         reject(output.compilation.errors[0]);
       }
 
+      debug('created files after compilation: %O', fs.readdirSync(`${process.cwd()}/bojagi`));
+      debug('webpack compiler output: %O', Object.keys(output.compilation));
+      debug('webpack compiler output compiler %O', Object.keys(output.compilation.compiler));
+      debug('output assets: %O', output.compilation.assets);
+      debug(output.compilation.assets['./index.html'].source());
+
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
 
@@ -37,15 +44,16 @@ export const runWebpackCompiler = ({
         const modules = componentModules.map(addDependencies(dependencyPackages));
 
         const entrypointNames = Object.keys(entrypoints);
-
         const outputContent = [...entrypointNames, 'commons'].reduce((contents, fileName) => {
           const filePath = `${process.cwd()}/bojagi/${fileName}.js`;
 
-          if (compiler.outputFileSystem.existsSync(filePath)) {
-            const content = compiler.outputFileSystem.readFileSync(filePath).toString();
-            // eslint-disable-next-line no-param-reassign
-            contents[fileName] = content;
-          }
+          // if (compiler.outputFileSystem.existsSync(filePath)) {
+          const content = fs.readFileSync(filePath).toString();
+
+          // const content = compiler.outputFileSystem.readFileSync(filePath).toString();
+          // eslint-disable-next-line no-param-reassign
+          contents[fileName] = content;
+          // }
           return contents;
         }, {});
 
