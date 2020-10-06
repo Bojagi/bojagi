@@ -50,10 +50,6 @@ async function action({
   debug('webpack config: %O', webpackConfig);
   debug('webpack rules: %O', webpackConfig.module?.rules);
 
-  // console.log('++++++++++++');
-  // console.log(JSON.stringify(webpackConfig, null, '  '));
-  // console.log('++++++++++++');
-
   const compiler = webpack(webpackConfig);
   compiler.outputFileSystem = outputFS;
 
