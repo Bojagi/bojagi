@@ -10,6 +10,7 @@ export type BaseConfig = {
   storyPath: string | string[];
   storyPathIgnorePatterns: string | string[];
   previewPort: number;
+  previewNoOpen: boolean;
   previewDownloadUrl: string;
 };
 

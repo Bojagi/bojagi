@@ -11,6 +11,7 @@ export const defaultConfig: BaseConfig = {
   storyPathIgnorePatterns: [],
   uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io',
   previewPort: 5002,
+  previewNoOpen: false,
   previewDownloadUrl:
     process.env.BOJAGI_PREVIEW_DOWNLOAD_URL ||
     'https://dev-bojagi-local-dev-releases.s3.amazonaws.com',
