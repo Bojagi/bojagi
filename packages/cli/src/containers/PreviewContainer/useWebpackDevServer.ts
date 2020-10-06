@@ -74,7 +74,7 @@ export function useWebpackDevServer({
           liveReload: false,
           inline: false,
           hot: false,
-          open: true,
+          open: !config.previewNoOpen,
           contentBase: pathUtils.join(__dirname, 'public'),
           before: setupApi({ storiesMetadata, config }),
         });
