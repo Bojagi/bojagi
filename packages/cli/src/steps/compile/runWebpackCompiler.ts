@@ -1,6 +1,9 @@
 import * as path from 'path';
 import { Module } from '../../types';
 import getGitPath from '../../utils/getGitPath';
+import debuggers, { DebugNamespaces } from '../../debug';
+
+const debug = debuggers[DebugNamespaces.COMPILE];
 
 export type RunWebpackCompilerOutput = {
   outputContent: Record<string, string>;
@@ -15,10 +18,12 @@ export const runWebpackCompiler = ({
   new Promise((resolve, reject) => {
     compiler.run((err, output) => {
       if (err) {
+        debug(err);
         reject(err);
       }
 
       if (output.compilation.errors.length > 0) {
+        debug(output.compilation.errors);
         reject(output.compilation.errors[0]);
       }
 

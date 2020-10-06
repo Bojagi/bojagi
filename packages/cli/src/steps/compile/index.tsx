@@ -5,8 +5,11 @@ import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
 import { writeBojagiFile } from '../../utils/writeFile';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
+import debuggers, { DebugNamespaces } from '../../debug';
 
 import webpack = require('webpack');
+
+const debug = debuggers[DebugNamespaces.COMPILE];
 
 const outputFS = new MemoryFS();
 
@@ -43,6 +46,8 @@ async function action({
     config,
     storyFiles,
   });
+  debug('entry points: %O', entrypoints);
+  debug('loaders: %O', webpackConfig && webpackConfig.module && webpackConfig.module.rules);
 
   const compiler = webpack(webpackConfig);
   compiler.outputFileSystem = outputFS;

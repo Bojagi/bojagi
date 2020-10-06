@@ -1,4 +1,8 @@
+/* eslint-disable import/first */
 import setEnv from './setEnv';
+
+setEnv(); // set before the rest is loaded
+
 import bundle from './commands/bundle';
 import deploy from './commands/deploy';
 import upload from './commands/upload';
@@ -11,8 +15,6 @@ import docs from './commands/docs';
 const packageJson = require('../package.json');
 
 import program = require('commander');
-
-setEnv();
 
 program.version(packageJson.version);
 
