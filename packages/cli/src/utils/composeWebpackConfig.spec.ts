@@ -1,119 +1,107 @@
-// import composeWebpackConfig from './composeWebpackConfig';
+import composeWebpackConfig from './composeWebpackConfig';
 
-// const basicInput = {
-//   entry: {
-//     Abc: 'src/abc.bojagi.js',
-//   },
-//   resolve: {
-//     my: 'resolve config',
-//   },
-//   module: {
-//     my: 'module config',
-//     rules: [],
-//   },
-//   decoratorPath: undefined,
-// };
+const BASE_CONFIG_ENTRY = {
+  my: 'entry',
+};
 
-// const testCases = [
-//   {
-//     name: 'basic config',
-//     input: basicInput,
-//     test: config => {
-//       expect(config.entry).toEqual({
-//         Abc: 'src/abc.bojagi.js',
-//       });
-//       expect(config.resolve).toEqual({
-//         my: 'resolve config',
-//       });
-//       expect(config.module).toEqual({
-//         my: 'module config',
-//         rules: [],
-//       });
-//       expect(config.resolveLoader.alias).toEqual({
-//         'component-extract-loader': `${__dirname}/componentExtractLoader`,
-//         'bojagi-expose-loader': `${__dirname}/exposeLoader`,
-//       });
-//       expect(config.output).toEqual({
-//         path: `${process.cwd()}/bojagi`,
-//         filename: '[name].js',
-//         jsonpFunction: 'bojagiComponents',
-//       });
+const BASE_CONFIG_RESOLVE = {
+  alias: {
+    myResolve: 'my/special/path',
+  },
+};
 
-//       expect(config.externals).toEqual({
-//         react: 'React',
-//         'react-dom': 'ReactDOM',
-//       });
+const BASE_CONFIG_MODULE = {
+  my: 'module config',
+  rules: [
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: 'my-rule',
+    },
+  ],
+};
 
-//       // Plugins
-//       expect(config.plugins[0].definitions).toEqual({
-//         'process.env': { NODE_ENV: '"production"' },
-//       });
-//     },
-//   },
-//   {
-//     name: 'with decoratorPath',
-//     input: { ...basicInput, decoratorPath: '/my/decorator/path.jsx' },
-//     test: config => {
-//       expect(config.module).toEqual({
-//         my: 'module config',
-//         rules: [
-//           {
-//             test: '/my/decorator/path.jsx',
-//             use: [
-//               {
-//                 loader: 'bojagi-expose-loader',
-//                 options: {
-//                   symbol: 'bojagiDecorator',
-//                 },
-//               },
-//             ],
-//           },
-//         ],
-//       });
-//     },
-//   },
-//   {
-//     name: 'with decoratorPath and existing rules (prepend decorator rule)',
-//     input: {
-//       ...basicInput,
-//       module: {
-//         my: 'module config',
-//         rules: [{ existing: 'rule' }],
-//       },
-//       decoratorPath: '/my/decorator/path.jsx',
-//     },
-//     test: config => {
-//       expect(config.module).toEqual({
-//         my: 'module config',
-//         rules: [
-//           {
-//             test: '/my/decorator/path.jsx',
-//             use: [
-//               {
-//                 loader: 'bojagi-expose-loader',
-//                 options: {
-//                   symbol: 'bojagiDecorator',
-//                 },
-//               },
-//             ],
-//           },
-//           { existing: 'rule' },
-//         ],
-//       });
-//     },
-//   },
-// ];
+const BASE_CONFIG_PLUGINS = [
+  {
+    my: 'plugin',
+    apply: () => {},
+  },
+];
 
-// testCases.forEach(testCase => {
-//   test(`getWebpackConfig - ${testCase.name}`, () => {
-//     const { entry, resolve, module, decoratorPath } = testCase.input;
-//     const config = composeWebpackConfig(
-//       entry,
-//       resolve,
-//       module as any,
-//       '/my/project/path',
-//       decoratorPath
-//     );
-//     testCase.test(config);
-//   });
-// });
+const BASE_ENTRY = {
+  Abc: 'src/abc.bojagi.js',
+  Efg: 'src/efg.bojagi.js',
+};
+
+const BASE_INPUT = {
+  baseConfig: {
+    entry: BASE_CONFIG_ENTRY,
+    resolve: BASE_CONFIG_RESOLVE,
+    module: BASE_CONFIG_MODULE,
+    plugins: BASE_CONFIG_PLUGINS,
+  },
+  entry: BASE_ENTRY,
+  decoratorPath: undefined,
+};
+
+const testCases = [
+  {
+    name: 'basic config',
+    input: BASE_INPUT,
+    test: config => {
+      expect(config.entry).toEqual(BASE_ENTRY);
+      expect(config.resolve).toEqual(BASE_CONFIG_RESOLVE);
+      expect(config.module).toEqual(BASE_CONFIG_MODULE);
+      expect(config.resolveLoader.alias).toEqual({
+        'component-extract-loader': `${__dirname}/componentExtractLoader`,
+        'bojagi-expose-loader': `${__dirname}/exposeLoader`,
+      });
+      expect(config.output).toEqual({
+        path: `${process.cwd()}/bojagi`,
+        filename: '[name].js',
+        jsonpFunction: 'bojagiComponents',
+      });
+
+      expect(config.externals).toEqual({
+        react: 'React',
+        'react-dom': 'ReactDOM',
+      });
+
+      // Plugins
+      expect(config.plugins[1].definitions).toEqual({
+        'process.env': { NODE_ENV: '"production"' },
+      });
+    },
+  },
+  {
+    name: 'with decoratorPath',
+    input: { ...BASE_INPUT, decoratorPath: '/my/decorator/path.jsx' },
+    test: config => {
+      expect(config.module).toEqual({
+        my: 'module config',
+        rules: [
+          {
+            test: '/my/decorator/path.jsx',
+            use: [
+              {
+                loader: 'bojagi-expose-loader',
+                options: {
+                  symbol: 'bojagiDecorator',
+                },
+              },
+            ],
+          },
+          ...BASE_CONFIG_MODULE.rules,
+        ],
+      });
+    },
+  },
+];
+
+testCases.forEach(testCase => {
+  test(`getWebpackConfig - ${testCase.name}`, () => {
+    const { baseConfig, entry, decoratorPath } = testCase.input;
+    const config = composeWebpackConfig(baseConfig, entry, '/my/project/path', decoratorPath);
+    testCase.test(config);
+  });
+});

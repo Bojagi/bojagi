@@ -9,6 +9,7 @@ const composeWebpackConfig = (
   executionPath: string,
   decoratorFile: string | undefined
 ): webpack.Configuration => {
+  const { entry: baseEntry, ...baseConfigWithoutEntry } = baseConfig;
   return merge(
     {
       module: {
@@ -29,7 +30,7 @@ const composeWebpackConfig = (
           : [],
       },
     },
-    baseConfig,
+    baseConfigWithoutEntry,
     {
       entry,
       output: {
