@@ -49,6 +49,10 @@ async function action({
   debug('entry points: %O', entrypoints);
   debug('loaders: %O', webpackConfig && webpackConfig.module && webpackConfig.module.rules);
 
+  // console.log('++++++++++++');
+  // console.log(JSON.stringify(webpackConfig, null, '  '));
+  // console.log('++++++++++++');
+
   const compiler = webpack(webpackConfig);
   compiler.outputFileSystem = outputFS;
 
