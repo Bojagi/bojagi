@@ -6,6 +6,8 @@ import debuggers, { DebugNamespaces } from '../../debug';
 
 const debug = debuggers[DebugNamespaces.COMPILE];
 
+const SUPPORTED_HTML_ADDABLE_ASSETS = [/.*\.js$/, /.*\.css$/];
+
 export type RunWebpackCompilerOutput = {
   outputContent: Record<string, string>;
   modules: Module[];
@@ -29,10 +31,25 @@ export const runWebpackCompiler = ({
       }
 
       debug('created files after compilation: %O', fs.readdirSync(`${process.cwd()}/bojagi`));
-      debug('webpack compiler output: %O', Object.keys(output.compilation));
-      debug('webpack compiler output compiler %O', Object.keys(output.compilation.compiler));
-      debug('output assets: %O', output.compilation.assets);
-      debug(output.compilation.assets['./index.html'].source());
+
+      const assets: Record<string, string[]> = Array.from(output.compilation.entrypoints.entries())
+        .map(([key, val]) => [key, val.getFiles().filter(f => f !== `${key}.js`)])
+        .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
+      debug('asset list: %O', assets);
+
+      const htmlAssets = Object.entries(assets)
+        .map(([key, value]): [string, string[]] => [
+          key,
+          value.filter(item => SUPPORTED_HTML_ADDABLE_ASSETS.find(regexp => regexp.test(item))),
+        ])
+        .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
+
+      debug('HTML addable asset list: %O', htmlAssets);
+
+      const allAssets = Object.values(assets)
+        .flat()
+        .filter((item, i, arr) => arr.indexOf(item) === i);
+      debug('all (flat) asset list: %O', allAssets);
 
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);

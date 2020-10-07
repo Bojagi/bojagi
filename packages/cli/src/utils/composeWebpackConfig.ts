@@ -54,9 +54,10 @@ const composeWebpackConfig = (
         concatenateModules: false,
         splitChunks: {
           cacheGroups: {
-            commons: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
               chunks: 'all',
-              name: 'commons',
             },
           },
         },
