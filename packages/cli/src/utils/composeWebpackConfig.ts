@@ -37,7 +37,7 @@ const composeWebpackConfig = (
         path: `${process.cwd()}/bojagi`,
         filename: '[name].js',
         jsonpFunction: 'bojagiComponents',
-        publicPath: '/uploads/files',
+        publicPath: '__bojagi_public_path__/',
       },
       resolveLoader: {
         alias: {
