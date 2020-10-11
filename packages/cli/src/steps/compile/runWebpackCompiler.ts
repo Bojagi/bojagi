@@ -43,11 +43,6 @@ export const runWebpackCompiler = ({
         {}
       );
 
-      const flatAssets = Object.values(assets)
-        .flat()
-        .filter((item, i, arr) => arr.indexOf(item) === i);
-      debug('all (flattened) asset list: %O', flatAssets);
-
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
 
