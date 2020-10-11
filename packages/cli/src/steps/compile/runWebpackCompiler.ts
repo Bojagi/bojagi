@@ -28,12 +28,14 @@ export const runWebpackCompiler = ({
         reject(output.compilation.errors[0]);
       }
 
+      debug('all generated files: %O', Object.keys(output.compilation.assets));
+
       const assets: Record<string, string[]> = Array.from(output.compilation.entrypoints.entries())
         .map(([key, val]) => [key, val.getFiles()])
         .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
       debug('asset list: %O', assets);
 
-      const sources = Object.entries(output.compilation.assets).reduce(
+      const outputContent = Object.entries(output.compilation.assets).reduce(
         (acc, [key, val]) => ({
           ...acc,
           [key]: (val as any).source(),
@@ -45,14 +47,6 @@ export const runWebpackCompiler = ({
         .flat()
         .filter((item, i, arr) => arr.indexOf(item) === i);
       debug('all (flattened) asset list: %O', flatAssets);
-
-      const outputContent: Record<string, string> = flatAssets.reduce(
-        (acc, fileName) => ({
-          ...acc,
-          [fileName]: sources[fileName],
-        }),
-        {}
-      );
 
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
