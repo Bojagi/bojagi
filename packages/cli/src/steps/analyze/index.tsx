@@ -30,6 +30,8 @@ export const analyzeStep: StepRunnerStep<AnalyzeStepOutput> = {
   },
 };
 
+const JS_REGEXP = /.+?\.js$/;
+
 type DependencyStepOutputs = {
   scan: ScanStepOutput;
   compile: CompileStepOutput;
@@ -38,8 +40,16 @@ type DependencyStepOutputs = {
 async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
   const componentModules = setupFakeBrowserEnvironment(global);
 
-  stepOutputs.compile.files.forEach(file => require(file.fullOutputFilePath));
-  stepOutputs.compile.stories.forEach(s => require(s.fullOutputFilePath));
+  stepOutputs.compile.stories.forEach(s =>
+    s.files.forEach(fileName => {
+      const foundFile = stepOutputs.compile.files
+        .filter(file => JS_REGEXP.test(file.fileName))
+        .find(file => file.fileName === fileName);
+      if (foundFile) {
+        require(foundFile.fullOutputFilePath);
+      }
+    })
+  );
 
   const storiesMetadata = getStoriesMetadata(stepOutputs.compile.stories, componentModules);
 

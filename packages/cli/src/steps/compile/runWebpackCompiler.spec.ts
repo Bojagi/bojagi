@@ -19,6 +19,33 @@ beforeEach(() => {
   mockOutput = {
     compilation: {
       errors: [],
+      entrypoints: new Map([
+        [
+          'A',
+          {
+            getFiles: jest.fn(() => ['vendors.js', 'A.css', 'A.js']),
+          },
+        ],
+        [
+          'B',
+          {
+            getFiles: jest.fn(() => ['vendors.js', 'B.js']),
+          },
+        ],
+        [
+          'C',
+          {
+            getFiles: jest.fn(() => ['vendors.js', 'C.js']),
+          },
+        ],
+      ]),
+      assets: {
+        'vendors.js': { source: jest.fn(() => 'vendors_source') },
+        'A.css': { source: jest.fn(() => 'A CSS') },
+        'A.js': { source: jest.fn(() => 'A JS') },
+        'B.js': { source: jest.fn(() => 'B JS') },
+        'C.js': { source: jest.fn(() => 'C JS') },
+      },
       modules: [
         {
           rawRequest: `component-extract-loader?${cwd}/bojagi/A.js`,
@@ -121,10 +148,16 @@ test('run the webpack compiler', async () => {
   });
   expect(componentsContent).toEqual({
     outputContent: {
-      commons: 'commons file content',
-      A: 'file content a',
-      B: 'file content b',
-      C: 'file content c',
+      'A.css': 'A CSS',
+      'A.js': 'A JS',
+      'B.js': 'B JS',
+      'C.js': 'C JS',
+      'vendors.js': 'vendors_source',
+    },
+    assets: {
+      A: ['vendors.js', 'A.css', 'A.js'],
+      B: ['vendors.js', 'B.js'],
+      C: ['vendors.js', 'C.js'],
     },
     modules: [
       {

@@ -1,16 +1,14 @@
 import * as path from 'path';
-import * as fs from 'fs';
 import { Module } from '../../types';
 import getGitPath from '../../utils/getGitPath';
 import debuggers, { DebugNamespaces } from '../../debug';
 
 const debug = debuggers[DebugNamespaces.COMPILE];
 
-const SUPPORTED_HTML_ADDABLE_ASSETS = [/.*\.js$/, /.*\.css$/];
-
 export type RunWebpackCompilerOutput = {
   outputContent: Record<string, string>;
   modules: Module[];
+  assets: Record<string, string[]>;
 };
 
 export const runWebpackCompiler = ({
@@ -30,26 +28,31 @@ export const runWebpackCompiler = ({
         reject(output.compilation.errors[0]);
       }
 
-      debug('created files after compilation: %O', fs.readdirSync(`${process.cwd()}/bojagi`));
-
       const assets: Record<string, string[]> = Array.from(output.compilation.entrypoints.entries())
-        .map(([key, val]) => [key, val.getFiles().filter(f => f !== `${key}.js`)])
+        .map(([key, val]) => [key, val.getFiles()])
         .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
       debug('asset list: %O', assets);
 
-      const htmlAssets = Object.entries(assets)
-        .map(([key, value]): [string, string[]] => [
-          key,
-          value.filter(item => SUPPORTED_HTML_ADDABLE_ASSETS.find(regexp => regexp.test(item))),
-        ])
-        .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
+      const sources = Object.entries(output.compilation.assets).reduce(
+        (acc, [key, val]) => ({
+          ...acc,
+          [key]: (val as any).source(),
+        }),
+        {}
+      );
 
-      debug('HTML addable asset list: %O', htmlAssets);
-
-      const allAssets = Object.values(assets)
+      const flatAssets = Object.values(assets)
         .flat()
         .filter((item, i, arr) => arr.indexOf(item) === i);
-      debug('all (flat) asset list: %O', allAssets);
+      debug('all (flattened) asset list: %O', flatAssets);
+
+      const outputContent: Record<string, string> = flatAssets.reduce(
+        (acc, fileName) => ({
+          ...acc,
+          [fileName]: sources[fileName],
+        }),
+        {}
+      );
 
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
@@ -60,23 +63,10 @@ export const runWebpackCompiler = ({
 
         const modules = componentModules.map(addDependencies(dependencyPackages));
 
-        const entrypointNames = Object.keys(entrypoints);
-        const outputContent = [...entrypointNames, 'commons'].reduce((contents, fileName) => {
-          const filePath = `${process.cwd()}/bojagi/${fileName}.js`;
-
-          // if (compiler.outputFileSystem.existsSync(filePath)) {
-          const content = fs.readFileSync(filePath).toString();
-
-          // const content = compiler.outputFileSystem.readFileSync(filePath).toString();
-          // eslint-disable-next-line no-param-reassign
-          contents[fileName] = content;
-          // }
-          return contents;
-        }, {});
-
         resolve({
           outputContent,
           modules,
+          assets,
         });
       } catch (execError) {
         reject(execError);

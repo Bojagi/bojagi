@@ -1,11 +1,11 @@
-import { StoryFileWithMetadata, OutputFileContent } from '../../types';
+import { StoryFileWithMetadata } from '../../types';
 import { camelCaseToSpaces } from '../../utils/camelCaseToSpaces';
 
 export function getStoriesMetadata(
-  stories: OutputFileContent<StoryFileWithMetadata>[],
+  stories: StoryFileWithMetadata[],
   componentModules: Map<string, Record<string, any>>
 ): Record<string, any> {
-  return stories.reduce((acc, { fileContent, outputFilePath, ...s }) => {
+  return stories.reduce((acc, s) => {
     const module = componentModules.get(s.fileName);
     const metadata = module
       ? {
