@@ -9,6 +9,7 @@ import webpack = require('webpack');
 export type GetWebpackConfigOptions = {
   config: Config;
   storyFiles: StoryWithMetadata[];
+  publicPath?: string;
 };
 
 export type GetWebpackConfigOutput = {
@@ -25,6 +26,7 @@ async function buildProjectWebpackConfig(projectWebpackConfig) {
 export async function getWebpackConfig({
   config,
   storyFiles,
+  publicPath,
 }: GetWebpackConfigOptions): Promise<GetWebpackConfigOutput> {
   const projectWebpackConfig = require(config.webpackConfig);
   const processedProjectConfig = await buildProjectWebpackConfig(projectWebpackConfig);
@@ -45,7 +47,8 @@ export async function getWebpackConfig({
     processedProjectConfig,
     entrypoints,
     config.executionPath,
-    decoratorFileArray[0]
+    decoratorFileArray[0],
+    publicPath
   );
 
   return {

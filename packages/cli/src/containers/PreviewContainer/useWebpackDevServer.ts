@@ -34,6 +34,7 @@ export function useWebpackDevServer({
   const [errors, setErrors] = React.useState<Error[]>([]);
   const [setupError, setSetupError] = React.useState<Error | null>(null);
   const [established, setEstablished] = React.useState(false);
+  const baseUrl = `http://localhost:${config.previewPort}`;
 
   // Setup dev server
   React.useEffect(() => {
@@ -41,13 +42,17 @@ export function useWebpackDevServer({
       getWebpackConfig({
         config,
         storyFiles,
+        publicPath: `${baseUrl}/`,
       }).then(({ webpackConfig }) => {
         setCompiler(webpack(webpackConfig));
       });
     }
-  }, [config, storiesMetadata, storyFiles, established]);
+  }, [config, baseUrl, storiesMetadata, storyFiles, established]);
 
   React.useEffect(() => {
+    let assets;
+    let files;
+
     if (!storiesMetadata || !compiler) {
       return;
     }
@@ -61,6 +66,13 @@ export function useWebpackDevServer({
       compiler.hooks.done.tap('BojagiPreview', compileOutput => {
         setEstablished(true);
         setErrors(compileOutput.compilation.errors);
+        files = Object.keys(compileOutput.compilation.assets).map(asset => ({
+          name: asset,
+          url: `${baseUrl}/${asset}`,
+        }));
+        assets = Array.from(compileOutput.compilation.entrypoints.entries())
+          .map(([key, val]) => [key, val.getFiles()])
+          .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
         setReady(true);
       });
 
@@ -76,7 +88,12 @@ export function useWebpackDevServer({
           hot: false,
           open: !config.previewNoOpen,
           contentBase: pathUtils.join(__dirname, 'public'),
-          before: setupApi({ storiesMetadata, config }),
+          before: setupApi({
+            storiesMetadata,
+            config,
+            getAssets: () => assets,
+            getFiles: () => files,
+          }),
         });
         setDevServer(server);
         server.listen(config.previewPort);
@@ -84,7 +101,7 @@ export function useWebpackDevServer({
         setSetupError(e);
       }
     }
-  }, [compiler, storiesMetadata, established, config]);
+  }, [compiler, baseUrl, storiesMetadata, established, config]);
 
   // Close dev server on unmount
   React.useEffect(() => {

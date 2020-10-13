@@ -15,10 +15,8 @@ const outputFS = new MemoryFS();
 
 export type CompileStepOutput = {
   files: OutputFileContent<FileContent>[];
-  stories: OutputFileContent<StoryFileWithMetadata>[];
+  stories: StoryFileWithMetadata[];
 };
-
-const FILES = ['commons'];
 
 export const compileStep: StepRunnerStep<CompileStepOutput> = {
   action,
@@ -55,23 +53,22 @@ async function action({
 
   const dependencyPackages = getPackageJsonDependencies(config.executionPath);
 
-  const { outputContent, modules } = await runWebpackCompiler({
+  const { outputContent, modules, assets } = await runWebpackCompiler({
     compiler,
     entrypoints,
     dependencyPackages,
   });
 
   const filesWithMetadata = await Promise.all(
-    FILES.filter(name => outputContent[name]).map(async name => {
-      const fileContent = outputContent[name];
+    Object.entries(outputContent).map(async ([fileName, fileContent]) => {
       const { outputFilePath, fullOutputFilePath } = await writeBojagiFile({
         namespace,
-        name,
+        fileName,
         fileContent,
         folder: 'files',
       });
       return {
-        name,
+        name: fileName,
         namespace,
         fileContent,
         outputFilePath,
@@ -88,29 +85,13 @@ async function action({
       name: sf.name,
       namespace,
       filePath: sf.filePath,
-      fileContent: outputContent[sf.fileName],
-    })
-  );
-
-  const storyFileWithOutputFilePath = await Promise.all(
-    storyFileWithMetadata.map(async sf => {
-      const { outputFilePath, fullOutputFilePath } = await writeBojagiFile({
-        namespace,
-        folder: 'stories',
-        fileContent: sf.fileContent,
-        name: sf.filePath.replace(/\.[a-zA-Z]*$/, '').replace(/[/\\]/g, '__'),
-      });
-      return {
-        ...sf,
-        outputFilePath,
-        fullOutputFilePath,
-      };
+      files: assets[sf.fileName],
     })
   );
 
   return {
     files: filesWithMetadata,
-    stories: storyFileWithOutputFilePath,
+    stories: storyFileWithMetadata,
   };
 }
 

@@ -38,5 +38,6 @@ lib
 dist
 tmp
 .vscode
+bojagi
 
 foreignIntegrationTests

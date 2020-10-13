@@ -3,9 +3,49 @@
 exports[`run bundle command 1`] = `
 "[
  {
-  \\"name\\": \\"commons\\",
+  \\"name\\": \\"718ad8b72621629b68f4ea8458266766.png\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/commons.js\\"
+  \\"outputFilePath\\": \\"files/718ad8b72621629b68f4ea8458266766.png\\"
+ },
+ {
+  \\"name\\": \\"vendors.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/vendors.js\\"
+ },
+ {
+  \\"name\\": \\"App.bojagi.css\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/App.bojagi.css\\"
+ },
+ {
+  \\"name\\": \\"App.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/App.bojagi.js\\"
+ },
+ {
+  \\"name\\": \\"Box.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Box.bojagi.js\\"
+ },
+ {
+  \\"name\\": \\"BoxWithButtons.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/BoxWithButtons.bojagi.js\\"
+ },
+ {
+  \\"name\\": \\"Button.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Button.bojagi.js\\"
+ },
+ {
+  \\"name\\": \\"Logo.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Logo.bojagi.js\\"
+ },
+ {
+  \\"name\\": \\"./index.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/index.html\\"
  }
 ]"
 `;
@@ -164,13 +204,7 @@ exports[`run bundle command 2`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./App.css\\",
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"dependencies\\": []
-       }
-      ]
+      \\"dependencies\\": []
      }
     ]
    }
@@ -179,7 +213,11 @@ exports[`run bundle command 2`] = `
   \\"name\\": \\"App.bojagi\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/App.bojagi.js\\",
-  \\"outputFilePath\\": \\"stories/src__App.bojagi.js\\"
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"App.bojagi.css\\",
+   \\"App.bojagi.js\\"
+  ]
  },
  {
   \\"title\\": \\"Box.bojagi\\",
@@ -240,7 +278,10 @@ exports[`run bundle command 2`] = `
   \\"name\\": \\"Box.bojagi\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Box.bojagi.js\\",
-  \\"outputFilePath\\": \\"stories/src__components__Box.bojagi.js\\"
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"Box.bojagi.js\\"
+  ]
  },
  {
   \\"title\\": \\"Box With Buttons.bojagi\\",
@@ -329,7 +370,10 @@ exports[`run bundle command 2`] = `
   \\"name\\": \\"BoxWithButtons.bojagi\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\",
-  \\"outputFilePath\\": \\"stories/src__components__BoxWithButtons.bojagi.js\\"
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"BoxWithButtons.bojagi.js\\"
+  ]
  },
  {
   \\"title\\": \\"Button.bojagi\\",
@@ -378,7 +422,52 @@ exports[`run bundle command 2`] = `
   \\"name\\": \\"Button.bojagi\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Button.bojagi.js\\",
-  \\"outputFilePath\\": \\"stories/src__components__Button.bojagi.js\\"
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"Button.bojagi.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Logo.bojagi\\",
+  \\"fileName\\": \\"Logo.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"logo\\",
+    \\"storyName\\": \\"Logo\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"isExternal\\": true,
+    \\"isNodeModule\\": false,
+    \\"packageName\\": \\"react\\",
+    \\"request\\": \\"react\\"
+   },
+   {
+    \\"filePath\\": \\"src/components/Logo.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"request\\": \\"./Logo\\",
+    \\"dependencies\\": [
+     {
+      \\"filePath\\": \\"src/components/img/logo.png\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/img/logo.png\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./img/logo.png\\",
+      \\"dependencies\\": []
+     }
+    ]
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
+  \\"name\\": \\"Logo.bojagi\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
+  \\"files\\": [
+   \\"Logo.bojagi.js\\"
+  ]
  }
 ]"
 `;

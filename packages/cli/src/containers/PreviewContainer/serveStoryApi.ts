@@ -1,17 +1,17 @@
 import { SetupApiOptions } from './setupApi';
 
-export function serveStoriesApi({ storiesMetadata, config }: SetupApiOptions) {
+export function serveStoriesApi({ storiesMetadata, getFiles, getAssets }: SetupApiOptions) {
+  const assets = getAssets();
+
   return {
-    files: [
-      {
-        url: `http://localhost:${config.previewPort}/commons.js`,
-      },
-    ],
-    stories: Object.entries(storiesMetadata).map(([filePath, meta]) => ({
-      url: `http://localhost:${config.previewPort}/${meta.fileName}.js`,
-      storyItems: meta.storyItems,
-      filePath,
-      title: meta.title,
-    })),
+    files: getFiles(),
+    stories: Object.entries(storiesMetadata).map(([filePath, meta]) => {
+      return {
+        files: assets[meta.fileName],
+        storyItems: meta.storyItems,
+        filePath,
+        title: meta.title,
+      };
+    }),
   };
 }

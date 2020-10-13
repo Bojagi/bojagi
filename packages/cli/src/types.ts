@@ -34,10 +34,9 @@ export type FileContent = {
 };
 
 export type StoryFileWithMetadata = File & {
-  fileContent: string;
   fileName: string;
   filePath: string;
   gitPath: string;
-  outputFilePath: string;
   dependencies: Module[];
+  files: string[];
 };

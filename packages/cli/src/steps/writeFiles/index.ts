@@ -15,8 +15,8 @@ const STORY_PROPERTY_WHITELIST: (keyof StoryFileWithMetadata | keyof StoryCollec
   'name',
   'namespace',
   'storyItems',
-  'outputFilePath',
   'title',
+  'files',
   'dependencies',
 ];
 const FILE_PROPERTY_WHITELIST: (keyof FileContent)[] = ['name', 'namespace', 'outputFilePath'];

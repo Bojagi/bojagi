@@ -22,9 +22,9 @@ function ensureDirectoryExistence(filePath) {
   return fs.promises.mkdir(dirname, { recursive: true });
 }
 
-export async function writeBojagiFile({ namespace, folder, name, fileContent }) {
+export async function writeBojagiFile({ namespace, folder, fileName, fileContent }) {
   const namespaceFolder = await createBojagiTempFolder(namespace);
-  const outputFilePath = path.join(folder, `${name}.js`);
+  const outputFilePath = path.join(folder, fileName);
   const fullOutputFilePath = path.join(namespaceFolder, outputFilePath);
   await ensureDirectoryExistence(fullOutputFilePath);
   await fs.promises.writeFile(fullOutputFilePath, fileContent);

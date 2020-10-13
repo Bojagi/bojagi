@@ -7,7 +7,8 @@ const composeWebpackConfig = (
   baseConfig: webpack.Configuration,
   entry: webpack.Entry,
   executionPath: string,
-  decoratorFile: string | undefined
+  decoratorFile: string | undefined,
+  publicPath: string = '__bojagi_public_path__/'
 ): webpack.Configuration => {
   const { entry: baseEntry, ...baseConfigWithoutEntry } = baseConfig;
   return merge(
@@ -37,6 +38,7 @@ const composeWebpackConfig = (
         path: `${process.cwd()}/bojagi`,
         filename: '[name].js',
         jsonpFunction: 'bojagiComponents',
+        publicPath,
       },
       resolveLoader: {
         alias: {
@@ -53,9 +55,10 @@ const composeWebpackConfig = (
         concatenateModules: false,
         splitChunks: {
           cacheGroups: {
-            commons: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
               chunks: 'all',
-              name: 'commons',
             },
           },
         },
