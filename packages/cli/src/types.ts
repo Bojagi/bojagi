@@ -31,7 +31,6 @@ export type FileContent = {
   namespace: string;
   outputFilePath: string;
   name: string;
-  fileName: string;
 };
 
 export type StoryFileWithMetadata = File & {
