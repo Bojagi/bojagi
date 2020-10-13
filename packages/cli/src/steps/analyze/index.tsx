@@ -43,8 +43,8 @@ async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOut
   stepOutputs.compile.stories.forEach(s =>
     s.files.forEach(fileName => {
       const foundFile = stepOutputs.compile.files
-        .filter(file => JS_REGEXP.test(file.fileName))
-        .find(file => file.fileName === fileName);
+        .filter(file => JS_REGEXP.test(file.name))
+        .find(file => file.name === fileName);
       if (foundFile) {
         require(foundFile.fullOutputFilePath);
       }

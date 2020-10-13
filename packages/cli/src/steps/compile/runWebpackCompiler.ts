@@ -97,6 +97,7 @@ function addDependencies(dependencyPackages) {
       dependencies: !(isNodeModule || isExternal)
         ? module.dependencies
             .filter(dep => dep.module)
+            .filter(dep => !!dep.module.request || !!dep.module.resource)
             .filter(ignoreDevDependencies(dependencyPackages))
             .filter(onlyUnique)
             .map(dep =>

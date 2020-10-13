@@ -69,6 +69,7 @@ async function action({
       });
       return {
         fileName,
+        name: fileName,
         namespace,
         fileContent,
         outputFilePath,

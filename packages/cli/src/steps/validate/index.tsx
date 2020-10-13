@@ -5,6 +5,9 @@ import { Color } from 'ink';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { MANIFEST_VERSION } from '../../constants';
 import { Emoji } from '../../components/Emoji';
+import debuggers, { DebugNamespaces } from '../../debug';
+
+const debug = debuggers[DebugNamespaces.VALIDATE];
 
 class UnknownVersionError extends Error {}
 class InactiveVersionError extends Error {}
@@ -60,35 +63,43 @@ async function action({ config }: StepRunnerActionOptions): Promise<ValidateStep
     version: MANIFEST_VERSION,
   };
 
-  const result = await axios.post<ManifestVersionApiResponse>(
-    `${config.uploadApiUrl}/graphql`,
-    {
-      query,
-      variables,
-    },
-    {
-      headers: {
-        'Content-type': 'application/json',
-        authorization: `Secret ${apiSecret}`,
+  debug('test');
+
+  try {
+    const result = await axios.post<ManifestVersionApiResponse>(
+      `${config.uploadApiUrl}/graphql`,
+      {
+        query,
+        variables,
       },
-    }
-  );
-
-  const { manifestVersion } = result.data.data;
-
-  if (!manifestVersion) {
-    throw new UnknownVersionError('Manifest version not known, are you from the future?');
-  }
-
-  if (manifestVersion.status === VersionStatuses.INACTIVE) {
-    throw new InactiveVersionError(
-      'Your manifest version is inactive. Please update to the newest bojagi CLI version!'
+      {
+        headers: {
+          'Content-type': 'application/json',
+          authorization: `Secret ${apiSecret}`,
+        },
+      }
     );
-  }
 
-  return {
-    manifestVersion,
-  };
+    const { manifestVersion } = result.data.data;
+    debug('manifestVersion', manifestVersion);
+
+    if (!manifestVersion) {
+      throw new UnknownVersionError('Manifest version not known, are you from the future?');
+    }
+
+    if (manifestVersion.status === VersionStatuses.INACTIVE) {
+      throw new InactiveVersionError(
+        'Your manifest version is inactive. Please update to the newest bojagi CLI version!'
+      );
+    }
+
+    return {
+      manifestVersion,
+    };
+  } catch (err) {
+    debug('Error', err.response.data);
+    throw err;
+  }
 }
 
 function SuccessResponse({

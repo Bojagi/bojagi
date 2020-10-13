@@ -19,7 +19,7 @@ const STORY_PROPERTY_WHITELIST: (keyof StoryFileWithMetadata | keyof StoryCollec
   'files',
   'dependencies',
 ];
-const FILE_PROPERTY_WHITELIST: (keyof FileContent)[] = ['fileName', 'namespace', 'outputFilePath'];
+const FILE_PROPERTY_WHITELIST: (keyof FileContent)[] = ['name', 'namespace', 'outputFilePath'];
 
 export const writeFilesStep: StepRunnerStep<WriteFilesStepOutput> = {
   action,

@@ -30,6 +30,7 @@ export type FileContent = {
   fileContent: string;
   namespace: string;
   outputFilePath: string;
+  name: string;
   fileName: string;
 };
 
