@@ -68,7 +68,6 @@ async function action({
         folder: 'files',
       });
       return {
-        fileName,
         name: fileName,
         namespace,
         fileContent,

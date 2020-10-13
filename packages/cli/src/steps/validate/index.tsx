@@ -63,8 +63,6 @@ async function action({ config }: StepRunnerActionOptions): Promise<ValidateStep
     version: MANIFEST_VERSION,
   };
 
-  debug('test');
-
   try {
     const result = await axios.post<ManifestVersionApiResponse>(
       `${config.uploadApiUrl}/graphql`,
