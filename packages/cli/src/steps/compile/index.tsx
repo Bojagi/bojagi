@@ -1,4 +1,4 @@
-// import MemoryFS from 'memory-fs';
+import MemoryFS from 'memory-fs';
 import { StoryFileWithMetadata, FileContent, OutputFileContent, Module } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
@@ -11,7 +11,7 @@ import webpack = require('webpack');
 
 const debug = debuggers[DebugNamespaces.COMPILE];
 
-// const outputFS = new MemoryFS();
+const outputFS = new MemoryFS();
 
 export type CompileStepOutput = {
   files: OutputFileContent<FileContent>[];
@@ -49,7 +49,7 @@ async function action({
   debug('webpack rules: %O', webpackConfig.module?.rules);
 
   const compiler = webpack(webpackConfig);
-  // compiler.outputFileSystem = outputFS;
+  compiler.outputFileSystem = outputFS;
 
   const dependencyPackages = getPackageJsonDependencies(config.executionPath);
 
