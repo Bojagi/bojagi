@@ -1,6 +1,24 @@
 import { serveStoriesApi } from './serveStoryApi';
 
 test('get components API output', () => {
+  const getFiles = jest.fn(() => [
+    {
+      name: 'file1Output.js',
+      url: 'http://localhost:5000/file1Output.js',
+    },
+    {
+      name: 'file2Output.js',
+      url: 'http://localhost:5000/file2Output.js',
+    },
+    {
+      name: 'file2Output.css',
+      url: 'http://localhost:5000/file2Output.css',
+    },
+  ]);
+  const getAssets = jest.fn(() => ({
+    file1: ['file1Output.js'],
+    file2: ['file2Output.css', 'file2Output.js'],
+  }));
   const config: any = {
     previewPort: 1234,
     executionPath: '/some/path',
@@ -38,19 +56,30 @@ test('get components API output', () => {
   const result = serveStoriesApi({
     storiesMetadata,
     config,
-  });
+    getFiles,
+    getAssets,
+  } as any);
 
   expect(result).toEqual({
     files: [
       {
-        url: 'http://localhost:1234/commons.js',
+        name: 'file1Output.js',
+        url: 'http://localhost:5000/file1Output.js',
+      },
+      {
+        name: 'file2Output.js',
+        url: 'http://localhost:5000/file2Output.js',
+      },
+      {
+        name: 'file2Output.css',
+        url: 'http://localhost:5000/file2Output.css',
       },
     ],
     stories: [
       {
-        url: `http://localhost:1234/file1.js`,
         filePath: 'file1',
         title: 'FILE ONE',
+        files: ['file1Output.js'],
         storyItems: [
           {
             exportName: 'story1',
@@ -63,9 +92,9 @@ test('get components API output', () => {
         ],
       },
       {
-        url: `http://localhost:1234/file2.js`,
         filePath: 'file2',
         title: 'FILE TWO',
+        files: ['file2Output.css', 'file2Output.js'],
         storyItems: [
           {
             exportName: 'story3',

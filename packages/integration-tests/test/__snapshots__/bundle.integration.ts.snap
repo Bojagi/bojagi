@@ -3,47 +3,47 @@
 exports[`run bundle command 1`] = `
 "[
  {
-  \\"fileName\\": \\"718ad8b72621629b68f4ea8458266766.png\\",
+  \\"name\\": \\"718ad8b72621629b68f4ea8458266766.png\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/718ad8b72621629b68f4ea8458266766.png\\"
  },
  {
-  \\"fileName\\": \\"vendors.js\\",
+  \\"name\\": \\"vendors.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/vendors.js\\"
  },
  {
-  \\"fileName\\": \\"App.bojagi.css\\",
+  \\"name\\": \\"App.bojagi.css\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/App.bojagi.css\\"
  },
  {
-  \\"fileName\\": \\"App.bojagi.js\\",
+  \\"name\\": \\"App.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/App.bojagi.js\\"
  },
  {
-  \\"fileName\\": \\"Box.bojagi.js\\",
+  \\"name\\": \\"Box.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/Box.bojagi.js\\"
  },
  {
-  \\"fileName\\": \\"BoxWithButtons.bojagi.js\\",
+  \\"name\\": \\"BoxWithButtons.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/BoxWithButtons.bojagi.js\\"
  },
  {
-  \\"fileName\\": \\"Button.bojagi.js\\",
+  \\"name\\": \\"Button.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/Button.bojagi.js\\"
  },
  {
-  \\"fileName\\": \\"Logo.bojagi.js\\",
+  \\"name\\": \\"Logo.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/Logo.bojagi.js\\"
  },
  {
-  \\"fileName\\": \\"./index.html\\",
+  \\"name\\": \\"./index.html\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/index.html\\"
  }
@@ -204,13 +204,7 @@ exports[`run bundle command 2`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./App.css\\",
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"dependencies\\": []
-       }
-      ]
+      \\"dependencies\\": []
      }
     ]
    }
