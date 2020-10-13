@@ -48,11 +48,6 @@ async function createZipFile(namespace): Promise<Buffer> {
     .map(file => `${namespace}/files/${file}`)
     .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));
 
-  // Add stories to zip
-  fs.readdirSync(`${namespaceFolder}/stories`)
-    .map(file => `${namespace}/stories/${file}`)
-    .forEach(p => addFileToZip(zip, TEMP_FOLDER, p));
-
   const content = zip.toBuffer();
   fs.writeFileSync(zipFile, content);
   return content;

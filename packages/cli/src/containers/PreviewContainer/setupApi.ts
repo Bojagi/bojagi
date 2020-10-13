@@ -8,6 +8,8 @@ import history = require('connect-history-api-fallback');
 
 export type SetupApiOptions = {
   storiesMetadata: Record<string, StoryCollectionMetadata>;
+  getFiles: () => any[];
+  getAssets: () => Record<string, string[]>;
   config: Config;
 };
 

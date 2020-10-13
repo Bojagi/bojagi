@@ -8,6 +8,7 @@ const debug = debuggers[DebugNamespaces.COMPILE];
 export type RunWebpackCompilerOutput = {
   outputContent: Record<string, string>;
   modules: Module[];
+  assets: Record<string, string[]>;
 };
 
 export const runWebpackCompiler = ({
@@ -27,6 +28,21 @@ export const runWebpackCompiler = ({
         reject(output.compilation.errors[0]);
       }
 
+      debug('all generated files: %O', Object.keys(output.compilation.assets));
+
+      const assets: Record<string, string[]> = Array.from(output.compilation.entrypoints.entries())
+        .map(([key, val]) => [key, val.getFiles()])
+        .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
+      debug('asset list: %O', assets);
+
+      const outputContent = Object.entries(output.compilation.assets).reduce(
+        (acc, [key, val]) => ({
+          ...acc,
+          [key]: (val as any).source(),
+        }),
+        {}
+      );
+
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
 
@@ -36,22 +52,10 @@ export const runWebpackCompiler = ({
 
         const modules = componentModules.map(addDependencies(dependencyPackages));
 
-        const entrypointNames = Object.keys(entrypoints);
-
-        const outputContent = [...entrypointNames, 'commons'].reduce((contents, fileName) => {
-          const filePath = `${process.cwd()}/bojagi/${fileName}.js`;
-
-          if (compiler.outputFileSystem.existsSync(filePath)) {
-            const content = compiler.outputFileSystem.readFileSync(filePath).toString();
-            // eslint-disable-next-line no-param-reassign
-            contents[fileName] = content;
-          }
-          return contents;
-        }, {});
-
         resolve({
           outputContent,
           modules,
+          assets,
         });
       } catch (execError) {
         reject(execError);
@@ -93,6 +97,7 @@ function addDependencies(dependencyPackages) {
       dependencies: !(isNodeModule || isExternal)
         ? module.dependencies
             .filter(dep => dep.module)
+            .filter(dep => !!dep.module.request || !!dep.module.resource)
             .filter(ignoreDevDependencies(dependencyPackages))
             .filter(onlyUnique)
             .map(dep =>

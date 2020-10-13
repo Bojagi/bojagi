@@ -11,7 +11,7 @@ export type BojagiNamespace = {
 };
 
 export type BojagiManifest = {
-  version: '2';
+  version: '3';
   namespaces: BojagiNamespace[];
 };
 
