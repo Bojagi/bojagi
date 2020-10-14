@@ -35,6 +35,6 @@ program.on('command:*', operands => {
 
 program.parse(process.argv);
 
-if (program.args.length === 0) {
+if (process.argv.length < 3) {
   program.help();
 }
