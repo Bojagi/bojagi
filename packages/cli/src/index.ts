@@ -28,10 +28,13 @@ init(program);
 docs(program);
 
 program.on('command:*', operands => {
-  console.error(`error: unknown command '${operands[0]}'`);
-  const availableCommands = program.commands.map(cmd => cmd.name());
-  console.error(`available commands are:\n\n${availableCommands.map(c => `  - ${c}`).join('\n')}`);
+  console.error(`Error: unknown command '${operands[0]}'\n`);
   process.exitCode = 1;
+  program.help();
 });
 
 program.parse(process.argv);
+
+if (process.argv.length < 3) {
+  program.help();
+}
