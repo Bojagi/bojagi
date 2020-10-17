@@ -119,10 +119,11 @@ beforeEach(() => {
     },
   };
   fileContents = {
-    [`${cwd}/bojagi/A.js`]: 'file content a',
-    [`${cwd}/bojagi/B.js`]: 'file content b',
-    [`${cwd}/bojagi/C.js`]: 'file content c',
-    [`${cwd}/bojagi/commons.js`]: 'commons file content',
+    [`${cwd}/bojagi/vendors.js`]: 'vendors_source content',
+    [`${cwd}/bojagi/A.css`]: 'A CSS content',
+    [`${cwd}/bojagi/A.js`]: 'A JS content',
+    [`${cwd}/bojagi/B.js`]: 'B JS content',
+    [`${cwd}/bojagi/C.js`]: 'C JS content',
   };
 
   mockFs = {
@@ -148,11 +149,11 @@ test('run the webpack compiler', async () => {
   });
   expect(componentsContent).toEqual({
     outputContent: {
-      'A.css': 'A CSS',
-      'A.js': 'A JS',
-      'B.js': 'B JS',
-      'C.js': 'C JS',
-      'vendors.js': 'vendors_source',
+      'A.css': 'A CSS content',
+      'A.js': 'A JS content',
+      'B.js': 'B JS content',
+      'C.js': 'C JS content',
+      'vendors.js': 'vendors_source content',
     },
     assets: {
       A: ['vendors.js', 'A.css', 'A.js'],
