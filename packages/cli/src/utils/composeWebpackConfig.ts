@@ -3,6 +3,8 @@ import * as fs from 'fs';
 import * as pathUtils from 'path';
 import { merge } from 'webpack-merge';
 
+const BLACKLISTED_PLUGINS = ['ManifestPlugin'];
+
 const composeWebpackConfig = (
   baseConfig: webpack.Configuration,
   entry: webpack.Entry,
@@ -10,7 +12,10 @@ const composeWebpackConfig = (
   decoratorFile: string | undefined,
   publicPath: string = '__bojagi_public_path__/'
 ): webpack.Configuration => {
-  const { entry: baseEntry, ...baseConfigWithoutEntry } = baseConfig;
+  const { entry: baseEntry, plugins, ...baseConfigWithoutEntry } = baseConfig;
+  const filteredPlugins = plugins?.filter(
+    plugin => !BLACKLISTED_PLUGINS.includes(plugin.constructor?.name)
+  );
   return merge(
     {
       module: {
@@ -31,7 +36,10 @@ const composeWebpackConfig = (
           : [],
       },
     },
-    baseConfigWithoutEntry,
+    {
+      ...baseConfigWithoutEntry,
+      plugins: filteredPlugins,
+    },
     {
       entry,
       output: {
@@ -39,6 +47,7 @@ const composeWebpackConfig = (
         filename: '[name].js',
         jsonpFunction: 'bojagiComponents',
         publicPath,
+        globalObject: 'window',
       },
       resolveLoader: {
         alias: {

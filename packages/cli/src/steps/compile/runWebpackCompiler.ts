@@ -21,11 +21,13 @@ export const runWebpackCompiler = ({
       if (err) {
         debug(err);
         reject(err);
+        return;
       }
 
       if (output.compilation.errors.length > 0) {
         debug(output.compilation.errors);
         reject(output.compilation.errors[0]);
+        return;
       }
 
       debug('all generated files: %O', Object.keys(output.compilation.assets));
@@ -35,10 +37,10 @@ export const runWebpackCompiler = ({
         .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
       debug('asset list: %O', assets);
 
-      const outputContent = Object.entries(output.compilation.assets).reduce(
-        (acc, [key, val]) => ({
+      const outputContent = Object.keys(output.compilation.assets).reduce(
+        (acc, key) => ({
           ...acc,
-          [key]: (val as any).source(),
+          [key]: compiler.outputFileSystem.readFileSync(path.join(process.cwd(), 'bojagi', key)),
         }),
         {}
       );
