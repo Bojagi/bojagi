@@ -37,12 +37,13 @@ export const runWebpackCompiler = ({
         .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
       debug('asset list: %O', assets);
 
-      const outputContent = Object.keys(output.compilation.assets).reduce((acc, key) => {
-        return {
+      const outputContent = Object.keys(output.compilation.assets).reduce(
+        (acc, key) => ({
           ...acc,
           [key]: compiler.outputFileSystem.readFileSync(path.join(process.cwd(), 'bojagi', key)),
-        };
-      }, {});
+        }),
+        {}
+      );
 
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
