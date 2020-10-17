@@ -61,6 +61,7 @@ const testCases = [
         filename: '[name].js',
         jsonpFunction: 'bojagiComponents',
         publicPath: '__bojagi_public_path__/',
+        globalObject: 'window',
       });
 
       expect(config.externals).toEqual({
