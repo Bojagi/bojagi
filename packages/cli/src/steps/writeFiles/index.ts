@@ -8,6 +8,8 @@ import { buildManifest } from './buildManifest';
 
 export type WriteFilesStepOutput = {};
 
+const IGNORE_FILES = [/.*?\.DS_Store$/];
+
 const STORY_PROPERTY_WHITELIST: (keyof StoryFileWithMetadata | keyof StoryCollectionMetadata)[] = [
   'fileName',
   'filePath',
@@ -42,7 +44,9 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
   const storiesMetadata = (stepOutputs.analyze && stepOutputs.analyze.storiesMetadata) || {};
 
   // Filter object properties by whitelist (so only relevant data is added to json files)
-  const cleanFiles = stepOutputs.compile.files.map(mapObjectWithWhitelist(FILE_PROPERTY_WHITELIST));
+  const cleanFiles = stepOutputs.compile.files
+    .filter(item => !IGNORE_FILES.find(ignoreRegExp => ignoreRegExp.test(item.fullOutputFilePath)))
+    .map(mapObjectWithWhitelist(FILE_PROPERTY_WHITELIST));
   const cleanStories = stepOutputs.compile.stories
     .map(item => {
       const metadata = storiesMetadata[item.filePath] || {};
