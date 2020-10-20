@@ -1,0 +1,27 @@
+{
+  "name": "@bojagi/integration-test-utils",
+  "version": "0.11.0",
+  "description": "integration test utils",
+  "homepage": "https://bojagi.io/docs",
+  "license": "MIT",
+  "bin": {
+    "bojagi": "./bin/index.js"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bojagi/bojagi.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Bojagi/issue-tracker/issues"
+  },
+  "dependencies": {
+    "differencify": "^1.5.5",
+    "node-fetch": "^2.6.1",
+    "playwright-chromium": "^1.5.1"
+  },
+  "devDependencies": {}
+}

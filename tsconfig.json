@@ -4,6 +4,9 @@
   "references": [
     {
       "path": "packages/cli"
+    },
+    {
+      "path": "packages/integration-test-utils"
     }
   ]
 }

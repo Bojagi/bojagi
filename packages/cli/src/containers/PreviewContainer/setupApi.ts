@@ -15,8 +15,19 @@ export type SetupApiOptions = {
 
 export function setupApi(options: SetupApiOptions) {
   return (app: express.Application) => {
-    app.get('/api/stories', (_req, res) => {
-      res.json(serveStoriesApi(options));
+    app.get('/api/stories', (_req, res, next) => {
+      try {
+        res.json(serveStoriesApi(options));
+      } catch (e) {
+        next(e);
+      }
+    });
+    app.use((err, _req, res, _next) => {
+      res.status(err.status || 500);
+      res.json({
+        message: err.message,
+        error: {},
+      });
     });
     handleStaticServer(app);
   };

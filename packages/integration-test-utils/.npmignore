@@ -1,0 +1,4 @@
+src
+*.log
+*buildinfo
+tsconfig.json
