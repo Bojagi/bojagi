@@ -1,8 +1,10 @@
 import { chromium } from 'playwright-chromium';
+import * as Differencify from 'differencify';
 import fetch from 'node-fetch';
 
 const URL = 'http://localhost:5002';
 const API_URL = `${URL}/api`;
+const differencify = new Differencify({});
 
 export async function snapshotPreview() {
   const stories = await getStories();
@@ -30,13 +32,20 @@ async function getStories() {
   throw new Error('could not fetch stories from api');
 }
 
-async function snapshotStory(browser, story) {
-  const context = await browser.newContext();
-  const page = await context.newPage();
+async function snapshotStory(_browser, story) {
+  const target = differencify.init({ chain: false });
+  await target.launch();
+  const page = await target.newPage();
+  // await page.setViewport({ width: 1600, height: 1200 });
   await page.goto(`${URL}/app/story/${toB64(story.filePath)}`);
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  await page.waitForSelector('iframe');
   const element = await page.$('iframe');
-  await element.screenshot({ path: `${story.filePath}.png` });
+  await page.waitFor(3000);
+  const image = await element.screenshot({ path: `${story.filePath}.png` });
+  const result = await target.toMatchSnapshot(image);
+  await page.close();
+  await target.close();
+  return result;
 }
 
 function toB64(str) {
