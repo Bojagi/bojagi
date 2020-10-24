@@ -82,12 +82,17 @@ function getFilePath(resource = '') {
   return path.relative(process.cwd(), resource);
 }
 
-function addDependencies(dependencyPackages) {
+function addDependencies(dependencyPackages, existingDependencies: string[] = []) {
   return (module): Module => {
     const isExternal = !!module.external;
     const isNodeModule = checkNodeModule(module.resource);
     const packageName = isNodeModule || isExternal ? getPackageName(module) : undefined;
     const filePath = module.resource && getFilePath(module.resource);
+    const isCircularImport = !!existingDependencies.find(
+      existingDepPath => existingDepPath === filePath
+    );
+
+    const newExistingDependencies = [...existingDependencies, filePath];
 
     return {
       filePath,
@@ -96,14 +101,18 @@ function addDependencies(dependencyPackages) {
       isNodeModule,
       packageName,
       request: getRequest(module),
-      dependencies: !(isNodeModule || isExternal)
+      isCircularImport,
+      dependencies: !(isNodeModule || isExternal || isCircularImport)
         ? module.dependencies
             .filter(dep => dep.module)
             .filter(dep => !!dep.module.request || !!dep.module.resource)
             .filter(ignoreDevDependencies(dependencyPackages))
             .filter(onlyUnique)
             .map(dep =>
-              addDependencies(dependencyPackages)({ ...dep.module, request: dep.request })
+              addDependencies(
+                dependencyPackages,
+                newExistingDependencies
+              )({ ...dep.module, request: dep.request })
             )
         : undefined,
     };
