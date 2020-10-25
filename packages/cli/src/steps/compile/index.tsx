@@ -44,6 +44,7 @@ async function action({
     config,
     storyFiles,
   });
+
   debug('entry points: %O', entrypoints);
   debug('webpack config: %O', webpackConfig);
   debug('webpack rules: %O', webpackConfig.module?.rules);
