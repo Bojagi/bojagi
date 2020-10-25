@@ -82,17 +82,15 @@ function getFilePath(resource = '') {
   return path.relative(process.cwd(), resource);
 }
 
-function addDependencies(dependencyPackages, existingDependencies: string[] = []) {
+function addDependencies(dependencyPackages, existingDependencies: Set<string> = new Set()) {
   return (module): Module => {
     const isExternal = !!module.external;
     const isNodeModule = checkNodeModule(module.resource);
     const packageName = isNodeModule || isExternal ? getPackageName(module) : undefined;
     const filePath = module.resource && getFilePath(module.resource);
-    const isCircularImport = !!existingDependencies.find(
-      existingDepPath => existingDepPath === filePath
-    );
+    const isCircularImport = existingDependencies.has(filePath);
 
-    const newExistingDependencies = [...existingDependencies, filePath];
+    existingDependencies.add(filePath);
 
     return {
       filePath,
@@ -111,7 +109,7 @@ function addDependencies(dependencyPackages, existingDependencies: string[] = []
             .map(dep =>
               addDependencies(
                 dependencyPackages,
-                newExistingDependencies
+                existingDependencies
               )({ ...dep.module, request: dep.request })
             )
         : undefined,
