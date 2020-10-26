@@ -88,9 +88,10 @@ function addDependencies(dependencyPackages, existingDependencies: Set<string> =
     const isNodeModule = checkNodeModule(module.resource);
     const packageName = isNodeModule || isExternal ? getPackageName(module) : undefined;
     const filePath = module.resource && getFilePath(module.resource);
-    const isCircularImport = existingDependencies.has(filePath);
+    const isCircularImport = existingDependencies.has(filePath) && !(isNodeModule || isExternal);
 
-    existingDependencies.add(filePath);
+    const newExistingDependencies = new Set(existingDependencies);
+    newExistingDependencies.add(filePath);
 
     return {
       filePath,
@@ -109,7 +110,7 @@ function addDependencies(dependencyPackages, existingDependencies: Set<string> =
             .map(dep =>
               addDependencies(
                 dependencyPackages,
-                existingDependencies
+                newExistingDependencies
               )({ ...dep.module, request: dep.request })
             )
         : undefined,
