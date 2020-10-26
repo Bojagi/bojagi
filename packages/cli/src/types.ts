@@ -4,6 +4,7 @@ export type Module = {
   gitPath?: string;
   isExternal: boolean;
   isNodeModule: boolean;
+  isCircularImport: boolean;
   packageName?: string;
   dependencies?: Module[];
 };
