@@ -40,8 +40,8 @@ jobs:
           name: integration tests
           command: yarn integration
       - store_artifacts:
-        path: /root/project/packages/integration-tests/test/__image_snapshots__/__differencified_output__
-        destination: baseIntegration
+          path: /root/project/packages/integration-tests/test/__image_snapshots__/__differencified_output__
+          destination: baseIntegration
   deploy:
     executor: base
     steps:
