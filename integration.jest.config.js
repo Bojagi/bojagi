@@ -7,5 +7,19 @@ module.exports = {
     "ts",
     "js"
   ],
-  testEnvironment: "node"
+  testEnvironment: "node",
+  reporters: [
+    'default', // keep the default reporter
+    [
+      'differencify-jest-reporter',
+      {
+        debug: true,
+        reportPath: 'differencify_reports', // relative to root of project
+        reportTypes: {
+          html: 'index.html',
+          json: 'index.json',
+        },
+      },
+    ],
+  ],
 }

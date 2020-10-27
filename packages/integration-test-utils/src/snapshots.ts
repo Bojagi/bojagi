@@ -25,12 +25,12 @@ export async function snapshotPreview(stories) {
 
 async function snapshotPreviewStory(target, story) {
   const page = await target.newPage();
-  // await page.setViewport({ width: 1600, height: 1200 });
+  console.log(`checking ...${story.filePath}`);
   await page.goto(`${URL}/app/story/${toB64(story.filePath)}`);
   await page.waitForSelector('iframe');
   const element = await page.$('iframe');
   await page.waitFor(3000);
-  const image = await element.screenshot({ path: `${toB64(story.filePath)}.png` });
+  const image = await element.screenshot();
   await target.toMatchSnapshot(image);
 }
 
