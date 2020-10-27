@@ -25,6 +25,7 @@ export async function startPreview(cwd, options?: cp.SpawnOptionsWithoutStdio) {
     let interval;
     const maxTimeout = setTimeout(() => {
       clearInterval(interval);
+      previewProcess.kill();
       reject(new Error('preview server took to long to start'));
     }, MAX_BUILD_TIME);
     interval = setInterval(async () => {
