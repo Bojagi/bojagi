@@ -57,7 +57,7 @@ const composeWebpackConfig = (
       },
       externals: {
         react: 'react',
-        'react-dom': 'react-dom',
+        'react-dom': 'window["react-dom"]',
       },
       optimization: {
         minimize: true,
