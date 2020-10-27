@@ -5,11 +5,25 @@ import * as path from 'path';
 import { getResultFolder } from './bojagiPaths';
 
 const URL = 'http://localhost:5002';
+const CHROME_ARGS = [
+  '--disable-notifications',
+  '--ignore-certificate-errors',
+  '--no-sandbox',
+  '--disable-features=site-per-process',
+  '--disable-setuid-sandbox',
+  // '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"',
+  // '--auto-open-devtools-for-tabs',
+];
+
 const differencify = new Differencify({});
 
 export async function snapshotPreview(stories) {
   const target = differencify.init({ chain: false });
-  await target.launch({ headless: !!process.env.DEBUG });
+  await target.launch({
+    headless: !!process.env.DEBUG,
+    args: CHROME_ARGS,
+    defaultViewport: { width: 1024, height: 768 },
+  });
   try {
     await stories.reduce(async (prev, story) => {
       await prev;
