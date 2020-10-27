@@ -66,7 +66,7 @@ const testCases = [
 
       expect(config.externals).toEqual({
         react: 'react',
-        'react-dom': 'react-dom',
+        'react-dom': 'window["react-dom"]',
       });
 
       // Plugins
