@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 
 const URL = 'http://localhost:5002';
 const API_URL = `${URL}/api`;
+const MAX_BUILD_TIME = 45000;
 
 type StartPreviewResponse = {
   stories: object;
@@ -20,11 +21,17 @@ export async function startPreview(cwd, options?: cp.SpawnOptionsWithoutStdio) {
     env: { ...process.env, CI: 'true' },
     ...options,
   });
-  return new Promise<StartPreviewResponse>(resolve => {
-    const interval = setInterval(async () => {
+  return new Promise<StartPreviewResponse>((resolve, reject) => {
+    let interval;
+    const maxTimeout = setTimeout(() => {
+      clearInterval(interval);
+      reject(new Error('preview server took to long to start'));
+    }, MAX_BUILD_TIME);
+    interval = setInterval(async () => {
       try {
         const stories = await getPreviewStories();
         clearInterval(interval);
+        clearTimeout(maxTimeout);
         resolve({ previewProcess, stories });
       } catch (e) {
         console.log('preview not up yet, waiting....');

@@ -21,7 +21,7 @@ const getEntrypointsFromFiles = (config: Config, files: string[]): StoryWithMeta
       return {
         name: fileName,
         filePath,
-        gitPath,
+        gitPath: gitPath || filePath,
         fileName,
         entrypoint: `component-extract-loader?${fileName}!${absoluteFilePath}`,
       };

@@ -11,8 +11,6 @@ const CHROME_ARGS = [
   '--no-sandbox',
   '--disable-features=site-per-process',
   '--disable-setuid-sandbox',
-  // '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"',
-  // '--auto-open-devtools-for-tabs',
 ];
 
 const differencify = new Differencify({});
@@ -20,7 +18,7 @@ const differencify = new Differencify({});
 export async function snapshotPreview(stories) {
   const target = differencify.init({ chain: false });
   await target.launch({
-    headless: !!process.env.DEBUG,
+    headless: true,
     args: CHROME_ARGS,
     defaultViewport: { width: 1024, height: 768 },
   });
