@@ -1,17 +1,19 @@
 import * as Differencify from 'differencify';
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { getResultFolder } from './bojagiPaths';
 
 const URL = 'http://localhost:5002';
 const differencify = new Differencify({});
 
 export async function snapshotPreview(stories) {
   const target = differencify.init({ chain: false });
-  await target.launch({ headless: false });
+  await target.launch({ headless: !!process.env.DEBUG });
   try {
     await stories.reduce(async (prev, story) => {
-      console.log('snapshot story', story);
       await prev;
-      console.log('here we go');
-      return snapshotStory(target, story);
+      return snapshotPreviewStory(target, story);
     }, Promise.resolve());
     target.close();
     return stories;
@@ -21,23 +23,30 @@ export async function snapshotPreview(stories) {
   }
 }
 
-async function snapshotStory(target, story) {
+async function snapshotPreviewStory(target, story) {
   const page = await target.newPage();
   // await page.setViewport({ width: 1600, height: 1200 });
   await page.goto(`${URL}/app/story/${toB64(story.filePath)}`);
-  console.log('wait for ifram');
   await page.waitForSelector('iframe');
-  console.log('getting element');
   const element = await page.$('iframe');
-  console.log('wait for 3');
   await page.waitFor(3000);
-  console.log('take screnshot');
   const image = await element.screenshot({ path: `${toB64(story.filePath)}.png` });
-  console.log('compare screenshot');
   await target.toMatchSnapshot(image);
-  console.log('done with story', story);
 }
 
 function toB64(str) {
   return Buffer.from(str).toString('base64');
+}
+
+export function snapShotFileJSON(filePath) {
+  expect(
+    JSON.stringify(JSON.parse(fs.readFileSync(filePath, 'utf8')), null, ' ')
+  ).toMatchSnapshot();
+}
+
+export function snapShotTmpFolder(basePath) {
+  const resultFolder = getResultFolder(basePath);
+  snapShotFileJSON(path.resolve(resultFolder, 'default', 'manifest.json'));
+  snapShotFileJSON(path.resolve(resultFolder, 'default', 'files.json'));
+  snapShotFileJSON(path.resolve(resultFolder, 'default', 'stories.json'));
 }
