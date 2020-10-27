@@ -7,6 +7,7 @@ test('run preview command', async () => {
   deleteTmpFolder(EXEC_PATH);
   const { previewProcess, stories } = await startPreview(EXEC_PATH);
   try {
+    console.log('snapshot testing');
     await snapshotPreview(stories);
     previewProcess.kill();
   } catch (e) {

@@ -1,10 +1,10 @@
 import * as Differencify from 'differencify';
 import * as fs from 'fs';
 import * as path from 'path';
+import { URL } from './constants';
 
 import { getResultFolder } from './bojagiPaths';
 
-const URL = 'http://localhost:5002';
 const CHROME_ARGS = [
   '--disable-notifications',
   '--ignore-certificate-errors',
