@@ -33,10 +33,6 @@ export function snapShotFileJSON(filePath) {
   ).toMatchSnapshot();
 }
 
-export function snapShotFileHash(filePath) {
-  expect(hash(fs.readFileSync(filePath, 'utf8'))).toMatchSnapshot();
-}
-
 export function snapShotTmpFolder() {
   // TODO read all the files in dynamically, snapshot jsons, hash snapshots js files
 

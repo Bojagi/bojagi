@@ -4,6 +4,7 @@
   "description": "integration test utils",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
+  "main": "lib/index.js",
   "bin": {
     "bojagi": "./bin/index.js"
   },
