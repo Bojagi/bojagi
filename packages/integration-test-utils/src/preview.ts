@@ -35,6 +35,7 @@ export async function startPreview(cwd, options?: cp.SpawnOptionsWithoutStdio) {
         clearTimeout(maxTimeout);
         resolve({ previewProcess, stories });
       } catch (e) {
+        console.log(e, e.stack);
         console.log('preview not up yet, waiting....');
       }
     }, 1000);
