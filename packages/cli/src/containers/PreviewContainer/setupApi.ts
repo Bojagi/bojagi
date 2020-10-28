@@ -26,7 +26,8 @@ export function setupApi(options: SetupApiOptions) {
       res.status(err.status || 500);
       res.json({
         message: err.message,
-        error: {},
+        error: err,
+        stack: err.stack,
       });
     });
     handleStaticServer(app);
