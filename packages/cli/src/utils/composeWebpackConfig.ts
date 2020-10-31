@@ -53,11 +53,12 @@ const composeWebpackConfig = (
         alias: {
           'component-extract-loader': `${__dirname}/componentExtractLoader`,
           'bojagi-expose-loader': pathUtils.resolve(__dirname, './exposeLoader'),
+          reactDom: 'react-dom',
         },
       },
       externals: {
         react: 'react',
-        'react-dom': 'window["react-dom"]',
+        'react-dom': 'reactDom',
       },
       optimization: {
         minimize: true,
