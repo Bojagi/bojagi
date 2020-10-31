@@ -10,7 +10,7 @@ export function setupFakeBrowserEnvironment(internalGlobal: any) {
   /* eslint-disable no-param-reassign */
   internalGlobal.window = window;
   internalGlobal.react = React;
-  internalGlobal['react-dom'] = ReactDOM;
+  internalGlobal.reactDom = ReactDOM;
   internalGlobal.document = window.document;
   internalGlobal.registerComponent = (moduleName: string, moduleContent) => {
     componentModules.set(moduleName, moduleContent);

@@ -55,6 +55,7 @@ const testCases = [
       expect(config.resolveLoader.alias).toEqual({
         'component-extract-loader': `${__dirname}/componentExtractLoader`,
         'bojagi-expose-loader': `${__dirname}/exposeLoader`,
+        reactDom: 'react-dom',
       });
       expect(config.output).toEqual({
         path: `${process.cwd()}/bojagi`,
@@ -66,7 +67,7 @@ const testCases = [
 
       expect(config.externals).toEqual({
         react: 'react',
-        'react-dom': 'window["react-dom"]',
+        'react-dom': 'reactDom',
       });
 
       // Plugins
