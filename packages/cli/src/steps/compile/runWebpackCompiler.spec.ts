@@ -104,6 +104,30 @@ beforeEach(() => {
                 dependencies: [
                   // project module
                   {
+                    request: '../XXX.js',
+                    module: {
+                      resource: `${cwd}/src/components/XXX.js`,
+                      // circular dependency
+                      dependencies: [
+                        {
+                          request: './test.js',
+                          module: {
+                            resource: `${cwd}/src/components/test.js`,
+                            dependencies: [
+                              {
+                                request: './something_ignored.js',
+                                module: {
+                                  resource: `${cwd}/src/components/something_ignored.js`,
+                                  dependencies: [],
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  {
                     request: './otherTest.js',
                     module: {
                       resource: `${cwd}/src/components/otherTest.js`,
@@ -166,12 +190,14 @@ test('run the webpack compiler', async () => {
         gitPath: 'gitpath/bojagi/A.js',
         isExternal: false,
         isNodeModule: false,
+        isCircularImport: false,
         dependencies: [
           {
             filePath: `node_modules/react/index.js`,
             gitPath: `gitpath/node_modules/react/index.js`,
             isExternal: true,
             isNodeModule: true,
+            isCircularImport: false,
             request: 'react',
             packageName: 'react',
           },
@@ -180,6 +206,7 @@ test('run the webpack compiler', async () => {
             gitPath: `gitpath/../../node_modules/foreignNodeModules/index.js`,
             isExternal: false,
             isNodeModule: true,
+            isCircularImport: false,
             request: 'foreignNodeModules',
             packageName: 'foreignNodeModules',
           },
@@ -188,6 +215,7 @@ test('run the webpack compiler', async () => {
             gitPath: `gitpath/node_modules/@material-ui/icons/MyIcon/index.js`,
             isExternal: false,
             isNodeModule: true,
+            isCircularImport: false,
             request: '@material-ui/icons/MyIcon',
             packageName: '@material-ui/icons',
           },
@@ -195,6 +223,7 @@ test('run the webpack compiler', async () => {
           {
             isExternal: false,
             isNodeModule: true,
+            isCircularImport: false,
             request: 'styled-components',
             packageName: 'styled-components',
             filePath: `node_modules/styled-components/index.js`,
@@ -204,13 +233,36 @@ test('run the webpack compiler', async () => {
           {
             isExternal: false,
             isNodeModule: false,
+            isCircularImport: false,
             request: './test.js',
             filePath: `src/components/test.js`,
             gitPath: `gitpath/src/components/test.js`,
             dependencies: [
               {
+                filePath: 'src/components/XXX.js',
+                gitPath: 'gitpath/src/components/XXX.js',
+                isCircularImport: false,
                 isExternal: false,
                 isNodeModule: false,
+                packageName: undefined,
+                request: '../XXX.js',
+                dependencies: [
+                  {
+                    dependencies: undefined,
+                    filePath: 'src/components/test.js',
+                    gitPath: 'gitpath/src/components/test.js',
+                    isCircularImport: true,
+                    isExternal: false,
+                    isNodeModule: false,
+                    packageName: undefined,
+                    request: './test.js',
+                  },
+                ],
+              },
+              {
+                isExternal: false,
+                isNodeModule: false,
+                isCircularImport: false,
                 request: './otherTest.js',
                 filePath: `src/components/otherTest.js`,
                 gitPath: `gitpath/src/components/otherTest.js`,

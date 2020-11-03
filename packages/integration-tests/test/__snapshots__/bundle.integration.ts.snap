@@ -81,7 +81,8 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": true,
     \\"isNodeModule\\": false,
     \\"packageName\\": \\"react\\",
-    \\"request\\": \\"react\\"
+    \\"request\\": \\"react\\",
+    \\"isCircularImport\\": false
    },
    {
     \\"filePath\\": \\"src/App.js\\",
@@ -89,19 +90,22 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./App\\",
+    \\"isCircularImport\\": false,
     \\"dependencies\\": [
      {
       \\"isExternal\\": true,
       \\"isNodeModule\\": false,
       \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\"
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
      },
      {
       \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
       \\"isExternal\\": false,
       \\"isNodeModule\\": true,
       \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\"
+      \\"request\\": \\"styled-components\\",
+      \\"isCircularImport\\": false
      },
      {
       \\"filePath\\": \\"src/components/Box.js\\",
@@ -109,19 +113,22 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./components/Box\\",
+      \\"isCircularImport\\": false,
       \\"dependencies\\": [
        {
         \\"isExternal\\": true,
         \\"isNodeModule\\": false,
         \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\"
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
        },
        {
         \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
         \\"isExternal\\": false,
         \\"isNodeModule\\": true,
         \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\"
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
        }
       ]
      },
@@ -131,19 +138,22 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./components/Button\\",
+      \\"isCircularImport\\": false,
       \\"dependencies\\": [
        {
         \\"isExternal\\": true,
         \\"isNodeModule\\": false,
         \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\"
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
        },
        {
         \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
         \\"isExternal\\": false,
         \\"isNodeModule\\": true,
         \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\"
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
        }
       ]
      },
@@ -153,19 +163,22 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./components/BoxWithButtons\\",
+      \\"isCircularImport\\": false,
       \\"dependencies\\": [
        {
         \\"isExternal\\": true,
         \\"isNodeModule\\": false,
         \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\"
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
        },
        {
         \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
         \\"isExternal\\": false,
         \\"isNodeModule\\": true,
         \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\"
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
        },
        {
         \\"filePath\\": \\"src/components/Box.js\\",
@@ -173,19 +186,22 @@ exports[`run bundle command 3`] = `
         \\"isExternal\\": false,
         \\"isNodeModule\\": false,
         \\"request\\": \\"./Box\\",
+        \\"isCircularImport\\": false,
         \\"dependencies\\": [
          {
           \\"isExternal\\": true,
           \\"isNodeModule\\": false,
           \\"packageName\\": \\"react\\",
-          \\"request\\": \\"react\\"
+          \\"request\\": \\"react\\",
+          \\"isCircularImport\\": false
          },
          {
           \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
           \\"isExternal\\": false,
           \\"isNodeModule\\": true,
           \\"packageName\\": \\"styled-components\\",
-          \\"request\\": \\"styled-components\\"
+          \\"request\\": \\"styled-components\\",
+          \\"isCircularImport\\": false
          }
         ]
        },
@@ -195,19 +211,22 @@ exports[`run bundle command 3`] = `
         \\"isExternal\\": false,
         \\"isNodeModule\\": false,
         \\"request\\": \\"./Button\\",
+        \\"isCircularImport\\": false,
         \\"dependencies\\": [
          {
           \\"isExternal\\": true,
           \\"isNodeModule\\": false,
           \\"packageName\\": \\"react\\",
-          \\"request\\": \\"react\\"
+          \\"request\\": \\"react\\",
+          \\"isCircularImport\\": false
          },
          {
           \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
           \\"isExternal\\": false,
           \\"isNodeModule\\": true,
           \\"packageName\\": \\"styled-components\\",
-          \\"request\\": \\"styled-components\\"
+          \\"request\\": \\"styled-components\\",
+          \\"isCircularImport\\": false
          }
         ]
        }
@@ -219,6 +238,7 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./App.css\\",
+      \\"isCircularImport\\": false,
       \\"dependencies\\": []
      }
     ]
@@ -264,7 +284,8 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": true,
     \\"isNodeModule\\": false,
     \\"packageName\\": \\"react\\",
-    \\"request\\": \\"react\\"
+    \\"request\\": \\"react\\",
+    \\"isCircularImport\\": false
    },
    {
     \\"filePath\\": \\"src/components/Box.js\\",
@@ -272,19 +293,22 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./Box\\",
+    \\"isCircularImport\\": false,
     \\"dependencies\\": [
      {
       \\"isExternal\\": true,
       \\"isNodeModule\\": false,
       \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\"
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
      },
      {
       \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
       \\"isExternal\\": false,
       \\"isNodeModule\\": true,
       \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\"
+      \\"request\\": \\"styled-components\\",
+      \\"isCircularImport\\": false
      }
     ]
    }
@@ -312,7 +336,8 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": true,
     \\"isNodeModule\\": false,
     \\"packageName\\": \\"react\\",
-    \\"request\\": \\"react\\"
+    \\"request\\": \\"react\\",
+    \\"isCircularImport\\": false
    },
    {
     \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
@@ -320,19 +345,22 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./BoxWithButtons\\",
+    \\"isCircularImport\\": false,
     \\"dependencies\\": [
      {
       \\"isExternal\\": true,
       \\"isNodeModule\\": false,
       \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\"
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
      },
      {
       \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
       \\"isExternal\\": false,
       \\"isNodeModule\\": true,
       \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\"
+      \\"request\\": \\"styled-components\\",
+      \\"isCircularImport\\": false
      },
      {
       \\"filePath\\": \\"src/components/Box.js\\",
@@ -340,19 +368,22 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./Box\\",
+      \\"isCircularImport\\": false,
       \\"dependencies\\": [
        {
         \\"isExternal\\": true,
         \\"isNodeModule\\": false,
         \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\"
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
        },
        {
         \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
         \\"isExternal\\": false,
         \\"isNodeModule\\": true,
         \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\"
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
        }
       ]
      },
@@ -362,19 +393,22 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./Button\\",
+      \\"isCircularImport\\": false,
       \\"dependencies\\": [
        {
         \\"isExternal\\": true,
         \\"isNodeModule\\": false,
         \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\"
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
        },
        {
         \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
         \\"isExternal\\": false,
         \\"isNodeModule\\": true,
         \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\"
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
        }
       ]
      }
@@ -408,7 +442,8 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": true,
     \\"isNodeModule\\": false,
     \\"packageName\\": \\"react\\",
-    \\"request\\": \\"react\\"
+    \\"request\\": \\"react\\",
+    \\"isCircularImport\\": false
    },
    {
     \\"filePath\\": \\"src/components/Button.js\\",
@@ -416,19 +451,22 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./Button\\",
+    \\"isCircularImport\\": false,
     \\"dependencies\\": [
      {
       \\"isExternal\\": true,
       \\"isNodeModule\\": false,
       \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\"
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
      },
      {
       \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
       \\"isExternal\\": false,
       \\"isNodeModule\\": true,
       \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\"
+      \\"request\\": \\"styled-components\\",
+      \\"isCircularImport\\": false
      }
     ]
    }
@@ -456,7 +494,8 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": true,
     \\"isNodeModule\\": false,
     \\"packageName\\": \\"react\\",
-    \\"request\\": \\"react\\"
+    \\"request\\": \\"react\\",
+    \\"isCircularImport\\": false
    },
    {
     \\"filePath\\": \\"src/components/Logo.js\\",
@@ -464,6 +503,7 @@ exports[`run bundle command 3`] = `
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./Logo\\",
+    \\"isCircularImport\\": false,
     \\"dependencies\\": [
      {
       \\"filePath\\": \\"src/components/img/logo.png\\",
@@ -471,6 +511,7 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./img/logo.png\\",
+      \\"isCircularImport\\": false,
       \\"dependencies\\": []
      }
     ]
