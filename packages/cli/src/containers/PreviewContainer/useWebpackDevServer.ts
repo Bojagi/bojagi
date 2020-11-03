@@ -70,9 +70,11 @@ export function useWebpackDevServer({
           name: asset,
           url: `${baseUrl}/${asset}`,
         }));
+        console.log('SETTING ASSETS!!!!');
         assets = Array.from(compileOutput.compilation.entrypoints.entries())
           .map(([key, val]) => [key, val.getFiles()])
           .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
+        console.log(assets);
         setReady(true);
       });
 
@@ -91,7 +93,10 @@ export function useWebpackDevServer({
           before: setupApi({
             storiesMetadata,
             config,
-            getAssets: () => assets,
+            getAssets: () => {
+              console.log('GETTING ASSETS', assets);
+              return assets;
+            },
             getFiles: () => files,
           }),
         });
