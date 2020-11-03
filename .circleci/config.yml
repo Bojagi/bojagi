@@ -41,7 +41,10 @@ jobs:
           command: yarn test
       - run:
           name: integration tests
-          command: yarn integration
+          command: |
+            cd packages/integration-tests && yarn bojagi preview &
+            cd /root/project
+            yarn integration
       - store_artifacts:
           path: /root/project/packages/integration-tests/test/__image_snapshots__/__differencified_output__
           destination: baseIntegration

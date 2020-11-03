@@ -5,13 +5,13 @@ jest.setTimeout(180000);
 
 test('run preview command', async () => {
   deleteTmpFolder(EXEC_PATH);
-  const { previewProcess, stories } = await startPreview(EXEC_PATH);
+  const { stories } = await startPreview(EXEC_PATH);
   try {
     console.log('snapshot testing');
     await snapshotPreview(stories);
-    previewProcess.kill();
+    // previewProcess.kill();
   } catch (e) {
-    previewProcess.kill();
+    // previewProcess.kill();
     console.error(e);
     throw e;
   }
