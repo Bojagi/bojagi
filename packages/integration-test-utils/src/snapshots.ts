@@ -58,7 +58,7 @@ export function snapShotFileJSON(filePath) {
 
 export function snapShotTmpFolder(basePath) {
   const resultFolder = getResultFolder(basePath);
-  snapShotFileJSON(path.resolve(resultFolder, 'default', 'manifest.json'));
+  snapShotFileJSON(path.resolve(resultFolder, 'manifest.json'));
   snapShotFileJSON(path.resolve(resultFolder, 'default', 'files.json'));
   snapShotFileJSON(path.resolve(resultFolder, 'default', 'stories.json'));
 }
