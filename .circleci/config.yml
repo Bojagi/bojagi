@@ -30,6 +30,9 @@ jobs:
     executor: base
     steps:
       - init
+      - run: 
+          name: prepare browser
+          command: Xvfb :99 -screen 0 1024x768x16 &
       - run:
           name: lint
           command: yarn lint
@@ -38,7 +41,7 @@ jobs:
           command: yarn test
       - run:
           name: integration tests
-          command: yarn integration
+          command: DEBUG=* yarn integration
       - store_artifacts:
           path: /root/project/packages/integration-tests/test/__image_snapshots__/__differencified_output__
           destination: baseIntegration

@@ -59,11 +59,17 @@ export function useWebpackDevServer({
 
     if (!established) {
       compiler.hooks.beforeCompile.tap('BojagiPreview', () => {
+        console.log(`compiler.hooks.beforeCompile.tap('BojagiPreview'`);
         setReady(false);
         setErrors([]);
       });
 
+      compiler.hooks.failed.tap('BojagiPreview', err => {
+        console.log('compiler.hooks.failed.tap', err, err.stack);
+      });
+
       compiler.hooks.done.tap('BojagiPreview', compileOutput => {
+        console.log(`compiler.hooks.done.tap('BojagiPreview'`);
         setEstablished(true);
         setErrors(compileOutput.compilation.errors);
         files = Object.keys(compileOutput.compilation.assets).map(asset => ({
