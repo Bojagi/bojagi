@@ -1,7 +1,7 @@
 import { startPreview, snapshotPreview, deleteTmpFolder } from '@bojagi/integration-test-utils';
 import { EXEC_PATH } from './config';
 
-jest.setTimeout(120000);
+jest.setTimeout(180000);
 
 test('run preview command', async () => {
   deleteTmpFolder(EXEC_PATH);

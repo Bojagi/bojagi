@@ -41,7 +41,7 @@ jobs:
           command: yarn test
       - run:
           name: integration tests
-          command: DEBUG=* yarn integration
+          command: yarn integration
       - store_artifacts:
           path: /root/project/packages/integration-tests/test/__image_snapshots__/__differencified_output__
           destination: baseIntegration
