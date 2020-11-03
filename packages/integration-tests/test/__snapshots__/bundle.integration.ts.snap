@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`run bundle command 1`] = `
+"{
+ \\"version\\": \\"3\\",
+ \\"namespaces\\": [
+  {
+   \\"name\\": \\"default\\",
+   \\"framework\\": {
+    \\"name\\": \\"react\\",
+    \\"version\\": \\"16.12.0\\"
+   }
+  }
+ ]
+}"
+`;
+
+exports[`run bundle command 2`] = `
 "[
  {
   \\"name\\": \\"718ad8b72621629b68f4ea8458266766.png\\",
@@ -50,7 +65,7 @@ exports[`run bundle command 1`] = `
 ]"
 `;
 
-exports[`run bundle command 2`] = `
+exports[`run bundle command 3`] = `
 "[
  {
   \\"title\\": \\"App.bojagi\\",

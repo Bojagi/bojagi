@@ -14,5 +14,5 @@ export const defaultConfig: BaseConfig = {
   previewNoOpen: false,
   previewDownloadUrl:
     process.env.BOJAGI_PREVIEW_DOWNLOAD_URL ||
-    'https://dev-bojagi-local-dev-releases.s3.amazonaws.com',
+    'https://prod-bojagi-local-dev-releases.s3.amazonaws.com',
 };
