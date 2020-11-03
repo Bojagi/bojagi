@@ -6,24 +6,24 @@ import { API_URL, MAX_BUILD_TIME } from './constants';
 
 type StartPreviewResponse = {
   stories: object;
-  // previewProcess: cp.ChildProcess;
+  previewProcess: cp.ChildProcess;
 };
 
 export async function startPreview(cwd, options?: cp.SpawnOptionsWithoutStdio) {
   const bojagiBin = path.resolve(cwd, 'node_modules', '.bin', 'bojagi');
 
-  // const previewProcess = cp.spawn(bojagiBin, ['preview', '--noOpen'], {
-  //   stdio: ['inherit', 'inherit', process.stderr],
-  //   cwd,
-  //   env: { ...process.env, CI: 'true' },
-  //   ...options,
-  // });
+  const previewProcess = cp.spawn(bojagiBin, ['preview', '--noOpen'], {
+    stdio: ['inherit', 'inherit', process.stderr],
+    cwd,
+    env: { ...process.env, CI: 'true' },
+    ...options,
+  });
   return new Promise<StartPreviewResponse>((resolve, reject) => {
     let interval;
     const maxTimeout = setTimeout(() => {
       console.log('max timeout reached, rejecting');
       clearInterval(interval);
-      // previewProcess.kill();
+      previewProcess.kill();
       reject(new Error('preview server took to long to start'));
     }, MAX_BUILD_TIME);
     interval = setInterval(async () => {
@@ -33,9 +33,8 @@ export async function startPreview(cwd, options?: cp.SpawnOptionsWithoutStdio) {
         clearInterval(interval);
         console.log('clearing timeout');
         clearTimeout(maxTimeout);
-        resolve({ stories });
+        resolve({ stories, previewProcess });
       } catch (e) {
-        console.log(e, e.stack);
         console.log('preview not up yet, waiting....');
       }
     }, 1000);

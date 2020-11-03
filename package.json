@@ -4,6 +4,7 @@
   "scripts": {
     "test": "jest",
     "integration": "jest --runInBand --config integration.jest.config.js --forceExit",
+    "integrationLocal": "jest --runInBand --config integration.local.jest.config.js --forceExit",
     "build": "tsc -b",
     "deploy": "lerna publish from-git -y",
     "publish": "./bin/publish.sh",

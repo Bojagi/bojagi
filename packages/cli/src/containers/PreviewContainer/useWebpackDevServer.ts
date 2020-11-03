@@ -59,28 +59,20 @@ export function useWebpackDevServer({
 
     if (!established) {
       compiler.hooks.beforeCompile.tap('BojagiPreview', () => {
-        console.log(`compiler.hooks.beforeCompile.tap('BojagiPreview'`);
         setReady(false);
         setErrors([]);
       });
 
-      compiler.hooks.failed.tap('BojagiPreview', err => {
-        console.log('compiler.hooks.failed.tap', err, err.stack);
-      });
-
       compiler.hooks.done.tap('BojagiPreview', compileOutput => {
-        console.log(`compiler.hooks.done.tap('BojagiPreview'`);
         setEstablished(true);
         setErrors(compileOutput.compilation.errors);
         files = Object.keys(compileOutput.compilation.assets).map(asset => ({
           name: asset,
           url: `${baseUrl}/${asset}`,
         }));
-        console.log('SETTING ASSETS!!!!');
         assets = Array.from(compileOutput.compilation.entrypoints.entries())
           .map(([key, val]) => [key, val.getFiles()])
           .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
-        console.log(assets);
         setReady(true);
       });
 
@@ -99,10 +91,7 @@ export function useWebpackDevServer({
           before: setupApi({
             storiesMetadata,
             config,
-            getAssets: () => {
-              console.log('GETTING ASSETS', assets);
-              return assets;
-            },
+            getAssets: () => assets,
             getFiles: () => files,
           }),
         });
