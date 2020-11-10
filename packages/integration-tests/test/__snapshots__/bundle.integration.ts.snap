@@ -258,6 +258,7 @@ exports[`run bundle command 3`] = `
      },
      {
       \\"filePath\\": \\"src/components/Lazy.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./components/Lazy\\",
@@ -538,6 +539,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"filePath\\": \\"src/components/Lazy.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./Lazy\\",
@@ -561,7 +563,7 @@ exports[`run bundle command 3`] = `
     ]
    }
   ],
-  \\"gitPath\\": \\"src/components/Lazy.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
   \\"name\\": \\"Lazy.bojagi\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
@@ -644,6 +646,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"filePath\\": \\"src/components/Ping.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./Ping\\",
@@ -666,6 +669,7 @@ exports[`run bundle command 3`] = `
      },
      {
       \\"filePath\\": \\"src/components/Pong.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./Pong\\",
@@ -688,6 +692,7 @@ exports[`run bundle command 3`] = `
        },
        {
         \\"filePath\\": \\"src/components/Ping.js\\",
+        \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
         \\"isExternal\\": false,
         \\"isNodeModule\\": false,
         \\"request\\": \\"./Ping\\",
@@ -699,6 +704,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"filePath\\": \\"src/components/Pong.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
     \\"isExternal\\": false,
     \\"isNodeModule\\": false,
     \\"request\\": \\"./Pong\\",
@@ -721,6 +727,7 @@ exports[`run bundle command 3`] = `
      },
      {
       \\"filePath\\": \\"src/components/Ping.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./Ping\\",
@@ -743,6 +750,7 @@ exports[`run bundle command 3`] = `
        },
        {
         \\"filePath\\": \\"src/components/Pong.js\\",
+        \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
         \\"isExternal\\": false,
         \\"isNodeModule\\": false,
         \\"request\\": \\"./Pong\\",
@@ -753,7 +761,7 @@ exports[`run bundle command 3`] = `
     ]
    }
   ],
-  \\"gitPath\\": \\"src/components/PingPong.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
   \\"name\\": \\"PingPong.bojagi\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
