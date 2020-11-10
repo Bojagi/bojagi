@@ -5,6 +5,7 @@ import Button from './components/Button';
 import BoxWithButtons from './components/BoxWithButtons';
 
 import './App.css';
+import Lazy from './components/Lazy';
 
 const Container = styled.div`
   margin: 2rem;
@@ -15,6 +16,7 @@ const Container = styled.div`
 export default function() {
   return (
     <Container id="App">
+      <Lazy></Lazy>
       <Box color="green">
         green
         <Button color="yellow">click</Button>
