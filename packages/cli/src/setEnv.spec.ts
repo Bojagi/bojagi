@@ -22,6 +22,18 @@ test('not set NODE_ENV if set', () => {
   expect(process.env.NODE_ENV).toBe('something');
 });
 
+test('set BROWSERSLIST_IGNORE_OLD_DATA to true if not set', () => {
+  delete process.env.BROWSERSLIST_IGNORE_OLD_DATA;
+  setEnv();
+  expect(process.env.BROWSERSLIST_IGNORE_OLD_DATA).toBe('true');
+});
+
+test('not set BROWSERSLIST_IGNORE_OLD_DATA if set', () => {
+  process.env.BROWSERSLIST_IGNORE_OLD_DATA = 'false';
+  setEnv();
+  expect(process.env.BROWSERSLIST_IGNORE_OLD_DATA).toBe('false');
+});
+
 test('auto set CI option if debug is set', () => {
   delete process.env.CI;
   process.env.DEBUG = 'sth';
