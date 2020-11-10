@@ -65,10 +65,11 @@ export function InitContainer() {
     }
   }, [answers, config.executionPath]);
 
-  const packageJsonExists = checkFileExistance(REQUIRED_FILES, config);
+  const packageJsonExists = checkFileExistence(REQUIRED_FILES, config);
   const nonExistingFiles = packageJsonExists.filter(([_fileName, exists]) => !exists);
 
   if (nonExistingFiles.length > 0) {
+    process.exitCode = 1;
     return (
       <>
         <ErrorMessage error={new SimpleError(nonExistingFiles[0][2])} />
@@ -94,7 +95,7 @@ export function InitContainer() {
   );
 }
 
-function checkFileExistance(
+function checkFileExistence(
   fileNames: [string, string][],
   config: Config
 ): [string, boolean, string][] {

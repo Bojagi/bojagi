@@ -25,12 +25,13 @@ export function StepContainer({ steps, validator }: StepContainerProps) {
         validator(config);
       } catch (err) {
         setValidationError(err);
+        process.exitCode = 1;
       }
     }
     setValidationDone(true);
   }, [validator, config]);
 
-  const handleSucccess = React.useCallback(({ runtimeInSeconds }: OnSuccessOptions) => {
+  const handleSuccess = React.useCallback(({ runtimeInSeconds }: OnSuccessOptions) => {
     setRuntime(runtimeInSeconds);
   }, []);
 
@@ -50,7 +51,7 @@ export function StepContainer({ steps, validator }: StepContainerProps) {
     <>
       <Box flexDirection="column" marginTop={1}>
         <Message emoji="wave">Welcome back!</Message>
-        <StepRunner steps={steps} onSuccess={handleSucccess} />
+        <StepRunner steps={steps} onSuccess={handleSuccess} />
       </Box>
       {runtime > 0 && <SuccessMessage runtime={runtime} />}
     </>
