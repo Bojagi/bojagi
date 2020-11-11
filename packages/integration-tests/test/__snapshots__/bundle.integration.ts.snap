@@ -53,9 +53,24 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/Button.bojagi.js\\"
  },
  {
+  \\"name\\": \\"Lazy.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Lazy.bojagi.js\\"
+ },
+ {
   \\"name\\": \\"Logo.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/Logo.bojagi.js\\"
+ },
+ {
+  \\"name\\": \\"PingPong.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/PingPong.bojagi.js\\"
+ },
+ {
+  \\"name\\": \\"8.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/8.js\\"
  },
  {
   \\"name\\": \\"./index.html\\",
@@ -240,6 +255,31 @@ exports[`run bundle command 3`] = `
       \\"request\\": \\"./App.css\\",
       \\"isCircularImport\\": false,
       \\"dependencies\\": []
+     },
+     {
+      \\"filePath\\": \\"src/components/Lazy.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./components/Lazy\\",
+      \\"isCircularImport\\": false,
+      \\"dependencies\\": [
+       {
+        \\"isExternal\\": true,
+        \\"isNodeModule\\": false,
+        \\"packageName\\": \\"react\\",
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
+       },
+       {
+        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": true,
+        \\"packageName\\": \\"styled-components\\",
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
+       }
+      ]
      }
     ]
    }
@@ -481,6 +521,57 @@ exports[`run bundle command 3`] = `
   ]
  },
  {
+  \\"title\\": \\"Lazy.bojagi\\",
+  \\"fileName\\": \\"Lazy.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"lazy\\",
+    \\"storyName\\": \\"Lazy\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"isExternal\\": true,
+    \\"isNodeModule\\": false,
+    \\"packageName\\": \\"react\\",
+    \\"request\\": \\"react\\",
+    \\"isCircularImport\\": false
+   },
+   {
+    \\"filePath\\": \\"src/components/Lazy.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"request\\": \\"./Lazy\\",
+    \\"isCircularImport\\": false,
+    \\"dependencies\\": [
+     {
+      \\"isExternal\\": true,
+      \\"isNodeModule\\": false,
+      \\"packageName\\": \\"react\\",
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
+     },
+     {
+      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": true,
+      \\"packageName\\": \\"styled-components\\",
+      \\"request\\": \\"styled-components\\",
+      \\"isCircularImport\\": false
+     }
+    ]
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
+  \\"name\\": \\"Lazy.bojagi\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
+  \\"files\\": [
+   \\"Lazy.bojagi.js\\"
+  ]
+ },
+ {
   \\"title\\": \\"Logo.bojagi\\",
   \\"fileName\\": \\"Logo.bojagi\\",
   \\"storyItems\\": [
@@ -506,6 +597,13 @@ exports[`run bundle command 3`] = `
     \\"isCircularImport\\": false,
     \\"dependencies\\": [
      {
+      \\"isExternal\\": true,
+      \\"isNodeModule\\": false,
+      \\"packageName\\": \\"react\\",
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
+     },
+     {
       \\"filePath\\": \\"src/components/img/logo.png\\",
       \\"gitPath\\": \\"packages/integration-tests/src/components/img/logo.png\\",
       \\"isExternal\\": false,
@@ -523,6 +621,152 @@ exports[`run bundle command 3`] = `
   \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
   \\"files\\": [
    \\"Logo.bojagi.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Ping Pong.bojagi\\",
+  \\"fileName\\": \\"PingPong.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"PingPong\\",
+    \\"storyName\\": \\"Ping Pong\\"
+   },
+   {
+    \\"exportName\\": \\"PongPing\\",
+    \\"storyName\\": \\"Pong Ping\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"isExternal\\": true,
+    \\"isNodeModule\\": false,
+    \\"packageName\\": \\"react\\",
+    \\"request\\": \\"react\\",
+    \\"isCircularImport\\": false
+   },
+   {
+    \\"filePath\\": \\"src/components/Ping.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"request\\": \\"./Ping\\",
+    \\"isCircularImport\\": false,
+    \\"dependencies\\": [
+     {
+      \\"isExternal\\": true,
+      \\"isNodeModule\\": false,
+      \\"packageName\\": \\"react\\",
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
+     },
+     {
+      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": true,
+      \\"packageName\\": \\"styled-components\\",
+      \\"request\\": \\"styled-components\\",
+      \\"isCircularImport\\": false
+     },
+     {
+      \\"filePath\\": \\"src/components/Pong.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./Pong\\",
+      \\"isCircularImport\\": false,
+      \\"dependencies\\": [
+       {
+        \\"isExternal\\": true,
+        \\"isNodeModule\\": false,
+        \\"packageName\\": \\"react\\",
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
+       },
+       {
+        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": true,
+        \\"packageName\\": \\"styled-components\\",
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
+       },
+       {
+        \\"filePath\\": \\"src/components/Ping.js\\",
+        \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"request\\": \\"./Ping\\",
+        \\"isCircularImport\\": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    \\"filePath\\": \\"src/components/Pong.js\\",
+    \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
+    \\"isExternal\\": false,
+    \\"isNodeModule\\": false,
+    \\"request\\": \\"./Pong\\",
+    \\"isCircularImport\\": false,
+    \\"dependencies\\": [
+     {
+      \\"isExternal\\": true,
+      \\"isNodeModule\\": false,
+      \\"packageName\\": \\"react\\",
+      \\"request\\": \\"react\\",
+      \\"isCircularImport\\": false
+     },
+     {
+      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": true,
+      \\"packageName\\": \\"styled-components\\",
+      \\"request\\": \\"styled-components\\",
+      \\"isCircularImport\\": false
+     },
+     {
+      \\"filePath\\": \\"src/components/Ping.js\\",
+      \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
+      \\"isExternal\\": false,
+      \\"isNodeModule\\": false,
+      \\"request\\": \\"./Ping\\",
+      \\"isCircularImport\\": false,
+      \\"dependencies\\": [
+       {
+        \\"isExternal\\": true,
+        \\"isNodeModule\\": false,
+        \\"packageName\\": \\"react\\",
+        \\"request\\": \\"react\\",
+        \\"isCircularImport\\": false
+       },
+       {
+        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": true,
+        \\"packageName\\": \\"styled-components\\",
+        \\"request\\": \\"styled-components\\",
+        \\"isCircularImport\\": false
+       },
+       {
+        \\"filePath\\": \\"src/components/Pong.js\\",
+        \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
+        \\"isExternal\\": false,
+        \\"isNodeModule\\": false,
+        \\"request\\": \\"./Pong\\",
+        \\"isCircularImport\\": true
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
+  \\"name\\": \\"PingPong.bojagi\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
+  \\"files\\": [
+   \\"PingPong.bojagi.js\\"
   ]
  }
 ]"

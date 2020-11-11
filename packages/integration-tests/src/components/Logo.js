@@ -1,3 +1,5 @@
+import React from 'react';
+
 const logoUrl = require('./img/logo.png').default;
 
 export default function Logo(props) {
