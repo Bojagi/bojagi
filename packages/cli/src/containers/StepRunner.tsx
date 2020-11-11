@@ -102,6 +102,7 @@ export function StepRunner({ steps, onSuccess, hideStepCount = false }: StepRunn
         output: { error: err },
       });
       setError(err);
+      process.exitCode = 1;
     }
   }, [config, currentStep, steps, stepOutputs]);
 

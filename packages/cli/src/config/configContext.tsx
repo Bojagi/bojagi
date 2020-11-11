@@ -24,7 +24,10 @@ export function ConfigProvider({ config: customConfig, children }: ConfigProvide
       .then(cfg => {
         setConfig(cfg);
       })
-      .catch(setError);
+      .catch(error => {
+        setError(error);
+        process.exitCode = 1;
+      });
   }, [customConfig]);
 
   if (err) {
