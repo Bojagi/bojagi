@@ -16,6 +16,17 @@ const packageJson = require('../package.json');
 
 import program = require('commander');
 
+const MINUMUM_NODE_VERSION = 12;
+
+const [nodeMajorVersion] = process.versions.node.split('.');
+if (parseInt(nodeMajorVersion, 10) < MINUMUM_NODE_VERSION) {
+  console.error(`\x1b[4m\x1b[31mYou have an outdated node version!`);
+  console.error(`\x1b[0m\x1b[33mYour version: ${process.versions.node}`);
+  console.error(`Minimum required version: ${MINUMUM_NODE_VERSION}`);
+  console.error('Please update your node environment!');
+  process.exit(1);
+}
+
 program.version(packageJson.version);
 
 bundle(program);
