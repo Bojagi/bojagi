@@ -6,11 +6,13 @@ import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRu
 import getEntrypointsFromFiles from './getExtendedStorybookFiles';
 import getStoryFiles from '../../utils/getStoryFiles';
 import { NonVerboseError } from '../../errors';
+import { getDependencyVersion } from '../../utils/getDependencyVersion';
 
 export type ScanStepOutput = {
   storyFiles: StoryWithMetadata[];
   storyFileCount: number;
   dependencies: Record<string, string>;
+  reactVersion: string;
 };
 
 export const scanStep: StepRunnerStep<ScanStepOutput> = {
@@ -32,6 +34,11 @@ async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutp
   const storyFiles = await getStoryFiles(config);
   const extendedStoryFiles = getEntrypointsFromFiles(config, storyFiles);
   const packageJson = require(path.join(config.executionPath, 'package.json'));
+  const reactVersion = getDependencyVersion(config.executionPath, 'react');
+
+  if (!reactVersion) {
+    throw new NonVerboseError('React was not found in package.json but is needed for Bojagi');
+  }
 
   if (storyFiles.length === 0) {
     throw new NonVerboseError(
@@ -43,5 +50,6 @@ async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutp
     storyFiles: extendedStoryFiles,
     storyFileCount: storyFiles.length,
     dependencies: packageJson.dependencies || {},
+    reactVersion,
   };
 }

@@ -57,7 +57,7 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
     })
     .map(mapObjectWithWhitelist(STORY_PROPERTY_WHITELIST));
 
-  const manifest = buildManifest(stepOutputs.scan.dependencies);
+  const manifest = buildManifest(stepOutputs.scan.reactVersion);
 
   await writeJson('manifest', manifest);
   await writeJson('files', cleanFiles, config.namespace);

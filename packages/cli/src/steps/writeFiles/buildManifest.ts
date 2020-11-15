@@ -15,7 +15,7 @@ export type BojagiManifest = {
   namespaces: BojagiNamespace[];
 };
 
-export function buildManifest(dependencies: Record<string, string>): BojagiManifest {
+export function buildManifest(reactVersion: string): BojagiManifest {
   return {
     version: MANIFEST_VERSION,
     namespaces: [
@@ -23,7 +23,7 @@ export function buildManifest(dependencies: Record<string, string>): BojagiManif
         name: 'default',
         framework: {
           name: 'react',
-          version: dependencies.react,
+          version: reactVersion,
         },
       },
     ],
