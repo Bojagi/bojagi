@@ -24,8 +24,8 @@ const FORMAT_RESET = '\x1b[0m';
 
 const [nodeMajorVersion] = process.versions.node.split('.');
 if (parseInt(nodeMajorVersion, 10) < MINIMUM_NODE_VERSION) {
-  console.error(`${FORMAT_UNDERLINE}${COLOR_RED}You have an outdated node version!`);
-  console.error(`${FORMAT_RESET}${COLOR_YELLOW}Your version: ${process.versions.node}`);
+  console.error(`${FORMAT_UNDERLINE}${COLOR_RED}You have an outdated node version!${FORMAT_RESET}`);
+  console.error(`${COLOR_YELLOW}Your version: ${process.versions.node}`);
   console.error(`Minimum required version: ${MINIMUM_NODE_VERSION}`);
   console.error('Please update your node environment!');
   process.exit(1);
