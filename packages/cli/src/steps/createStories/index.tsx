@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { Config } from '../../config';
+import { handleApiError } from '../../apiErrorHandling';
 
 export type CreateStoriesStepOutput = {
   uploadUrl: string;
@@ -29,11 +30,14 @@ export const createStoriesStep: StepRunnerStep<CreateStoriesStepOutput> = {
 async function action({ config }: StepRunnerActionOptions) {
   const apiSecret = process.env.BOJAGI_SECRET as string;
 
-  const result = await createStoriesApiCall(config, apiSecret);
-
-  return {
-    uploadUrl: result.data.data.uploadCreate.uploadUrl,
-  };
+  try {
+    const result = await createStoriesApiCall(config, apiSecret);
+    return {
+      uploadUrl: result.data.data.uploadCreate.uploadUrl,
+    };
+  } catch (err) {
+    return handleApiError(err);
+  }
 }
 
 async function createStoriesApiCall({ commit, uploadApiUrl }: Config, apiSecret: string) {

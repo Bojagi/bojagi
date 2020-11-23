@@ -6,11 +6,21 @@ import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRu
 import { MANIFEST_VERSION } from '../../constants';
 import { Emoji } from '../../components/Emoji';
 import debuggers, { DebugNamespaces } from '../../debug';
+import { NonVerboseError } from '../../errors';
+import { handleApiError } from '../../apiErrorHandling';
 
 const debug = debuggers[DebugNamespaces.VALIDATE];
 
-class UnknownVersionError extends Error {}
-class InactiveVersionError extends Error {}
+class UnknownVersionError extends NonVerboseError {
+  constructor() {
+    super('Manifest version not known, are you from the future?');
+  }
+}
+class InactiveVersionError extends NonVerboseError {
+  constructor() {
+    super('Your manifest version is inactive. Please update to the newest bojagi CLI version!');
+  }
+}
 
 type ManifestVersionApiResponse = {
   data: {
@@ -78,25 +88,22 @@ async function action({ config }: StepRunnerActionOptions): Promise<ValidateStep
       }
     );
 
-    const { manifestVersion } = result.data.data;
+    const manifestVersion = result?.data?.data?.manifestVersion;
     debug('manifestVersion', manifestVersion);
 
     if (!manifestVersion) {
-      throw new UnknownVersionError('Manifest version not known, are you from the future?');
+      throw new UnknownVersionError();
     }
 
     if (manifestVersion.status === VersionStatuses.INACTIVE) {
-      throw new InactiveVersionError(
-        'Your manifest version is inactive. Please update to the newest bojagi CLI version!'
-      );
+      throw new InactiveVersionError();
     }
 
     return {
       manifestVersion,
     };
   } catch (err) {
-    debug('Error', err.response.data);
-    throw err;
+    return handleApiError(err);
   }
 }
 
