@@ -9,8 +9,6 @@ import debuggers, { DebugNamespaces } from '../../debug';
 import { NonVerboseError } from '../../errors';
 import { handleApiError } from '../../apiErrorHandling';
 
-import e = require('express');
-
 const debug = debuggers[DebugNamespaces.VALIDATE];
 
 class UnknownVersionError extends NonVerboseError {
