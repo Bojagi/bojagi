@@ -36,9 +36,7 @@ async function action({ config }: StepRunnerActionOptions) {
       uploadUrl: result.data.data.uploadCreate.uploadUrl,
     };
   } catch (err) {
-    handleApiError(err);
-    // Rethrow
-    throw err;
+    return handleApiError(err);
   }
 }
 

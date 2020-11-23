@@ -13,15 +13,17 @@ export class InvalidSecretError extends NonVerboseError {
   }
 }
 
-export function handleApiError(err) {
+export function handleApiError(err): never {
   if (!err.response) {
-    return;
+    throw err;
   }
 
   debug('API error data', err.response?.data);
   if (err.response.status === 400 && hasInvalidSecretError(err.response.data.errors)) {
     throw new InvalidSecretError();
   }
+
+  throw err;
 }
 
 function hasInvalidSecretError(errors: ApiError[]) {
