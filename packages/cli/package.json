@@ -33,7 +33,6 @@
     "commander": "4.1.1",
     "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
-    "date-fns": "^2.12.0",
     "debug": "^4.2.0",
     "etag": "^1.8.1",
     "expose-loader": "^0.7.5",
@@ -52,11 +51,11 @@
     "react": "^16.13.1",
     "rimraf": "^2.6.3",
     "simple-git": "^2.4.0",
-    "typescript": "^3.7.3",
     "webpack": "^4.44.2",
     "webpack-merge": "^5.1.4"
   },
   "devDependencies": {
+    "typescript": "^3.7.3",
     "@types/axios": "0.14.0",
     "@types/node-emoji": "1.8.1",
     "@types/react": "16.9.34",
