@@ -1,5 +1,4 @@
 import * as React from 'react';
-import differenceInMilliseconds from 'date-fns/differenceInMilliseconds';
 import { Box } from 'ink';
 import { Steps } from '../components/Steps';
 import { Step, StepState } from '../components/Step';
@@ -155,7 +154,7 @@ export function StepRunner({ steps, onSuccess, hideStepCount = false }: StepRunn
 }
 
 function getDifference(startTime: Date, endTime: Date) {
-  const result = differenceInMilliseconds(endTime, startTime);
+  const result = Math.abs(endTime.getTime() - startTime.getTime());
   return Math.round(result / 10) / 100;
 }
 
