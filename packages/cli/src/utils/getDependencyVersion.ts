@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 export function getDependencyVersion(folderPath: string, dependencyName: string, fileSystem = fs) {
-  if (folderPath === path.delimiter) {
+  if (folderPath === path.sep) {
     return undefined;
   }
 
