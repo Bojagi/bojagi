@@ -5,6 +5,7 @@ import { CompileStepOutput } from '../compile';
 import { AnalyzeStepOutput, StoryCollectionMetadata } from '../analyze';
 import { writeJson } from '../../utils/writeFile';
 import { buildManifest } from './buildManifest';
+import { normalizeFilePath } from '../../utils/normalizeFilePath';
 
 export type WriteFilesStepOutput = {};
 
@@ -46,7 +47,11 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
   // Filter object properties by whitelist (so only relevant data is added to json files)
   const cleanFiles = stepOutputs.compile.files
     .filter(item => !IGNORE_FILES.find(ignoreRegExp => ignoreRegExp.test(item.fullOutputFilePath)))
-    .map(mapObjectWithWhitelist(FILE_PROPERTY_WHITELIST));
+    .map(mapObjectWithWhitelist(FILE_PROPERTY_WHITELIST))
+    .map(item => ({
+      ...item,
+      outputFilePath: normalizeFilePath(item.outputFilePath),
+    }));
   const cleanStories = stepOutputs.compile.stories
     .map(item => {
       const metadata = storiesMetadata[item.filePath] || {};

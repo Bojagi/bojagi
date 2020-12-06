@@ -3,9 +3,11 @@ import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRu
 import { TEMP_FOLDER } from '../../constants';
 import { getFS } from '../../dependencies';
 import { CreateStoriesStepOutput } from '../createStories';
+import { normalizeFilePath } from '../../utils/normalizeFilePath';
 
 import path = require('path');
 import AdmZip = require('adm-zip');
+
 const fs = getFS();
 
 export type UploadStepOutput = {};
@@ -68,10 +70,7 @@ function addFileToZip(zip, folder: string, fileName: string) {
   }
 
   const fileContent = fs.readFileSync(currentPath);
-  // Replace path separator with simple slash (eg. '\\' on windows with '/')
-  const normalizedFileName = fileName.split(path.sep).join('/');
-
-  zip.addFile(normalizedFileName, fileContent);
+  zip.addFile(normalizeFilePath(fileName), fileContent);
 }
 
 function uploadZip(url: string, fileContent: Buffer) {
