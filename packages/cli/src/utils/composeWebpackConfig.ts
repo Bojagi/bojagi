@@ -43,7 +43,7 @@ const composeWebpackConfig = (
     {
       entry,
       output: {
-        path: `${process.cwd()}/bojagi`,
+        path: pathUtils.join(process.cwd(), 'bojagi'),
         filename: '[name].js',
         jsonpFunction: 'bojagiComponents',
         publicPath,
@@ -100,9 +100,12 @@ function returnIfExists(path, continueFunction) {
 }
 
 export function getWebpackConfigPath(executionPath) {
-  return returnIfExists(`${executionPath}/webpack.config.js`, () =>
-    returnIfExists(`${executionPath}/node_modules/react-scripts/config/webpack.config.js`, () => {
-      return undefined;
-    })
+  return returnIfExists(pathUtils.join(executionPath, 'webpack.config.js'), () =>
+    returnIfExists(
+      pathUtils.join(executionPath, 'node_modules', 'react-scripts', 'config', 'webpack.config.js'),
+      () => {
+        return undefined;
+      }
+    )
   );
 }

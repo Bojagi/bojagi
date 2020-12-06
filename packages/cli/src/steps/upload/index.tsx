@@ -40,8 +40,8 @@ async function createZipFile(namespace): Promise<Buffer> {
 
   // Add metadata files to
   addFileToZip(zip, TEMP_FOLDER, 'manifest.json');
-  addFileToZip(zip, TEMP_FOLDER, `${namespace}/files.json`);
-  addFileToZip(zip, TEMP_FOLDER, `${namespace}/stories.json`);
+  addFileToZip(zip, TEMP_FOLDER, path.join(namespace, 'files.json'));
+  addFileToZip(zip, TEMP_FOLDER, path.join(namespace, 'stories.json'));
 
   // Add files to zip
   fs.readdirSync(path.resolve(namespaceFolder, 'files'))
@@ -55,7 +55,7 @@ async function createZipFile(namespace): Promise<Buffer> {
 
 function addFolderToZip(zip, folder: string, fileName: string) {
   fs.readdirSync(path.resolve(folder, fileName)).forEach(p =>
-    addFileToZip(zip, folder, `${fileName}/${p}`)
+    addFileToZip(zip, folder, path.join(fileName, p))
   );
 }
 
