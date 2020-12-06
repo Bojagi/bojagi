@@ -51,8 +51,8 @@ const composeWebpackConfig = (
       },
       resolveLoader: {
         alias: {
-          'component-extract-loader': `${__dirname}/componentExtractLoader`,
-          'bojagi-expose-loader': pathUtils.resolve(__dirname, './exposeLoader'),
+          'component-extract-loader': pathUtils.resolve(__dirname, 'componentExtractLoader'),
+          'bojagi-expose-loader': pathUtils.resolve(__dirname, 'exposeLoader'),
           reactDom: 'react-dom',
         },
       },
@@ -81,7 +81,7 @@ const composeWebpackConfig = (
         }),
         new webpack.NormalModuleReplacementPlugin(
           /@storybook\/addons/,
-          pathUtils.join(executionPath, 'node_modules/@bojagi/cli/fakeStorybookAddons.js')
+          pathUtils.join(executionPath, 'node_modules', '@bojagi', 'cli', 'fakeStorybookAddons.js')
         ),
       ],
     }
