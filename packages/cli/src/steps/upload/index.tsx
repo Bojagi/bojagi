@@ -68,7 +68,10 @@ function addFileToZip(zip, folder: string, fileName: string) {
   }
 
   const fileContent = fs.readFileSync(currentPath);
-  zip.addFile(fileName, fileContent);
+  // Replace path separator with simple slash (eg. '\\' on windows with '/')
+  const normalizedFileName = fileName.split(path.sep).join('/');
+
+  zip.addFile(normalizedFileName, fileContent);
 }
 
 function uploadZip(url: string, fileContent: Buffer) {

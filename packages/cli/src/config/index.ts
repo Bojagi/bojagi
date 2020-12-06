@@ -10,18 +10,17 @@ import { Config, BaseConfig } from './types';
 
 export * from './types';
 
-const { PWD } = process.env;
 export const CONFIG_FILE_PRIO = [
   {
-    path: pathUtils.join(PWD as string, '.bojagirc.js'),
+    path: pathUtils.join(process.cwd(), '.bojagirc.js'),
     fn: loadJsConfig,
   },
   {
-    path: pathUtils.join(PWD as string, '.bojagirc.json'),
+    path: pathUtils.join(process.cwd(), '.bojagirc.json'),
     fn: loadJsonConfig,
   },
   {
-    path: pathUtils.join(PWD as string, '.bojagirc'),
+    path: pathUtils.join(process.cwd(), '.bojagirc'),
     fn: loadJsonConfig,
   },
 ];
