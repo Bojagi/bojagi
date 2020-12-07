@@ -1,4 +1,5 @@
 import MemoryFS from 'memory-fs';
+import * as path from 'path';
 import { StoryFileWithMetadata, FileContent, OutputFileContent, Module } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
@@ -98,7 +99,7 @@ async function action({
 
 function getPackageJsonDependencies(executionPath: string) {
   try {
-    const { dependencies } = require(`${executionPath}/package.json`);
+    const { dependencies } = require(path.join(executionPath, 'package.json'));
     return Object.keys(dependencies);
   } catch {
     throw new Error('Can not read dependencies in package.json');

@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as pathUtils from 'path';
 import { defaultConfig } from './defaultConfig';
 import getCiSettingsFactory from './getCiSettings';
 import { normaliseConfig } from './normaliseConfig';
@@ -9,18 +10,17 @@ import { Config, BaseConfig } from './types';
 
 export * from './types';
 
-const { PWD } = process.env;
 export const CONFIG_FILE_PRIO = [
   {
-    path: `${PWD}/.bojagirc.js`,
+    path: pathUtils.join(process.cwd(), '.bojagirc.js'),
     fn: loadJsConfig,
   },
   {
-    path: `${PWD}/.bojagirc.json`,
+    path: pathUtils.join(process.cwd(), '.bojagirc.json'),
     fn: loadJsonConfig,
   },
   {
-    path: `${PWD}/.bojagirc`,
+    path: pathUtils.join(process.cwd(), '.bojagirc'),
     fn: loadJsonConfig,
   },
 ];

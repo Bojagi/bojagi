@@ -148,7 +148,7 @@ function getPackageName(module: any) {
     return module.request;
   }
 
-  const pathParts = module.resource.replace(/.*?node_modules\//, '').split('/');
+  const pathParts = module.resource.replace(/.*?node_modules\//, '').split(path.sep);
   const isOrgPackage = pathParts[0].startsWith('@');
   return isOrgPackage ? `${pathParts[0]}/${pathParts[1]}` : pathParts[0];
 }

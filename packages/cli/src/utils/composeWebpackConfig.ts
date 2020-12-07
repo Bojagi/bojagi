@@ -43,7 +43,7 @@ const composeWebpackConfig = (
     {
       entry,
       output: {
-        path: `${process.cwd()}/bojagi`,
+        path: pathUtils.join(process.cwd(), 'bojagi'),
         filename: '[name].js',
         jsonpFunction: 'bojagiComponents',
         publicPath,
@@ -51,8 +51,8 @@ const composeWebpackConfig = (
       },
       resolveLoader: {
         alias: {
-          'component-extract-loader': `${__dirname}/componentExtractLoader`,
-          'bojagi-expose-loader': pathUtils.resolve(__dirname, './exposeLoader'),
+          'component-extract-loader': pathUtils.resolve(__dirname, 'componentExtractLoader'),
+          'bojagi-expose-loader': pathUtils.resolve(__dirname, 'exposeLoader'),
           reactDom: 'react-dom',
         },
       },
@@ -81,7 +81,7 @@ const composeWebpackConfig = (
         }),
         new webpack.NormalModuleReplacementPlugin(
           /@storybook\/addons/,
-          pathUtils.join(executionPath, 'node_modules/@bojagi/cli/fakeStorybookAddons.js')
+          pathUtils.join(executionPath, 'node_modules', '@bojagi', 'cli', 'fakeStorybookAddons.js')
         ),
       ],
     }
@@ -100,9 +100,12 @@ function returnIfExists(path, continueFunction) {
 }
 
 export function getWebpackConfigPath(executionPath) {
-  return returnIfExists(`${executionPath}/webpack.config.js`, () =>
-    returnIfExists(`${executionPath}/node_modules/react-scripts/config/webpack.config.js`, () => {
-      return undefined;
-    })
+  return returnIfExists(pathUtils.join(executionPath, 'webpack.config.js'), () =>
+    returnIfExists(
+      pathUtils.join(executionPath, 'node_modules', 'react-scripts', 'config', 'webpack.config.js'),
+      () => {
+        return undefined;
+      }
+    )
   );
 }

@@ -3,9 +3,11 @@ import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRu
 import { TEMP_FOLDER } from '../../constants';
 import { getFS } from '../../dependencies';
 import { CreateStoriesStepOutput } from '../createStories';
+import { normalizeFilePath } from '../../utils/normalizeFilePath';
 
 import path = require('path');
 import AdmZip = require('adm-zip');
+
 const fs = getFS();
 
 export type UploadStepOutput = {};
@@ -40,8 +42,8 @@ async function createZipFile(namespace): Promise<Buffer> {
 
   // Add metadata files to
   addFileToZip(zip, TEMP_FOLDER, 'manifest.json');
-  addFileToZip(zip, TEMP_FOLDER, `${namespace}/files.json`);
-  addFileToZip(zip, TEMP_FOLDER, `${namespace}/stories.json`);
+  addFileToZip(zip, TEMP_FOLDER, path.join(namespace, 'files.json'));
+  addFileToZip(zip, TEMP_FOLDER, path.join(namespace, 'stories.json'));
 
   // Add files to zip
   fs.readdirSync(path.resolve(namespaceFolder, 'files'))
@@ -55,7 +57,7 @@ async function createZipFile(namespace): Promise<Buffer> {
 
 function addFolderToZip(zip, folder: string, fileName: string) {
   fs.readdirSync(path.resolve(folder, fileName)).forEach(p =>
-    addFileToZip(zip, folder, `${fileName}/${p}`)
+    addFileToZip(zip, folder, path.join(fileName, p))
   );
 }
 
@@ -68,7 +70,7 @@ function addFileToZip(zip, folder: string, fileName: string) {
   }
 
   const fileContent = fs.readFileSync(currentPath);
-  zip.addFile(fileName, fileContent);
+  zip.addFile(normalizeFilePath(fileName), fileContent);
 }
 
 function uploadZip(url: string, fileContent: Buffer) {
