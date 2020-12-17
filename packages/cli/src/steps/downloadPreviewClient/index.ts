@@ -9,20 +9,29 @@ import { getFS } from '../../dependencies';
 import { getLocalMetadata } from './getLocalMetadata';
 import { downloadAndWriteClient } from './downloadAndWriteClient';
 import { getSuccessMessage } from './getSuccessMessage';
-import { ZIP_PATH, DOWNLOAD_METADATA_FILE_PATH } from './constants';
+import {
+  CLIENT_FOLDER,
+  LOCAL_DEV_ZIP,
+  HEMINGWAY_ZIP,
+  DOWNLOAD_METADATA_FILE_PATH,
+} from './constants';
 
 import AdmZip = require('adm-zip');
+import path = require('path');
 
 const fs = getFS();
 
 export type DownloadPreviewClientStepOutput = {
   newClientDownload: boolean;
-  localFileEtag?: string;
-  newFileEtag: string;
+  localDevEtag?: string;
+  hemingwayEtag?: string;
+  newLocalDevEtag: string;
+  newHemingwayEtag: string;
 };
 
 export type PreviewDownloadMetadata = {
-  lastEtag: string;
+  lastLocalDevEtag: string;
+  lastHemingwayEtag: string;
   lastDownloadDate: string;
 };
 
@@ -38,7 +47,9 @@ export const downloadPreviewClientStep: StepRunnerStep<DownloadPreviewClientStep
 };
 
 async function action({ config }: StepRunnerActionOptions) {
-  const url = `${config.previewDownloadUrl}/versions/${PREVIEW_CLIENT_VERSION}/local-dev-latest.zip`;
+  const baseUrl = `${config.previewDownloadUrl}/versions/${PREVIEW_CLIENT_VERSION}`;
+  const localDevUrl = `${baseUrl}/local-dev-latest.zip`;
+  const hemingwayUrl = `${baseUrl}/hemingway-latest.zip`;
   const zipOutputPath = PREVIEW_CLIENT_OUTPUT_FOLDER;
 
   if (!fs.existsSync(PREVIEW_CLIENT_FOLDER)) {
@@ -48,32 +59,44 @@ async function action({ config }: StepRunnerActionOptions) {
   const localMetadata = getLocalMetadata();
 
   if (localMetadata) {
-    const headRes = await axios.head(url);
-    if (headRes.headers.etag === localMetadata.lastEtag) {
+    const localDevHeadRes = await axios.head(localDevUrl);
+    const hemingwayHeadRes = await axios.head(hemingwayUrl);
+    if (
+      localDevHeadRes.headers.etag === localMetadata.lastLocalDevEtag &&
+      hemingwayHeadRes.headers.etag === localMetadata.lastHemingwayEtag
+    ) {
       return {
         newClientDownload: false,
-        localFileEtag: localMetadata.lastEtag,
-        newFileEtag: headRes.headers.etag,
+        localDevEtag: localMetadata.lastLocalDevEtag,
+        hemingwayEtag: localMetadata.lastHemingwayEtag,
+        newLocalDevEtag: localDevHeadRes.headers.etag,
+        newHemingwayEtag: hemingwayHeadRes.headers.etag,
       };
     }
   }
 
-  const etag = await downloadAndWriteClient(url);
+  const localDevEtag = await downloadAndWriteClient(localDevUrl, LOCAL_DEV_ZIP);
+  const hemingwayEtag = await downloadAndWriteClient(hemingwayUrl, HEMINGWAY_ZIP);
 
-  const zip = new AdmZip(ZIP_PATH);
-  zip.extractAllTo(zipOutputPath, true);
+  const localDevZip = new AdmZip(path.join(CLIENT_FOLDER, LOCAL_DEV_ZIP));
+  localDevZip.extractAllTo(zipOutputPath, true);
+  const hemingwayZip = new AdmZip(path.join(CLIENT_FOLDER, HEMINGWAY_ZIP));
+  hemingwayZip.extractAllTo(path.join(zipOutputPath, 'hemingway'), true);
 
   fs.writeFileSync(
     DOWNLOAD_METADATA_FILE_PATH,
     JSON.stringify({
-      lastEtag: etag,
+      lastLocalDevEtag: localDevEtag,
+      lastHemingwayEtag: hemingwayEtag,
       lastDownloadDate: new Date().toISOString(),
     } as PreviewDownloadMetadata)
   );
 
   return {
     newClientDownload: true,
-    localFileEtag: localMetadata && localMetadata.lastEtag,
-    newFileEtag: etag,
+    localDevEtag: localMetadata && localMetadata.lastLocalDevEtag,
+    hemingwayEtag: localMetadata && localMetadata.lastHemingwayEtag,
+    newLocalDevEtag: localDevEtag,
+    newHemingwayEtag: hemingwayEtag,
   };
 }
