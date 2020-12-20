@@ -1,7 +1,7 @@
 import { DownloadPreviewClientStepOutput } from './index';
 
 export function getSuccessMessage(output: DownloadPreviewClientStepOutput) {
-  if (output.newClientDownload && output.localFileEtag) {
+  if (output.newClientDownload && output.localDevEtag && output.hemingwayEtag) {
     return 'Preview client updated';
   }
   if (output.newClientDownload) {
