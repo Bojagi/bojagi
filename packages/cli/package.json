@@ -48,10 +48,10 @@
     "react": "^16.13.1",
     "rimraf": "^2.6.3",
     "simple-git": "^2.4.0",
-    "webpack": "^4.44.2",
     "webpack-merge": "^5.1.4"
   },
   "devDependencies": {
+    "webpack": "^4.44.2",
     "@types/axios": "0.14.0",
     "@types/node-emoji": "1.8.1",
     "@types/react": "16.9.34",
@@ -61,6 +61,7 @@
     "typescript": "^3.7.3"
   },
   "peerDependencies": {
+    "webpack": ">= 4.44.2 < 6",
     "react-dom": "^16.13.1"
   }
 }

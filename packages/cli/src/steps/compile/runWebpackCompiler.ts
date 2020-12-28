@@ -15,6 +15,7 @@ export const runWebpackCompiler = ({
   compiler,
   entrypoints,
   dependencyPackages,
+  webpackMajorVersion,
 }): Promise<RunWebpackCompilerOutput> =>
   new Promise((resolve, reject) => {
     compiler.run((err, output) => {
@@ -48,11 +49,17 @@ export const runWebpackCompiler = ({
       try {
         const componentFilePaths = Object.values(entrypoints).map((ep: any) => ep[0].split('!')[1]);
 
-        const componentModules = output.compilation.modules.filter(
+        const componentModules = Array.from(output.compilation.modules).filter(
           filterActualModulecomponentFilePaths(componentFilePaths)
         );
 
-        const modules = componentModules.map(addDependencies(dependencyPackages));
+        const modules = componentModules.map(
+          addDependencies({
+            dependencyPackages,
+            compilation: output.compilation,
+            webpackMajorVersion,
+          })
+        );
 
         resolve({
           outputContent,
@@ -82,7 +89,12 @@ function getFilePath(resource = '') {
   return path.relative(process.cwd(), resource);
 }
 
-function addDependencies(dependencyPackages, existingDependencies: Set<string> = new Set()) {
+function addDependencies({
+  dependencyPackages,
+  existingDependencies = new Set(),
+  compilation,
+  webpackMajorVersion,
+}) {
   return (module): Module => {
     const isExternal = !!module.external;
     const isNodeModule = checkNodeModule(module.resource);
@@ -103,15 +115,22 @@ function addDependencies(dependencyPackages, existingDependencies: Set<string> =
       isCircularImport,
       dependencies: !(isNodeModule || isExternal || isCircularImport)
         ? module.dependencies
+            .map(dep =>
+              webpackMajorVersion > 4
+                ? { ...dep, module: compilation.moduleGraph.getModule(dep) }
+                : dep
+            )
             .filter(dep => dep.module)
             .filter(dep => !!dep.module.request || !!dep.module.resource)
             .filter(ignoreDevDependencies(dependencyPackages))
             .filter(onlyUnique)
             .map(dep =>
-              addDependencies(
+              addDependencies({
                 dependencyPackages,
-                newExistingDependencies
-              )({ ...dep.module, request: dep.request })
+                compilation,
+                existingDependencies: newExistingDependencies,
+                webpackMajorVersion,
+              })({ ...dep.module, request: dep.request })
             )
         : undefined,
     };
