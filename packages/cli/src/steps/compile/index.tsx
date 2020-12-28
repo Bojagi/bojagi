@@ -41,6 +41,7 @@ async function action({
   },
 }: StepRunnerActionOptions<DependencyStepOutputs>): Promise<CompileStepOutput> {
   const { namespace } = config;
+  const webpackMajorVersion = Number(webpack.version?.split('.')[0]);
   const { entrypoints, webpackConfig } = await getWebpackConfig({
     config,
     storyFiles,
@@ -59,6 +60,7 @@ async function action({
     compiler,
     entrypoints,
     dependencyPackages,
+    webpackMajorVersion,
   });
 
   const filesWithMetadata = await Promise.all(
