@@ -45,7 +45,6 @@ const composeWebpackConfig = (
       output: {
         path: pathUtils.join(process.cwd(), 'bojagi'),
         filename: '[name].js',
-        jsonpFunction: 'bojagiComponents',
         publicPath,
         globalObject: 'window',
       },

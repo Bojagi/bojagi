@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/cli",
-  "version": "0.11.4",
+  "version": "0.12.0",
   "description": "bojagi cli",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
@@ -45,10 +45,8 @@
     "memory-fs": "^0.5.0",
     "node-emoji": "^1.10.0",
     "open": "^7.3.0",
-    "react": "^16.13.1",
     "rimraf": "^2.6.3",
     "simple-git": "^2.4.0",
-    "webpack": "^4.44.2",
     "webpack-merge": "^5.1.4"
   },
   "devDependencies": {
@@ -58,9 +56,13 @@
     "@types/react-intl": "3.0.0",
     "@types/webpack": "4.41.6",
     "@types/webpack-dev-server": "3.10.1",
-    "typescript": "^3.7.3"
+    "react": "^16.13.1",
+    "typescript": "^3.7.3",
+    "webpack": "^4.44.2"
   },
   "peerDependencies": {
-    "react-dom": "^16.13.1"
+    "react": ">= 16.13.1 < 18",
+    "react-dom": ">= 16.13.1 < 18",
+    "webpack": ">= 4.44.2 < 6"
   }
 }

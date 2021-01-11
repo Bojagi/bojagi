@@ -60,7 +60,6 @@ const testCases = [
       expect(config.output).toEqual({
         path: `${process.cwd()}/bojagi`,
         filename: '[name].js',
-        jsonpFunction: 'bojagiComponents',
         publicPath: '__bojagi_public_path__/',
         globalObject: 'window',
       });

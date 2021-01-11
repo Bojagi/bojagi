@@ -18,6 +18,9 @@ beforeEach(() => {
   mockError = null;
   mockOutput = {
     compilation: {
+      moduleGraph: {
+        getModule: jest.fn(dep => dep.module),
+      },
       errors: [],
       entrypoints: new Map([
         [
@@ -165,139 +168,149 @@ beforeEach(() => {
   };
 });
 
-test('run the webpack compiler', async () => {
-  const componentsContent = await runWebpackCompiler({
-    compiler,
-    entrypoints,
-    dependencyPackages: ['react', '@material-ui/icons', 'styled-components', 'foreignNodeModules'],
-  });
-  expect(componentsContent).toEqual({
-    outputContent: {
-      'A.css': 'A CSS content',
-      'A.js': 'A JS content',
-      'B.js': 'B JS content',
-      'C.js': 'C JS content',
-      'vendors.js': 'vendors_source content',
-    },
-    assets: {
-      A: ['vendors.js', 'A.css', 'A.js'],
-      B: ['vendors.js', 'B.js'],
-      C: ['vendors.js', 'C.js'],
-    },
-    modules: [
-      {
-        filePath: `bojagi/A.js`,
-        gitPath: 'gitpath/bojagi/A.js',
-        isExternal: false,
-        isNodeModule: false,
-        isCircularImport: false,
-        dependencies: [
-          {
-            filePath: `node_modules/react/index.js`,
-            gitPath: `gitpath/node_modules/react/index.js`,
-            isExternal: true,
-            isNodeModule: true,
-            isCircularImport: false,
-            request: 'react',
-            packageName: 'react',
-          },
-          {
-            filePath: `../../node_modules/foreignNodeModules/index.js`,
-            gitPath: `gitpath/../../node_modules/foreignNodeModules/index.js`,
-            isExternal: false,
-            isNodeModule: true,
-            isCircularImport: false,
-            request: 'foreignNodeModules',
-            packageName: 'foreignNodeModules',
-          },
-          {
-            filePath: `node_modules/@material-ui/icons/MyIcon/index.js`,
-            gitPath: `gitpath/node_modules/@material-ui/icons/MyIcon/index.js`,
-            isExternal: false,
-            isNodeModule: true,
-            isCircularImport: false,
-            request: '@material-ui/icons/MyIcon',
-            packageName: '@material-ui/icons',
-          },
-          // node module (no org)
-          {
-            isExternal: false,
-            isNodeModule: true,
-            isCircularImport: false,
-            request: 'styled-components',
-            packageName: 'styled-components',
-            filePath: `node_modules/styled-components/index.js`,
-            gitPath: `gitpath/node_modules/styled-components/index.js`,
-          },
-          // project module
-          {
-            isExternal: false,
-            isNodeModule: false,
-            isCircularImport: false,
-            request: './test.js',
-            filePath: `src/components/test.js`,
-            gitPath: `gitpath/src/components/test.js`,
-            dependencies: [
-              {
-                filePath: 'src/components/XXX.js',
-                gitPath: 'gitpath/src/components/XXX.js',
-                isCircularImport: false,
-                isExternal: false,
-                isNodeModule: false,
-                packageName: undefined,
-                request: '../XXX.js',
-                dependencies: [
-                  {
-                    dependencies: undefined,
-                    filePath: 'src/components/test.js',
-                    gitPath: 'gitpath/src/components/test.js',
-                    isCircularImport: true,
-                    isExternal: false,
-                    isNodeModule: false,
-                    packageName: undefined,
-                    request: './test.js',
-                  },
-                ],
-              },
-              {
-                isExternal: false,
-                isNodeModule: false,
-                isCircularImport: false,
-                request: './otherTest.js',
-                filePath: `src/components/otherTest.js`,
-                gitPath: `gitpath/src/components/otherTest.js`,
-                dependencies: [],
-              },
-            ],
-          },
-        ],
+describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
+  test('run the webpack compiler', async () => {
+    const componentsContent = await runWebpackCompiler({
+      compiler,
+      entrypoints,
+      dependencyPackages: [
+        'react',
+        '@material-ui/icons',
+        'styled-components',
+        'foreignNodeModules',
+      ],
+      webpackMajorVersion,
+    });
+    expect(componentsContent).toEqual({
+      outputContent: {
+        'A.css': 'A CSS content',
+        'A.js': 'A JS content',
+        'B.js': 'B JS content',
+        'C.js': 'C JS content',
+        'vendors.js': 'vendors_source content',
       },
-    ],
+      assets: {
+        A: ['vendors.js', 'A.css', 'A.js'],
+        B: ['vendors.js', 'B.js'],
+        C: ['vendors.js', 'C.js'],
+      },
+      modules: [
+        {
+          filePath: `bojagi/A.js`,
+          gitPath: 'gitpath/bojagi/A.js',
+          isExternal: false,
+          isNodeModule: false,
+          isCircularImport: false,
+          dependencies: [
+            {
+              filePath: `node_modules/react/index.js`,
+              gitPath: `gitpath/node_modules/react/index.js`,
+              isExternal: true,
+              isNodeModule: true,
+              isCircularImport: false,
+              request: 'react',
+              packageName: 'react',
+            },
+            {
+              filePath: `../../node_modules/foreignNodeModules/index.js`,
+              gitPath: `gitpath/../../node_modules/foreignNodeModules/index.js`,
+              isExternal: false,
+              isNodeModule: true,
+              isCircularImport: false,
+              request: 'foreignNodeModules',
+              packageName: 'foreignNodeModules',
+            },
+            {
+              filePath: `node_modules/@material-ui/icons/MyIcon/index.js`,
+              gitPath: `gitpath/node_modules/@material-ui/icons/MyIcon/index.js`,
+              isExternal: false,
+              isNodeModule: true,
+              isCircularImport: false,
+              request: '@material-ui/icons/MyIcon',
+              packageName: '@material-ui/icons',
+            },
+            // node module (no org)
+            {
+              isExternal: false,
+              isNodeModule: true,
+              isCircularImport: false,
+              request: 'styled-components',
+              packageName: 'styled-components',
+              filePath: `node_modules/styled-components/index.js`,
+              gitPath: `gitpath/node_modules/styled-components/index.js`,
+            },
+            // project module
+            {
+              isExternal: false,
+              isNodeModule: false,
+              isCircularImport: false,
+              request: './test.js',
+              filePath: `src/components/test.js`,
+              gitPath: `gitpath/src/components/test.js`,
+              dependencies: [
+                {
+                  filePath: 'src/components/XXX.js',
+                  gitPath: 'gitpath/src/components/XXX.js',
+                  isCircularImport: false,
+                  isExternal: false,
+                  isNodeModule: false,
+                  packageName: undefined,
+                  request: '../XXX.js',
+                  dependencies: [
+                    {
+                      dependencies: undefined,
+                      filePath: 'src/components/test.js',
+                      gitPath: 'gitpath/src/components/test.js',
+                      isCircularImport: true,
+                      isExternal: false,
+                      isNodeModule: false,
+                      packageName: undefined,
+                      request: './test.js',
+                    },
+                  ],
+                },
+                {
+                  isExternal: false,
+                  isNodeModule: false,
+                  isCircularImport: false,
+                  request: './otherTest.js',
+                  filePath: `src/components/otherTest.js`,
+                  gitPath: `gitpath/src/components/otherTest.js`,
+                  dependencies: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
   });
-});
 
-test('run webpack compiler with error', async () => {
-  mockError = new Error('some error text');
-  await expect(
-    runWebpackCompiler({
-      compiler,
-      entrypoints,
-      dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
-    })
-  ).rejects.toThrow('some error text');
-});
+  test('run webpack compiler with error', async () => {
+    mockError = new Error('some error text');
+    await expect(
+      runWebpackCompiler({
+        compiler,
+        entrypoints,
+        dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
+        webpackMajorVersion,
+      })
+    ).rejects.toThrow('some error text');
+  });
 
-test('run webpack compiler with compilation error', async () => {
-  mockOutput = {
-    compilation: {
-      errors: [new Error('some compilation error text')],
-    },
-  };
-  await expect(
-    runWebpackCompiler({
-      compiler,
-      entrypoints,
-      dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
-    })
-  ).rejects.toThrow('some compilation error text');
+  test('run webpack compiler with compilation error', async () => {
+    mockOutput = {
+      compilation: {
+        errors: [new Error('some compilation error text')],
+      },
+    };
+    await expect(
+      runWebpackCompiler({
+        compiler,
+        entrypoints,
+        dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
+        webpackMajorVersion,
+      })
+    ).rejects.toThrow('some compilation error text');
+  });
 });
