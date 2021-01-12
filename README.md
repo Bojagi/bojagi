@@ -4,7 +4,7 @@
 
 [Documentation](https://bojagi.io/docs) ◆ [Bojagi Website](https://bojagi.io) ◆ [Join the open beta](https://bojagi.io/register)
 
-## 💁♀️ What is Bojagi?
+## 💁‍♀️ What is Bojagi?
 
 Bojagi is a service to review your UI changes visually. We are connected to your repository on GitHub and render 
 your components in real time. This way your teammates or designer can review the visual changes and play around
@@ -22,7 +22,7 @@ development environment.
 * Present your components to peers and customers without the need to click though your whole app 👩‍🎨
 * See review feedback directly in GitHub 🤓
 
-## 🤷♀️ How does it work?
+## 🤷‍♀️ How does it work?
 
 ![Demo of Bojagi](https://user-images.githubusercontent.com/1235818/81745374-06092a00-94a5-11ea-85ad-2e9e91963aec.gif)
 
