@@ -8,4 +8,4 @@ export const PREVIEW_CLIENT_OUTPUT_FOLDER = path.join(PREVIEW_CLIENT_FOLDER, 'lo
 export const PREVIEW_CLIENT_VERSION = '0.1';
 export const MANIFEST_VERSION = '3';
 export const MINIMUM_NODE_VERSION = 12;
-export const MINIMUM_REACT_VERSION = '16.13.0';
+export const MINIMUM_REACT_VERSION = '16.8.0';
