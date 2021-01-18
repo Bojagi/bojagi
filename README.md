@@ -24,7 +24,7 @@ development environment.
 
 ## 🤷‍♀️ How does it work?
 
-<a href="https://www.youtube.com/watch?v=1khQgylWdoM">[Demo of Bojagi](https://user-images.githubusercontent.com/216917/104968120-48481b00-59e5-11eb-9f12-0081c1a117e5.png)</a>
+<a href="https://www.youtube.com/watch?v=1khQgylWdoM">![Demo of Bojagi](https://user-images.githubusercontent.com/216917/104968120-48481b00-59e5-11eb-9f12-0081c1a117e5.png)</a>
 
 Upload your components with our CLI and we display them! After you open your PR in GitHub you
 can easily review all the changes. The review status is then automatically sent to GitHub so you
