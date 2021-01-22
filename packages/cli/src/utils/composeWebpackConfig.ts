@@ -100,8 +100,16 @@ function returnIfExists(path, continueFunction) {
 
 export function getWebpackConfigPath(executionPath) {
   return returnIfExists(pathUtils.join(executionPath, 'webpack.config.js'), () =>
-    returnIfExists(require.resolve('@bojagi/cli/config/webpack.config.js'), () => {
+    returnIfExists(softRequireResolve('react-scripts/config/webpack.config.js'), () => {
       return undefined;
     })
   );
+}
+
+function softRequireResolve(pathName) {
+  try {
+    return require.resolve(pathName);
+  } catch {
+    return undefined;
+  }
 }
