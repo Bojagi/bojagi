@@ -80,7 +80,7 @@ const composeWebpackConfig = (
         }),
         new webpack.NormalModuleReplacementPlugin(
           /@storybook\/addons/,
-          pathUtils.join(executionPath, 'node_modules', '@bojagi', 'cli', 'fakeStorybookAddons.js')
+          require.resolve('@bojagi/cli/fakeStorybookAddons.js')
         ),
       ],
     }
@@ -100,11 +100,8 @@ function returnIfExists(path, continueFunction) {
 
 export function getWebpackConfigPath(executionPath) {
   return returnIfExists(pathUtils.join(executionPath, 'webpack.config.js'), () =>
-    returnIfExists(
-      pathUtils.join(executionPath, 'node_modules', 'react-scripts', 'config', 'webpack.config.js'),
-      () => {
-        return undefined;
-      }
-    )
+    returnIfExists(require.resolve('@bojagi/cli/config/webpack.config.js'), () => {
+      return undefined;
+    })
   );
 }
