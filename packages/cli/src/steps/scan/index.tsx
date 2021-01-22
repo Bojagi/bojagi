@@ -34,7 +34,7 @@ async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutp
   const storyFiles = await getStoryFiles(config);
   const extendedStoryFiles = getEntrypointsFromFiles(config, storyFiles);
   const packageJson = require(path.join(config.executionPath, 'package.json'));
-  const reactVersion = getDependencyVersion(config.executionPath, 'react');
+  const reactVersion = getDependencyVersion('react', config.executionPath);
 
   if (!reactVersion) {
     throw new NonVerboseError('React was not found in package.json but is needed for Bojagi');

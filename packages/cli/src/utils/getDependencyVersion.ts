@@ -1,22 +1,17 @@
 import * as path from 'path';
-import * as fs from 'fs';
 
-export function getDependencyVersion(folderPath: string, dependencyName: string, fileSystem = fs) {
-  if (folderPath === path.sep) {
+export function getDependencyVersion(dependencyName: string, searchPath: string, req = require) {
+  try {
+    const resolvedPath = req.resolve(`${dependencyName}/package.json`, {
+      paths: getAllParentFolders(searchPath),
+    });
+    return req(resolvedPath).version;
+  } catch {
     return undefined;
   }
+}
 
-  const packagePath = path.join(folderPath, 'package.json');
-  if (fileSystem.existsSync(packagePath)) {
-    const packageContent = JSON.parse(
-      fileSystem.readFileSync(path.resolve(folderPath, 'package.json')).toString()
-    );
-    const dependencyVersion =
-      packageContent.dependencies && packageContent.dependencies[dependencyName];
-    if (dependencyVersion) {
-      return dependencyVersion;
-    }
-  }
-
-  return getDependencyVersion(path.resolve(folderPath, '..'), dependencyName, fileSystem);
+function getAllParentFolders(fullPath: string) {
+  const segments = fullPath.split(path.sep).filter(item => item);
+  return segments.map((_, i, arr) => path.sep + path.join(...arr.slice(0, i + 1))).reverse();
 }
