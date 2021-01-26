@@ -7,6 +7,7 @@ import { getStorybookProjectWebpackConfig } from '../storybook';
 
 import webpack = require('webpack');
 
+// ORDER MATTERS!
 const WEBPACK_SOURCES: ((
   config: CiSettings & BaseConfig,
   configFilePath: string
