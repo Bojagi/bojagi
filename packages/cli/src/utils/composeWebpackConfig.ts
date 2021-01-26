@@ -1,5 +1,4 @@
 import * as webpack from 'webpack';
-import * as fs from 'fs';
 import * as pathUtils from 'path';
 import { merge } from 'webpack-merge';
 
@@ -88,28 +87,3 @@ const composeWebpackConfig = (
 };
 
 export default composeWebpackConfig;
-
-function returnIfExists(path, continueFunction) {
-  try {
-    fs.accessSync(path, fs.constants.R_OK);
-    return path;
-  } catch (e) {
-    return continueFunction();
-  }
-}
-
-export function getWebpackConfigPath(executionPath) {
-  return returnIfExists(pathUtils.join(executionPath, 'webpack.config.js'), () =>
-    returnIfExists(softRequireResolve('react-scripts/config/webpack.config.js'), () => {
-      return undefined;
-    })
-  );
-}
-
-function softRequireResolve(pathName) {
-  try {
-    return require.resolve(pathName);
-  } catch {
-    return undefined;
-  }
-}

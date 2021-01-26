@@ -1,9 +1,11 @@
 import { CiSettings } from './getCiSettings';
 
+import webpack = require('webpack');
+
 export type BaseConfig = {
   dryRun: boolean;
   namespace: 'default';
-  webpackConfig: string;
+  webpackConfig?: string;
   executionPath: string;
   decoratorPath: string;
   uploadApiUrl: string;
@@ -15,9 +17,10 @@ export type BaseConfig = {
 };
 
 export type Config = CiSettings &
-  Omit<BaseConfig, 'storyPath' | 'storyPathIgnorePatterns'> & {
+  Omit<BaseConfig, 'webpackConfig' | 'storyPath' | 'storyPathIgnorePatterns'> & {
     storyPath: string[];
     storyPathIgnorePatterns: string[];
+    webpackConfig: webpack.Configuration;
   };
 
 export type ConfigFilePrio = {
