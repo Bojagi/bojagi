@@ -8,6 +8,8 @@ import { normalizeFilePath } from '../../utils/normalizeFilePath';
 import path = require('path');
 import AdmZip = require('adm-zip');
 
+const MAX_ZIP_FILE_SIZE = 50000000; // 50mb
+
 const fs = getFS();
 
 export type UploadStepOutput = {};
@@ -79,5 +81,6 @@ function uploadZip(url: string, fileContent: Buffer) {
     headers: {
       'Content-type': 'application/zip',
     },
+    maxBodyLength: MAX_ZIP_FILE_SIZE,
   });
 }
