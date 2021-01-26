@@ -1,6 +1,6 @@
 import { Box } from 'ink';
 import * as React from 'react';
-import { getConfig, Config } from '.';
+import { getConfig, Config, BaseConfig } from '.';
 import { ErrorMessage } from '../components/ErrorMessage';
 
 export const configContext = React.createContext<Config>(undefined as any);
@@ -10,7 +10,7 @@ export function useConfig() {
 }
 
 export type ConfigProviderProps = {
-  config: Partial<Config>;
+  config: Partial<BaseConfig>;
   children: React.ReactNode;
 };
 

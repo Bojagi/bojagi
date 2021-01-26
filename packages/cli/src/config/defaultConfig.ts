@@ -1,8 +1,6 @@
-import { getWebpackConfigPath } from '../utils/composeWebpackConfig';
 import { BaseConfig } from './types';
 
-export const defaultConfig: BaseConfig = {
-  webpackConfig: getWebpackConfigPath(process.cwd()),
+export const defaultConfig: Omit<BaseConfig, 'webpackConfig'> = {
   executionPath: process.cwd(),
   dryRun: false,
   namespace: 'default',
