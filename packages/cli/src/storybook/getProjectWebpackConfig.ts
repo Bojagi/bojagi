@@ -33,12 +33,6 @@ async function getStorybookReactWebpackConfig() {
   return getWebpackConfig(require('@storybook/react/dist/server/options').default);
 }
 
-function getOutputDir(givenOutputDir) {
-  return path.isAbsolute(givenOutputDir)
-    ? givenOutputDir
-    : path.join(process.cwd(), givenOutputDir);
-}
-
 export async function getStorybookProjectWebpackConfig(): Promise<webpack.Configuration | void> {
   if (storybookIsInstalled(StorybookFramework.REACT)) {
     /** @TODO (maybe) we need to have sep routines for different versions but lets not get ahead of ourselves */
@@ -46,6 +40,12 @@ export async function getStorybookProjectWebpackConfig(): Promise<webpack.Config
   }
 
   return undefined;
+}
+
+function getOutputDir(givenOutputDir) {
+  return path.isAbsolute(givenOutputDir)
+    ? givenOutputDir
+    : path.join(process.cwd(), givenOutputDir);
 }
 
 function replaceDefaultMediaLoader(rules: webpack.RuleSetRule[]): webpack.RuleSetRule[] {
@@ -56,7 +56,7 @@ function replaceDefaultMediaLoader(rules: webpack.RuleSetRule[]): webpack.RuleSe
   );
 
   // if we find storybooks default asset loader we make sure to use the url loader instead
-  if (defaultAssertLoaderIndex > 0) {
+  if (defaultAssertLoaderIndex >= 0) {
     const ruleCopy = { ...rules[defaultAssertLoaderIndex] };
 
     const newRules = [...rules];
