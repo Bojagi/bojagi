@@ -1,4 +1,5 @@
 import { Config } from '../config';
+import { NonVerboseError } from '../errors';
 import arrayGlob from './arrayGlob';
 
 export default async function getStoryFiles({
@@ -11,7 +12,9 @@ export default async function getStoryFiles({
   const validStoryFiles = storyFiles.filter(filePath => !ignoreStoryFiles.includes(filePath));
 
   if (validStoryFiles.length === 0) {
-    throw new Error('no valid story files found');
+    throw new NonVerboseError(
+      'no valid story files found. Please specify the storyPath: https://bojagi.io/docs/cliConfigFile/#storypath'
+    );
   }
   return validStoryFiles;
 }
