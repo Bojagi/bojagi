@@ -2,9 +2,12 @@ import * as pathUtils from 'path';
 import { CiSettings } from './getCiSettings';
 import { BaseConfig } from './types';
 import { NonVerboseError } from '../errors';
+import { softRequireResolve } from '../utils/softRequireResolve';
+import { getStorybookProjectWebpackConfig } from '../storybook';
 
 import webpack = require('webpack');
 
+// ORDER MATTERS!
 const WEBPACK_SOURCES: ((
   config: CiSettings & BaseConfig,
   configFilePath: string
@@ -17,10 +20,7 @@ const WEBPACK_SOURCES: ((
     return undefined;
   },
   // STORYBOOK,
-  async (config, configFilePath) => {
-    /** @TODO storybook */
-    return undefined;
-  },
+  getStorybookProjectWebpackConfig,
   // CREATE_REACT_APP,
   async (config, configFilePath) => {
     const createReactWebpackConfigPath = softRequireResolve(
@@ -64,7 +64,7 @@ export async function getProjectWebpackConfig(
 
 function resolveWebpackConfig(configFilePath: string, webpackConfigPath: string): string {
   try {
-    return pathUtils.resolve(configFilePath, webpackConfigPath);
+    return require.resolve(pathUtils.resolve(configFilePath, webpackConfigPath));
   } catch {
     throw new NonVerboseError(
       'No webpack file found. Please specify the webpack configuration file location: https://bojagi.io/docs/cliConfigFile/#webpackconfig'
@@ -78,12 +78,4 @@ async function loadConfigFromPath(webpackConfigPath) {
   return typeof projectWebpackConfig === 'function'
     ? projectWebpackConfig('development') // TODO read from args etc
     : projectWebpackConfig;
-}
-
-function softRequireResolve(pathName) {
-  try {
-    return require.resolve(pathName);
-  } catch {
-    return undefined;
-  }
 }
