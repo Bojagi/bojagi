@@ -7,6 +7,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@bojagi/cli": "^0.12.7-next.0",
+    "@bojagi/integration-test-utils": "^0.12.0",
     "@storybook/addon-actions": "^6.1.16",
     "@storybook/addon-essentials": "^6.1.16",
     "@storybook/addon-links": "^6.1.16",

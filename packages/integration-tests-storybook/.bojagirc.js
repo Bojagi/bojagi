@@ -1,3 +1,3 @@
 module.exports = {
-  storyPath: ['stories/**/*.stories.@(js|jsx|ts|tsx|md)'],
+  storyPath: ['src/**/*.stories.@(js|jsx|ts|tsx|md)'],
 }
