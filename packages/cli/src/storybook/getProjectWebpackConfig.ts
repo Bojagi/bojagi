@@ -8,6 +8,7 @@ const path = require('path');
 
 async function getWebpackConfig(loadOptions) {
   // we have to load all those libs dynamically as they are all optional
+  // eslint-disable-next-line import/no-extraneous-dependencies
   const loadConfig = require('@storybook/core/dist/server/config').default;
   const cliOptions = getSbCliOptions();
 

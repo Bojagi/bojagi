@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-export const pitch = function(remainingRequest) {
+export function pitch(remainingRequest) {
   // Change the request from an /abolute/path.js to a relative ./path.js
   // This prevents [chunkhash] values from changing when running webpack
   // builds in different directories.
@@ -21,4 +21,4 @@ export const pitch = function(remainingRequest) {
   `;
 
   return result;
-};
+}
