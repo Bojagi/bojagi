@@ -11,5 +11,6 @@ lerna bootstrap -- --pure-lockfile
 yarn build
 yarn integrationLocal
 # end experimental
+yarn updateReadmes
 
 lerna version
