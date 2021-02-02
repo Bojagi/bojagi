@@ -47,6 +47,7 @@
     "open": "^7.3.0",
     "rimraf": "^2.6.3",
     "simple-git": "^2.4.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.1.4"
   },
   "devDependencies": {

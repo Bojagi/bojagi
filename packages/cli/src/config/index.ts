@@ -7,6 +7,7 @@ import { normaliseConfig } from './normaliseConfig';
 import { getGitSettings } from './getGitSettings';
 import { loadConfigFile } from './loadConfigFile';
 import { Config, BaseConfig } from './types';
+import { getConfigFromStorybook } from '../storybook/getConfigFromStorybook';
 
 export * from './types';
 
@@ -38,6 +39,7 @@ export const getConfig: (customConfig: Partial<BaseConfig>) => Promise<Config> =
     {
       ...(await getGitSettings(configFile.executionPath || defaultConfig.executionPath)),
       ...defaultConfig,
+      ...getConfigFromStorybook(),
       ...configFile,
       ...getCiSettings(),
       ...customConfig,
