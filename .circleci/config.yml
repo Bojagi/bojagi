@@ -53,6 +53,9 @@ jobs:
     executor: base
     steps:
       - init
+      - add_ssh_keys:
+          fingerprints:
+            - "3c:81:98:a1:3f:40:77:5d:7b:3e:e8:30:34:f2:18:ea"
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
@@ -63,7 +66,7 @@ jobs:
             git config --global user.email "ci@autodeploy.com"
       - run: 
           name: Create next prerelease
-          command: lerna version prerelease --no-push --amend --preid next -y
+          command: lerna version prerelease --amend --preid next -y
       - run:
           name: deploy prerelease
           command: yarn deploy --dist-tag next
