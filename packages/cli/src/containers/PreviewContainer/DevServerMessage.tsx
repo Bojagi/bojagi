@@ -16,6 +16,7 @@ export function DevServerMessage({
       <Box marginX={3} marginBottom={1} flexDirection="column">
         <Color red>Something went wrong:</Color>
         <Box>{setupError.message}</Box>
+        <Box>{setupError.stack}</Box>
       </Box>
     );
   }
