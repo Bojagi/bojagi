@@ -48,28 +48,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
       - run:
           name: deploy
-          command: yarn deploy
-  deploy_next:
-    executor: base
-    steps:
-      - init
-      - add_ssh_keys:
-          fingerprints:
-            - "3c:81:98:a1:3f:40:77:5d:7b:3e:e8:30:34:f2:18:ea"
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-      - run: 
-          name: Setup git
-          command: |
-            git config --global user.name "ci autodeploy"
-            git config --global user.email "ci@autodeploy.com"
-      - run: 
-          name: Create next prerelease
-          command: lerna version prerelease --amend --preid next -y
-      - run:
-          name: deploy prerelease
-          command: yarn deploy --dist-tag next
+          command: ./bin/deploy.sh
 workflows:
   version: 2
   test_and_deploy:
@@ -88,7 +67,3 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
-      - deploy_next:
-          filters:
-            branches:
-              only: master
