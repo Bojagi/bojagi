@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/cli",
-  "version": "0.12.7-next.0",
+  "version": "0.12.7-next.1",
   "description": "bojagi cli",
   "homepage": "https://bojagi.io/docs",
   "main": "lib/index.js",
@@ -46,6 +46,7 @@
     "open": "^7.3.0",
     "rimraf": "^2.6.3",
     "simple-git": "^2.4.0",
+    "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.1.4"
   },
   "devDependencies": {

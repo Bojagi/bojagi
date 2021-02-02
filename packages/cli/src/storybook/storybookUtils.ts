@@ -5,7 +5,31 @@ const frameworkToPackageMap = {
   [StorybookFramework.REACT]: '@storybook/react',
 };
 
-export function storybookIsInstalled(framework: StorybookFramework): boolean {
+const frameworkToLoadOptionsMap = {
+  [StorybookFramework.REACT]: '@storybook/react/dist/server/options',
+};
+
+export function getStorybookLoadOptions() {
+  const foundSbFramework = Object.keys(StorybookFramework).find(
+    storybookFrameworkIsInstalled
+  ) as StorybookFramework;
+
+  if (!foundSbFramework) {
+    return undefined;
+  }
+
+  return getStorybookFrameworkLoadOptions(foundSbFramework);
+}
+
+export function getStorybookFrameworkLoadOptions(framework: StorybookFramework) {
+  return require(frameworkToLoadOptionsMap[framework]).default;
+}
+
+export function storybookIsInstalled(): boolean {
+  return !!Object.keys(StorybookFramework).find(storybookFrameworkIsInstalled);
+}
+
+export function storybookFrameworkIsInstalled(framework: StorybookFramework): boolean {
   if (softRequireResolve(frameworkToPackageMap[framework])) {
     return true;
   }

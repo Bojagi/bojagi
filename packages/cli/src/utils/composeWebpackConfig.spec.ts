@@ -1,3 +1,4 @@
+import * as pathUtils from 'path';
 import composeWebpackConfig from './composeWebpackConfig';
 
 const BASE_CONFIG_ENTRY = {
@@ -7,6 +8,7 @@ const BASE_CONFIG_ENTRY = {
 const BASE_CONFIG_RESOLVE = {
   alias: {
     myResolve: 'my/special/path',
+    'storybook-folder': pathUtils.resolve('configDir'),
   },
 };
 
@@ -101,9 +103,20 @@ const testCases = [
 ];
 
 testCases.forEach(testCase => {
+  let getSbOptionMock;
+  beforeEach(() => {
+    getSbOptionMock = jest.fn(key => key);
+  });
+
   test(`getWebpackConfig - ${testCase.name}`, () => {
     const { baseConfig, entry, decoratorPath } = testCase.input;
-    const config = composeWebpackConfig(baseConfig, entry, '/my/project/path', decoratorPath);
+    const config = composeWebpackConfig(
+      baseConfig,
+      entry,
+      '/my/project/path',
+      decoratorPath,
+      getSbOptionMock
+    );
     testCase.test(config);
   });
 });

@@ -12,11 +12,14 @@ import scan from './commands/scan';
 import cleanup from './commands/cleanup';
 import init from './commands/init';
 import docs from './commands/docs';
+import { voidStorybookLogger } from './storybook/voidStorybookLogger';
 import { MINIMUM_NODE_VERSION, MINIMUM_REACT_VERSION } from './constants';
 
 const packageJson = require('../package.json');
 
 import program = require('commander');
+
+voidStorybookLogger();
 
 const COLOR_RED = '\x1b[31m';
 const COLOR_YELLOW = '\x1b[33m';
