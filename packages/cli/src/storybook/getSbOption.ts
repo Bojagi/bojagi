@@ -1,7 +1,7 @@
-import { getStorybookLoadConfig } from './storybookUtils';
+import { getStorybookLoadOptions } from './storybookUtils';
 
 export function getSbOption<T>(key: string, fallback?: T) {
-  const loadOptions = getStorybookLoadConfig();
+  const loadOptions = getStorybookLoadOptions();
   if (loadOptions) {
     const { getProdCli } = require('@storybook/core/dist/server/cli');
     const cliOptions = getProdCli(loadOptions.packageJson);

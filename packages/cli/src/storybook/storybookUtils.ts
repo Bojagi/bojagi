@@ -9,7 +9,7 @@ const frameworkToLoadOptionsMap = {
   [StorybookFramework.REACT]: '@storybook/react/dist/server/options',
 };
 
-export function getStorybookLoadConfig() {
+export function getStorybookLoadOptions() {
   const foundSbFramework = Object.keys(StorybookFramework).find(sbFramework =>
     storybookIsInstalled(sbFramework as StorybookFramework)
   ) as StorybookFramework;
@@ -18,10 +18,10 @@ export function getStorybookLoadConfig() {
     return undefined;
   }
 
-  return getStorybookFrameworkLoadConfig(foundSbFramework);
+  return getStorybookFrameworkLoadOptions(foundSbFramework);
 }
 
-export function getStorybookFrameworkLoadConfig(framework: StorybookFramework) {
+export function getStorybookFrameworkLoadOptions(framework: StorybookFramework) {
   return require(frameworkToLoadOptionsMap[framework]).default;
 }
 

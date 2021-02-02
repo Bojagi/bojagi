@@ -1,4 +1,4 @@
-import { getStorybookLoadConfig } from './storybookUtils';
+import { getStorybookLoadOptions } from './storybookUtils';
 import { replaceWebpackRules } from '../utils/replaceWebpackRules';
 import { getSbOption } from './getSbOption';
 
@@ -30,8 +30,7 @@ async function getWebpackConfig(loadOptions) {
 }
 
 export async function getStorybookProjectWebpackConfig(): Promise<webpack.Configuration | void> {
-  /** @TODO (maybe) we need to have sep routines for different versions but lets not get ahead of ourselves */
-  const loadConfig = getStorybookLoadConfig();
+  const loadConfig = getStorybookLoadOptions();
   if (loadConfig) {
     return getWebpackConfig(loadConfig);
   }
