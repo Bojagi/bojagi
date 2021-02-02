@@ -14,7 +14,26 @@ function preparePackage {
   ln -s $PROJECT_ROOT/packages/$1/node_modules/@bojagi/cli/bin/index.js $PROJECT_ROOT/packages/$1/node_modules/.bin/bojagi
 }
 
-preparePackage integration-tests
-preparePackage integration-tests-storybook
+function preparePackages {
+  preparePackage integration-tests
+  preparePackage integration-tests-storybook
+}
 
-cd $PROJECT_ROOT && yarn jest --runInBand --config integration.jest.config.js --forceExit
+function integration {
+  preparePackages
+  cd $PROJECT_ROOT && yarn jest --runInBand --config integration.jest.config.js --forceExit
+}
+
+function integrationLocal {
+  preparePackages
+  cd $PROJECT_ROOT && yarn jest --runInBand --config integration.local.jest.config.js --forceExit
+}
+
+case $1 in
+  integration )
+    integration
+    ;;
+  integrationLocal )
+    integrationLocal
+    ;;
+esac
