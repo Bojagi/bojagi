@@ -57,8 +57,13 @@ jobs:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
       - run: 
+          name: Setup git
+          command: |
+            git config --global user.name "ci autodeploy"
+            git config --global user.email "ci@autodeploy.com"
+      - run: 
           name: Create next prerelease
-          command: lerna version prerelease --no-git-tag-version --preid next -y
+          command: lerna version prerelease --no-push --amend --preid next -y
       - run:
           name: deploy prerelease
           command: yarn deploy --dist-tag next
