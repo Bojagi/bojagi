@@ -12,4 +12,4 @@ yarn build
 yarn integrationLocal
 # end experimental
 
-lerna version --amend
+lerna version --amend --create-release github
