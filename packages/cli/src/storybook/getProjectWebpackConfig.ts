@@ -1,5 +1,4 @@
-import { storybookIsInstalled } from './storybookUtils';
-import { StorybookFramework } from './types';
+import { getStorybookLoadConfig } from './storybookUtils';
 import { replaceWebpackRules } from '../utils/replaceWebpackRules';
 import { getSbOption } from './getSbOption';
 
@@ -30,14 +29,11 @@ async function getWebpackConfig(loadOptions) {
   return replaceWebpackRules(webpackConfig, replaceDefaultMediaLoader);
 }
 
-async function getStorybookReactWebpackConfig() {
-  return getWebpackConfig(require('@storybook/react/dist/server/options').default);
-}
-
 export async function getStorybookProjectWebpackConfig(): Promise<webpack.Configuration | void> {
-  if (storybookIsInstalled(StorybookFramework.REACT)) {
-    /** @TODO (maybe) we need to have sep routines for different versions but lets not get ahead of ourselves */
-    return getStorybookReactWebpackConfig();
+  /** @TODO (maybe) we need to have sep routines for different versions but lets not get ahead of ourselves */
+  const loadConfig = getStorybookLoadConfig();
+  if (loadConfig) {
+    return getWebpackConfig(loadConfig);
   }
 
   return undefined;
