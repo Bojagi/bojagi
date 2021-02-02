@@ -1,6 +1,6 @@
-import { storybookIsInstalled } from './storybookUtils';
-import { StorybookFramework } from './types';
+import { getStorybookLoadOptions } from './storybookUtils';
 import { replaceWebpackRules } from '../utils/replaceWebpackRules';
+import { getSbOption } from './getSbOption';
 
 import webpack = require('webpack');
 
@@ -16,8 +16,8 @@ async function getWebpackConfig(loadOptions) {
     ...loadOptions,
     ...cliOptions,
     configType: 'PRODUCTION',
-    outputDir: getOutputDir(loadOptions.outputDir || cliOptions.outputDir || './storybook-static'),
-    configDir: loadOptions.configDir || cliOptions.configDir || './.storybook',
+    outputDir: getOutputDir(getSbOption('outputDir', './storybook-static')),
+    configDir: getSbOption('configDir', './.storybook'),
     ignorePreview: !!cliOptions.previewUrl,
     docsMode: !!cliOptions.docs,
     corePresets: [require.resolve('@storybook/core/dist/server/preview/preview-preset.js')],
@@ -29,14 +29,10 @@ async function getWebpackConfig(loadOptions) {
   return replaceWebpackRules(webpackConfig, replaceDefaultMediaLoader);
 }
 
-async function getStorybookReactWebpackConfig() {
-  return getWebpackConfig(require('@storybook/react/dist/server/options').default);
-}
-
 export async function getStorybookProjectWebpackConfig(): Promise<webpack.Configuration | void> {
-  if (storybookIsInstalled(StorybookFramework.REACT)) {
-    /** @TODO (maybe) we need to have sep routines for different versions but lets not get ahead of ourselves */
-    return getStorybookReactWebpackConfig();
+  const loadConfig = getStorybookLoadOptions();
+  if (loadConfig) {
+    return getWebpackConfig(loadConfig);
   }
 
   return undefined;
