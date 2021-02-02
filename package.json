@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "integration": "jest --runInBand --config integration.jest.config.js --forceExit",
-    "integrationLocal": "jest --runInBand --config integration.local.jest.config.js --forceExit",
+    "integration": "./bin/integration.sh integration",
+    "integrationLocal": "./bin/integration.sh integrationLocal",
     "build": "tsc -b",
     "deploy": "lerna publish from-git -y",
     "publish": "./bin/publish.sh",

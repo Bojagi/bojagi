@@ -1,6 +1,6 @@
 import { getStorybookLoadOptions } from './storybookUtils';
 import { replaceWebpackRules } from '../utils/replaceWebpackRules';
-import { getSbOption } from './getSbOption';
+import { getSbOption, getSbCliOptions } from './getSbOption';
 
 import webpack = require('webpack');
 
@@ -8,10 +8,10 @@ const path = require('path');
 
 async function getWebpackConfig(loadOptions) {
   // we have to load all those libs dynamically as they are all optional
+  // eslint-disable-next-line import/no-extraneous-dependencies
   const loadConfig = require('@storybook/core/dist/server/config').default;
-  const { getProdCli } = require('@storybook/core/dist/server/cli');
+  const cliOptions = getSbCliOptions();
 
-  const cliOptions = getProdCli(loadOptions.packageJson);
   const webpackConfig = await loadConfig({
     ...loadOptions,
     ...cliOptions,

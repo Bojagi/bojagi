@@ -40,4 +40,6 @@ tmp
 .vscode
 bojagi
 
+.DS_Store
+
 foreignIntegrationTests

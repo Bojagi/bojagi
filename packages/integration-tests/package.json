@@ -3,7 +3,6 @@
   "version": "0.12.7-next.1",
   "description": "integration tests",
   "homepage": "https://bojagi.io/docs",
-  "license": "MIT",
   "bin": {
     "bojagi": "./bin/index.js"
   },
