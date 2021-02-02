@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/integration-test-utils",
-  "version": "0.12.0",
+  "version": "0.12.7-next.2",
   "description": "integration test utils",
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
