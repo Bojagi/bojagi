@@ -1,8 +1,8 @@
-import * as pathUtils from 'path';
 import { StoryWithMetadata } from '../types';
 import composeWebpackConfig from './composeWebpackConfig';
-import glob from './glob';
 import { Config } from '../config';
+import { getSbOption } from '../storybook/getSbOption';
+import { getDecoratorFile } from './getDecoratorFile';
 
 import webpack = require('webpack');
 
@@ -22,14 +22,12 @@ export async function getWebpackConfig({
   storyFiles,
   publicPath,
 }: GetWebpackConfigOptions): Promise<GetWebpackConfigOutput> {
-  const decoratorFiles = await glob(config.decoratorPath, { cwd: config.executionPath });
-  const decoratorFileArray =
-    decoratorFiles.length > 0 ? [pathUtils.resolve(config.executionPath, decoratorFiles[0])] : [];
+  const decoratorFile = await getDecoratorFile(config);
 
   const entrypoints = storyFiles.reduce(
     (prev, storyFile) => ({
       ...prev,
-      [storyFile.fileName]: [storyFile.entrypoint, ...decoratorFileArray],
+      [storyFile.fileName]: [storyFile.entrypoint, ...(decoratorFile ? [decoratorFile] : [])],
     }),
     {}
   );
@@ -38,7 +36,8 @@ export async function getWebpackConfig({
     config.webpackConfig,
     entrypoints,
     config.executionPath,
-    decoratorFileArray[0],
+    decoratorFile,
+    getSbOption,
     publicPath
   );
 

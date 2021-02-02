@@ -1,6 +1,7 @@
 import { storybookIsInstalled } from './storybookUtils';
 import { StorybookFramework } from './types';
 import { replaceWebpackRules } from '../utils/replaceWebpackRules';
+import { getSbOption } from './getSbOption';
 
 import webpack = require('webpack');
 
@@ -16,8 +17,8 @@ async function getWebpackConfig(loadOptions) {
     ...loadOptions,
     ...cliOptions,
     configType: 'PRODUCTION',
-    outputDir: getOutputDir(loadOptions.outputDir || cliOptions.outputDir || './storybook-static'),
-    configDir: loadOptions.configDir || cliOptions.configDir || './.storybook',
+    outputDir: getOutputDir(getSbOption('outputDir', './storybook-static')),
+    configDir: getSbOption('configDir', './.storybook'),
     ignorePreview: !!cliOptions.previewUrl,
     docsMode: !!cliOptions.docs,
     corePresets: [require.resolve('@storybook/core/dist/server/preview/preview-preset.js')],

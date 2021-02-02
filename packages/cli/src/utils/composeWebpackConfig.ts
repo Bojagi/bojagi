@@ -1,6 +1,6 @@
 import * as webpack from 'webpack';
 import * as pathUtils from 'path';
-import { merge } from 'webpack-merge';
+import { mergeWithCustomize, unique } from 'webpack-merge';
 
 const BLACKLISTED_PLUGINS = ['ManifestPlugin'];
 
@@ -9,13 +9,22 @@ const composeWebpackConfig = (
   entry: webpack.Entry,
   executionPath: string,
   decoratorFile: string | undefined,
+  getSbOption: <T>(key: string, fallbackValue: T) => T,
   publicPath: string = '__bojagi_public_path__/'
 ): webpack.Configuration => {
   const { entry: baseEntry, plugins, ...baseConfigWithoutEntry } = baseConfig;
   const filteredPlugins = plugins?.filter(
     plugin => !BLACKLISTED_PLUGINS.includes(plugin.constructor?.name)
   );
-  return merge(
+
+  return mergeWithCustomize({
+    customizeArray: unique(
+      'plugins',
+      ['DefinePlugin'],
+      plugin => plugin.constructor && plugin.constructor.name
+    ),
+  })(
+    // Bojagi decorator
     {
       module: {
         rules: decoratorFile
@@ -46,6 +55,11 @@ const composeWebpackConfig = (
         filename: '[name].js',
         publicPath,
         globalObject: 'window',
+      },
+      resolve: {
+        alias: {
+          'storybook-folder': pathUtils.resolve(getSbOption('configDir', './.storybook') || ''),
+        },
       },
       resolveLoader: {
         alias: {
@@ -80,6 +94,10 @@ const composeWebpackConfig = (
         new webpack.NormalModuleReplacementPlugin(
           /@storybook\/addons/,
           require.resolve('@bojagi/cli/fakeStorybookAddons.js')
+        ),
+        new webpack.NormalModuleReplacementPlugin(
+          /@storybook\/react/,
+          require.resolve('@bojagi/cli/fakeStorybookReact.js')
         ),
       ],
     }
