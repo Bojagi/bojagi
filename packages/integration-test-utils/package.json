@@ -5,9 +5,6 @@
   "homepage": "https://bojagi.io/docs",
   "license": "MIT",
   "main": "lib/index.js",
-  "bin": {
-    "bojagi": "./bin/index.js"
-  },
   "private": true,
   "repository": {
     "type": "git",

@@ -1,0 +1,24 @@
+{
+  "name": "@bojagi/integration-tests-storybook",
+  "version": "0.12.7-next.0",
+  "description": "storybook based integration tests",
+  "main": "index.js",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@bojagi/cli": "^0.12.7-next.0",
+    "@storybook/addon-actions": "^6.1.16",
+    "@storybook/addon-essentials": "^6.1.16",
+    "@storybook/addon-links": "^6.1.16",
+    "@storybook/react": "^6.1.16",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.8.3"
+  },
+  "workspaces": {
+    "nohoist": ["@storybook/*", "@types/*"]
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  }
+}

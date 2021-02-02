@@ -101,7 +101,7 @@ async function action({
 
 function getPackageJsonDependencies(executionPath: string) {
   try {
-    const { dependencies } = require(path.join(executionPath, 'package.json'));
+    const { dependencies = {} } = require(path.join(executionPath, 'package.json'));
     return Object.keys(dependencies);
   } catch {
     throw new Error('Can not read dependencies in package.json');
