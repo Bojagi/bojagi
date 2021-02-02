@@ -49,6 +49,19 @@ jobs:
       - run:
           name: deploy
           command: yarn deploy
+  deploy_next:
+    executor: base
+    steps:
+      - init
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+      - run: 
+          name: Create next prerelease
+          command: lerna version prerelease --no-git-tag-version --preid next -y
+      - run:
+          name: deploy prerelease
+          command: yarn deploy --dist-tag next
 workflows:
   version: 2
   test_and_deploy:
@@ -67,3 +80,7 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
+      - deploy_next:
+          filters:
+            branches:
+              only: master
