@@ -10,8 +10,8 @@ const frameworkToLoadOptionsMap = {
 };
 
 export function getStorybookLoadOptions() {
-  const foundSbFramework = Object.keys(StorybookFramework).find(sbFramework =>
-    storybookIsInstalled(sbFramework as StorybookFramework)
+  const foundSbFramework = Object.keys(StorybookFramework).find(
+    storybookFrameworkIsInstalled
   ) as StorybookFramework;
 
   if (!foundSbFramework) {
@@ -25,7 +25,11 @@ export function getStorybookFrameworkLoadOptions(framework: StorybookFramework) 
   return require(frameworkToLoadOptionsMap[framework]).default;
 }
 
-export function storybookIsInstalled(framework: StorybookFramework): boolean {
+export function storybookIsInstalled(): boolean {
+  return !!Object.keys(StorybookFramework).find(storybookFrameworkIsInstalled);
+}
+
+export function storybookFrameworkIsInstalled(framework: StorybookFramework): boolean {
   if (softRequireResolve(frameworkToPackageMap[framework])) {
     return true;
   }
