@@ -48,7 +48,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
       - run:
           name: deploy
-          command: yarn deploy
+          command: ./bin/deploy.sh
 workflows:
   version: 2
   test_and_deploy:
