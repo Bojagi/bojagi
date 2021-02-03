@@ -18,6 +18,7 @@
   "bugs": {
     "url": "https://github.com/Bojagi/issue-tracker/issues"
   },
+  "license" : "BSD-3-Clause",
   "publishConfig": {
     "access": "public"
   },
