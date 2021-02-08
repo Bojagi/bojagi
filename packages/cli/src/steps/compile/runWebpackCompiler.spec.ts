@@ -1,4 +1,4 @@
-import { runWebpackCompiler } from './runWebpackCompiler';
+import { clearDependencyMemory, runWebpackCompiler } from './runWebpackCompiler';
 import getGitPath from '../../utils/getGitPath';
 
 jest.mock('../../utils/getGitPath');
@@ -12,6 +12,8 @@ let mockError;
 let mockOutput;
 let fileContents;
 let cwd;
+
+afterEach(clearDependencyMemory);
 
 beforeEach(() => {
   cwd = process.cwd();
@@ -134,7 +136,25 @@ beforeEach(() => {
                     request: './otherTest.js',
                     module: {
                       resource: `${cwd}/src/components/otherTest.js`,
-                      dependencies: [],
+                      // should be memorized
+                      dependencies: [
+                        {
+                          request: '../XXX.js',
+                          module: {
+                            resource: `${cwd}/src/components/XXX.js`,
+                            dependencies: [
+                              {
+                                // This resource should never be called because the parent dependency is memorized
+                                request: './not-included.js',
+                                module: {
+                                  resource: `${cwd}/src/components/not-included.js`,
+                                  dependencies: [],
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      ],
                     },
                   },
                 ],
@@ -276,7 +296,29 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
                   request: './otherTest.js',
                   filePath: `src/components/otherTest.js`,
                   gitPath: `gitpath/src/components/otherTest.js`,
-                  dependencies: [],
+                  dependencies: [
+                    {
+                      filePath: 'src/components/XXX.js',
+                      gitPath: 'gitpath/src/components/XXX.js',
+                      isCircularImport: false,
+                      isExternal: false,
+                      isNodeModule: false,
+                      packageName: undefined,
+                      request: '../XXX.js',
+                      dependencies: [
+                        {
+                          dependencies: undefined,
+                          filePath: 'src/components/test.js',
+                          gitPath: 'gitpath/src/components/test.js',
+                          isCircularImport: true,
+                          isExternal: false,
+                          isNodeModule: false,
+                          packageName: undefined,
+                          request: './test.js',
+                        },
+                      ],
+                    },
+                  ],
                 },
               ],
             },
