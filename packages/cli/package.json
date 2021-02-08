@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/cli",
-  "version": "0.12.7-next.2",
+  "version": "0.13.0",
   "description": "bojagi cli",
   "homepage": "https://bojagi.io/docs",
   "main": "lib/index.js",
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Bojagi/issue-tracker/issues"
   },
-  "license" : "BSD-3-Clause",
+  "license": "BSD-3-Clause",
   "publishConfig": {
     "access": "public"
   },
