@@ -89,6 +89,19 @@ function getFilePath(resource = '') {
   return path.relative(process.cwd(), resource);
 }
 
+const memorizedDependencies = new Map<string, Module>();
+
+export function clearDependencyMemory() {
+  memorizedDependencies.clear();
+}
+
+const memorizeDependency = (module: Module) => {
+  if (module.filePath) {
+    memorizedDependencies.set(module.filePath, module);
+  }
+  return module;
+};
+
 function addDependencies({
   dependencyPackages,
   existingDependencies = new Set(),
@@ -96,16 +109,23 @@ function addDependencies({
   webpackMajorVersion,
 }) {
   return (module): Module => {
+    const filePath = module.resource && getFilePath(module.resource);
+    if (memorizedDependencies.has(filePath)) {
+      debug('reuse memorized dependency: %s', filePath);
+      return memorizedDependencies.get(filePath) as Module;
+    }
+
     const isExternal = !!module.external;
     const isNodeModule = checkNodeModule(module.resource);
     const packageName = isNodeModule || isExternal ? getPackageName(module) : undefined;
-    const filePath = module.resource && getFilePath(module.resource);
     const isCircularImport = existingDependencies.has(filePath) && !(isNodeModule || isExternal);
 
     const newExistingDependencies = new Set(existingDependencies);
     newExistingDependencies.add(filePath);
 
-    return {
+    debug('resolve package: %s', filePath);
+
+    return memorizeDependency({
       filePath,
       gitPath: getGitPath(filePath),
       isExternal,
@@ -133,7 +153,7 @@ function addDependencies({
               })({ ...dep.module, request: dep.request })
             )
         : undefined,
-    };
+    });
   };
 }
 
