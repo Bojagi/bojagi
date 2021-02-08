@@ -21,19 +21,19 @@ function preparePackages {
 
 function integration {
   preparePackages
-  cd $PROJECT_ROOT && yarn jest --runInBand --config integration.jest.config.js --forceExit
+  cd $PROJECT_ROOT && yarn jest --runInBand --config integration.jest.config.js --forceExit ${@}
 }
 
 function integrationLocal {
   preparePackages
-  cd $PROJECT_ROOT && yarn jest --runInBand --config integration.local.jest.config.js --forceExit
+  cd $PROJECT_ROOT && yarn jest --runInBand --config integration.local.jest.config.js --forceExit ${@}
 }
 
 case $1 in
   integration )
-    integration
+    integration ${@:2}
     ;;
   integrationLocal )
-    integrationLocal
+    integrationLocal ${@:2}
     ;;
 esac

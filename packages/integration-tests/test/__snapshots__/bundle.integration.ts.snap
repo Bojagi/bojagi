@@ -731,32 +731,7 @@ exports[`run bundle command 3`] = `
       \\"isExternal\\": false,
       \\"isNodeModule\\": false,
       \\"request\\": \\"./Ping\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"src/components/Pong.js\\",
-        \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./Pong\\",
-        \\"isCircularImport\\": true
-       }
-      ]
+      \\"isCircularImport\\": true
      }
     ]
    }

@@ -110,9 +110,14 @@ function addDependencies({
 }) {
   return (module): Module => {
     const filePath = module.resource && getFilePath(module.resource);
+    const request = getRequest(module);
     if (memorizedDependencies.has(filePath)) {
       debug('reuse memorized dependency: %s', filePath);
-      return memorizedDependencies.get(filePath) as Module;
+      const memorizedModule = memorizedDependencies.get(filePath) as Module;
+      return {
+        ...memorizedModule,
+        request,
+      };
     }
 
     const isExternal = !!module.external;
@@ -131,7 +136,7 @@ function addDependencies({
       isExternal,
       isNodeModule,
       packageName,
-      request: getRequest(module),
+      request,
       isCircularImport,
       dependencies: !(isNodeModule || isExternal || isCircularImport)
         ? module.dependencies
