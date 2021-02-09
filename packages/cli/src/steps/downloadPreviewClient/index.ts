@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import {
   PREVIEW_CLIENT_FOLDER,
   PREVIEW_CLIENT_OUTPUT_FOLDER,
@@ -21,7 +21,7 @@ import path = require('path');
 
 const fs = getFS();
 
-export type DownloadPreviewClientStepOutput = {
+export type DownloadPreviewClientStepOutput = StepOutput & {
   newClientDownload: boolean;
   localDevEtag?: string;
   hemingwayEtag?: string;

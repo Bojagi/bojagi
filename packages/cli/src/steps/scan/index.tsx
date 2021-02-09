@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Color } from 'ink';
 import * as path from 'path';
 import { StoryWithMetadata } from '../../types';
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import getEntrypointsFromFiles from './getExtendedStorybookFiles';
 import getStoryFiles from '../../utils/getStoryFiles';
 import { NonVerboseError } from '../../errors';
 import { getDependencyVersion } from '../../utils/getDependencyVersion';
 
-export type ScanStepOutput = {
+export type ScanStepOutput = StepOutput & {
   storyFiles: StoryWithMetadata[];
   storyFileCount: number;
   dependencies: Record<string, string>;
