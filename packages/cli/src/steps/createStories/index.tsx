@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { Config } from '../../config';
 import { handleApiError } from '../../apiErrorHandling';
 
-export type CreateStoriesStepOutput = {
+export type CreateStoriesStepOutput = StepOutput & {
   uploadUrl: string;
 };
 

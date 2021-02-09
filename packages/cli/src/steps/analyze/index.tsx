@@ -1,4 +1,4 @@
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { ScanStepOutput } from '../scan';
 import { CompileStepOutput } from '../compile';
 import { getStoriesMetadata } from './getStoriesMetadata';
@@ -15,7 +15,7 @@ export type StoryCollectionMetadata = {
   storyItems: StoryItem[];
 };
 
-export type AnalyzeStepOutput = {
+export type AnalyzeStepOutput = StepOutput & {
   storiesMetadata: Record<string, StoryCollectionMetadata>;
 };
 

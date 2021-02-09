@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { TEMP_FOLDER } from '../../constants';
 import { getFS } from '../../dependencies';
 import { CreateStoriesStepOutput } from '../createStories';
@@ -12,7 +12,7 @@ const MAX_ZIP_FILE_SIZE = 50000000; // 50mb
 
 const fs = getFS();
 
-export type UploadStepOutput = {};
+export type UploadStepOutput = StepOutput & {};
 
 export const uploadStep: StepRunnerStep<UploadStepOutput> = {
   action,
