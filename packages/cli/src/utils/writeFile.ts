@@ -22,19 +22,44 @@ function ensureDirectoryExistence(filePath) {
   return fs.promises.mkdir(dirname, { recursive: true });
 }
 
-export async function writeBojagiFile({ namespace, folder, fileName, fileContent }) {
+export type WriteBojagiFileOptions = {
+  namespace: string;
+  folder: string;
+  fileName: string;
+  fileContent: string | Buffer;
+};
+
+export type WriteBojagiFileOutput = {
+  outputFilePath: string;
+  fullOutputFilePath: string;
+};
+
+export type WriteBojagiFileFn = (options: WriteBojagiFileOptions) => Promise<WriteBojagiFileOutput>;
+
+export const writeBojagiFile: WriteBojagiFileFn = async ({
+  namespace,
+  folder,
+  fileName,
+  fileContent,
+}) => {
   const namespaceFolder = await createBojagiTempFolder(namespace);
   const outputFilePath = path.join(folder, fileName);
   const fullOutputFilePath = path.join(namespaceFolder, outputFilePath);
   await ensureDirectoryExistence(fullOutputFilePath);
   await fs.promises.writeFile(fullOutputFilePath, fileContent);
   return { outputFilePath, fullOutputFilePath };
-}
+};
 
-export async function writeJson(what: string, content: object | any[], namespace?: string) {
+export type WriteJsonFn = (
+  what: string,
+  content: object | any[],
+  namespace?: string
+) => Promise<void>;
+
+export const writeJson: WriteJsonFn = async (what, content, namespace) => {
   const namespaceFolder = await createBojagiTempFolder(namespace);
   await fs.promises.writeFile(path.join(namespaceFolder, `${what}.json`), JSON.stringify(content));
-}
+};
 
 export function readJsonSync(what: string) {
   const filePath = path.join(TEMP_FOLDER, `${what}.json`);

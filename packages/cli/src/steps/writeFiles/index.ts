@@ -6,6 +6,8 @@ import { AnalyzeStepOutput, StoryCollectionMetadata } from '../analyze';
 import { writeJson } from '../../utils/writeFile';
 import { buildManifest } from './buildManifest';
 import { normalizeFilePath } from '../../utils/normalizeFilePath';
+import { getStepOutputFiles } from '../../utils/getOutputFiles';
+import { getStepOutputStories } from '../../utils/getOutputStories';
 
 export type WriteFilesStepOutput = {};
 
@@ -45,14 +47,17 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
   const storiesMetadata = (stepOutputs.analyze && stepOutputs.analyze.storiesMetadata) || {};
 
   // Filter object properties by whitelist (so only relevant data is added to json files)
-  const cleanFiles = stepOutputs.compile.files
+  const filesOutput = getStepOutputFiles(stepOutputs);
+  const cleanFiles = filesOutput
     .filter(item => !IGNORE_FILES.find(ignoreRegExp => ignoreRegExp.test(item.fullOutputFilePath)))
     .map(mapObjectWithWhitelist(FILE_PROPERTY_WHITELIST))
     .map(item => ({
       ...item,
       outputFilePath: normalizeFilePath(item.outputFilePath),
     }));
-  const cleanStories = stepOutputs.compile.stories
+
+  const storiesOutput = getStepOutputStories(stepOutputs);
+  const cleanStories = storiesOutput
     .map(item => {
       const metadata = storiesMetadata[item.filePath] || {};
       return {

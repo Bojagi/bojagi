@@ -1,13 +1,19 @@
 import * as React from 'react';
 import { Box } from 'ink';
+import * as fileSystem from 'fs';
 import { Steps } from '../components/Steps';
 import { Step, StepState } from '../components/Step';
 import { EmojiCode } from '../components/Emoji';
 import { Config } from '../config';
 import { useConfig } from '../config/configContext';
 import { ErrorMessage } from '../components/ErrorMessage';
+import { FileContent, OutputFileContent, StoryFileWithMetadata } from '../types';
 
-export type StepOutput = Record<string, any>;
+export type StepOutput = {
+  files?: OutputFileContent<FileContent>[];
+  stories?: StoryFileWithMetadata[];
+  error?: any;
+};
 
 export type StepMessages<O extends StepOutput> = {
   running: () => React.ReactNode;
@@ -19,6 +25,7 @@ export type StepRunnerActionOptions<
   S extends Record<string, StepOutput> = Record<string, StepOutput>
 > = {
   config: Config;
+  fs: typeof fileSystem;
   stepOutputs: S;
 };
 
@@ -63,9 +70,15 @@ export type StepRunnerProps<O = any> = {
   steps: StepRunnerStep[];
   onSuccess?: (options: OnSuccessOptions<O>) => void;
   hideStepCount?: boolean;
+  fs?: typeof fileSystem;
 };
 
-export function StepRunner({ steps, onSuccess, hideStepCount = false }: StepRunnerProps) {
+export function StepRunner({
+  fs = fileSystem,
+  steps,
+  onSuccess,
+  hideStepCount = false,
+}: StepRunnerProps) {
   const config = useConfig();
   const [currentStep, setCurrentStep] = React.useState<number>(0);
   const [stepStatuses, setStepStatus] = React.useReducer(stepStatusReducer, []);
@@ -87,6 +100,7 @@ export function StepRunner({ steps, onSuccess, hideStepCount = false }: StepRunn
       const output = await steps[currentStep].action({
         config,
         stepOutputs,
+        fs,
       });
       setStepOutput({
         stepName: steps[currentStep].name,
@@ -103,7 +117,7 @@ export function StepRunner({ steps, onSuccess, hideStepCount = false }: StepRunn
       setError(err);
       process.exitCode = 1;
     }
-  }, [config, currentStep, steps, stepOutputs]);
+  }, [config, currentStep, fs, steps, stepOutputs]);
 
   React.useEffect(() => {
     // If current step has passed passed last step OR step is already started OR on error

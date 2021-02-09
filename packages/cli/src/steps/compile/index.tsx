@@ -1,7 +1,7 @@
 import MemoryFS from 'memory-fs';
 import * as path from 'path';
 import { StoryFileWithMetadata, FileContent, OutputFileContent, Module } from '../../types';
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
 import { writeBojagiFile } from '../../utils/writeFile';
@@ -14,7 +14,7 @@ const debug = debuggers[DebugNamespaces.COMPILE];
 
 const outputFS = new MemoryFS();
 
-export type CompileStepOutput = {
+export type CompileStepOutput = StepOutput & {
   files: OutputFileContent<FileContent>[];
   stories: StoryFileWithMetadata[];
 };
