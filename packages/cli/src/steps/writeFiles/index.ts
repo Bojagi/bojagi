@@ -1,5 +1,5 @@
 import { FileContent, StoryFileWithMetadata } from '../../types';
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { ScanStepOutput } from '../scan';
 import { CompileStepOutput } from '../compile';
 import { AnalyzeStepOutput, StoryCollectionMetadata } from '../analyze';
@@ -9,7 +9,7 @@ import { normalizeFilePath } from '../../utils/normalizeFilePath';
 import { getStepOutputFiles } from '../../utils/getOutputFiles';
 import { getStepOutputStories } from '../../utils/getOutputStories';
 
-export type WriteFilesStepOutput = {};
+export type WriteFilesStepOutput = StepOutput & {};
 
 const IGNORE_FILES = [/.*?\.DS_Store$/];
 
