@@ -2,7 +2,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { Color } from 'ink';
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { MANIFEST_VERSION } from '../../constants';
 import { Emoji } from '../../components/Emoji';
 import debuggers, { DebugNamespaces } from '../../debug';
@@ -41,7 +41,7 @@ export type ManifestVersion = {
   deprecationMessage?: string;
 };
 
-export type ValidateStepOutput = {
+export type ValidateStepOutput = StepOutput & {
   manifestVersion: ManifestVersion;
 };
 
