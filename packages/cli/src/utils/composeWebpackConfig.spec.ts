@@ -70,11 +70,6 @@ const testCases = [
         react: 'react',
         'react-dom': 'reactDom',
       });
-
-      // Plugins
-      expect(config.plugins[1].definitions).toEqual({
-        'process.env': { NODE_ENV: '"production"' },
-      });
     },
   },
   {
