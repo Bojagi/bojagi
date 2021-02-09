@@ -514,3 +514,15 @@ exports[`run bundle command 3`] = `
  }
 ]"
 `;
+
+exports[`run bundle command 4`] = `
+"{
+ \\"storybookBabel\\": \\"called\\"
+}"
+`;
+
+exports[`run bundle command 5`] = `
+"{
+ \\"storybookWebpackFinal\\": \\"called\\"
+}"
+`;
