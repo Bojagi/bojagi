@@ -8,6 +8,7 @@ export enum DebugNamespaces {
   COMPILE = 'compile',
   PREVIEW = 'preview',
   SCAN = 'scan',
+  STORYBOOK = 'storybook',
   UPLOAD = 'upload',
   VALIDATE = 'validate',
   WEBPACK_CONFIG = 'webpackConfig',

@@ -9,33 +9,45 @@ import { analyzeStep } from '../../steps/analyze';
 import { downloadPreviewClientStep } from '../../steps/downloadPreviewClient';
 import { DevServerMessage } from './DevServerMessage';
 import { compileStep } from '../../steps/compile';
+import { storybookStep } from '../../steps/storybook';
+import { getStepOutputFiles } from '../../utils/getOutputFiles';
+import { FileContent, OutputFileContent } from '../../types';
 
 import BorderBox = require('ink-box');
 
 export type PreviewContainerProps = {};
 
-const steps: StepRunnerStep[] = [scanStep, compileStep, analyzeStep, downloadPreviewClientStep];
+const steps: StepRunnerStep[] = [
+  scanStep,
+  compileStep,
+  storybookStep,
+  analyzeStep,
+  downloadPreviewClientStep,
+];
 
 export function PreviewContainer() {
   const config = useConfig();
   const [storiesMetadata, setStoriesMetadata] = React.useState();
   const [storyFiles, setStoryFiles] = React.useState();
+  const [files, setFiles] = React.useState<OutputFileContent<FileContent>[]>();
 
   const { devServer, established, ready, errors, setupError } = useWebpackDevServer({
     config,
+    files,
     storyFiles,
     storiesMetadata,
   });
 
-  const handleStepSucccess = React.useCallback(({ stepOutputs }) => {
+  const handleStepSuccess = React.useCallback(({ stepOutputs }) => {
     setStoriesMetadata(stepOutputs.analyze.storiesMetadata);
     setStoryFiles(stepOutputs.scan.storyFiles);
+    setFiles(getStepOutputFiles(stepOutputs));
   }, []);
 
   return (
     <Box flexDirection="column" marginTop={1}>
       <Message emoji="wave">Welcome back!</Message>
-      <StepRunner steps={steps} onSuccess={handleStepSucccess} hideStepCount />
+      <StepRunner steps={steps} onSuccess={handleStepSuccess} hideStepCount />
       <DevServerMessage
         storyFiles={storyFiles}
         devServer={devServer}

@@ -96,6 +96,11 @@ exports[`run bundle command 2`] = `
   \\"name\\": \\"iframe.html\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/iframe.html\\"
+ },
+ {
+  \\"name\\": \\"head.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/head.html\\"
  }
 ]"
 `;

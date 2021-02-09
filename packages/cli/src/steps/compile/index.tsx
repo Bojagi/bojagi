@@ -94,9 +94,9 @@ async function action({
   );
 
   return {
-    files: filesWithMetadata,
+    files: [...filesWithMetadata],
     stories: storyFileWithMetadata,
-  };
+  } as any;
 }
 
 function getPackageJsonDependencies(executionPath: string) {
