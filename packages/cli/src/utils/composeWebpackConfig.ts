@@ -1,6 +1,6 @@
 import * as webpack from 'webpack';
 import * as pathUtils from 'path';
-import { mergeWithCustomize, unique } from 'webpack-merge';
+import { merge } from 'webpack-merge';
 
 const BLACKLISTED_PLUGINS = ['ManifestPlugin'];
 
@@ -17,13 +17,7 @@ const composeWebpackConfig = (
     plugin => !BLACKLISTED_PLUGINS.includes(plugin.constructor?.name)
   );
 
-  return mergeWithCustomize({
-    customizeArray: unique(
-      'plugins',
-      ['DefinePlugin'],
-      plugin => plugin.constructor && plugin.constructor.name
-    ),
-  })(
+  return merge(
     // Bojagi decorator
     {
       module: {
@@ -86,11 +80,6 @@ const composeWebpackConfig = (
         },
       },
       plugins: [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('production'),
-          },
-        }),
         new webpack.NormalModuleReplacementPlugin(
           /@storybook\/addons/,
           require.resolve('@bojagi/cli/fakeStorybookAddons.js')
