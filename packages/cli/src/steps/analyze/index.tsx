@@ -1,8 +1,9 @@
-import { StepRunnerStep, StepRunnerActionOptions } from '../../containers/StepRunner';
+import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { ScanStepOutput } from '../scan';
 import { CompileStepOutput } from '../compile';
 import { getStoriesMetadata } from './getStoriesMetadata';
 import { setupFakeBrowserEnvironment } from './setupFakeBrowserEnvironment';
+import { getStepOutputStories } from '../../utils/getOutputStories';
 
 export type StoryItem = {
   exportName: string;
@@ -15,7 +16,7 @@ export type StoryCollectionMetadata = {
   storyItems: StoryItem[];
 };
 
-export type AnalyzeStepOutput = {
+export type AnalyzeStepOutput = StepOutput & {
   storiesMetadata: Record<string, StoryCollectionMetadata>;
 };
 
@@ -38,9 +39,9 @@ type DependencyStepOutputs = {
 };
 
 async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOutputs>) {
-  const componentModules = setupFakeBrowserEnvironment(global);
+  const { componentModules, cleanup } = setupFakeBrowserEnvironment(global);
 
-  stepOutputs.compile.stories.forEach(s =>
+  getStepOutputStories(stepOutputs).forEach(s =>
     s.files.forEach(fileName => {
       const foundFile = stepOutputs.compile.files
         .filter(file => JS_REGEXP.test(file.name))
@@ -52,6 +53,8 @@ async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOut
   );
 
   const storiesMetadata = getStoriesMetadata(stepOutputs.compile.stories, componentModules);
+
+  cleanup();
 
   return {
     storiesMetadata,
