@@ -1,5 +1,6 @@
-import { clearDependencyMemory, runWebpackCompiler } from './runWebpackCompiler';
+import { runWebpackCompiler } from './runWebpackCompiler';
 import getGitPath from '../../utils/getGitPath';
+import { clearDependencyMemory } from './dependencies';
 
 jest.mock('../../utils/getGitPath');
 
