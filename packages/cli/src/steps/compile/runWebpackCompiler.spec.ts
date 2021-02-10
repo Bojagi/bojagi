@@ -1,6 +1,5 @@
 import { runWebpackCompiler } from './runWebpackCompiler';
 import getGitPath from '../../utils/getGitPath';
-import { clearDependencyMemory } from './dependencies';
 import { compilationDependencies, webpackCompilationOutput } from './__test__/compilationOutput';
 
 jest.mock('../../utils/getGitPath');
@@ -14,8 +13,6 @@ let mockError;
 let mockOutput;
 let fileContents;
 let cwd;
-
-afterEach(clearDependencyMemory);
 
 beforeEach(() => {
   cwd = process.cwd();
@@ -83,11 +80,14 @@ describe.each([
           isExternal: false,
           isNodeModule: false,
           dependencies: [
-            'node_modules/react/index.js',
-            '../../node_modules/foreignNodeModules/index.js',
-            'node_modules/@material-ui/icons/MyIcon/index.js',
-            'node_modules/styled-components/index.js',
-            'src/components/test.js',
+            {
+              dependency: 'react',
+              request: 'react',
+            },
+            { dependency: 'foreignNodeModules', request: 'foreignNodeModules' },
+            { dependency: '@material-ui/icons', request: '@material-ui/icons/MyIcon' },
+            { dependency: 'styled-components', request: 'styled-components' },
+            { dependency: 'src/components/test.js', request: './test.js' },
           ],
         },
       ],

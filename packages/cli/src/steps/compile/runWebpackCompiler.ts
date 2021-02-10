@@ -1,13 +1,14 @@
 import * as path from 'path';
-import { Module } from '../../types';
+import { Dependency } from '../../types';
 import debuggers, { DebugNamespaces } from '../../debug';
-import { addDependencies } from './dependencies';
+import { findModuleInDependencies, getDependencies } from './dependencies';
 
 const debug = debuggers[DebugNamespaces.COMPILE];
 
 export type RunWebpackCompilerOutput = {
+  dependencies: Dependency[];
   outputContent: Record<string, string>;
-  modules: Module[];
+  modules: Dependency[];
   assets: Record<string, string[]>;
 };
 
@@ -53,22 +54,16 @@ export const runWebpackCompiler = ({
           filterActualModulecomponentFilePaths(componentFilePaths)
         );
 
-        // const moduleDependencies = getDependencies({
-        //   dependencyPackages,
-        //   compilation: output.compilation,
-        //   webpackMajorVersion,
-        //   modules: componentModules,
-        // })
+        const dependencies = getDependencies({
+          dependencyPackages,
+          webpackMajorVersion,
+          modules: componentModules,
+        });
 
-        const modules = componentModules.map(
-          addDependencies({
-            dependencyPackages,
-            compilation: output.compilation,
-            webpackMajorVersion,
-          })
-        );
+        const modules = componentModules.map(m => findModuleInDependencies(m, dependencies));
 
         resolve({
+          dependencies,
           outputContent,
           modules,
           assets,
