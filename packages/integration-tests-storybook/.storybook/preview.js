@@ -4,14 +4,11 @@ export const parameters = {
 }
 
 export const decorators = [(Story, {globals, args}) => {
-  return <div {...globals}><Story /></div>;
+  return <div style={{color: globals.fontColor}}><Story /></div>;
 }];
 
 export const globalTypes = {
-  hans: {
-    defaultValue: 'wurst',
-  },
-  hansi: {
-    defaultValue: 'würstchen',
+  fontColor: {
+    defaultValue: 'blue',
   },
 }
