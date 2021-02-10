@@ -12,12 +12,14 @@ import { cleanupStep } from '../steps/cleanup';
 import { ConfigProvider } from '../config/configContext';
 import { writeFilesStep } from '../steps/writeFiles';
 import { validateStep } from '../steps/validate';
+import { storybookStep } from '../steps/storybook';
 
 const steps: StepRunnerStep[] = [
   validateStep,
   cleanupStep,
   scanStep,
   compileStep,
+  storybookStep,
   analyzeStep,
   writeFilesStep,
   createStoriesStep,

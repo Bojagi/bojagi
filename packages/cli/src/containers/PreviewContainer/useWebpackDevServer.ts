@@ -12,6 +12,7 @@ import webpack = require('webpack');
 export type UseWebpackDevServerOptions = {
   config: Config;
   storyFiles?: StoryWithMetadata[];
+  files?: any[];
   storiesMetadata?: Record<string, StoryCollectionMetadata>;
 };
 
@@ -27,6 +28,7 @@ export function useWebpackDevServer({
   config,
   storiesMetadata,
   storyFiles,
+  files,
 }: UseWebpackDevServerOptions): UseWebpackDevServerOutput {
   const [devServer, setDevServer] = React.useState<any>();
   const [compiler, setCompiler] = React.useState<webpack.Compiler>();
@@ -51,9 +53,8 @@ export function useWebpackDevServer({
 
   React.useEffect(() => {
     let assets;
-    let files;
 
-    if (!storiesMetadata || !compiler) {
+    if (!storiesMetadata || !files || !compiler) {
       return;
     }
 
@@ -66,10 +67,6 @@ export function useWebpackDevServer({
       compiler.hooks.done.tap('BojagiPreview', compileOutput => {
         setEstablished(true);
         setErrors(compileOutput.compilation.errors);
-        files = Object.keys(compileOutput.compilation.assets).map(asset => ({
-          name: asset,
-          url: `${baseUrl}/${asset}`,
-        }));
         assets = Array.from(compileOutput.compilation.entrypoints.entries())
           .map(([key, val]) => [key, val.getFiles()])
           .reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {});
@@ -92,7 +89,12 @@ export function useWebpackDevServer({
             storiesMetadata,
             config,
             getAssets: () => assets,
-            getFiles: () => files,
+            getFiles: () =>
+              files.map(file => ({
+                name: file.name,
+                fileContent: file.fileContent,
+                url: `${baseUrl}/${file.outputFilePath.replace(/^files\//, '')}`,
+              })),
           }),
         });
         setDevServer(server);
@@ -101,7 +103,7 @@ export function useWebpackDevServer({
         setSetupError(e);
       }
     }
-  }, [compiler, baseUrl, storiesMetadata, established, config]);
+  }, [compiler, baseUrl, files, storiesMetadata, established, config]);
 
   // Close dev server on unmount
   React.useEffect(() => {

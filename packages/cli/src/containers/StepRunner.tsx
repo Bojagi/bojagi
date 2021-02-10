@@ -31,6 +31,7 @@ export type StepRunnerActionOptions<
 
 export type StepRunnerStep<O extends StepOutput = StepOutput> = {
   name: string;
+  if?: () => boolean;
   emoji: EmojiCode;
   messages: StepMessages<O>;
   action: (options: StepRunnerActionOptions) => Promise<O>;
@@ -89,6 +90,8 @@ export function StepRunner({
   const [startTime, setStartTime] = React.useState<Date>();
   const [endTime, setEndTime] = React.useState<Date>();
 
+  const filteredSteps = React.useMemo(() => steps.filter(step => !step.if || step.if()), [steps]);
+
   React.useEffect(() => {
     setStartTime(new Date());
   }, []);
@@ -97,13 +100,14 @@ export function StepRunner({
     setStepStatus({ step: currentStep, state: StepState.RUNNING });
 
     try {
-      const output = await steps[currentStep].action({
+      const output = await filteredSteps[currentStep].action({
         config,
         stepOutputs,
         fs,
       });
+
       setStepOutput({
-        stepName: steps[currentStep].name,
+        stepName: filteredSteps[currentStep].name,
         output,
       });
       setStepStatus({ step: currentStep, state: StepState.SUCCESS });
@@ -111,23 +115,23 @@ export function StepRunner({
     } catch (err) {
       setStepStatus({ step: currentStep, state: StepState.FAILED });
       setStepOutput({
-        stepName: steps[currentStep].name,
+        stepName: filteredSteps[currentStep].name,
         output: { error: err },
       });
       setError(err);
       process.exitCode = 1;
     }
-  }, [config, currentStep, fs, steps, stepOutputs]);
+  }, [config, currentStep, fs, filteredSteps, stepOutputs]);
 
   React.useEffect(() => {
     // If current step has passed passed last step OR step is already started OR on error
     // -> don't start step
-    if (currentStep === steps.length || stepStatuses[currentStep] || error) return;
+    if (currentStep === filteredSteps.length || stepStatuses[currentStep] || error) return;
     runCurrentStep();
-  }, [steps, error, currentStep, stepStatuses, runCurrentStep]);
+  }, [filteredSteps, error, currentStep, stepStatuses, runCurrentStep]);
 
   React.useEffect(() => {
-    if (currentStep === steps.length && !done) {
+    if (currentStep === filteredSteps.length && !done) {
       setDone(true);
       const now = new Date();
       setEndTime(now);
@@ -141,12 +145,12 @@ export function StepRunner({
         });
       }
     }
-  }, [steps, done, currentStep, stepOutputs, onSuccess, startTime, endTime]);
+  }, [filteredSteps, done, currentStep, stepOutputs, onSuccess, startTime, endTime]);
 
   return (
     <>
       <Steps>
-        {steps.map((step, i) => (
+        {filteredSteps.map((step, i) => (
           <Step
             key={step.name}
             name={step.name}
