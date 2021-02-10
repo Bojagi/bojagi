@@ -27,20 +27,19 @@ export function getDependencies(
       const dependency = getModuleAsDependency(module);
       const identifier = getDependencyIdentifer(dependency);
 
-      if (!identifier) {
-        console.log(identifier, module, dependency);
-      }
-
       if (acc[identifier]) {
         return acc;
       }
 
+      const subDependencies = module.dependencies
+        .filter(dep => dep.module)
+        .filter(dep => !!dep.module.request || !!dep.module.resource)
+        .filter(ignoreDevDependencies(dependencyPackages));
+
       const result = {
         ...acc,
-        [identifier]: dependency,
+        [identifier]: addSubDependencies(dependency, subDependencies),
       };
-
-      // console.log(`get dependency ${identifier}`, module, dependency);
 
       if (!module.dependencies?.length) {
         return result;
@@ -51,7 +50,7 @@ export function getDependencies(
         ...getDependencies(
           {
             dependencyPackages,
-            modules: module.dependencies.map(d => d.module),
+            modules: subDependencies.map(dep => dep.module),
             webpackMajorVersion,
           },
           result
@@ -60,30 +59,22 @@ export function getDependencies(
     }, initial);
 }
 
-function getDependencyIdentifer(dependency: Dependency): string {
+function getDependencyIdentifer(dependency): string {
   if (dependency.isNodeModule) {
     return dependency.packageName;
   }
   return dependency.filePath;
 }
 
-function getModuleAsDependency(module): Dependency {
+function getModuleAsDependency(module) {
   const isExternal = !!module.external;
   const isNodeModule = checkNodeModule(module.resource);
-  const dependencies =
-    !isNodeModule && module.dependencies
-      ? module.dependencies.map(({ request, module: subModule }) => ({
-          request,
-          dependency: getDependencyIdentifer(getModuleAsDependency(subModule)),
-        }))
-      : []; // TODO parse deps
 
   if (isNodeModule) {
     return {
       isExternal,
       isNodeModule,
       packageName: getPackageName(module),
-      dependencies,
     };
   }
 
@@ -93,7 +84,19 @@ function getModuleAsDependency(module): Dependency {
     isExternal: !!module.external,
     isNodeModule: checkNodeModule(module.resource),
     gitPath: getGitPath(filePath),
-    dependencies,
+  };
+}
+
+function addSubDependencies(dep, subDependencies): Dependency {
+  return {
+    ...dep,
+    dependencies:
+      !dep.isNodeModule && subDependencies
+        ? subDependencies.map(({ request, module: subModule }) => ({
+            request,
+            dependency: getDependencyIdentifer(getModuleAsDependency(subModule)),
+          }))
+        : [],
   };
 }
 

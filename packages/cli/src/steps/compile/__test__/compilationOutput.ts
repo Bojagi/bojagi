@@ -159,10 +159,6 @@ export function compilationDependencies() {
           dependency: 'react',
           request: 'react',
         },
-        {
-          dependency: '@babel/core',
-          request: '@babel/core',
-        },
         { dependency: 'foreignNodeModules', request: 'foreignNodeModules' },
         { dependency: '@material-ui/icons', request: '@material-ui/icons/MyIcon' },
         { dependency: 'styled-components', request: 'styled-components' },
@@ -173,12 +169,6 @@ export function compilationDependencies() {
       isExternal: true,
       isNodeModule: true,
       packageName: 'react',
-      dependencies: [],
-    },
-    '@babel/core': {
-      isExternal: false,
-      isNodeModule: true,
-      packageName: '@babel/core',
       dependencies: [],
     },
     foreignNodeModules: {
