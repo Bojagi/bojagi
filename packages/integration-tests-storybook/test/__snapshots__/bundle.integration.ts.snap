@@ -2,7 +2,7 @@
 
 exports[`run bundle command 1`] = `
 "{
- \\"version\\": \\"3\\",
+ \\"version\\": \\"4\\",
  \\"namespaces\\": [
   {
    \\"name\\": \\"default\\",
