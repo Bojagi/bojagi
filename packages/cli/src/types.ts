@@ -9,6 +9,28 @@ export type Module = {
   dependencies?: Module[];
 };
 
+export type ForeignDependency = {
+  isExternal: boolean;
+  isNodeModule: true;
+  packageName: string;
+  dependencies: DependencyReference[];
+};
+
+export type LocalDependency = {
+  filePath: string;
+  gitPath?: string;
+  isExternal: boolean;
+  isNodeModule: false;
+  dependencies: DependencyReference[];
+};
+
+export type Dependency = ForeignDependency | LocalDependency;
+
+export type DependencyReference = {
+  request?: string;
+  dependency: string;
+};
+
 export type StoryWithMetadata = {
   entrypoint: string;
   name: string;

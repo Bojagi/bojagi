@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { Module } from '../../types';
+import { Dependency, Module } from '../../types';
 import getGitPath from '../../utils/getGitPath';
 import debuggers, { DebugNamespaces } from '../../debug';
 
@@ -16,6 +16,86 @@ const memorizeDependency = (module: Module) => {
   }
   return module;
 };
+
+export function getDependencies(
+  { dependencyPackages, modules, webpackMajorVersion },
+  initial = {}
+) {
+  return modules
+    .filter(module => !module.rawRequest || !module.rawRequest.includes(`?${module.resource}`))
+    .reduce((acc, module) => {
+      const dependency = getModuleAsDependency(module);
+      const identifier = getDependencyIdentifer(dependency);
+
+      if (!identifier) {
+        console.log(identifier, module, dependency);
+      }
+
+      if (acc[identifier]) {
+        return acc;
+      }
+
+      const result = {
+        ...acc,
+        [identifier]: dependency,
+      };
+
+      // console.log(`get dependency ${identifier}`, module, dependency);
+
+      if (!module.dependencies?.length) {
+        return result;
+      }
+
+      return {
+        ...result,
+        ...getDependencies(
+          {
+            dependencyPackages,
+            modules: module.dependencies.map(d => d.module),
+            webpackMajorVersion,
+          },
+          result
+        ),
+      };
+    }, initial);
+}
+
+function getDependencyIdentifer(dependency: Dependency): string {
+  if (dependency.isNodeModule) {
+    return dependency.packageName;
+  }
+  return dependency.filePath;
+}
+
+function getModuleAsDependency(module): Dependency {
+  const isExternal = !!module.external;
+  const isNodeModule = checkNodeModule(module.resource);
+  const dependencies =
+    !isNodeModule && module.dependencies
+      ? module.dependencies.map(({ request, module: subModule }) => ({
+          request,
+          dependency: getDependencyIdentifer(getModuleAsDependency(subModule)),
+        }))
+      : []; // TODO parse deps
+
+  if (isNodeModule) {
+    return {
+      isExternal,
+      isNodeModule,
+      packageName: getPackageName(module),
+      dependencies,
+    };
+  }
+
+  const filePath = getFilePath(module.resource);
+  return {
+    filePath,
+    isExternal: !!module.external,
+    isNodeModule: checkNodeModule(module.resource),
+    gitPath: getGitPath(filePath),
+    dependencies,
+  };
+}
 
 export function addDependencies({
   dependencyPackages,
@@ -103,10 +183,6 @@ function onlyUnique(dep, index, self) {
 }
 
 function getPackageName(module: any) {
-  if (module.external) {
-    return module.request;
-  }
-
   const pathParts = module.resource.replace(/.*?node_modules\//, '').split(path.sep);
   const isOrgPackage = pathParts[0].startsWith('@');
   return isOrgPackage ? `${pathParts[0]}/${pathParts[1]}` : pathParts[0];
