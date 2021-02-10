@@ -1,3 +1,4 @@
+import * as pathUtils from 'path';
 import { StoryWithMetadata } from '../types';
 import composeWebpackConfig from './composeWebpackConfig';
 import { Config } from '../config';
@@ -27,7 +28,11 @@ export async function getWebpackConfig({
   const entrypoints = storyFiles.reduce(
     (prev, storyFile) => ({
       ...prev,
-      [storyFile.fileName]: [storyFile.entrypoint, ...(decoratorFile ? [decoratorFile] : [])],
+      [storyFile.fileName]: [
+        storyFile.entrypoint,
+        pathUtils.resolve(__dirname, '../storybook/getGlobals.js'),
+        ...(decoratorFile ? [decoratorFile] : []),
+      ],
     }),
     {}
   );
