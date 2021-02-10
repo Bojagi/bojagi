@@ -18,7 +18,7 @@ const differencify = new Differencify({});
 export async function snapshotPreview(stories) {
   const target = differencify.init({ chain: false });
   await target.launch({
-    headless: false,
+    headless: true,
     args: CHROME_ARGS,
     defaultViewport: { width: 1024, height: 768 },
   });
