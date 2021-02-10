@@ -101,6 +101,11 @@ exports[`run bundle command 2`] = `
   \\"name\\": \\"head.html\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/head.html\\"
+ },
+ {
+  \\"name\\": \\"body.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/body.html\\"
  }
 ]"
 `;

@@ -15,6 +15,22 @@ export type SetupApiOptions = {
 
 export function setupApi(options: SetupApiOptions) {
   return (app: express.Application) => {
+    function serveFile(fileName) {
+      return app.get(`/${fileName}`, (_req, res, next) => {
+        const foundFile = options
+          .getFiles()
+          .find(file => new RegExp(`/${fileName.replace(/\./g, '\\.')}$`).test(file.url));
+        if (foundFile) {
+          res.send(foundFile.fileContent);
+          return;
+        }
+        next(new Error('File not found'));
+      });
+    }
+
+    serveFile('head.html');
+    serveFile('body.html');
+
     app.get('/api/stories', (_req, res, next) => {
       try {
         res.json(serveStoriesApi(options));

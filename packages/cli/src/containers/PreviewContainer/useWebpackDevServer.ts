@@ -92,6 +92,7 @@ export function useWebpackDevServer({
             getFiles: () =>
               files.map(file => ({
                 name: file.name,
+                fileContent: file.fileContent,
                 url: `${baseUrl}/${file.outputFilePath.replace(/^files\//, '')}`,
               })),
           }),
