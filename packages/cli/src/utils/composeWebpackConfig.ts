@@ -38,6 +38,24 @@ const composeWebpackConfig = (
           : [],
       },
     },
+    // Get Globals
+    {
+      module: {
+        rules: [
+          {
+            test: pathUtils.resolve(__dirname, '../storybook/getGlobals.js'),
+            use: [
+              {
+                loader: `bojagi-expose-loader`,
+                options: {
+                  symbol: 'bojagiSbGlobals',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
     {
       ...baseConfigWithoutEntry,
       plugins: filteredPlugins,

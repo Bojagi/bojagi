@@ -100,7 +100,7 @@ async function action({
   );
 
   return {
-    files: filesWithMetadata,
+    files: [...filesWithMetadata],
     stories: storyFileWithMetadata,
     dependencies,
   };

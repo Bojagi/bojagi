@@ -239,6 +239,7 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
   \\"files\\": [
+   \\"vendors.js\\",
    \\"Lazy.bojagi.js\\"
   ]
  },
@@ -266,6 +267,7 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
   \\"files\\": [
+   \\"vendors.js\\",
    \\"Logo.bojagi.js\\"
   ]
  },
@@ -301,6 +303,7 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
   \\"files\\": [
+   \\"vendors.js\\",
    \\"PingPong.bojagi.js\\"
   ]
  }

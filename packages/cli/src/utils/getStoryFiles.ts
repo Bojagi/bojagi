@@ -9,7 +9,11 @@ export default async function getStoryFiles({
 }: Config) {
   const ignoreStoryFiles = await arrayGlob(storyPathIgnorePatterns, { executionPath });
   const storyFiles = await arrayGlob(storyPath, { executionPath });
-  const validStoryFiles = storyFiles.filter(filePath => !ignoreStoryFiles.includes(filePath));
+  const validStoryFiles = storyFiles
+    // Exclude mdx (docs only) files
+    .filter(filePath => !/\.mdx$/.test(filePath))
+    // Exclude ignored story files
+    .filter(filePath => !ignoreStoryFiles.includes(filePath));
 
   if (validStoryFiles.length === 0) {
     throw new NonVerboseError(
