@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { Dependency } from '../../types';
+import { Dependency, LocalDependency } from '../../types';
 import debuggers, { DebugNamespaces } from '../../debug';
 import { findModuleInDependencies, getDependencies } from './dependencies';
 
@@ -8,7 +8,7 @@ const debug = debuggers[DebugNamespaces.COMPILE];
 export type RunWebpackCompilerOutput = {
   dependencies: Dependency[];
   outputContent: Record<string, string>;
-  modules: Dependency[];
+  modules: LocalDependency[];
   assets: Record<string, string[]>;
 };
 

@@ -46,8 +46,8 @@ export function webpackCompilationOutput() {
           {
             request: 'react',
             module: {
-              resource: `${cwd}/node_modules/react/index.js`,
               external: true,
+              request: 'react',
               dependencies: [],
             },
           },
@@ -167,7 +167,7 @@ export function compilationDependencies() {
     },
     react: {
       isExternal: true,
-      isNodeModule: true,
+      isNodeModule: false,
       packageName: 'react',
       dependencies: [],
     },

@@ -19,6 +19,7 @@ export function getDependencies(
       const subDependencies = module.dependencies
         .filter(dep => dep.module)
         .filter(dep => !!dep.module.request || !!dep.module.resource)
+        .filter(onlyUnique)
         .filter(ignoreDevDependencies(dependencyPackages));
 
       const result = {
@@ -45,10 +46,15 @@ export function getDependencies(
 }
 
 function getDependencyIdentifer(dependency): string {
-  if (dependency.isNodeModule) {
+  if (dependency.isNodeModule || dependency.isExternal) {
     return dependency.packageName;
   }
+
   return dependency.filePath;
+}
+
+function onlyUnique(dep, index, self) {
+  return self.findIndex(selfDep => selfDep.request === dep.request) === index;
 }
 
 function getModuleAsDependency(module) {
@@ -63,11 +69,19 @@ function getModuleAsDependency(module) {
     };
   }
 
+  if (isExternal) {
+    return {
+      isExternal,
+      isNodeModule,
+      packageName: module.request,
+    };
+  }
+
   const filePath = getFilePath(module.resource);
   return {
-    filePath,
     isExternal: !!module.external,
-    isNodeModule: checkNodeModule(module.resource),
+    isNodeModule: false,
+    filePath,
     gitPath: getGitPath(filePath),
   };
 }
@@ -77,10 +91,12 @@ function addSubDependencies(dep, subDependencies): Dependency {
     ...dep,
     dependencies:
       !dep.isNodeModule && subDependencies
-        ? subDependencies.map(({ request, module: subModule }) => ({
-            request: getRequest(request),
-            dependency: getDependencyIdentifer(getModuleAsDependency(subModule)),
-          }))
+        ? subDependencies.map(({ request, module: subModule }) => {
+            return {
+              request: getRequest(request),
+              dependency: getDependencyIdentifer(getModuleAsDependency(subModule)),
+            };
+          })
         : [],
   };
 }

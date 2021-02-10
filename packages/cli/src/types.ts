@@ -60,6 +60,6 @@ export type StoryFileWithMetadata = File & {
   fileName: string;
   filePath: string;
   gitPath: string;
-  dependencies: Module[];
   files: string[];
+  dependencies: DependencyReference[];
 };
