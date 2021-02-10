@@ -43,10 +43,7 @@ beforeEach(() => {
   };
 });
 
-describe.each([
-  [4],
-  // [5]
-])('Webpack version %s', webpackMajorVersion => {
+describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
   test('run the webpack compiler', async () => {
     const componentsContent = await runWebpackCompiler({
       compiler,
