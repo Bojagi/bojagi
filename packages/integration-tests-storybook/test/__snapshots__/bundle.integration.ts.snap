@@ -238,6 +238,7 @@ exports[`run bundle command 3`] = `
 exports[`run bundle command 4`] = `
 "{
  \\"src/Header.stories.js\\": {
+  \\"id\\": \\"src/Header.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Header.stories.js\\",
@@ -254,12 +255,14 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"react\\": {
+  \\"id\\": \\"react\\",
   \\"isExternal\\": true,
   \\"isNodeModule\\": false,
   \\"packageName\\": \\"react\\",
   \\"dependencies\\": []
  },
  \\"src/Header.js\\": {
+  \\"id\\": \\"src/Header.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Header.js\\",
@@ -280,6 +283,7 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"src/Button.js\\": {
+  \\"id\\": \\"src/Button.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Button.js\\",
@@ -296,6 +300,7 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"src/button.css\\": {
+  \\"id\\": \\"src/button.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/button.css\\",
@@ -308,6 +313,7 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"src/header.css\\": {
+  \\"id\\": \\"src/header.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/header.css\\",
@@ -320,6 +326,7 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"src/Button.stories.js\\": {
+  \\"id\\": \\"src/Button.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Button.stories.js\\",
@@ -336,6 +343,7 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"src/Page.stories.js\\": {
+  \\"id\\": \\"src/Page.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Page.stories.js\\",
@@ -356,6 +364,7 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"src/Page.js\\": {
+  \\"id\\": \\"src/Page.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Page.js\\",
@@ -376,6 +385,7 @@ exports[`run bundle command 4`] = `
   ]
  },
  \\"src/page.css\\": {
+  \\"id\\": \\"src/page.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/page.css\\",

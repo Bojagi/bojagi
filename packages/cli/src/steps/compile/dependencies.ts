@@ -10,9 +10,8 @@ export function getDependencies(
     .filter(module => !module.rawRequest || !module.rawRequest.includes(`?${module.resource}`))
     .reduce((acc, module) => {
       const dependency = getModuleAsDependency(module);
-      const identifier = getDependencyIdentifer(dependency);
 
-      if (acc[identifier]) {
+      if (acc[dependency.id]) {
         return acc;
       }
 
@@ -24,7 +23,7 @@ export function getDependencies(
 
       const result = {
         ...acc,
-        [identifier]: addSubDependencies(dependency, subDependencies),
+        [dependency.id]: addSubDependencies(dependency, subDependencies),
       };
 
       if (!module.dependencies?.length) {
@@ -45,14 +44,6 @@ export function getDependencies(
     }, initial);
 }
 
-function getDependencyIdentifer(dependency): string {
-  if (dependency.isNodeModule || dependency.isExternal) {
-    return dependency.packageName;
-  }
-
-  return dependency.filePath;
-}
-
 function onlyUnique(dep, index, self) {
   return self.findIndex(selfDep => selfDep.request === dep.request) === index;
 }
@@ -62,15 +53,18 @@ function getModuleAsDependency(module) {
   const isNodeModule = checkNodeModule(module.resource);
 
   if (isNodeModule) {
+    const packageName = getPackageName(module);
     return {
+      id: packageName,
       isExternal,
       isNodeModule,
-      packageName: getPackageName(module),
+      packageName,
     };
   }
 
   if (isExternal) {
     return {
+      id: module.request,
       isExternal,
       isNodeModule,
       packageName: module.request,
@@ -79,6 +73,7 @@ function getModuleAsDependency(module) {
 
   const filePath = getFilePath(module.resource);
   return {
+    id: filePath,
     isExternal: !!module.external,
     isNodeModule: false,
     filePath,
@@ -94,7 +89,7 @@ function addSubDependencies(dep, subDependencies): Dependency {
         ? subDependencies.map(({ request, module: subModule }) => {
             return {
               request: getRequest(request),
-              dependency: getDependencyIdentifer(getModuleAsDependency(subModule)),
+              dependency: getModuleAsDependency(subModule).id,
             };
           })
         : [],
@@ -102,7 +97,7 @@ function addSubDependencies(dep, subDependencies): Dependency {
 }
 
 export function findModuleInDependencies(module, dependencies) {
-  return dependencies[getDependencyIdentifer(getModuleAsDependency(module))];
+  return dependencies[getModuleAsDependency(module).id];
 }
 
 function getFilePath(resource = '') {

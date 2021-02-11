@@ -150,6 +150,7 @@ export function webpackCompilationOutput() {
 export function compilationDependencies() {
   return {
     'bojagi/A.js': {
+      id: `bojagi/A.js`,
       filePath: `bojagi/A.js`,
       gitPath: 'gitpath/bojagi/A.js',
       isExternal: false,
@@ -166,18 +167,21 @@ export function compilationDependencies() {
       ],
     },
     react: {
+      id: 'react',
       isExternal: true,
       isNodeModule: false,
       packageName: 'react',
       dependencies: [],
     },
     foreignNodeModules: {
+      id: 'foreignNodeModules',
       isExternal: false,
       isNodeModule: true,
       packageName: 'foreignNodeModules',
       dependencies: [],
     },
     '@material-ui/icons': {
+      id: '@material-ui/icons',
       isExternal: false,
       isNodeModule: true,
       packageName: '@material-ui/icons',
@@ -185,12 +189,14 @@ export function compilationDependencies() {
     },
     // node module (no org)
     'styled-components': {
+      id: 'styled-components',
       isExternal: false,
       isNodeModule: true,
       packageName: 'styled-components',
       dependencies: [],
     },
     'src/components/test.js': {
+      id: `src/components/test.js`,
       isExternal: false,
       isNodeModule: false,
       filePath: `src/components/test.js`,
@@ -201,6 +207,7 @@ export function compilationDependencies() {
       ],
     },
     'src/components/XXX.js': {
+      id: 'src/components/XXX.js',
       filePath: 'src/components/XXX.js',
       gitPath: 'gitpath/src/components/XXX.js',
       isExternal: false,
@@ -209,6 +216,7 @@ export function compilationDependencies() {
       dependencies: [{ dependency: 'src/components/test.js', request: './test.js' }],
     },
     'src/components/otherTest.js': {
+      id: `src/components/otherTest.js`,
       isExternal: false,
       isNodeModule: false,
       filePath: `src/components/otherTest.js`,

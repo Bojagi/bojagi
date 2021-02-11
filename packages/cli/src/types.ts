@@ -10,6 +10,7 @@ export type Module = {
 };
 
 export type ForeignDependency = {
+  id: string;
   isExternal: boolean;
   isNodeModule: true;
   packageName: string;
@@ -17,6 +18,7 @@ export type ForeignDependency = {
 };
 
 export type LocalDependency = {
+  id: string;
   filePath: string;
   gitPath?: string;
   isExternal: boolean;

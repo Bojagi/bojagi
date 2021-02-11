@@ -72,6 +72,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
       dependencies: compilationDependencies(),
       modules: [
         {
+          id: `bojagi/A.js`,
           filePath: `bojagi/A.js`,
           gitPath: 'gitpath/bojagi/A.js',
           isExternal: false,
