@@ -1,6 +1,12 @@
 import MemoryFS from 'memory-fs';
 import * as path from 'path';
-import { StoryFileWithMetadata, FileContent, OutputFileContent, Module } from '../../types';
+import {
+  StoryFileWithMetadata,
+  FileContent,
+  OutputFileContent,
+  LocalDependency,
+  DependencyReference,
+} from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
@@ -56,7 +62,7 @@ async function action({
 
   const dependencyPackages = getPackageJsonDependencies(config.executionPath);
 
-  const { outputContent, modules, assets } = await runWebpackCompiler({
+  const { outputContent, modules, assets, dependencies } = await runWebpackCompiler({
     compiler,
     entrypoints,
     dependencyPackages,
@@ -96,7 +102,8 @@ async function action({
   return {
     files: [...filesWithMetadata],
     stories: storyFileWithMetadata,
-  } as any;
+    dependencies,
+  };
 }
 
 function getPackageJsonDependencies(executionPath: string) {
@@ -108,7 +115,10 @@ function getPackageJsonDependencies(executionPath: string) {
   }
 }
 
-function getDependenciesForFilePath(modules: Module[], filePath: string): Module[] {
+function getDependenciesForFilePath(
+  modules: LocalDependency[],
+  filePath: string
+): DependencyReference[] {
   const module = modules.find(m => m.filePath === filePath);
   return (module && module.dependencies) || [];
 }

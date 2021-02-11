@@ -7,11 +7,12 @@ import { EmojiCode } from '../components/Emoji';
 import { Config } from '../config';
 import { useConfig } from '../config/configContext';
 import { ErrorMessage } from '../components/ErrorMessage';
-import { FileContent, OutputFileContent, StoryFileWithMetadata } from '../types';
+import { Dependency, FileContent, OutputFileContent, StoryFileWithMetadata } from '../types';
 
 export type StepOutput = {
   files?: OutputFileContent<FileContent>[];
   stories?: StoryFileWithMetadata[];
+  dependencies?: Dependency[];
   error?: any;
 };
 

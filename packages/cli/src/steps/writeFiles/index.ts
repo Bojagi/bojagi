@@ -8,6 +8,7 @@ import { buildManifest } from './buildManifest';
 import { normalizeFilePath } from '../../utils/normalizeFilePath';
 import { getStepOutputFiles } from '../../utils/getOutputFiles';
 import { getStepOutputStories } from '../../utils/getOutputStories';
+import { getStepOutputDependencies } from '../../utils/getOutputDependencies';
 
 export type WriteFilesStepOutput = StepOutput & {};
 
@@ -67,11 +68,14 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
     })
     .map(mapObjectWithWhitelist(STORY_PROPERTY_WHITELIST));
 
+  const dependenciesOutput = getStepOutputDependencies(stepOutputs);
+
   const manifest = buildManifest(stepOutputs.scan.reactVersion);
 
   await writeJson('manifest', manifest);
   await writeJson('files', cleanFiles, config.namespace);
   await writeJson('stories', cleanStories, config.namespace);
+  await writeJson('dependencies', dependenciesOutput, config.namespace);
 
   return {};
 }

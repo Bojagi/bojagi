@@ -2,7 +2,7 @@
 
 exports[`run bundle command 1`] = `
 "{
- \\"version\\": \\"3\\",
+ \\"version\\": \\"4\\",
  \\"namespaces\\": [
   {
    \\"name\\": \\"default\\",
@@ -135,46 +135,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/Button.js\\",
-    \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Button\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/button.css\\",
-      \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./button.css\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"filePath\\": \\"src/button.css\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./button.css\\",
-        \\"isCircularImport\\": true
-       }
-      ]
-     }
-    ]
+    \\"dependency\\": \\"src/Button.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.stories.js\\",
@@ -205,81 +171,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/Header.js\\",
-    \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Header\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/Button.js\\",
-      \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./Button\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"src/button.css\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./button.css\\",
-        \\"isCircularImport\\": false,
-        \\"dependencies\\": [
-         {
-          \\"filePath\\": \\"src/button.css\\",
-          \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-          \\"isExternal\\": false,
-          \\"isNodeModule\\": false,
-          \\"request\\": \\"./button.css\\",
-          \\"isCircularImport\\": true
-         }
-        ]
-       }
-      ]
-     },
-     {
-      \\"filePath\\": \\"src/header.css\\",
-      \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./header.css\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"filePath\\": \\"src/header.css\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./header.css\\",
-        \\"isCircularImport\\": true
-       }
-      ]
-     }
-    ]
+    \\"dependency\\": \\"src/Header.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
@@ -310,203 +207,16 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/Page.js\\",
-    \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Page\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/Header.js\\",
-      \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./Header\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"src/Button.js\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./Button\\",
-        \\"isCircularImport\\": false,
-        \\"dependencies\\": [
-         {
-          \\"isExternal\\": true,
-          \\"isNodeModule\\": false,
-          \\"packageName\\": \\"react\\",
-          \\"request\\": \\"react\\",
-          \\"isCircularImport\\": false
-         },
-         {
-          \\"filePath\\": \\"src/button.css\\",
-          \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-          \\"isExternal\\": false,
-          \\"isNodeModule\\": false,
-          \\"request\\": \\"./button.css\\",
-          \\"isCircularImport\\": false,
-          \\"dependencies\\": [
-           {
-            \\"filePath\\": \\"src/button.css\\",
-            \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-            \\"isExternal\\": false,
-            \\"isNodeModule\\": false,
-            \\"request\\": \\"./button.css\\",
-            \\"isCircularImport\\": true
-           }
-          ]
-         }
-        ]
-       },
-       {
-        \\"filePath\\": \\"src/header.css\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./header.css\\",
-        \\"isCircularImport\\": false,
-        \\"dependencies\\": [
-         {
-          \\"filePath\\": \\"src/header.css\\",
-          \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
-          \\"isExternal\\": false,
-          \\"isNodeModule\\": false,
-          \\"request\\": \\"./header.css\\",
-          \\"isCircularImport\\": true
-         }
-        ]
-       }
-      ]
-     },
-     {
-      \\"filePath\\": \\"src/page.css\\",
-      \\"gitPath\\": \\"packages/integration-tests-storybook/src/page.css\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./page.css\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"filePath\\": \\"src/page.css\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/page.css\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./page.css\\",
-        \\"isCircularImport\\": true
-       }
-      ]
-     }
-    ]
+    \\"dependency\\": \\"src/Page.js\\"
    },
    {
-    \\"filePath\\": \\"src/Header.stories.js\\",
-    \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Header.stories\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/Header.js\\",
-      \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./Header\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"src/Button.js\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./Button\\",
-        \\"isCircularImport\\": false,
-        \\"dependencies\\": [
-         {
-          \\"isExternal\\": true,
-          \\"isNodeModule\\": false,
-          \\"packageName\\": \\"react\\",
-          \\"request\\": \\"react\\",
-          \\"isCircularImport\\": false
-         },
-         {
-          \\"filePath\\": \\"src/button.css\\",
-          \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-          \\"isExternal\\": false,
-          \\"isNodeModule\\": false,
-          \\"request\\": \\"./button.css\\",
-          \\"isCircularImport\\": false,
-          \\"dependencies\\": [
-           {
-            \\"filePath\\": \\"src/button.css\\",
-            \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
-            \\"isExternal\\": false,
-            \\"isNodeModule\\": false,
-            \\"request\\": \\"./button.css\\",
-            \\"isCircularImport\\": true
-           }
-          ]
-         }
-        ]
-       },
-       {
-        \\"filePath\\": \\"src/header.css\\",
-        \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./header.css\\",
-        \\"isCircularImport\\": false,
-        \\"dependencies\\": [
-         {
-          \\"filePath\\": \\"src/header.css\\",
-          \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
-          \\"isExternal\\": false,
-          \\"isNodeModule\\": false,
-          \\"request\\": \\"./header.css\\",
-          \\"isCircularImport\\": true
-         }
-        ]
-       }
-      ]
-     }
-    ]
+    \\"dependency\\": \\"src/Header.stories.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.stories.js\\",
@@ -523,4 +233,169 @@ exports[`run bundle command 3`] = `
   ]
  }
 ]"
+`;
+
+exports[`run bundle command 4`] = `
+"{
+ \\"src/Header.stories.js\\": {
+  \\"id\\": \\"src/Header.stories.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Header.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Header\\",
+    \\"dependency\\": \\"src/Header.js\\"
+   }
+  ]
+ },
+ \\"react\\": {
+  \\"id\\": \\"react\\",
+  \\"isExternal\\": true,
+  \\"isNodeModule\\": false,
+  \\"packageName\\": \\"react\\",
+  \\"dependencies\\": []
+ },
+ \\"src/Header.js\\": {
+  \\"id\\": \\"src/Header.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Header.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"src/Button.js\\"
+   },
+   {
+    \\"request\\": \\"./header.css\\",
+    \\"dependency\\": \\"src/header.css\\"
+   }
+  ]
+ },
+ \\"src/Button.js\\": {
+  \\"id\\": \\"src/Button.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Button.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./button.css\\",
+    \\"dependency\\": \\"src/button.css\\"
+   }
+  ]
+ },
+ \\"src/button.css\\": {
+  \\"id\\": \\"src/button.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/button.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"./button.css\\",
+    \\"dependency\\": \\"src/button.css\\"
+   }
+  ]
+ },
+ \\"src/header.css\\": {
+  \\"id\\": \\"src/header.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/header.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"./header.css\\",
+    \\"dependency\\": \\"src/header.css\\"
+   }
+  ]
+ },
+ \\"src/Button.stories.js\\": {
+  \\"id\\": \\"src/Button.stories.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Button.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.stories.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"src/Button.js\\"
+   }
+  ]
+ },
+ \\"src/Page.stories.js\\": {
+  \\"id\\": \\"src/Page.stories.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Page.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.stories.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Page\\",
+    \\"dependency\\": \\"src/Page.js\\"
+   },
+   {
+    \\"request\\": \\"./Header.stories\\",
+    \\"dependency\\": \\"src/Header.stories.js\\"
+   }
+  ]
+ },
+ \\"src/Page.js\\": {
+  \\"id\\": \\"src/Page.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Page.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Header\\",
+    \\"dependency\\": \\"src/Header.js\\"
+   },
+   {
+    \\"request\\": \\"./page.css\\",
+    \\"dependency\\": \\"src/page.css\\"
+   }
+  ]
+ },
+ \\"src/page.css\\": {
+  \\"id\\": \\"src/page.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/page.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook/src/page.css\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"./page.css\\",
+    \\"dependency\\": \\"src/page.css\\"
+   }
+  ]
+ }
+}"
 `;
