@@ -46,6 +46,7 @@ async function createZipFile(namespace): Promise<Buffer> {
   addFileToZip(zip, TEMP_FOLDER, 'manifest.json');
   addFileToZip(zip, TEMP_FOLDER, path.join(namespace, 'files.json'));
   addFileToZip(zip, TEMP_FOLDER, path.join(namespace, 'stories.json'));
+  addFileToZip(zip, TEMP_FOLDER, path.join(namespace, 'dependencies.json'));
 
   // Add files to zip
   fs.readdirSync(path.resolve(namespaceFolder, 'files'))
