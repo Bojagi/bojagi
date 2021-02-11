@@ -2,8 +2,8 @@ const { withTestResult } = require("@bojagi/integration-test-utils")
 
 module.exports = {
   "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+    "../src/**/*.stoories.mdx", 
+    "../src/**/*.stoories.@(js|jsx|ts|tsx)" // make sure we use some non default endings here
   ],
   "addons": [
     "@storybook/addon-links",
