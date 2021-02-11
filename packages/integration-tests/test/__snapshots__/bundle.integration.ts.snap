@@ -2,7 +2,7 @@
 
 exports[`run bundle command 1`] = `
 "{
- \\"version\\": \\"3\\",
+ \\"version\\": \\"4\\",
  \\"namespaces\\": [
   {
    \\"name\\": \\"default\\",
@@ -93,195 +93,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/App.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/App.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./App\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": true,
-      \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/components/Box.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./components/Box\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       }
-      ]
-     },
-     {
-      \\"filePath\\": \\"src/components/Button.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./components/Button\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       }
-      ]
-     },
-     {
-      \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./components/BoxWithButtons\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"src/components/Box.js\\",
-        \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./Box\\",
-        \\"isCircularImport\\": false,
-        \\"dependencies\\": [
-         {
-          \\"isExternal\\": true,
-          \\"isNodeModule\\": false,
-          \\"packageName\\": \\"react\\",
-          \\"request\\": \\"react\\",
-          \\"isCircularImport\\": false
-         },
-         {
-          \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-          \\"isExternal\\": false,
-          \\"isNodeModule\\": true,
-          \\"packageName\\": \\"styled-components\\",
-          \\"request\\": \\"styled-components\\",
-          \\"isCircularImport\\": false
-         }
-        ]
-       },
-       {
-        \\"filePath\\": \\"src/components/Button.js\\",
-        \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./Button\\",
-        \\"isCircularImport\\": false,
-        \\"dependencies\\": [
-         {
-          \\"isExternal\\": true,
-          \\"isNodeModule\\": false,
-          \\"packageName\\": \\"react\\",
-          \\"request\\": \\"react\\",
-          \\"isCircularImport\\": false
-         },
-         {
-          \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-          \\"isExternal\\": false,
-          \\"isNodeModule\\": true,
-          \\"packageName\\": \\"styled-components\\",
-          \\"request\\": \\"styled-components\\",
-          \\"isCircularImport\\": false
-         }
-        ]
-       }
-      ]
-     },
-     {
-      \\"filePath\\": \\"src/App.css\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/App.css\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./App.css\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": []
-     },
-     {
-      \\"filePath\\": \\"src/components/Lazy.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./components/Lazy\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       }
-      ]
-     }
-    ]
+    \\"dependency\\": \\"src/App.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/App.bojagi.js\\",
@@ -321,36 +138,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/components/Box.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Box\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": true,
-      \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\",
-      \\"isCircularImport\\": false
-     }
-    ]
+    \\"dependency\\": \\"src/components/Box.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
@@ -373,86 +166,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./BoxWithButtons\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": true,
-      \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/components/Box.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./Box\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       }
-      ]
-     },
-     {
-      \\"filePath\\": \\"src/components/Button.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./Button\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       }
-      ]
-     }
-    ]
+    \\"dependency\\": \\"src/components/BoxWithButtons.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
@@ -479,36 +198,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/components/Button.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Button\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": true,
-      \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\",
-      \\"isCircularImport\\": false
-     }
-    ]
+    \\"dependency\\": \\"src/components/Button.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
@@ -531,36 +226,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/components/Lazy.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Lazy\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": true,
-      \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\",
-      \\"isCircularImport\\": false
-     }
-    ]
+    \\"dependency\\": \\"src/components/Lazy.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
@@ -568,6 +239,7 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
   \\"files\\": [
+   \\"vendors.js\\",
    \\"Lazy.bojagi.js\\"
   ]
  },
@@ -582,37 +254,12 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/components/Logo.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Logo\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/components/img/logo.png\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/img/logo.png\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./img/logo.png\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": []
-     }
-    ]
+    \\"dependency\\": \\"src/components/Logo.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
@@ -620,6 +267,7 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
   \\"files\\": [
+   \\"vendors.js\\",
    \\"Logo.bojagi.js\\"
   ]
  },
@@ -638,102 +286,16 @@ exports[`run bundle command 3`] = `
   ],
   \\"dependencies\\": [
    {
-    \\"isExternal\\": true,
-    \\"isNodeModule\\": false,
-    \\"packageName\\": \\"react\\",
     \\"request\\": \\"react\\",
-    \\"isCircularImport\\": false
+    \\"dependency\\": \\"react\\"
    },
    {
-    \\"filePath\\": \\"src/components/Ping.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Ping\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": true,
-      \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/components/Pong.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./Pong\\",
-      \\"isCircularImport\\": false,
-      \\"dependencies\\": [
-       {
-        \\"isExternal\\": true,
-        \\"isNodeModule\\": false,
-        \\"packageName\\": \\"react\\",
-        \\"request\\": \\"react\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": true,
-        \\"packageName\\": \\"styled-components\\",
-        \\"request\\": \\"styled-components\\",
-        \\"isCircularImport\\": false
-       },
-       {
-        \\"filePath\\": \\"src/components/Ping.js\\",
-        \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
-        \\"isExternal\\": false,
-        \\"isNodeModule\\": false,
-        \\"request\\": \\"./Ping\\",
-        \\"isCircularImport\\": true
-       }
-      ]
-     }
-    ]
+    \\"dependency\\": \\"src/components/Ping.js\\"
    },
    {
-    \\"filePath\\": \\"src/components/Pong.js\\",
-    \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
-    \\"isExternal\\": false,
-    \\"isNodeModule\\": false,
     \\"request\\": \\"./Pong\\",
-    \\"isCircularImport\\": false,
-    \\"dependencies\\": [
-     {
-      \\"isExternal\\": true,
-      \\"isNodeModule\\": false,
-      \\"packageName\\": \\"react\\",
-      \\"request\\": \\"react\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"../../node_modules/styled-components/dist/styled-components.browser.esm.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": true,
-      \\"packageName\\": \\"styled-components\\",
-      \\"request\\": \\"styled-components\\",
-      \\"isCircularImport\\": false
-     },
-     {
-      \\"filePath\\": \\"src/components/Ping.js\\",
-      \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
-      \\"isExternal\\": false,
-      \\"isNodeModule\\": false,
-      \\"request\\": \\"./Ping\\",
-      \\"isCircularImport\\": true
-     }
-    ]
+    \\"dependency\\": \\"src/components/Pong.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
@@ -741,8 +303,346 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
   \\"files\\": [
+   \\"vendors.js\\",
    \\"PingPong.bojagi.js\\"
   ]
  }
 ]"
+`;
+
+exports[`run bundle command 4`] = `
+"{
+ \\"src/App.bojagi.js\\": {
+  \\"id\\": \\"src/App.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/App.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/App.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./App\\",
+    \\"dependency\\": \\"src/App.js\\"
+   }
+  ]
+ },
+ \\"react\\": {
+  \\"id\\": \\"react\\",
+  \\"isExternal\\": true,
+  \\"isNodeModule\\": false,
+  \\"packageName\\": \\"react\\",
+  \\"dependencies\\": []
+ },
+ \\"src/App.js\\": {
+  \\"id\\": \\"src/App.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/App.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/App.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./components/Box\\",
+    \\"dependency\\": \\"src/components/Box.js\\"
+   },
+   {
+    \\"request\\": \\"./components/Button\\",
+    \\"dependency\\": \\"src/components/Button.js\\"
+   },
+   {
+    \\"request\\": \\"./components/BoxWithButtons\\",
+    \\"dependency\\": \\"src/components/BoxWithButtons.js\\"
+   },
+   {
+    \\"request\\": \\"./App.css\\",
+    \\"dependency\\": \\"src/App.css\\"
+   },
+   {
+    \\"request\\": \\"./components/Lazy\\",
+    \\"dependency\\": \\"src/components/Lazy.js\\"
+   }
+  ]
+ },
+ \\"styled-components\\": {
+  \\"id\\": \\"styled-components\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": true,
+  \\"packageName\\": \\"styled-components\\",
+  \\"dependencies\\": []
+ },
+ \\"react-is\\": {
+  \\"id\\": \\"react-is\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": true,
+  \\"packageName\\": \\"react-is\\",
+  \\"dependencies\\": []
+ },
+ \\"src/components/Box.js\\": {
+  \\"id\\": \\"src/components/Box.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Box.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   }
+  ]
+ },
+ \\"src/components/Button.js\\": {
+  \\"id\\": \\"src/components/Button.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Button.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   }
+  ]
+ },
+ \\"src/components/BoxWithButtons.js\\": {
+  \\"id\\": \\"src/components/BoxWithButtons.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./Box\\",
+    \\"dependency\\": \\"src/components/Box.js\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"src/components/Button.js\\"
+   }
+  ]
+ },
+ \\"src/App.css\\": {
+  \\"id\\": \\"src/App.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/App.css\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/App.css\\",
+  \\"dependencies\\": []
+ },
+ \\"src/components/Lazy.js\\": {
+  \\"id\\": \\"src/components/Lazy.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Lazy.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   }
+  ]
+ },
+ \\"src/components/Box.bojagi.js\\": {
+  \\"id\\": \\"src/components/Box.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Box.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Box\\",
+    \\"dependency\\": \\"src/components/Box.js\\"
+   }
+  ]
+ },
+ \\"src/components/BoxWithButtons.bojagi.js\\": {
+  \\"id\\": \\"src/components/BoxWithButtons.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./BoxWithButtons\\",
+    \\"dependency\\": \\"src/components/BoxWithButtons.js\\"
+   }
+  ]
+ },
+ \\"src/components/Button.bojagi.js\\": {
+  \\"id\\": \\"src/components/Button.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Button.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"src/components/Button.js\\"
+   }
+  ]
+ },
+ \\"src/components/Lazy.bojagi.js\\": {
+  \\"id\\": \\"src/components/Lazy.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Lazy\\",
+    \\"dependency\\": \\"src/components/Lazy.js\\"
+   }
+  ]
+ },
+ \\"src/components/Logo.bojagi.js\\": {
+  \\"id\\": \\"src/components/Logo.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Logo\\",
+    \\"dependency\\": \\"src/components/Logo.js\\"
+   }
+  ]
+ },
+ \\"src/components/Logo.js\\": {
+  \\"id\\": \\"src/components/Logo.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Logo.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./img/logo.png\\",
+    \\"dependency\\": \\"src/components/img/logo.png\\"
+   }
+  ]
+ },
+ \\"src/components/img/logo.png\\": {
+  \\"id\\": \\"src/components/img/logo.png\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/img/logo.png\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/img/logo.png\\",
+  \\"dependencies\\": []
+ },
+ \\"src/components/PingPong.bojagi.js\\": {
+  \\"id\\": \\"src/components/PingPong.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Ping\\",
+    \\"dependency\\": \\"src/components/Ping.js\\"
+   },
+   {
+    \\"request\\": \\"./Pong\\",
+    \\"dependency\\": \\"src/components/Pong.js\\"
+   }
+  ]
+ },
+ \\"src/components/Ping.js\\": {
+  \\"id\\": \\"src/components/Ping.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Ping.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./Pong\\",
+    \\"dependency\\": \\"src/components/Pong.js\\"
+   }
+  ]
+ },
+ \\"src/components/Pong.js\\": {
+  \\"id\\": \\"src/components/Pong.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Pong.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./Ping\\",
+    \\"dependency\\": \\"src/components/Ping.js\\"
+   }
+  ]
+ }
+}"
 `;

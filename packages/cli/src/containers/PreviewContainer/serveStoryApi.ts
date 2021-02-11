@@ -4,7 +4,7 @@ export function serveStoriesApi({ storiesMetadata, getFiles, getAssets }: SetupA
   const assets = getAssets();
 
   return {
-    files: getFiles(),
+    files: getFiles().map(({ url, name }) => ({ name, url })),
     stories: Object.entries(storiesMetadata).map(([filePath, meta]) => {
       return {
         files: assets[meta.fileName],

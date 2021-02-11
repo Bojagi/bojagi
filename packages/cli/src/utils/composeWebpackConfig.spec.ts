@@ -23,6 +23,20 @@ const BASE_CONFIG_MODULE = {
   ],
 };
 
+const INNER_BASE_CONFIG_RULES = [
+  {
+    test: `${process.cwd()}/packages/cli/src/storybook/getGlobals.js`,
+    use: [
+      {
+        loader: 'bojagi-expose-loader',
+        options: {
+          symbol: 'bojagiSbGlobals',
+        },
+      },
+    ],
+  },
+];
+
 const BASE_CONFIG_PLUGINS = [
   {
     my: 'plugin',
@@ -53,7 +67,10 @@ const testCases = [
     test: config => {
       expect(config.entry).toEqual(BASE_ENTRY);
       expect(config.resolve).toEqual(BASE_CONFIG_RESOLVE);
-      expect(config.module).toEqual(BASE_CONFIG_MODULE);
+      expect(config.module).toEqual({
+        ...BASE_CONFIG_MODULE,
+        rules: [...INNER_BASE_CONFIG_RULES, ...BASE_CONFIG_MODULE.rules],
+      });
       expect(config.resolveLoader.alias).toEqual({
         'component-extract-loader': `${__dirname}/componentExtractLoader`,
         'bojagi-expose-loader': `${__dirname}/exposeLoader`,
@@ -69,11 +86,6 @@ const testCases = [
       expect(config.externals).toEqual({
         react: 'react',
         'react-dom': 'reactDom',
-      });
-
-      // Plugins
-      expect(config.plugins[1].definitions).toEqual({
-        'process.env': { NODE_ENV: '"production"' },
       });
     },
   },
@@ -95,6 +107,7 @@ const testCases = [
               },
             ],
           },
+          ...INNER_BASE_CONFIG_RULES,
           ...BASE_CONFIG_MODULE.rules,
         ],
       });

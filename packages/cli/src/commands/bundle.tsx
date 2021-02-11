@@ -8,9 +8,17 @@ import { cleanupStep } from '../steps/cleanup';
 import { ConfigProvider } from '../config/configContext';
 import { analyzeStep } from '../steps/analyze';
 import { writeFilesStep } from '../steps/writeFiles';
+import { storybookStep } from '../steps/storybook';
 
 export default function bundle(program) {
-  const steps: StepRunnerStep[] = [cleanupStep, scanStep, compileStep, analyzeStep, writeFilesStep];
+  const steps: StepRunnerStep[] = [
+    cleanupStep,
+    scanStep,
+    compileStep,
+    storybookStep,
+    analyzeStep,
+    writeFilesStep,
+  ];
   program
     .command('bundle')
     .option('--storyPath [pathPattern]', 'path pattern to search for stories in')

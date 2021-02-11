@@ -11,7 +11,7 @@ import { getDependencyVersion } from '../../utils/getDependencyVersion';
 export type ScanStepOutput = StepOutput & {
   storyFiles: StoryWithMetadata[];
   storyFileCount: number;
-  dependencies: Record<string, string>;
+  packageDependencies: Record<string, string>;
   reactVersion: string;
 };
 
@@ -49,7 +49,7 @@ async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutp
   return {
     storyFiles: extendedStoryFiles,
     storyFileCount: storyFiles.length,
-    dependencies: packageJson.dependencies || {},
+    packageDependencies: packageJson.dependencies || {},
     reactVersion,
   };
 }
