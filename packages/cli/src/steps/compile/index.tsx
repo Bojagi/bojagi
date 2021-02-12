@@ -135,6 +135,6 @@ function getDependenciesForFilePath(
 function checkLimit(kind: string, limit: number, arr: any[]) {
   debug(`${kind} count: ${arr.length}`);
   if (arr.length > limit) {
-    throw new NonVerboseError(`too many ${kind}(${arr.length}), maximum allowed: ${limit}`);
+    throw new NonVerboseError(`Too many ${kind} (${arr.length}), maximum allowed: ${limit}`);
   }
 }
