@@ -13,8 +13,13 @@ import { ScanStepOutput } from '../scan';
 import { writeBojagiFile } from '../../utils/writeFile';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 import debuggers, { DebugNamespaces } from '../../debug';
+import { NonVerboseError } from '../../errors';
 
 import webpack = require('webpack');
+
+const MAX_STORY_LIMIT = 200;
+const MAX_FILE_LIMIT = 600;
+const MAX_DEPENDENCY_LIMIT = 600;
 
 const debug = debuggers[DebugNamespaces.COMPILE];
 
@@ -99,8 +104,12 @@ async function action({
     })
   );
 
+  checkLimit('files', MAX_FILE_LIMIT, filesWithMetadata);
+  checkLimit('stories', MAX_STORY_LIMIT, storyFileWithMetadata);
+  checkLimit('dependencies', MAX_DEPENDENCY_LIMIT, Object.keys(dependencies));
+
   return {
-    files: [...filesWithMetadata],
+    files: filesWithMetadata,
     stories: storyFileWithMetadata,
     dependencies,
   };
@@ -121,4 +130,11 @@ function getDependenciesForFilePath(
 ): DependencyReference[] {
   const module = modules.find(m => m.filePath === filePath);
   return (module && module.dependencies) || [];
+}
+
+function checkLimit(kind: string, limit: number, arr: any[]) {
+  debug(`${kind} count: ${arr.length}`);
+  if (arr.length > limit) {
+    throw new NonVerboseError(`Too many ${kind} (${arr.length}), maximum allowed: ${limit}`);
+  }
 }
