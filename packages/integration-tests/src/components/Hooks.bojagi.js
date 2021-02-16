@@ -10,8 +10,7 @@ export function Hooks() {
   }, [message]);
 
   return (
-    <div>
-      {/* onClick={clickHandler}> */}
+    <div onClick={clickHandler} style={{ border: '1px solid black', padding: '10px' }}>
       <p>click me!</p>
       <p>{message}</p>
     </div>
