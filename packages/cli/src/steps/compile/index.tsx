@@ -19,7 +19,6 @@ import webpack = require('webpack');
 
 const MAX_STORY_LIMIT = 200;
 const MAX_FILE_LIMIT = 600;
-const MAX_DEPENDENCY_LIMIT = 600;
 
 const debug = debuggers[DebugNamespaces.COMPILE];
 
