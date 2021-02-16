@@ -106,7 +106,6 @@ async function action({
 
   checkLimit('files', MAX_FILE_LIMIT, filesWithMetadata);
   checkLimit('stories', MAX_STORY_LIMIT, storyFileWithMetadata);
-  checkLimit('dependencies', MAX_DEPENDENCY_LIMIT, Object.keys(dependencies));
 
   return {
     files: filesWithMetadata,
