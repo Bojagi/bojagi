@@ -73,21 +73,14 @@ function getModuleAsDependency(module, projectGitPath: string) {
   }
 
   const filePath = getFilePath(module.resource);
-<<<<<<< Updated upstream
-  const gitPath = getGitPath(filePath);
-=======
   const fullFilePath = path.resolve(filePath);
->>>>>>> Stashed changes
+  const gitPath = projectGitPath ? path.relative(projectGitPath, fullFilePath) : filePath;
   return {
-    id: gitPath || filePath,
+    id: gitPath,
     isExternal: !!module.external,
     isNodeModule: false,
     filePath,
-<<<<<<< Updated upstream
     gitPath,
-=======
-    gitPath: projectGitPath ? path.relative(projectGitPath, fullFilePath) : filePath,
->>>>>>> Stashed changes
   };
 }
 

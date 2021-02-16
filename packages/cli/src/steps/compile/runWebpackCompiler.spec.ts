@@ -68,7 +68,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
       dependencies: compilationDependencies(),
       modules: [
         {
-          id: `gitpath/bojagi/A.js`,
+          id: `bojagi/A.js`,
           filePath: `bojagi/A.js`,
           gitPath: 'bojagi/A.js',
           isExternal: false,
@@ -81,7 +81,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
             { dependency: 'foreignNodeModules', request: 'foreignNodeModules' },
             { dependency: '@material-ui/icons', request: '@material-ui/icons/MyIcon' },
             { dependency: 'styled-components', request: 'styled-components' },
-            { dependency: 'gitpath/src/components/test.js', request: './test.js' },
+            { dependency: 'src/components/test.js', request: './test.js' },
           ],
         },
       ],

@@ -1,8 +1,6 @@
 import { getDependencies, getDependenciesForFilePath } from './dependencies';
 import { compilationDependencies, webpackCompilationOutput } from './__test__/compilationOutput';
 
-console.log('process.cwd()', process.cwd());
-
 describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
   describe('getDependencies', () => {
     test('get a map of all dependencies used', () => {
