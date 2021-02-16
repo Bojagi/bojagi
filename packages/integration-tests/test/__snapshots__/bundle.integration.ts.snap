@@ -103,7 +103,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./App\\",
-    \\"dependency\\": \\"src/App.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/App.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/App.bojagi.js\\",
@@ -148,7 +148,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Box\\",
-    \\"dependency\\": \\"src/components/Box.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
@@ -176,7 +176,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./BoxWithButtons\\",
-    \\"dependency\\": \\"src/components/BoxWithButtons.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
@@ -208,7 +208,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"src/components/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
@@ -260,7 +260,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Lazy\\",
-    \\"dependency\\": \\"src/components/Lazy.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Lazy.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
@@ -288,7 +288,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Logo\\",
-    \\"dependency\\": \\"src/components/Logo.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Logo.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
@@ -320,11 +320,11 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Ping\\",
-    \\"dependency\\": \\"src/components/Ping.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Ping.js\\"
    },
    {
     \\"request\\": \\"./Pong\\",
-    \\"dependency\\": \\"src/components/Pong.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Pong.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
@@ -341,8 +341,8 @@ exports[`run bundle command 3`] = `
 
 exports[`run bundle command 4`] = `
 "{
- \\"src/App.bojagi.js\\": {
-  \\"id\\": \\"src/App.bojagi.js\\",
+ \\"packages/integration-tests/src/App.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/App.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/App.bojagi.js\\",
@@ -354,7 +354,7 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./App\\",
-    \\"dependency\\": \\"src/App.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/App.js\\"
    }
   ]
  },
@@ -365,8 +365,8 @@ exports[`run bundle command 4`] = `
   \\"packageName\\": \\"react\\",
   \\"dependencies\\": []
  },
- \\"src/App.js\\": {
-  \\"id\\": \\"src/App.js\\",
+ \\"packages/integration-tests/src/App.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/App.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/App.js\\",
@@ -382,23 +382,23 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./components/Box\\",
-    \\"dependency\\": \\"src/components/Box.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
    },
    {
     \\"request\\": \\"./components/Button\\",
-    \\"dependency\\": \\"src/components/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
    },
    {
     \\"request\\": \\"./components/BoxWithButtons\\",
-    \\"dependency\\": \\"src/components/BoxWithButtons.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\"
    },
    {
     \\"request\\": \\"./App.css\\",
-    \\"dependency\\": \\"src/App.css\\"
+    \\"dependency\\": \\"packages/integration-tests/src/App.css\\"
    },
    {
     \\"request\\": \\"./components/Lazy\\",
-    \\"dependency\\": \\"src/components/Lazy.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Lazy.js\\"
    }
   ]
  },
@@ -416,8 +416,8 @@ exports[`run bundle command 4`] = `
   \\"packageName\\": \\"react-is\\",
   \\"dependencies\\": []
  },
- \\"src/components/Box.js\\": {
-  \\"id\\": \\"src/components/Box.js\\",
+ \\"packages/integration-tests/src/components/Box.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Box.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Box.js\\",
@@ -433,8 +433,8 @@ exports[`run bundle command 4`] = `
    }
   ]
  },
- \\"src/components/Button.js\\": {
-  \\"id\\": \\"src/components/Button.js\\",
+ \\"packages/integration-tests/src/components/Button.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Button.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Button.js\\",
@@ -450,8 +450,8 @@ exports[`run bundle command 4`] = `
    }
   ]
  },
- \\"src/components/BoxWithButtons.js\\": {
-  \\"id\\": \\"src/components/BoxWithButtons.js\\",
+ \\"packages/integration-tests/src/components/BoxWithButtons.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
@@ -467,24 +467,24 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Box\\",
-    \\"dependency\\": \\"src/components/Box.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"src/components/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
    }
   ]
  },
- \\"src/App.css\\": {
-  \\"id\\": \\"src/App.css\\",
+ \\"packages/integration-tests/src/App.css\\": {
+  \\"id\\": \\"packages/integration-tests/src/App.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/App.css\\",
   \\"gitPath\\": \\"packages/integration-tests/src/App.css\\",
   \\"dependencies\\": []
  },
- \\"src/components/Lazy.js\\": {
-  \\"id\\": \\"src/components/Lazy.js\\",
+ \\"packages/integration-tests/src/components/Lazy.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Lazy.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Lazy.js\\",
@@ -500,8 +500,8 @@ exports[`run bundle command 4`] = `
    }
   ]
  },
- \\"src/components/Box.bojagi.js\\": {
-  \\"id\\": \\"src/components/Box.bojagi.js\\",
+ \\"packages/integration-tests/src/components/Box.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Box.bojagi.js\\",
@@ -513,12 +513,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Box\\",
-    \\"dependency\\": \\"src/components/Box.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
    }
   ]
  },
- \\"src/components/BoxWithButtons.bojagi.js\\": {
-  \\"id\\": \\"src/components/BoxWithButtons.bojagi.js\\",
+ \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\",
@@ -530,12 +530,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./BoxWithButtons\\",
-    \\"dependency\\": \\"src/components/BoxWithButtons.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\"
    }
   ]
  },
- \\"src/components/Button.bojagi.js\\": {
-  \\"id\\": \\"src/components/Button.bojagi.js\\",
+ \\"packages/integration-tests/src/components/Button.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Button.bojagi.js\\",
@@ -547,12 +547,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"src/components/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
    }
   ]
  },
- \\"src/components/Hooks.bojagi.js\\": {
-  \\"id\\": \\"src/components/Hooks.bojagi.js\\",
+ \\"packages/integration-tests/src/components/Hooks.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Hooks.bojagi.js\\",
@@ -564,8 +564,8 @@ exports[`run bundle command 4`] = `
    }
   ]
  },
- \\"src/components/Lazy.bojagi.js\\": {
-  \\"id\\": \\"src/components/Lazy.bojagi.js\\",
+ \\"packages/integration-tests/src/components/Lazy.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
@@ -577,12 +577,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Lazy\\",
-    \\"dependency\\": \\"src/components/Lazy.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Lazy.js\\"
    }
   ]
  },
- \\"src/components/Logo.bojagi.js\\": {
-  \\"id\\": \\"src/components/Logo.bojagi.js\\",
+ \\"packages/integration-tests/src/components/Logo.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
@@ -594,12 +594,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Logo\\",
-    \\"dependency\\": \\"src/components/Logo.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Logo.js\\"
    }
   ]
  },
- \\"src/components/Logo.js\\": {
-  \\"id\\": \\"src/components/Logo.js\\",
+ \\"packages/integration-tests/src/components/Logo.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Logo.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Logo.js\\",
@@ -611,20 +611,20 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./img/logo.png\\",
-    \\"dependency\\": \\"src/components/img/logo.png\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/img/logo.png\\"
    }
   ]
  },
- \\"src/components/img/logo.png\\": {
-  \\"id\\": \\"src/components/img/logo.png\\",
+ \\"packages/integration-tests/src/components/img/logo.png\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/img/logo.png\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/img/logo.png\\",
   \\"gitPath\\": \\"packages/integration-tests/src/components/img/logo.png\\",
   \\"dependencies\\": []
  },
- \\"src/components/PingPong.bojagi.js\\": {
-  \\"id\\": \\"src/components/PingPong.bojagi.js\\",
+ \\"packages/integration-tests/src/components/PingPong.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
@@ -636,16 +636,16 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Ping\\",
-    \\"dependency\\": \\"src/components/Ping.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Ping.js\\"
    },
    {
     \\"request\\": \\"./Pong\\",
-    \\"dependency\\": \\"src/components/Pong.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Pong.js\\"
    }
   ]
  },
- \\"src/components/Ping.js\\": {
-  \\"id\\": \\"src/components/Ping.js\\",
+ \\"packages/integration-tests/src/components/Ping.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Ping.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Ping.js\\",
@@ -661,12 +661,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Pong\\",
-    \\"dependency\\": \\"src/components/Pong.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Pong.js\\"
    }
   ]
  },
- \\"src/components/Pong.js\\": {
-  \\"id\\": \\"src/components/Pong.js\\",
+ \\"packages/integration-tests/src/components/Pong.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Pong.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/components/Pong.js\\",
@@ -682,7 +682,7 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Ping\\",
-    \\"dependency\\": \\"src/components/Ping.js\\"
+    \\"dependency\\": \\"packages/integration-tests/src/components/Ping.js\\"
    }
   ]
  }

@@ -140,7 +140,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"src/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Button.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.stories.js\\",
@@ -176,7 +176,7 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Header\\",
-    \\"dependency\\": \\"src/Header.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
@@ -212,11 +212,11 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Page\\",
-    \\"dependency\\": \\"src/Page.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Page.js\\"
    },
    {
     \\"request\\": \\"./Header.stories\\",
-    \\"dependency\\": \\"src/Header.stories.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\"
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.stories.js\\",
@@ -237,8 +237,8 @@ exports[`run bundle command 3`] = `
 
 exports[`run bundle command 4`] = `
 "{
- \\"src/Header.stories.js\\": {
-  \\"id\\": \\"src/Header.stories.js\\",
+ \\"packages/integration-tests-storybook/src/Header.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Header.stories.js\\",
@@ -250,7 +250,7 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Header\\",
-    \\"dependency\\": \\"src/Header.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.js\\"
    }
   ]
  },
@@ -261,8 +261,8 @@ exports[`run bundle command 4`] = `
   \\"packageName\\": \\"react\\",
   \\"dependencies\\": []
  },
- \\"src/Header.js\\": {
-  \\"id\\": \\"src/Header.js\\",
+ \\"packages/integration-tests-storybook/src/Header.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/Header.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Header.js\\",
@@ -274,16 +274,16 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"src/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Button.js\\"
    },
    {
     \\"request\\": \\"./header.css\\",
-    \\"dependency\\": \\"src/header.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/header.css\\"
    }
   ]
  },
- \\"src/Button.js\\": {
-  \\"id\\": \\"src/Button.js\\",
+ \\"packages/integration-tests-storybook/src/Button.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/Button.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Button.js\\",
@@ -295,12 +295,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./button.css\\",
-    \\"dependency\\": \\"src/button.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/button.css\\"
    }
   ]
  },
- \\"src/button.css\\": {
-  \\"id\\": \\"src/button.css\\",
+ \\"packages/integration-tests-storybook/src/button.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/button.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/button.css\\",
@@ -308,12 +308,12 @@ exports[`run bundle command 4`] = `
   \\"dependencies\\": [
    {
     \\"request\\": \\"./button.css\\",
-    \\"dependency\\": \\"src/button.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/button.css\\"
    }
   ]
  },
- \\"src/header.css\\": {
-  \\"id\\": \\"src/header.css\\",
+ \\"packages/integration-tests-storybook/src/header.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/header.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/header.css\\",
@@ -321,12 +321,12 @@ exports[`run bundle command 4`] = `
   \\"dependencies\\": [
    {
     \\"request\\": \\"./header.css\\",
-    \\"dependency\\": \\"src/header.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/header.css\\"
    }
   ]
  },
- \\"src/Button.stories.js\\": {
-  \\"id\\": \\"src/Button.stories.js\\",
+ \\"packages/integration-tests-storybook/src/Button.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/Button.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Button.stories.js\\",
@@ -338,12 +338,12 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"src/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Button.js\\"
    }
   ]
  },
- \\"src/Page.stories.js\\": {
-  \\"id\\": \\"src/Page.stories.js\\",
+ \\"packages/integration-tests-storybook/src/Page.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/Page.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Page.stories.js\\",
@@ -355,16 +355,16 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Page\\",
-    \\"dependency\\": \\"src/Page.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Page.js\\"
    },
    {
     \\"request\\": \\"./Header.stories\\",
-    \\"dependency\\": \\"src/Header.stories.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\"
    }
   ]
  },
- \\"src/Page.js\\": {
-  \\"id\\": \\"src/Page.js\\",
+ \\"packages/integration-tests-storybook/src/Page.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/Page.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Page.js\\",
@@ -376,16 +376,16 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Header\\",
-    \\"dependency\\": \\"src/Header.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.js\\"
    },
    {
     \\"request\\": \\"./page.css\\",
-    \\"dependency\\": \\"src/page.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/page.css\\"
    }
   ]
  },
- \\"src/page.css\\": {
-  \\"id\\": \\"src/page.css\\",
+ \\"packages/integration-tests-storybook/src/page.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook/src/page.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/page.css\\",
@@ -393,7 +393,7 @@ exports[`run bundle command 4`] = `
   \\"dependencies\\": [
    {
     \\"request\\": \\"./page.css\\",
-    \\"dependency\\": \\"src/page.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook/src/page.css\\"
    }
   ]
  }
