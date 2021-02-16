@@ -53,6 +53,11 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/Button.bojagi.js\\"
  },
  {
+  \\"name\\": \\"Hooks.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Hooks.bojagi.js\\"
+ },
+ {
   \\"name\\": \\"Lazy.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/Lazy.bojagi.js\\"
@@ -68,9 +73,9 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/PingPong.bojagi.js\\"
  },
  {
-  \\"name\\": \\"8.js\\",
+  \\"name\\": \\"9.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/8.js\\"
+  \\"outputFilePath\\": \\"files/9.js\\"
  },
  {
   \\"name\\": \\"./index.html\\",
@@ -213,6 +218,30 @@ exports[`run bundle command 3`] = `
   \\"files\\": [
    \\"vendors.js\\",
    \\"Button.bojagi.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Hooks.bojagi\\",
+  \\"fileName\\": \\"Hooks.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"Hooks\\",
+    \\"storyName\\": \\"Hooks\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",
+  \\"name\\": \\"Hooks.bojagi\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Hooks.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"Hooks.bojagi.js\\"
   ]
  },
  {
@@ -519,6 +548,19 @@ exports[`run bundle command 4`] = `
    {
     \\"request\\": \\"./Button\\",
     \\"dependency\\": \\"src/components/Button.js\\"
+   }
+  ]
+ },
+ \\"src/components/Hooks.bojagi.js\\": {
+  \\"id\\": \\"src/components/Hooks.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Hooks.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
    }
   ]
  },
