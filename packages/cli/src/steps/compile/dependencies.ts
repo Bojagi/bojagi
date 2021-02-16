@@ -72,12 +72,13 @@ function getModuleAsDependency(module) {
   }
 
   const filePath = getFilePath(module.resource);
+  const gitPath = getGitPath(filePath);
   return {
-    id: filePath,
+    id: gitPath || filePath,
     isExternal: !!module.external,
     isNodeModule: false,
     filePath,
-    gitPath: getGitPath(filePath),
+    gitPath,
   };
 }
 

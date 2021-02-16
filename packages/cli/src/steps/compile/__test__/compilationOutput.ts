@@ -149,8 +149,8 @@ export function webpackCompilationOutput() {
 
 export function compilationDependencies() {
   return {
-    'bojagi/A.js': {
-      id: `bojagi/A.js`,
+    'gitpath/bojagi/A.js': {
+      id: `gitpath/bojagi/A.js`,
       filePath: `bojagi/A.js`,
       gitPath: 'gitpath/bojagi/A.js',
       isExternal: false,
@@ -163,7 +163,7 @@ export function compilationDependencies() {
         { dependency: 'foreignNodeModules', request: 'foreignNodeModules' },
         { dependency: '@material-ui/icons', request: '@material-ui/icons/MyIcon' },
         { dependency: 'styled-components', request: 'styled-components' },
-        { dependency: 'src/components/test.js', request: './test.js' },
+        { dependency: 'gitpath/src/components/test.js', request: './test.js' },
       ],
     },
     react: {
@@ -195,33 +195,33 @@ export function compilationDependencies() {
       packageName: 'styled-components',
       dependencies: [],
     },
-    'src/components/test.js': {
-      id: `src/components/test.js`,
+    'gitpath/src/components/test.js': {
+      id: `gitpath/src/components/test.js`,
       isExternal: false,
       isNodeModule: false,
       filePath: `src/components/test.js`,
       gitPath: `gitpath/src/components/test.js`,
       dependencies: [
-        { dependency: 'src/components/XXX.js', request: '../XXX.js' },
-        { dependency: `src/components/otherTest.js`, request: './otherTest.js' },
+        { dependency: 'gitpath/src/components/XXX.js', request: '../XXX.js' },
+        { dependency: `gitpath/src/components/otherTest.js`, request: './otherTest.js' },
       ],
     },
-    'src/components/XXX.js': {
-      id: 'src/components/XXX.js',
+    'gitpath/src/components/XXX.js': {
+      id: 'gitpath/src/components/XXX.js',
       filePath: 'src/components/XXX.js',
       gitPath: 'gitpath/src/components/XXX.js',
       isExternal: false,
       isNodeModule: false,
       packageName: undefined,
-      dependencies: [{ dependency: 'src/components/test.js', request: './test.js' }],
+      dependencies: [{ dependency: 'gitpath/src/components/test.js', request: './test.js' }],
     },
-    'src/components/otherTest.js': {
-      id: `src/components/otherTest.js`,
+    'gitpath/src/components/otherTest.js': {
+      id: `gitpath/src/components/otherTest.js`,
       isExternal: false,
       isNodeModule: false,
       filePath: `src/components/otherTest.js`,
       gitPath: `gitpath/src/components/otherTest.js`,
-      dependencies: [{ dependency: 'src/components/XXX.js', request: '../XXX.js' }],
+      dependencies: [{ dependency: 'gitpath/src/components/XXX.js', request: '../XXX.js' }],
     },
   };
 }
