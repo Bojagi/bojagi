@@ -7,12 +7,14 @@ import getEntrypointsFromFiles from './getExtendedStorybookFiles';
 import getStoryFiles from '../../utils/getStoryFiles';
 import { NonVerboseError } from '../../errors';
 import { getDependencyVersion } from '../../utils/getDependencyVersion';
+import getGitPath from '../../utils/getGitPath';
 
 export type ScanStepOutput = StepOutput & {
   storyFiles: StoryWithMetadata[];
   storyFileCount: number;
   packageDependencies: Record<string, string>;
   reactVersion: string;
+  projectGitPath?: string;
 };
 
 export const scanStep: StepRunnerStep<ScanStepOutput> = {
@@ -31,9 +33,15 @@ export const scanStep: StepRunnerStep<ScanStepOutput> = {
 };
 
 async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutput> {
+  const fullPackagePath = path.join(config.executionPath, 'package.json');
+  const packageGitPath = getGitPath(fullPackagePath);
+  const projectGitPath =
+    packageGitPath && fullPackagePath.replace(new RegExp(`${packageGitPath}$`), '');
+
   const storyFiles = await getStoryFiles(config);
-  const extendedStoryFiles = getEntrypointsFromFiles(config, storyFiles);
-  const packageJson = require(path.join(config.executionPath, 'package.json'));
+  const extendedStoryFiles = getEntrypointsFromFiles(config, storyFiles, projectGitPath);
+  const packageJson = require(fullPackagePath);
+
   const reactVersion = getDependencyVersion('react', config.executionPath);
 
   if (!reactVersion) {
@@ -47,6 +55,7 @@ async function action({ config }: StepRunnerActionOptions): Promise<ScanStepOutp
   }
 
   return {
+    projectGitPath,
     storyFiles: extendedStoryFiles,
     storyFileCount: storyFiles.length,
     packageDependencies: packageJson.dependencies || {},

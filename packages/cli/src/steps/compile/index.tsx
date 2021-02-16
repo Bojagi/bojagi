@@ -1,12 +1,6 @@
 import MemoryFS from 'memory-fs';
 import * as path from 'path';
-import {
-  StoryFileWithMetadata,
-  FileContent,
-  OutputFileContent,
-  LocalDependency,
-  DependencyReference,
-} from '../../types';
+import { StoryFileWithMetadata, FileContent, OutputFileContent } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { runWebpackCompiler } from './runWebpackCompiler';
 import { ScanStepOutput } from '../scan';
@@ -14,6 +8,7 @@ import { writeBojagiFile } from '../../utils/writeFile';
 import { getWebpackConfig } from '../../utils/getWebpackConfig';
 import debuggers, { DebugNamespaces } from '../../debug';
 import { NonVerboseError } from '../../errors';
+import { getDependenciesForFilePath } from './dependencies';
 
 import webpack = require('webpack');
 
@@ -48,7 +43,7 @@ type DependencyStepOutputs = {
 async function action({
   config,
   stepOutputs: {
-    scan: { storyFiles },
+    scan: { storyFiles, projectGitPath },
   },
 }: StepRunnerActionOptions<DependencyStepOutputs>): Promise<CompileStepOutput> {
   const { namespace } = config;
@@ -72,6 +67,7 @@ async function action({
     entrypoints,
     dependencyPackages,
     webpackMajorVersion,
+    projectGitPath,
   });
 
   const filesWithMetadata = await Promise.all(
@@ -122,14 +118,6 @@ function getPackageJsonDependencies(executionPath: string) {
   } catch {
     throw new Error('Can not read dependencies in package.json');
   }
-}
-
-function getDependenciesForFilePath(
-  modules: LocalDependency[],
-  filePath: string
-): DependencyReference[] {
-  const module = modules.find(m => m.filePath === filePath);
-  return (module && module.dependencies) || [];
 }
 
 function checkLimit(kind: string, limit: number, arr: any[]) {

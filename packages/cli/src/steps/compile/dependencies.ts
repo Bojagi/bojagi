@@ -1,15 +1,14 @@
 import * as path from 'path';
-import { Dependency } from '../../types';
-import getGitPath from '../../utils/getGitPath';
+import { Dependency, DependencyReference, LocalDependency } from '../../types';
 
 export function getDependencies(
-  { dependencyPackages, modules, webpackMajorVersion },
+  { dependencyPackages, modules, webpackMajorVersion, projectGitPath },
   initial = {}
 ) {
   return modules
     .filter(module => !module.rawRequest || !module.rawRequest.includes(`?${module.resource}`))
     .reduce((acc, module) => {
-      const dependency = getModuleAsDependency(module);
+      const dependency = getModuleAsDependency(module, projectGitPath);
 
       if (acc[dependency.id]) {
         return acc;
@@ -23,7 +22,7 @@ export function getDependencies(
 
       const result = {
         ...acc,
-        [dependency.id]: addSubDependencies(dependency, subDependencies),
+        [dependency.id]: addSubDependencies(dependency, subDependencies, projectGitPath),
       };
 
       if (!module.dependencies?.length) {
@@ -37,6 +36,8 @@ export function getDependencies(
             dependencyPackages,
             modules: subDependencies.map(dep => dep.module),
             webpackMajorVersion,
+
+            projectGitPath,
           },
           result
         ),
@@ -48,7 +49,7 @@ function onlyUnique(dep, index, self) {
   return self.findIndex(selfDep => selfDep.request === dep.request) === index;
 }
 
-function getModuleAsDependency(module) {
+function getModuleAsDependency(module, projectGitPath: string) {
   const isExternal = !!module.external;
   const isNodeModule = checkNodeModule(module.resource);
 
@@ -72,17 +73,25 @@ function getModuleAsDependency(module) {
   }
 
   const filePath = getFilePath(module.resource);
+<<<<<<< Updated upstream
   const gitPath = getGitPath(filePath);
+=======
+  const fullFilePath = path.resolve(filePath);
+>>>>>>> Stashed changes
   return {
     id: gitPath || filePath,
     isExternal: !!module.external,
     isNodeModule: false,
     filePath,
+<<<<<<< Updated upstream
     gitPath,
+=======
+    gitPath: projectGitPath ? path.relative(projectGitPath, fullFilePath) : filePath,
+>>>>>>> Stashed changes
   };
 }
 
-function addSubDependencies(dep, subDependencies): Dependency {
+function addSubDependencies(dep, subDependencies, projectGitPath: string): Dependency {
   return {
     ...dep,
     dependencies:
@@ -90,15 +99,15 @@ function addSubDependencies(dep, subDependencies): Dependency {
         ? subDependencies.map(({ request, module: subModule }) => {
             return {
               request: getRequest(request),
-              dependency: getModuleAsDependency(subModule).id,
+              dependency: getModuleAsDependency(subModule, projectGitPath).id,
             };
           })
         : [],
   };
 }
 
-export function findModuleInDependencies(module, dependencies) {
-  return dependencies[getModuleAsDependency(module).id];
+export function findModuleInDependencies(module, dependencies, projectGitPath: string) {
+  return dependencies[getModuleAsDependency(module, projectGitPath).id];
 }
 
 function getFilePath(resource = '') {
@@ -130,4 +139,12 @@ function getPackageName(module: any) {
 
 function checkNodeModule(resource) {
   return !!resource && resource.includes('node_modules');
+}
+
+export function getDependenciesForFilePath(
+  modules: LocalDependency[],
+  filePath: string
+): DependencyReference[] {
+  const module = modules.find(m => m.filePath === filePath || `./${m.filePath}` === filePath);
+  return (module && module.dependencies) || [];
 }

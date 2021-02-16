@@ -152,7 +152,7 @@ export function compilationDependencies() {
     'gitpath/bojagi/A.js': {
       id: `gitpath/bojagi/A.js`,
       filePath: `bojagi/A.js`,
-      gitPath: 'gitpath/bojagi/A.js',
+      gitPath: 'bojagi/A.js',
       isExternal: false,
       isNodeModule: false,
       dependencies: [
@@ -200,7 +200,7 @@ export function compilationDependencies() {
       isExternal: false,
       isNodeModule: false,
       filePath: `src/components/test.js`,
-      gitPath: `gitpath/src/components/test.js`,
+      gitPath: `src/components/test.js`,
       dependencies: [
         { dependency: 'gitpath/src/components/XXX.js', request: '../XXX.js' },
         { dependency: `gitpath/src/components/otherTest.js`, request: './otherTest.js' },
@@ -209,7 +209,7 @@ export function compilationDependencies() {
     'gitpath/src/components/XXX.js': {
       id: 'gitpath/src/components/XXX.js',
       filePath: 'src/components/XXX.js',
-      gitPath: 'gitpath/src/components/XXX.js',
+      gitPath: 'src/components/XXX.js',
       isExternal: false,
       isNodeModule: false,
       packageName: undefined,
@@ -220,8 +220,13 @@ export function compilationDependencies() {
       isExternal: false,
       isNodeModule: false,
       filePath: `src/components/otherTest.js`,
+<<<<<<< Updated upstream
       gitPath: `gitpath/src/components/otherTest.js`,
       dependencies: [{ dependency: 'gitpath/src/components/XXX.js', request: '../XXX.js' }],
+=======
+      gitPath: `src/components/otherTest.js`,
+      dependencies: [{ dependency: 'src/components/XXX.js', request: '../XXX.js' }],
+>>>>>>> Stashed changes
     },
   };
 }
