@@ -1,10 +1,5 @@
 import { runWebpackCompiler } from './runWebpackCompiler';
-import getGitPath from '../../utils/getGitPath';
 import { compilationDependencies, webpackCompilationOutput } from './__test__/compilationOutput';
-
-jest.mock('../../utils/getGitPath');
-
-(getGitPath as any).mockImplementation(resource => `gitpath/${resource}`);
 
 let compiler;
 let entrypoints;
@@ -55,6 +50,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
         'foreignNodeModules',
       ],
       webpackMajorVersion,
+      projectGitPath: cwd,
     });
     expect(componentsContent).toEqual({
       outputContent: {
@@ -72,9 +68,9 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
       dependencies: compilationDependencies(),
       modules: [
         {
-          id: `gitpath/bojagi/A.js`,
+          id: `bojagi/A.js`,
           filePath: `bojagi/A.js`,
-          gitPath: 'gitpath/bojagi/A.js',
+          gitPath: 'bojagi/A.js',
           isExternal: false,
           isNodeModule: false,
           dependencies: [
@@ -85,7 +81,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
             { dependency: 'foreignNodeModules', request: 'foreignNodeModules' },
             { dependency: '@material-ui/icons', request: '@material-ui/icons/MyIcon' },
             { dependency: 'styled-components', request: 'styled-components' },
-            { dependency: 'gitpath/src/components/test.js', request: './test.js' },
+            { dependency: 'src/components/test.js', request: './test.js' },
           ],
         },
       ],
@@ -100,6 +96,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
         entrypoints,
         dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
         webpackMajorVersion,
+        projectGitPath: cwd,
       })
     ).rejects.toThrow('some error text');
   });
@@ -116,6 +113,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
         entrypoints,
         dependencyPackages: ['react', '@material-ui/icons', 'styled-components'],
         webpackMajorVersion,
+        projectGitPath: cwd,
       })
     ).rejects.toThrow('some compilation error text');
   });

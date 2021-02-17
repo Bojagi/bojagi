@@ -10,6 +10,7 @@ export type RunWebpackCompilerOutput = {
   outputContent: Record<string, string>;
   modules: LocalDependency[];
   assets: Record<string, string[]>;
+  projectGitPath?: string;
 };
 
 export const runWebpackCompiler = ({
@@ -17,6 +18,7 @@ export const runWebpackCompiler = ({
   entrypoints,
   dependencyPackages,
   webpackMajorVersion,
+  projectGitPath,
 }): Promise<RunWebpackCompilerOutput> =>
   new Promise((resolve, reject) => {
     compiler.run((err, output) => {
@@ -58,9 +60,12 @@ export const runWebpackCompiler = ({
           dependencyPackages,
           webpackMajorVersion,
           modules: componentModules,
+          projectGitPath,
         });
 
-        const modules = componentModules.map(m => findModuleInDependencies(m, dependencies));
+        const modules = componentModules.map(m =>
+          findModuleInDependencies(m, dependencies, projectGitPath)
+        );
 
         resolve({
           dependencies,

@@ -1,9 +1,12 @@
 import * as path from 'path';
 import { StoryWithMetadata } from '../../types';
-import getGitPath from '../../utils/getGitPath';
 import { Config } from '../../config';
 
-const getEntrypointsFromFiles = (config: Config, files: string[]): StoryWithMetadata[] =>
+const getEntrypointsFromFiles = (
+  config: Config,
+  files: string[],
+  gitPathPrefix?: string
+): StoryWithMetadata[] =>
   files
     .map<StoryWithMetadata>(filePath => {
       // Regexp to find out file name
@@ -14,7 +17,8 @@ const getEntrypointsFromFiles = (config: Config, files: string[]): StoryWithMeta
         return undefined as any;
       }
 
-      const gitPath = getGitPath(filePath) as string;
+      const fullFilePath = path.resolve(filePath);
+      const gitPath = gitPathPrefix && path.relative(gitPathPrefix, fullFilePath);
       const absoluteFilePath = path.resolve(config.executionPath, filePath);
 
       const fileName = matchResult[1];
