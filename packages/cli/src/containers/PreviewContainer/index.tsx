@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Color, Text } from 'ink';
+import { Box, Text } from 'ink';
 import { Message } from '../../components/Message';
 import { useWebpackDevServer } from './useWebpackDevServer';
 import { useConfig } from '../../config/configContext';
@@ -12,8 +12,6 @@ import { compileStep } from '../../steps/compile';
 import { storybookStep } from '../../steps/storybook';
 import { getStepOutputFiles } from '../../utils/getOutputFiles';
 import { FileContent, OutputFileContent } from '../../types';
-
-import BorderBox = require('ink-box');
 
 export type PreviewContainerProps = {};
 
@@ -57,17 +55,14 @@ export function PreviewContainer() {
         setupError={setupError}
       />
       {devServer && (
-        <BorderBox
-          borderStyle="round"
-          borderColor="grey"
-          padding={1}
-          margin={{ left: 3, right: 3, bottom: 1 }}
-        >
-          Preview Server <Color green>running</Color> on{' '}
-          <Color cyan>
-            <Text underline>http://localhost:{config.previewPort}</Text>
-          </Color>
-        </BorderBox>
+        <Box borderStyle="round" borderColor="grey" padding={1} marginX={3} marginBottom={1}>
+          <Text>
+            Preview Server <Text color="green">running</Text> on{' '}
+            <Text color="cyan">
+              <Text underline>http://localhost:{config.previewPort}</Text>
+            </Text>
+          </Text>
+        </Box>
       )}
     </Box>
   );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from 'ink';
+import { Box, Text } from 'ink';
 import * as nodeEmoji from 'node-emoji';
 
 export type EmojiCode = keyof typeof nodeEmoji.emoji | 'woman-shrugging';
@@ -14,7 +14,7 @@ export function Emoji({ code, marginRight = 0 }: EmojiProps) {
 
   return (
     <Box marginRight={marginRight} width={getEmojiWidth(code, emoji)}>
-      {emoji}
+      <Text>{emoji}</Text>
     </Box>
   );
 }

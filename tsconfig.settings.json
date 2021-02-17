@@ -6,7 +6,7 @@
     "declarationMap": true,
     "sourceMap": true,
     // These settings are totally up to you
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "target": "ES5",
     "module": "commonjs",

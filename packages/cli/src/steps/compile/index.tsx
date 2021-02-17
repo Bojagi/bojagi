@@ -1,4 +1,4 @@
-import MemoryFS from 'memory-fs';
+import * as MemoryFS from 'memory-fs';
 import * as path from 'path';
 import { StoryFileWithMetadata, FileContent, OutputFileContent } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';

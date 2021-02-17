@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Color } from 'ink';
+import { Text } from 'ink';
 import * as path from 'path';
 import { StoryWithMetadata } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
@@ -25,7 +25,7 @@ export const scanStep: StepRunnerStep<ScanStepOutput> = {
     running: () => 'Searching for stories',
     success: ({ storyFileCount }) => (
       <>
-        We found <Color green>{storyFileCount}</Color> story files
+        We found <Text color="green">{storyFileCount}</Text> story files
       </>
     ),
     error: () => 'No stories found',

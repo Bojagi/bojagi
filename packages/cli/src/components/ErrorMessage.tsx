@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-function */
 import * as React from 'react';
-import { Box, Color } from 'ink';
+import { Box, Text } from 'ink';
 import { Message } from './Message';
 import { NonVerboseError } from '../errors';
 
@@ -24,7 +24,7 @@ export function ErrorMessage({ error }: ErrorMessageProps) {
       <Message emoji="x">Error: {error.message}</Message>
       {error.stack && !(error as NonVerboseError).hideStackTrace && (
         <Box marginX={3} marginBottom={1}>
-          <Color red>{error.stack}</Color>
+          <Text color="red">{error.stack}</Text>
         </Box>
       )}
     </Box>
