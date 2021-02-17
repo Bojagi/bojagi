@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from 'ink';
+import { Box, Text } from 'ink';
 import { Emoji, EmojiCode } from './Emoji';
 
 export type MessageProps = {
@@ -11,7 +11,9 @@ export function Message({ children, emoji }: MessageProps) {
   return (
     <Box marginX={3} marginBottom={1}>
       <Emoji code={emoji} marginRight={1} />
-      <Box flexGrow={1}>{children}</Box>
+      <Box flexGrow={1}>
+        <Text>{children}</Text>
+      </Box>
     </Box>
   );
 }

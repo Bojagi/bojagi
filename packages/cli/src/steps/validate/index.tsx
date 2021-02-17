@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import * as React from 'react';
 import axios from 'axios';
-import { Color } from 'ink';
+import { Text } from 'ink';
 import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { MANIFEST_VERSION } from '../../constants';
 import { Emoji } from '../../components/Emoji';
@@ -116,7 +116,7 @@ function SuccessResponse({
   if (status === VersionStatuses.DEPRECATED) {
     return (
       <>
-        <Emoji code="warning" /> <Color yellow>{deprecationMessage}</Color> (support ends{' '}
+        <Emoji code="warning" /> <Text color="yellow">{deprecationMessage}</Text> (support ends{' '}
         {supportEnd})
       </>
     );

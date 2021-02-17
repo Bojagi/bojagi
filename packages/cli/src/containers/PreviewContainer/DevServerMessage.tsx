@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Color } from 'ink';
+import { Box, Text, Newline } from 'ink';
 import Spinner from 'ink-spinner';
 import { Message } from '../../components/Message';
 
@@ -13,10 +13,14 @@ export function DevServerMessage({
 }) {
   if (setupError) {
     return (
-      <Box marginX={3} marginBottom={1} flexDirection="column">
-        <Color red>Something went wrong:</Color>
-        <Box>{setupError.message}</Box>
-        <Box>{setupError.stack}</Box>
+      <Box marginX={3} marginBottom={1}>
+        <Text>
+          <Text color="red">Something went wrong:</Text>
+          <Newline />
+          {setupError.message}
+          <Newline />
+          {setupError.stack}
+        </Text>
       </Box>
     );
   }
@@ -40,9 +44,11 @@ export function DevServerMessage({
   if (errors.length > 0) {
     return (
       <Box marginX={3} marginBottom={1} flexDirection="column">
-        <Color red>Following compile errors happened:</Color>
+        <Text color="red">Following compile errors happened:</Text>
         {errors.map(err => (
-          <Box key={err.message}>{err.message}</Box>
+          <Box key={err.message}>
+            <Text>{err.message}</Text>
+          </Box>
         ))}
       </Box>
     );

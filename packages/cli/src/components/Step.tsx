@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Color, Box } from 'ink';
+import { Text, Box } from 'ink';
 import Spinner from 'ink-spinner';
 import { Emoji, EmojiCode } from './Emoji';
 
@@ -38,13 +38,15 @@ export function Step({
         <StepStateComponent state={state} />
       </Box>
       <Emoji code={emoji} marginRight={1} />
-      <Box>{children}</Box>
+      <Box>
+        <Text>{children}</Text>
+      </Box>
       {!hideStepCount && maxSteps !== 1 && (
         <Box marginLeft={1}>
-          <Color grey>
+          <Text color="grey">
             ({stepNumber}
             {maxSteps && <>/{maxSteps}</>})
-          </Color>
+          </Text>
         </Box>
       )}
     </Box>

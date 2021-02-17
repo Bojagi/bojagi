@@ -7,22 +7,24 @@ export type StepsProps = {
 };
 
 export function Steps({ children }: StepsProps) {
-  const [innerChildren, setInnerChildren] = React.useState<React.ReactElement<StepProps>[]>([]);
-  React.useEffect(() => {
-    setInnerChildren(
-      children.map((child, i) =>
-        React.cloneElement(child, {
-          stepNumber: i + 1,
-          maxSteps: children.length,
-          ...child.props,
-          key: child.props.name,
-        })
-      )
-    );
-  }, [children, setInnerChildren]);
+  const stepChildren = React.useMemo(() => children.map(mapChild), [children]);
+
   return (
     <Box flexDirection="column" marginX={1}>
-      {innerChildren}
+      {stepChildren}
     </Box>
   );
+}
+
+function mapChild(
+  child: React.ReactElement<StepProps>,
+  i: number,
+  children: React.ReactElement<StepProps>[]
+) {
+  return React.cloneElement(child, {
+    stepNumber: i + 1,
+    maxSteps: children.length,
+    ...child.props,
+    key: child.props.name,
+  });
 }

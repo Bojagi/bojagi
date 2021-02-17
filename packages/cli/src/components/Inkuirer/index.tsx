@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, Color, Box } from 'ink';
+import { Text, Box } from 'ink';
 import { InputQuestion } from './InputQuestion';
 import { SelectQuestion } from './SelectQuestion';
 import { Question, Answer } from './types';
@@ -48,9 +48,7 @@ export function Inkuirer({ questions, onCompletion }: InkuirerProps) {
       {answers.map(answer => (
         <Box marginBottom={1} key={answer.name}>
           <Box marginRight={1}>
-            <Text>
-              <Color gray>{answer.message}:</Color>
-            </Text>
+            <Text color="gray">{answer.message}:</Text>
           </Box>
           <Text>{getDisplayableValue(answer)}</Text>
         </Box>
@@ -59,7 +57,8 @@ export function Inkuirer({ questions, onCompletion }: InkuirerProps) {
         <Box flexDirection="column">
           <Box marginBottom={1}>
             <Text>
-              {currentQuestion.message} <Color gray>({getDisplayableValue(currentQuestion)})</Color>
+              {currentQuestion.message}{' '}
+              <Text color="gray">({getDisplayableValue(currentQuestion)})</Text>
             </Text>
           </Box>
           {currentQuestion.type === 'input' && (
