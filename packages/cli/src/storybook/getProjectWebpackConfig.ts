@@ -1,6 +1,7 @@
 import { getStorybookLoadOptions } from './storybookUtils';
 import { replaceWebpackRules } from '../utils/replaceWebpackRules';
 import { getSbOption, getSbCliOptions } from './getSbOption';
+import { getPackageFolder } from '../utils/getPackageFolder';
 
 import webpack = require('webpack');
 
@@ -25,6 +26,12 @@ async function getWebpackConfig(loadOptions) {
       require.resolve('@storybook/core/dist/server/preview/custom-webpack-preset.js'),
     ],
   });
+
+  // Add node_modules of SB core in case resolvers are placed there by npm/yarn
+  webpackConfig.resolveLoader = webpackConfig.resolveLoader || {};
+  const corePackagePath = getPackageFolder('@storybook/core');
+  webpackConfig.resolveLoader.modules = webpackConfig.resolveLoader?.modules || ['node_modules'];
+  webpackConfig.resolveLoader.modules.push(path.join(corePackagePath, 'node_modules'));
 
   return replaceWebpackRules(webpackConfig, replaceDefaultMediaLoader);
 }
