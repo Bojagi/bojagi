@@ -2,11 +2,9 @@ import * as path from 'path';
 import { softRequireResolve } from './requireUtils';
 
 test('return the path if file exists', () => {
-  expect(softRequireResolve('./softRequireResolve')).toEqual(
-    path.resolve(__dirname, 'softRequireResolve.ts')
-  );
+  expect(softRequireResolve('./requireUtils')).toEqual(path.resolve(__dirname, 'requireUtils.ts'));
 });
 
 test('return undefined otherwise', () => {
-  expect(softRequireResolve('./unkown')).toEqual(undefined);
+  expect(softRequireResolve('./unknown')).toEqual(undefined);
 });
