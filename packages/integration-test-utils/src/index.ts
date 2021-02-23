@@ -35,7 +35,7 @@ export function writeTestResult(name, content) {
 
 export function getTestResult(name) {
   return JSON.parse(
-    fs.readFileSync(path.resolve(TEST_RESULT_FOLDER, `${name}.json`), { encoding: 'uft8' })
+    fs.readFileSync(path.resolve(TEST_RESULT_FOLDER, `${name}.json`), { encoding: 'utf8' })
   );
 }
 
