@@ -30,6 +30,9 @@ jobs:
     executor: base
     steps:
       - init
+      - run: 
+          name: up node memory maximum
+          command: NODE_OPTIONS=--max_old_space_size=4096
       - run:
           name: lint
           command: yarn lint
