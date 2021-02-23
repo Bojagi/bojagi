@@ -25,6 +25,17 @@ test('get components API output', () => {
   };
 
   const storiesMetadata = {
+    file2: {
+      fileName: 'file2',
+      title: 'FILE TWO',
+      filePath: '/some/path/some/feli.ts',
+      storyItems: [
+        {
+          exportName: 'story3',
+          storyName: 'story drei',
+        },
+      ],
+    },
     file1: {
       fileName: 'file1',
       title: 'FILE ONE',
@@ -37,17 +48,6 @@ test('get components API output', () => {
         {
           exportName: 'story2',
           storyName: 'story zwei',
-        },
-      ],
-    },
-    file2: {
-      fileName: 'file2',
-      title: 'FILE TWO',
-      filePath: '/some/path/some/feli.ts',
-      storyItems: [
-        {
-          exportName: 'story3',
-          storyName: 'story drei',
         },
       ],
     },
