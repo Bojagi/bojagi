@@ -1,5 +1,5 @@
 {
-  "name": "@bojagi/integration-tests-storybook",
+  "name": "@bojagi/integration-tests-storybook-6_1_x",
   "version": "0.14.2-next.1",
   "description": "storybook based integration tests",
   "main": "index.js",
@@ -8,10 +8,10 @@
     "@babel/core": "7.12.10",
     "@bojagi/cli": "^0.14.2-next.1",
     "@bojagi/integration-test-utils": "^0.14.1",
-    "@storybook/addon-actions": "6.1.19",
-    "@storybook/addon-essentials": "6.1.19",
-    "@storybook/addon-links": "6.1.19",
-    "@storybook/react": "6.1.19",
+    "@storybook/addon-actions": "^6.1.19",
+    "@storybook/addon-essentials": "^6.1.19",
+    "@storybook/addon-links": "^6.1.19",
+    "@storybook/react": "^6.1.19",
     "babel-loader": "8.2.2",
     "core-js": "3.8.3"
   },

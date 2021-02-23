@@ -12,6 +12,7 @@ export enum DebugNamespaces {
   UPLOAD = 'upload',
   VALIDATE = 'validate',
   WEBPACK_CONFIG = 'webpackConfig',
+  REQUIRE = 'require',
 }
 
 const debuggers = Object.values(DebugNamespaces).reduce(

@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { softRequireResolve } from './softRequireResolve';
+import { softRequireResolve } from './requireUtils';
 
 test('return the path if file exists', () => {
   expect(softRequireResolve('./softRequireResolve')).toEqual(

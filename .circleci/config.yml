@@ -39,6 +39,13 @@ jobs:
       - run:
           name: integration tests
           command: yarn integration
+  testNext: 
+    executor: base
+    steps: 
+      - init
+      - run:
+          name: integration test for next releases
+          command: yarn integrationNext
   deploy:
     executor: base
     steps:
@@ -67,3 +74,14 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
+  daily_test:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test:
+      - testNext:

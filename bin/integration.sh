@@ -16,8 +16,9 @@ function preparePackage {
 
 function preparePackages {
   preparePackage integration-tests
-  installStorybook $1
-  preparePackage integration-tests-storybook
+  # installStorybook $1
+  preparePackage integration-tests-storybook-6_1_x
+  preparePackage integration-tests-storybook-6_2_x
 }
 
 function integration {

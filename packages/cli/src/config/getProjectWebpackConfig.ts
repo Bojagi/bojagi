@@ -2,7 +2,7 @@ import * as pathUtils from 'path';
 import { CiSettings } from './getCiSettings';
 import { BaseConfig } from './types';
 import { NonVerboseError } from '../errors';
-import { softRequireResolve } from '../utils/softRequireResolve';
+import { softRequireResolve } from '../utils/requireUtils';
 import { getStorybookProjectWebpackConfig } from '../storybook';
 
 import webpack = require('webpack');
