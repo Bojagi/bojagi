@@ -3,8 +3,9 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "integration": "./bin/integration.sh integration",
+    "integration": "./bin/integration.sh integration latest",
     "integrationLocal": "./bin/integration.sh integrationLocal",
+    "integrationNext": "./bin/integration.sh integration next",
     "build": "tsc -b",
     "deploy": "lerna publish from-git -y",
     "publish": "./bin/publish.sh",
