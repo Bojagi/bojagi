@@ -76,6 +76,6 @@ async function loadConfigFromPath(webpackConfigPath) {
   const projectWebpackConfig = require(webpackConfigPath);
 
   return typeof projectWebpackConfig === 'function'
-    ? projectWebpackConfig('development') // TODO read from args etc
+    ? projectWebpackConfig('production') // TODO read from args etc
     : projectWebpackConfig;
 }
