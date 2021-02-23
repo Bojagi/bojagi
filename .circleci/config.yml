@@ -38,7 +38,7 @@ jobs:
           command: yarn lint
       - run:
           name: unit tests
-          command: yarn test
+          command: yarn test -w 1
       - run:
           name: integration tests
           command: yarn integration
