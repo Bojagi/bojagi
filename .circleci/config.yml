@@ -39,13 +39,6 @@ jobs:
       - run:
           name: integration tests
           command: yarn integration
-  testNext: 
-    executor: base
-    steps: 
-      - init
-      - run:
-          name: integration test for next releases
-          command: yarn integrationNext
   deploy:
     executor: base
     steps:

@@ -16,14 +16,13 @@ function preparePackage {
 
 function preparePackages {
   preparePackage integration-tests
-  # installStorybook $1
   preparePackage integration-tests-storybook-6_1_x
   preparePackage integration-tests-storybook-6_2_x
 }
 
 function integration {
-  preparePackages $1
-  runIntegration ${@:2}
+  preparePackages
+  runIntegration ${@:1}
 }
 
 function runIntegration {
@@ -33,13 +32,6 @@ function runIntegration {
 function integrationLocal {
   preparePackages
   cd $PROJECT_ROOT && yarn jest --runInBand --config integration.local.jest.config.js --forceExit ${@}
-}
-
-function installStorybook {
-  lerna add -D --scope @bojagi/integration-tests-storybook @storybook/addon-actions@$1
-  lerna add -D --scope @bojagi/integration-tests-storybook @storybook/addon-essentials@$1
-  lerna add -D --scope @bojagi/integration-tests-storybook @storybook/addon-links@$1
-  lerna add -D --scope @bojagi/integration-tests-storybook @storybook/react@$1
 }
 
 case $1 in
