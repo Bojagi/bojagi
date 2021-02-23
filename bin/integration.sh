@@ -16,12 +16,17 @@ function preparePackage {
 
 function preparePackages {
   preparePackage integration-tests
-  preparePackage integration-tests-storybook
+  preparePackage integration-tests-storybook-6_1_x
+  preparePackage integration-tests-storybook-6_2_x
 }
 
 function integration {
   preparePackages
-  cd $PROJECT_ROOT && yarn jest --runInBand --config integration.jest.config.js --forceExit ${@}
+  runIntegration ${@:1}
+}
+
+function runIntegration {
+    cd $PROJECT_ROOT && yarn jest --runInBand --config integration.jest.config.js --forceExit ${@}
 }
 
 function integrationLocal {

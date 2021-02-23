@@ -1,11 +1,12 @@
-import { getStorybookLoadOptions } from './storybookUtils';
-import { replaceWebpackRules } from '../utils/replaceWebpackRules';
-import { getSbOption, getSbCliOptions } from './getSbOption';
-import { getPackageFolder } from '../utils/getPackageFolder';
+import * as path from 'path';
+import { getStorybookFrameworkLoadOptions } from '../storybookUtils';
+import { replaceWebpackRules } from '../../utils/replaceWebpackRules';
+import { getSbOption, getSbCliOptions } from '../getSbOption';
+import { getPackageFolder } from '../../utils/getPackageFolder';
+import { replaceDefaultMediaLoader } from './replaceLoaders';
+import { StorybookFramework } from '../types';
 
 import webpack = require('webpack');
-
-const path = require('path');
 
 async function getWebpackConfig(loadOptions) {
   // we have to load all those libs dynamically as they are all optional
@@ -36,39 +37,17 @@ async function getWebpackConfig(loadOptions) {
   return replaceWebpackRules(webpackConfig, replaceDefaultMediaLoader);
 }
 
-export async function getStorybookProjectWebpackConfig(): Promise<webpack.Configuration | void> {
-  const loadConfig = getStorybookLoadOptions();
-  if (loadConfig) {
-    return getWebpackConfig(loadConfig);
-  }
+// eslint-disable-next-line camelcase
+export async function getV_6_1_X_StorybookProjectWebpackConfig(
+  framework: StorybookFramework
+): Promise<webpack.Configuration | void> {
+  const loadConfig = getStorybookFrameworkLoadOptions(framework);
 
-  return undefined;
+  return getWebpackConfig(loadConfig);
 }
 
 function getOutputDir(givenOutputDir) {
   return path.isAbsolute(givenOutputDir)
     ? givenOutputDir
     : path.join(process.cwd(), givenOutputDir);
-}
-
-function replaceDefaultMediaLoader(rules: webpack.RuleSetRule[]): webpack.RuleSetRule[] {
-  const defaultAssertLoaderIndex = rules.findIndex(
-    rule =>
-      rule.loader?.toString().includes('file-loader') &&
-      rule.test?.toString().includes('svg|ico|jpg|jpeg|png|apng|gif')
-  );
-
-  // if we find storybooks default asset loader we make sure to use the url loader instead
-  if (defaultAssertLoaderIndex >= 0) {
-    const ruleCopy = { ...rules[defaultAssertLoaderIndex] };
-
-    const newRules = [...rules];
-    newRules.splice(defaultAssertLoaderIndex, 1, {
-      ...ruleCopy,
-      loader: 'url-loader', // we bundle all small assets into the js
-      options: { limit: 10000, name: 'static/media/[name].[hash:8].[ext]', esModule: false },
-    });
-    return newRules;
-  }
-  return rules;
 }

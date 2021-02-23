@@ -1,4 +1,4 @@
-import { softRequireResolve } from '../utils/softRequireResolve';
+import { requireFromPaths, softRequireResolve } from '../utils/requireUtils';
 import { StorybookFramework } from './types';
 
 const frameworkToPackageMap = {
@@ -6,7 +6,10 @@ const frameworkToPackageMap = {
 };
 
 const frameworkToLoadOptionsMap = {
-  [StorybookFramework.REACT]: '@storybook/react/dist/server/options',
+  [StorybookFramework.REACT]: [
+    '@storybook/react/dist/server/options',
+    '@storybook/react/dist/cjs/server/options',
+  ],
 };
 
 export function getStorybookLoadOptions() {
@@ -22,11 +25,21 @@ export function getStorybookLoadOptions() {
 }
 
 export function getStorybookFrameworkLoadOptions(framework: StorybookFramework) {
-  return require(frameworkToLoadOptionsMap[framework]).default;
+  const possibleImports = frameworkToLoadOptionsMap[framework];
+
+  return requireFromPaths<any>(possibleImports).default;
+}
+
+export function getStorybookFramework(): StorybookFramework | undefined {
+  const sbFrameworkKey = Object.keys(StorybookFramework).find(storybookFrameworkIsInstalled);
+  if (sbFrameworkKey) {
+    return StorybookFramework[sbFrameworkKey];
+  }
+  return undefined;
 }
 
 export function storybookIsInstalled(): boolean {
-  return !!Object.keys(StorybookFramework).find(storybookFrameworkIsInstalled);
+  return !!getStorybookFramework();
 }
 
 export function storybookFrameworkIsInstalled(framework: StorybookFramework): boolean {

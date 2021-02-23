@@ -140,10 +140,10 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\"
    }
   ],
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\",
   \\"name\\": \\"Button.stories\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Button.stories.js\\",
@@ -176,10 +176,10 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Header\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\"
    }
   ],
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\",
   \\"name\\": \\"Header.stories\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Header.stories.js\\",
@@ -212,14 +212,14 @@ exports[`run bundle command 3`] = `
    },
    {
     \\"request\\": \\"./Page\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Page.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Page.js\\"
    },
    {
     \\"request\\": \\"./Header.stories\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\"
    }
   ],
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Page.stories.js\\",
   \\"name\\": \\"Page.stories\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Page.stories.js\\",
@@ -237,12 +237,12 @@ exports[`run bundle command 3`] = `
 
 exports[`run bundle command 4`] = `
 "{
- \\"packages/integration-tests-storybook/src/Header.stories.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Header.stories.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -250,7 +250,7 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Header\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\"
    }
   ]
  },
@@ -261,12 +261,12 @@ exports[`run bundle command 4`] = `
   \\"packageName\\": \\"react\\",
   \\"dependencies\\": []
  },
- \\"packages/integration-tests-storybook/src/Header.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/Header.js\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Header.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Header.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -274,20 +274,20 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\"
    },
    {
     \\"request\\": \\"./header.css\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/header.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\"
    }
   ]
  },
- \\"packages/integration-tests-storybook/src/Button.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/Button.js\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Button.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -295,42 +295,42 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./button.css\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/button.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/button.css\\"
    }
   ]
  },
- \\"packages/integration-tests-storybook/src/button.css\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/button.css\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/button.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/button.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/button.css\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/button.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/button.css\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"./button.css\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/button.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/button.css\\"
    }
   ]
  },
- \\"packages/integration-tests-storybook/src/header.css\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/header.css\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/header.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/header.css\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/header.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"./header.css\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/header.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\"
    }
   ]
  },
- \\"packages/integration-tests-storybook/src/Button.stories.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/Button.stories.js\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Button.stories.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Button.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -338,16 +338,16 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Button.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\"
    }
   ]
  },
- \\"packages/integration-tests-storybook/src/Page.stories.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/Page.stories.js\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/Page.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Page.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Page.stories.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Page.stories.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -355,20 +355,20 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Page\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Page.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Page.js\\"
    },
    {
     \\"request\\": \\"./Header.stories\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.stories.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\"
    }
   ]
  },
- \\"packages/integration-tests-storybook/src/Page.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/Page.js\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/Page.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Page.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/Page.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/Page.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Page.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
@@ -376,24 +376,24 @@ exports[`run bundle command 4`] = `
    },
    {
     \\"request\\": \\"./Header\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/Header.js\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\"
    },
    {
     \\"request\\": \\"./page.css\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/page.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/page.css\\"
    }
   ]
  },
- \\"packages/integration-tests-storybook/src/page.css\\": {
-  \\"id\\": \\"packages/integration-tests-storybook/src/page.css\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/page.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/page.css\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
   \\"filePath\\": \\"src/page.css\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook/src/page.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/page.css\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"./page.css\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook/src/page.css\\"
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/page.css\\"
    }
   ]
  }

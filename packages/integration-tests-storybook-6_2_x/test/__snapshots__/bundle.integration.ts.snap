@@ -1,0 +1,377 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`run bundle command 1`] = `
+"{
+ \\"version\\": \\"4\\",
+ \\"namespaces\\": [
+  {
+   \\"name\\": \\"default\\",
+   \\"framework\\": {
+    \\"name\\": \\"react\\",
+    \\"version\\": \\"16.12.0\\"
+   }
+  }
+ ]
+}"
+`;
+
+exports[`run bundle command 2`] = `
+"[
+ {
+  \\"name\\": \\"vendors.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/vendors.js\\"
+ },
+ {
+  \\"name\\": \\"Button.stories.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Button.stories.js\\"
+ },
+ {
+  \\"name\\": \\"Header.stories.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Header.stories.js\\"
+ },
+ {
+  \\"name\\": \\"Page.stories.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Page.stories.js\\"
+ },
+ {
+  \\"name\\": \\"runtime~Button.stories.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/runtime~Button.stories.js\\"
+ },
+ {
+  \\"name\\": \\"runtime~Header.stories.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/runtime~Header.stories.js\\"
+ },
+ {
+  \\"name\\": \\"runtime~Page.stories.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/runtime~Page.stories.js\\"
+ },
+ {
+  \\"name\\": \\"vendors.js.LICENSE.txt\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/vendors.js.LICENSE.txt\\"
+ },
+ {
+  \\"name\\": \\"vendors.js.map\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/vendors.js.map\\"
+ },
+ {
+  \\"name\\": \\"iframe.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/iframe.html\\"
+ },
+ {
+  \\"name\\": \\"head.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/head.html\\"
+ },
+ {
+  \\"name\\": \\"body.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/body.html\\"
+ }
+]"
+`;
+
+exports[`run bundle command 3`] = `
+"[
+ {
+  \\"title\\": \\"Example/Button\\",
+  \\"fileName\\": \\"Button.stories\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"Primary\\",
+    \\"storyName\\": \\"Primary\\"
+   },
+   {
+    \\"exportName\\": \\"Secondary\\",
+    \\"storyName\\": \\"Secondary\\"
+   },
+   {
+    \\"exportName\\": \\"Large\\",
+    \\"storyName\\": \\"Large\\"
+   },
+   {
+    \\"exportName\\": \\"Small\\",
+    \\"storyName\\": \\"Small\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.stories.js\\",
+  \\"name\\": \\"Button.stories\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/Button.stories.js\\",
+  \\"files\\": [
+   \\"runtime~Button.stories.js\\",
+   \\"vendors.js\\",
+   \\"vendors.js.map\\",
+   \\"Button.stories.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Example/Header\\",
+  \\"fileName\\": \\"Header.stories\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"LoggedIn\\",
+    \\"storyName\\": \\"Logged In\\"
+   },
+   {
+    \\"exportName\\": \\"LoggedOut\\",
+    \\"storyName\\": \\"Logged Out\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Header\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.stories.js\\",
+  \\"name\\": \\"Header.stories\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/Header.stories.js\\",
+  \\"files\\": [
+   \\"runtime~Header.stories.js\\",
+   \\"vendors.js\\",
+   \\"vendors.js.map\\",
+   \\"Header.stories.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Example/Page\\",
+  \\"fileName\\": \\"Page.stories\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"LoggedIn\\",
+    \\"storyName\\": \\"Logged In\\"
+   },
+   {
+    \\"exportName\\": \\"LoggedOut\\",
+    \\"storyName\\": \\"Logged Out\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Page\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.js\\"
+   },
+   {
+    \\"request\\": \\"./Header.stories\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.stories.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.stories.js\\",
+  \\"name\\": \\"Page.stories\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/Page.stories.js\\",
+  \\"files\\": [
+   \\"runtime~Page.stories.js\\",
+   \\"vendors.js\\",
+   \\"vendors.js.map\\",
+   \\"Page.stories.js\\"
+  ]
+ }
+]"
+`;
+
+exports[`run bundle command 4`] = `
+"{
+ \\"packages/integration-tests-storybook-6_2_x/src/Header.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.stories.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Header.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.stories.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Header\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.js\\"
+   }
+  ]
+ },
+ \\"react\\": {
+  \\"id\\": \\"react\\",
+  \\"isExternal\\": true,
+  \\"isNodeModule\\": false,
+  \\"packageName\\": \\"react\\",
+  \\"dependencies\\": []
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/Header.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Header.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.js\\"
+   },
+   {
+    \\"request\\": \\"./header.css\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/header.css\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/Button.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Button.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./button.css\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/button.css\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/button.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/button.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/button.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/button.css\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"./button.css\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/button.css\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/header.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/header.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/header.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/header.css\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"./header.css\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/header.css\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/Button.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.stories.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Button.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.stories.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/Page.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.stories.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Page.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.stories.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Page\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.js\\"
+   },
+   {
+    \\"request\\": \\"./Header.stories\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.stories.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/Page.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Page.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Header\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.js\\"
+   },
+   {
+    \\"request\\": \\"./page.css\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/page.css\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_2_x/src/page.css\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_2_x/src/page.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/page.css\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/page.css\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"./page.css\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_2_x/src/page.css\\"
+   }
+  ]
+ }
+}"
+`;
+
+exports[`run bundle command 5`] = `
+"{
+ \\"storybookBabel\\": \\"called\\"
+}"
+`;
+
+exports[`run bundle command 6`] = `
+"{
+ \\"storybookWebpackFinal\\": \\"called\\"
+}"
+`;
