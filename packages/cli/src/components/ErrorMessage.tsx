@@ -22,7 +22,7 @@ export function ErrorMessage({ error }: ErrorMessageProps) {
   return (
     <Box flexDirection="column">
       <Message emoji="x">Error: {error.message}</Message>
-      {error.stack && !(error as NonVerboseError).hideStackTrace && (
+      {!!error.stack && !(error as NonVerboseError).hideStackTrace && (
         <Box marginX={3} marginBottom={1}>
           <Text color="red">{error.stack}</Text>
         </Box>
