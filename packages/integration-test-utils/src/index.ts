@@ -60,5 +60,6 @@ export function hash(aString) {
 export function execBojagi(basePath, cmd) {
   return execSync(`${getBojagiBin(basePath)} ${cmd}`, {
     cwd: basePath,
-  }).toString();
+    stdio: ['ignore', 'inherit', 'ignore'],
+  });
 }
