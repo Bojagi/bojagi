@@ -103,7 +103,7 @@ const composeWebpackConfig = (
           require.resolve('@bojagi/cli/fakeStorybookAddons.js')
         ),
         new webpack.NormalModuleReplacementPlugin(
-          /@storybook\/react/,
+          /@storybook\/react$/,
           require.resolve('@bojagi/cli/fakeStorybookReact.js')
         ),
       ],
