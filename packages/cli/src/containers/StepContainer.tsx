@@ -7,6 +7,7 @@ import { ErrorMessage } from '../components/ErrorMessage';
 import { SuccessMessage } from '../components/SuccessMessage';
 import { ValidationError } from '../errors';
 import { useConfig } from '../config/configContext';
+import { useExitOnError } from '../utils/useExitOnError';
 
 export type StepContainerProps = {
   steps: StepRunnerStep[];
@@ -18,6 +19,8 @@ export function StepContainer({ steps, validator }: StepContainerProps) {
   const [validationError, setValidationError] = React.useState<ValidationError>();
   const [validationDone, setValidationDone] = React.useState(false);
   const [runtime, setRuntime] = React.useState(0);
+
+  useExitOnError(validationError);
 
   React.useEffect(() => {
     if (validator) {
