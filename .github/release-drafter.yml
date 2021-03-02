@@ -1,0 +1,93 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION' 
+
+category-template: '### $TITLE'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'feature'
+      - 'minor' 
+  patch:
+    labels:
+      - 'bug'
+      - 'fix'
+      - 'chore'
+      - 'refactor'
+      - 'performance'
+      - 'patch'
+  default: patch
+
+categories:
+  - title: '💥 Breaking changes'
+    labels:
+      - 'breaking'
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: '👻 Internal changes'
+    labels: 
+      - 'refactor'
+  - title: '🏎 Performance improvements'
+    labels: 
+      - 'performance'
+  - title: '🧰 Maintenance'
+    labels: 
+      - 'chore'
+
+exclude-labels:
+  - reverted
+  - no-changelog
+  - skip-changelog
+  - invalid
+  - test
+
+replacers:
+  # Remove commit prefixes 
+  - search: '/(fix|feat|test|chore|perf|docs)+?(\(\w+\))*?\:\s+/g'
+    replace: ''
+
+autolabeler:
+  - label: 'bug'  
+    title:
+      - '/^fix/i'
+  - label: 'feature'
+    title:
+      - '/^feat/i'
+  - label: 'test'
+    title:
+      - '/^test/i'
+  - label: 'refactor'
+    title:
+      - '/^refactor/i'
+  - label: 'performance'
+    title:
+      - '/^perf/i'
+  - label: 'chore'
+    title:
+      - '/^chore/i'
+
+template: |
+  We are very proud to release version **$RESOLVED_VERSION** 👩‍🚀
+
+  <!-- Optional: add a release summary here -->
+
+  ## Contributors
+
+  Thanks to these the folks that made this release possible 🙇‍♂️
+
+  $CONTRIBUTORS	
+
+  ## What's new 👶
+
+  $CHANGES
