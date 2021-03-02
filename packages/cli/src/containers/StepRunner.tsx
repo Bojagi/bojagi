@@ -8,6 +8,7 @@ import { Config } from '../config';
 import { useConfig } from '../config/configContext';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { Dependency, FileContent, OutputFileContent, StoryFileWithMetadata } from '../types';
+import { useExitOnError } from '../utils/useExitOnError';
 
 export type StepOutput = {
   files?: OutputFileContent<FileContent>[];
@@ -92,6 +93,8 @@ export function StepRunner({
   const [endTime, setEndTime] = React.useState<Date>();
 
   const filteredSteps = React.useMemo(() => steps.filter(step => !step.if || step.if()), [steps]);
+
+  useExitOnError(error);
 
   React.useEffect(() => {
     setStartTime(new Date());
