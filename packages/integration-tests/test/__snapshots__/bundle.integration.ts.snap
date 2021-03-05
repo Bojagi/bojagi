@@ -53,6 +53,11 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/Button.bojagi.js\\"
  },
  {
+  \\"name\\": \\"Empty.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/Empty.bojagi.js\\"
+ },
+ {
   \\"name\\": \\"Hooks.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/Hooks.bojagi.js\\"
@@ -73,9 +78,9 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/PingPong.bojagi.js\\"
  },
  {
-  \\"name\\": \\"9.js\\",
+  \\"name\\": \\"10.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/9.js\\"
+  \\"outputFilePath\\": \\"files/10.js\\"
  },
  {
   \\"name\\": \\"./index.html\\",
@@ -550,6 +555,14 @@ exports[`run bundle command 4`] = `
     \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
    }
   ]
+ },
+ \\"packages/integration-tests/src/components/Empty.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Empty.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Empty.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Empty.bojagi.js\\",
+  \\"dependencies\\": []
  },
  \\"packages/integration-tests/src/components/Hooks.bojagi.js\\": {
   \\"id\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",

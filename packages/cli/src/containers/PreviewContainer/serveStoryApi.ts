@@ -1,4 +1,5 @@
 import { StoryCollectionMetadata } from '../../steps/analyze';
+import { filterEmptyStories } from '../../utils/filterEmptyStories';
 import { SetupApiOptions } from './setupApi';
 
 export function serveStoriesApi({ storiesMetadata, getFiles, getAssets }: SetupApiOptions) {
@@ -7,6 +8,7 @@ export function serveStoriesApi({ storiesMetadata, getFiles, getAssets }: SetupA
   return {
     files: getFiles().map(({ url, name }) => ({ name, url })),
     stories: Object.entries(storiesMetadata)
+      .filter(([, meta]) => filterEmptyStories(meta))
       .sort(sortStory)
       .map(([filePath, meta]) => {
         return {

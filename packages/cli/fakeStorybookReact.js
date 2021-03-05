@@ -5,5 +5,9 @@ module.exports.getStorybook = () => [];
 module.exports.raw = () => [];
 module.exports.setAddon = () => {};
 module.exports.storiesOf = () => {};
-module.exports.forceReRender = () => {};
+module.exports.forceReRender = () => {
+  if (window && window.bojagi) {
+    window.bojagi.forceReRender();
+  }
+};
 module.exports.configure = () => {};
