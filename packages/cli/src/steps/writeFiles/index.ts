@@ -9,6 +9,7 @@ import { normalizeFilePath } from '../../utils/normalizeFilePath';
 import { getStepOutputFiles } from '../../utils/getOutputFiles';
 import { getStepOutputStories } from '../../utils/getOutputStories';
 import { getStepOutputDependencies } from '../../utils/getOutputDependencies';
+import { filterEmptyStories } from '../../utils/filterEmptyStories';
 
 export type WriteFilesStepOutput = StepOutput & {};
 
@@ -66,6 +67,7 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
         ...item,
       };
     })
+    .filter(filterEmptyStories)
     .map(mapObjectWithWhitelist(STORY_PROPERTY_WHITELIST));
 
   const dependenciesOutput = getStepOutputDependencies(stepOutputs);

@@ -51,6 +51,12 @@ test('get components API output', () => {
         },
       ],
     },
+    emptyFile: {
+      fileName: 'empty',
+      title: 'FILE EMPTY',
+      filePath: '/some/path/some/empty_file.ts',
+      storyItems: [],
+    },
   };
 
   const result = serveStoriesApi({
