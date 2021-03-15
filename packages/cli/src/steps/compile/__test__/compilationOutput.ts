@@ -1,8 +1,24 @@
-export function webpackCompilationOutput() {
+export function webpackCompilationOutput(webpackVersion) {
   const cwd = process.cwd();
+
+  function wrapDependency({ module, request }) {
+    const abc = {
+      request,
+      innerModule: module,
+      get module() {
+        if (webpackVersion === 5) {
+          throw new Error('something');
+        }
+        return module;
+      },
+    };
+
+    return abc;
+  }
+
   return {
     moduleGraph: {
-      getModule: jest.fn(dep => dep.module),
+      getModule: jest.fn(dep => dep.innerModule),
     },
     errors: [],
     entrypoints: new Map([
@@ -43,53 +59,53 @@ export function webpackCompilationOutput() {
         resource: `${cwd}/bojagi/A.js`,
         dependencies: [
           // External module (react)
-          {
+          wrapDependency({
             request: 'react',
             module: {
               external: true,
               request: 'react',
               dependencies: [],
             },
-          },
-          {
+          }),
+          wrapDependency({
             request: '@babel/core',
             module: {
               resource: `${cwd}/node_modules/@babel/core/index.js`,
               external: false,
               dependencies: [],
             },
-          },
-          {
+          }),
+          wrapDependency({
             request: 'foreignNodeModules',
             module: {
               resource: `../../node_modules/foreignNodeModules/index.js`,
               dependencies: [],
             },
-          },
+          }),
           // node module of org
-          {
+          wrapDependency({
             request: '@material-ui/icons/MyIcon',
             module: {
               resource: `${cwd}/node_modules/@material-ui/icons/MyIcon/index.js`,
               dependencies: [],
             },
-          },
+          }),
           // node module (no org)
-          {
+          wrapDependency({
             request: 'styled-components',
             module: {
               resource: `${cwd}/node_modules/styled-components/index.js`,
               dependencies: [],
             },
-          },
+          }),
           // project module
-          {
+          wrapDependency({
             request: './test.js',
             module: {
               resource: `${cwd}/src/components/test.js`,
               dependencies: [
                 // project module
-                {
+                wrapDependency({
                   request: '../XXX.js',
                   module: {
                     resource: `${cwd}/src/components/XXX.js`,
@@ -112,35 +128,35 @@ export function webpackCompilationOutput() {
                       },
                     ],
                   },
-                },
-                {
+                }),
+                wrapDependency({
                   request: './otherTest.js',
                   module: {
                     resource: `${cwd}/src/components/otherTest.js`,
                     // should be memorized
                     dependencies: [
-                      {
+                      wrapDependency({
                         request: '../XXX.js',
                         module: {
                           resource: `${cwd}/src/components/XXX.js`,
                           dependencies: [
-                            {
+                            wrapDependency({
                               // This resource should never be called because the parent dependency is memorized
                               request: './not-included.js',
                               module: {
                                 resource: `${cwd}/src/components/not-included.js`,
                                 dependencies: [],
                               },
-                            },
+                            }),
                           ],
                         },
-                      },
+                      }),
                     ],
                   },
-                },
+                }),
               ],
             },
-          },
+          }),
         ],
       },
     ],

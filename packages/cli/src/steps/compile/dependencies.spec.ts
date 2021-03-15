@@ -1,7 +1,10 @@
 import { getDependencies, getDependenciesForFilePath } from './dependencies';
 import { compilationDependencies, webpackCompilationOutput } from './__test__/compilationOutput';
 
-describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
+describe.each([
+  [4, webpackCompilationOutput(4).modules, webpackCompilationOutput(4).moduleGraph.getModule],
+  [5, webpackCompilationOutput(5).modules, webpackCompilationOutput(5).moduleGraph.getModule],
+])('Webpack version %s', (_webpackMajorVersion, modules, getModule) => {
   describe('getDependencies', () => {
     test('get a map of all dependencies used', () => {
       expect(
@@ -12,8 +15,8 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
             'styled-components',
             'foreignNodeModules',
           ],
-          modules: webpackCompilationOutput().modules,
-          webpackMajorVersion,
+          getModule,
+          modules,
           projectGitPath: `${process.cwd()}`,
         })
       ).toEqual(compilationDependencies());
