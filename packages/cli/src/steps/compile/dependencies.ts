@@ -2,17 +2,9 @@ import * as path from 'path';
 import { Dependency, DependencyReference, LocalDependency } from '../../types';
 
 export function getDependencies(
-  { dependencyPackages, modules, projectGitPath, getModule },
+  { dependencyPackages, modules, projectGitPath, compilation, webpackMajorVersion },
   initial = {}
 ) {
-  function getDependencyModule(dep) {
-    try {
-      return dep.module;
-    } catch {
-      return getModule(dep);
-    }
-  }
-
   return modules
     .filter(module => !module.rawRequest || !module.rawRequest.includes(`?${module.resource}`))
     .reduce((acc, module) => {
@@ -23,22 +15,16 @@ export function getDependencies(
       }
 
       const subDependencies = module.dependencies
-        .filter(dep => getDependencyModule(dep))
-        .filter(dep => {
-          const depModule = getDependencyModule(dep);
-          return depModule && (!!depModule.request || !!depModule.resource);
-        })
+        .map(dep =>
+          webpackMajorVersion > 4 ? { ...dep, module: compilation.moduleGraph.getModule(dep) } : dep
+        )
+        .filter(dep => !!dep.module.request || !!dep.module.resource)
         .filter(onlyUnique)
-        .filter(ignoreDevDependencies(getDependencyModule, dependencyPackages));
+        .filter(ignoreDevDependencies(dependencyPackages));
 
       const result = {
         ...acc,
-        [dependency.id]: addSubDependencies(
-          getDependencyModule,
-          dependency,
-          subDependencies,
-          projectGitPath
-        ),
+        [dependency.id]: addSubDependencies(dependency, subDependencies, projectGitPath),
       };
 
       if (!module.dependencies?.length) {
@@ -50,9 +36,10 @@ export function getDependencies(
         ...getDependencies(
           {
             dependencyPackages,
-            modules: subDependencies.map(getDependencyModule),
-            getModule,
+            modules: subDependencies.map(dep => dep.module),
             projectGitPath,
+            compilation,
+            webpackMajorVersion,
           },
           result
         ),
@@ -99,20 +86,14 @@ function getModuleAsDependency(module, projectGitPath: string) {
   };
 }
 
-function addSubDependencies(
-  getDependencyModule,
-  dep,
-  subDependencies,
-  projectGitPath: string
-): Dependency {
+function addSubDependencies(dep, subDependencies, projectGitPath: string): Dependency {
   return {
     ...dep,
     dependencies:
       !dep.isNodeModule && subDependencies
-        ? subDependencies.map(subDep => {
-            const subModule = getDependencyModule(subDep);
+        ? subDependencies.map(({ request, module: subModule }) => {
             return {
-              request: getRequest(subDep.request),
+              request: getRequest(request),
               dependency: getModuleAsDependency(subModule, projectGitPath).id,
             };
           })
@@ -137,10 +118,10 @@ function getRequest(request) {
   return undefined;
 }
 
-function ignoreDevDependencies(getDependencyModule, dependencyPackages) {
+function ignoreDevDependencies(dependencyPackages) {
   return dep =>
     // Module is part of project (no node_modules)
-    !checkNodeModule(getDependencyModule(dep).resource) ||
+    !checkNodeModule(dep.module.resource) ||
     // Module is part of package.json "dependencies"
     dependencyPackages.find(depName => dep.request.startsWith(depName));
 }

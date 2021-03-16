@@ -58,7 +58,8 @@ export const runWebpackCompiler = ({
 
         const dependencies = getDependencies({
           dependencyPackages,
-          getModule: output.compilation.moduleGraph.getModule.bind(output.compilation.moduleGraph),
+          webpackMajorVersion,
+          compilation: output.compilation,
           modules: componentModules,
           projectGitPath,
         });
