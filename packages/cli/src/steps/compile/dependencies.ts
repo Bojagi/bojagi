@@ -2,7 +2,7 @@ import * as path from 'path';
 import { Dependency, DependencyReference, LocalDependency } from '../../types';
 
 export function getDependencies(
-  { dependencyPackages, modules, webpackMajorVersion, projectGitPath },
+  { dependencyPackages, modules, projectGitPath, compilation, webpackMajorVersion },
   initial = {}
 ) {
   return modules
@@ -15,6 +15,9 @@ export function getDependencies(
       }
 
       const subDependencies = module.dependencies
+        .map(dep =>
+          webpackMajorVersion > 4 ? { ...dep, module: compilation.moduleGraph.getModule(dep) } : dep
+        )
         .filter(dep => dep.module)
         .filter(dep => !!dep.module.request || !!dep.module.resource)
         .filter(onlyUnique)
@@ -36,8 +39,8 @@ export function getDependencies(
             dependencyPackages,
             modules: subDependencies.map(dep => dep.module),
             webpackMajorVersion,
-
             projectGitPath,
+            compilation,
           },
           result
         ),

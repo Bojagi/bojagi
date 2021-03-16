@@ -14,6 +14,7 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
           ],
           modules: webpackCompilationOutput().modules,
           webpackMajorVersion,
+          compilation: webpackCompilationOutput(),
           projectGitPath: `${process.cwd()}`,
         })
       ).toEqual(compilationDependencies());
