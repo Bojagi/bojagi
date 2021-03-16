@@ -1,6 +1,5 @@
 export function webpackCompilationOutput() {
   const cwd = process.cwd();
-
   return {
     moduleGraph: {
       getModule: jest.fn(dep => dep.module),

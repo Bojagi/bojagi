@@ -37,9 +37,9 @@ export function getDependencies(
           {
             dependencyPackages,
             modules: subDependencies.map(dep => dep.module),
+            webpackMajorVersion,
             projectGitPath,
             compilation,
-            webpackMajorVersion,
           },
           result
         ),

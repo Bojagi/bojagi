@@ -1,5 +1,5 @@
 import { getDependencies, getDependenciesForFilePath } from './dependencies';
-import { webpackCompilationOutput, compilationDependencies } from './__test__/compilationOutput';
+import { compilationDependencies, webpackCompilationOutput } from './__test__/compilationOutput';
 
 describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
   describe('getDependencies', () => {
@@ -12,8 +12,8 @@ describe.each([[4], [5]])('Webpack version %s', webpackMajorVersion => {
             'styled-components',
             'foreignNodeModules',
           ],
-          webpackMajorVersion,
           modules: webpackCompilationOutput().modules,
+          webpackMajorVersion,
           compilation: webpackCompilationOutput(),
           projectGitPath: `${process.cwd()}`,
         })
