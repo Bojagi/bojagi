@@ -94,7 +94,7 @@ function addSubDependencies(dep, subDependencies, projectGitPath: string): Depen
       !dep.isNodeModule && subDependencies
         ? subDependencies.map(({ request, module: subModule }) => {
             return {
-              request: getRequest(request),
+              request: getRequest(request || subModule.request),
               dependency: getModuleAsDependency(subModule, projectGitPath).id,
             };
           })
@@ -124,7 +124,10 @@ function ignoreDevDependencies(dependencyPackages) {
     // Module is part of project (no node_modules)
     !checkNodeModule(dep.module.resource) ||
     // Module is part of package.json "dependencies"
-    dependencyPackages.find(depName => dep.request.startsWith(depName));
+    dependencyPackages.find(depName => {
+      const request = dep.request || dep.module.request;
+      return request && request.startsWith(depName);
+    });
 }
 
 function getPackageName(module: any) {
