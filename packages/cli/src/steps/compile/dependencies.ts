@@ -94,7 +94,7 @@ function addSubDependencies(dep, subDependencies, projectGitPath: string): Depen
       !dep.isNodeModule && subDependencies
         ? subDependencies.map(({ request, module: subModule }) => {
             return {
-              request: getRequest(request) || getRequest(subModule.request),
+              request: getRequest(request || subModule.request),
               dependency: getModuleAsDependency(subModule, projectGitPath).id,
             };
           })
