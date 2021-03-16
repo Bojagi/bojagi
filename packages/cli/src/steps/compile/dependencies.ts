@@ -18,6 +18,7 @@ export function getDependencies(
         .map(dep =>
           webpackMajorVersion > 4 ? { ...dep, module: compilation.moduleGraph.getModule(dep) } : dep
         )
+        .filter(dep => dep.module)
         .filter(dep => !!dep.module.request || !!dep.module.resource)
         .filter(onlyUnique)
         .filter(ignoreDevDependencies(dependencyPackages));
