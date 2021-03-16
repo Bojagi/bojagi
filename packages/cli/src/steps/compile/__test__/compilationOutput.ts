@@ -76,8 +76,8 @@ export function webpackCompilationOutput() {
           },
           // node module (no org)
           {
-            request: 'styled-components',
             module: {
+              request: 'styled-components',
               resource: `${cwd}/node_modules/styled-components/index.js`,
               dependencies: [],
             },
