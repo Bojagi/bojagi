@@ -61,6 +61,21 @@ export const writeJson: WriteJsonFn = async (what, content, namespace) => {
   await fs.promises.writeFile(path.join(namespaceFolder, `${what}.json`), JSON.stringify(content));
 };
 
+export type ReadJsonFn = (what: string, namespace?: string) => Promise<Record<string, any>>;
+
+export const readJson: ReadJsonFn = async (what, namespace) => {
+  const namespaceFolder = await createBojagiTempFolder(namespace);
+  const filePath = path.join(namespaceFolder, `${what}.json`);
+  if (!fs.existsSync(filePath)) {
+    return undefined;
+  }
+
+  const fileContent = await (
+    await fs.promises.readFile(path.join(namespaceFolder, `${what}.json`))
+  ).toString('utf-8');
+  return JSON.parse(fileContent);
+};
+
 export function readJsonSync(what: string) {
   const filePath = path.join(TEMP_FOLDER, `${what}.json`);
   return JSON.parse(fs.readFileSync(filePath, 'utf-8'));

@@ -10,6 +10,7 @@ import { getStepOutputFiles } from '../../utils/getOutputFiles';
 import { getStepOutputStories } from '../../utils/getOutputStories';
 import { getStepOutputDependencies } from '../../utils/getOutputDependencies';
 import { filterEmptyStories } from '../../utils/filterEmptyStories';
+import { ConfigJson } from '../../storybook/types';
 
 export type WriteFilesStepOutput = StepOutput & {};
 
@@ -74,7 +75,12 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
 
   const manifest = buildManifest(stepOutputs.scan.reactVersion);
 
+  const configJson: ConfigJson = {
+    commit: config.commit,
+  };
+
   await writeJson('manifest', manifest);
+  await writeJson('config', configJson);
   await writeJson('files', cleanFiles, config.namespace);
   await writeJson('stories', cleanStories, config.namespace);
   await writeJson('dependencies', dependenciesOutput, config.namespace);
