@@ -7,6 +7,7 @@ import { uploadStep } from '../steps/upload';
 import { uploadValidator } from '../validators/uploadValidator';
 import { ConfigProvider } from '../config/configContext';
 import { validateStep } from '../steps/validate';
+import { readJson } from '../utils/writeFile';
 
 const steps: StepRunnerStep[] = [validateStep, createStoriesStep, uploadStep];
 
@@ -15,9 +16,10 @@ export default function upload(program) {
     .command('upload')
     .description('uploads your marked components to Bojagi (you need to run bundle command before)')
     .option('-c, --commit [commit]', 'The commit to upload the components for')
-    .action(args => {
+    .action(async args => {
+      const configJson = (await readJson('config')) || {};
       render(
-        <ConfigProvider config={args}>
+        <ConfigProvider config={{ ...configJson, ...args }}>
           <StepContainer steps={steps} validator={uploadValidator} />
         </ConfigProvider>
       );
