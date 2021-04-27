@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/integration-tests",
-  "version": "0.15.1",
+  "version": "0.16.0",
   "description": "integration tests",
   "homepage": "https://bojagi.io/docs",
   "bin": {
@@ -19,8 +19,8 @@
     "url": "https://github.com/Bojagi/issue-tracker/issues"
   },
   "dependencies": {
-    "@bojagi/cli": "^0.15.1",
-    "@bojagi/integration-test-utils": "^0.15.0",
+    "@bojagi/cli": "^0.16.0",
+    "@bojagi/integration-test-utils": "^0.16.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "styled-components": "4.4.1",
