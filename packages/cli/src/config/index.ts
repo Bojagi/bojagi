@@ -6,7 +6,7 @@ import { normaliseConfig } from './normaliseConfig';
 
 import { getGitSettings } from './getGitSettings';
 import { loadConfigFile } from './loadConfigFile';
-import { Config, BaseConfig } from './types';
+import { Config, BaseConfig, ProvisionalConfig } from './types';
 import { getConfigFromStorybook } from '../storybook/getConfigFromStorybook';
 
 export * from './types';
@@ -35,13 +35,18 @@ export const getConfig: (customConfig: Partial<BaseConfig>) => Promise<Config> =
     configFilePrio: CONFIG_FILE_PRIO,
     fs,
   });
+
+  const provisionalConfig: ProvisionalConfig = {
+    ...(await getGitSettings(configFile.executionPath || defaultConfig.executionPath)),
+    ...defaultConfig,
+    ...getConfigFromStorybook(),
+    ...configFile,
+  };
+
   return normaliseConfig(
     {
-      ...(await getGitSettings(configFile.executionPath || defaultConfig.executionPath)),
-      ...defaultConfig,
-      ...getConfigFromStorybook(),
-      ...configFile,
-      ...getCiSettings(),
+      ...provisionalConfig,
+      ...getCiSettings(provisionalConfig),
       ...customConfig,
     },
     configFileDirectory

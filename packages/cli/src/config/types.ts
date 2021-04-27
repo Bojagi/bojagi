@@ -16,6 +16,10 @@ export type BaseConfig = {
   previewDownloadUrl: string;
 };
 
+export type ProvisionalConfig = BaseConfig & {
+  commit?: string;
+};
+
 export type Config = CiSettings &
   Omit<BaseConfig, 'webpackConfig' | 'storyPath' | 'storyPathIgnorePatterns'> & {
     storyPath: string[];
