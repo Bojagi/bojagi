@@ -1,3 +1,5 @@
+import { ProvisionalConfig } from './types';
+
 type EnvObject = Record<string, string>;
 
 type DetectionFn = (env: EnvObject) => boolean;
@@ -11,7 +13,7 @@ export type CiEnvironment = {
   name: string;
   readableName: string;
   check: DetectionFn;
-  getSettings: (env: EnvObject) => CiSettings;
+  getSettings: (env: EnvObject, provisionalConfig: ProvisionalConfig) => CiSettings;
 };
 
 const FALLBACK_CI: CiEnvironment = {
@@ -55,8 +57,8 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
     name: 'github_actions',
     readableName: 'GitHub Actions',
     check: env => !!env.GITHUB_ACTION && !!env.GITHUB_REPOSITORY,
-    getSettings: env => ({
-      commit: env.GITHUB_SHA,
+    getSettings: (env, provisionalConfig) => ({
+      commit: provisionalConfig.commit || env.GITHUB_SHA,
       ci: true,
     }),
   },
@@ -89,9 +91,9 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
 ];
 
 export default function getCiSettingsFactory(env) {
-  return () => {
+  return (provisionalConfig: ProvisionalConfig) => {
     const environment: CiEnvironment =
       CI_ENVIRONMENTS.find(({ check }) => check(env)) || FALLBACK_CI;
-    return environment.getSettings(env);
+    return environment.getSettings(env, provisionalConfig);
   };
 }

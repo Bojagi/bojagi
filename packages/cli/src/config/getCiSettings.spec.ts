@@ -28,6 +28,18 @@ test('get GitHub Actions environment settings', () =>
     GITHUB_SHA: 'git-hash',
   }));
 
+test('get GitHub Actions environment settings and priotitize checked out commit', () =>
+  testCiConfig(
+    {
+      GITHUB_ACTION: 'something',
+      GITHUB_REPOSITORY: 'bojagi/bojagi',
+      GITHUB_SHA: 'input-git-hash',
+    },
+    {
+      commit: 'git-hash',
+    }
+  ));
+
 test('get Jenkins environment settings', () =>
   testCiConfig({
     JENKINS_URL: 'https://some.thing',
@@ -43,21 +55,21 @@ test('get TeamCity environment settings', () =>
 test('get Unknown CI environment settings', () => {
   const settings = getCiSettingsFactory({
     CI: 'true',
-  })();
+  })({} as any);
   expect(settings).toEqual({
     ci: true,
   });
 });
 
 test('get "No CI" environment settings', () => {
-  const settings = getCiSettingsFactory({})();
+  const settings = getCiSettingsFactory({})({} as any);
   expect(settings).toEqual({
     ci: false,
   });
 });
 
-function testCiConfig(env) {
-  const settings = getCiSettingsFactory(env)();
+function testCiConfig(env, tempConfig = {}) {
+  const settings = getCiSettingsFactory(env)(tempConfig as any);
   expect(settings).toEqual({
     ci: true,
     commit: 'git-hash',
