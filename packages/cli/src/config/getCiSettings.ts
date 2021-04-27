@@ -91,9 +91,9 @@ const CI_ENVIRONMENTS: CiEnvironment[] = [
 ];
 
 export default function getCiSettingsFactory(env) {
-  return (tempConfig: ProvisionalConfig) => {
+  return (provisionalConfig: ProvisionalConfig) => {
     const environment: CiEnvironment =
       CI_ENVIRONMENTS.find(({ check }) => check(env)) || FALLBACK_CI;
-    return environment.getSettings(env, tempConfig);
+    return environment.getSettings(env, provisionalConfig);
   };
 }
