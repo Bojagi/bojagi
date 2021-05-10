@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { FileContent, StoryFileWithMetadata } from '../../types';
 import { StepRunnerStep, StepRunnerActionOptions, StepOutput } from '../../containers/StepRunner';
 import { ScanStepOutput } from '../scan';
@@ -11,6 +12,8 @@ import { getStepOutputStories } from '../../utils/getOutputStories';
 import { getStepOutputDependencies } from '../../utils/getOutputDependencies';
 import { filterEmptyStories } from '../../utils/filterEmptyStories';
 import { ConfigJson } from '../../storybook/types';
+import { copyStaticFiles } from '../../utils/copyStaticFiles';
+import { TEMP_FOLDER } from '../../constants';
 
 export type WriteFilesStepOutput = StepOutput & {};
 
@@ -73,15 +76,29 @@ async function action({ config, stepOutputs }: StepRunnerActionOptions<Dependenc
 
   const dependenciesOutput = getStepOutputDependencies(stepOutputs);
 
+  const staticFiles = await copyStaticFiles(
+    config.staticDir.map(dir => path.join(config.executionPath, dir)),
+    path.join(TEMP_FOLDER, config.namespace, 'files')
+  );
+
   const manifest = buildManifest(stepOutputs.scan.reactVersion);
 
   const configJson: ConfigJson = {
     commit: config.commit,
   };
 
+  const allFiles = [
+    ...cleanFiles,
+    ...staticFiles.map(staticFilePath => ({
+      outputFilePath: path.join('files', staticFilePath),
+      namespace: config.namespace,
+      name: staticFilePath,
+    })),
+  ];
+
   await writeJson('manifest', manifest);
   await writeJson('config', configJson);
-  await writeJson('files', cleanFiles, config.namespace);
+  await writeJson('files', allFiles, config.namespace);
   await writeJson('stories', cleanStories, config.namespace);
   await writeJson('dependencies', dependenciesOutput, config.namespace);
 
