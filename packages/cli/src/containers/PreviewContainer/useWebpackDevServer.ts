@@ -84,7 +84,10 @@ export function useWebpackDevServer({
           inline: false,
           hot: false,
           open: !config.previewNoOpen,
-          contentBase: pathUtils.join(__dirname, 'public'),
+          contentBase:
+            config.staticDir && config.staticDir.length
+              ? config.staticDir.map(dir => pathUtils.join(config.executionPath, dir))
+              : undefined,
           before: setupApi({
             storiesMetadata,
             config,
