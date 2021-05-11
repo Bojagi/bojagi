@@ -86,6 +86,31 @@ exports[`run bundle command 2`] = `
   \\"name\\": \\"./index.html\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/index.html\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/file.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"file.js\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/videos/test.video\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"videos/test.video\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/images/headerImage.svg\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"images/headerImage.svg\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/images/logo.svg\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"images/logo.svg\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/index.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"index.html\\"
  }
 ]"
 `;
@@ -700,4 +725,29 @@ exports[`run bundle command 4`] = `
   ]
  }
 }"
+`;
+
+exports[`run bundle command 5`] = `
+"<html><body>index</body></html>
+"
+`;
+
+exports[`run bundle command 6`] = `
+"const abc = file;
+"
+`;
+
+exports[`run bundle command 7`] = `
+"I'm a test video
+"
+`;
+
+exports[`run bundle command 8`] = `
+"<svg id=\\"headerImage\\"></svg>
+"
+`;
+
+exports[`run bundle command 9`] = `
+"<svg id=\\"logo\\"></svg>
+"
 `;

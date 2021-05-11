@@ -1,0 +1,1 @@
+../linked-file/file.js
