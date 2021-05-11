@@ -4,6 +4,7 @@ export const defaultConfig: Omit<BaseConfig, 'webpackConfig'> = {
   executionPath: process.cwd(),
   dryRun: false,
   namespace: 'default',
+  staticDir: [],
   decoratorPath: '.bojagi/decorator.@(tsx|ts|jsx|js)',
   storyPath: ['src/**/*.stories.@(tsx|ts|jsx|js)', 'src/**/*.bojagi.@(tsx|ts|jsx|js)'],
   storyPathIgnorePatterns: [],

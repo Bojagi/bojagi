@@ -14,6 +14,11 @@ export type BaseConfig = {
   previewPort: number;
   previewNoOpen: boolean;
   previewDownloadUrl: string;
+  staticDir: string[];
+};
+
+export type CustomConfig = Omit<BaseConfig, 'staticDir'> & {
+  staticDir?: string;
 };
 
 export type ProvisionalConfig = BaseConfig & {

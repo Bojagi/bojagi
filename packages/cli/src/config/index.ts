@@ -6,7 +6,7 @@ import { normaliseConfig } from './normaliseConfig';
 
 import { getGitSettings } from './getGitSettings';
 import { loadConfigFile } from './loadConfigFile';
-import { Config, BaseConfig, ProvisionalConfig } from './types';
+import { Config, BaseConfig, ProvisionalConfig, CustomConfig } from './types';
 import { getConfigFromStorybook } from '../storybook/getConfigFromStorybook';
 
 export * from './types';
@@ -28,7 +28,7 @@ export const CONFIG_FILE_PRIO = [
 
 const getCiSettings = getCiSettingsFactory(process.env);
 
-export const getConfig: (customConfig: Partial<BaseConfig>) => Promise<Config> = async (
+export const getConfig: (customConfig: Partial<CustomConfig>) => Promise<Config> = async (
   customConfig = {}
 ) => {
   const { configFile, configFileDirectory } = loadConfigFile({
@@ -43,11 +43,19 @@ export const getConfig: (customConfig: Partial<BaseConfig>) => Promise<Config> =
     ...configFile,
   };
 
+  const transformedCustomConfig = ({
+    ...customConfig,
+  } as unknown) as BaseConfig;
+
+  if (customConfig.staticDir) {
+    transformedCustomConfig.staticDir = customConfig.staticDir.split(',');
+  }
+
   return normaliseConfig(
     {
       ...provisionalConfig,
       ...getCiSettings(provisionalConfig),
-      ...customConfig,
+      ...transformedCustomConfig,
     },
     configFileDirectory
   );

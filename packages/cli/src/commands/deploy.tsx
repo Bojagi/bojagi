@@ -31,6 +31,7 @@ export default function deploy(program) {
     .command('deploy')
     .description('bundles and uploads your marked components to Bojagi')
     .option('--storyPath [pathPattern]', 'path pattern to search for stories in')
+    .option('-s, --staticDir [paths]', 'path(s) to copy static files from')
     .option('--webpackConfig [path]', 'Path to the webpack config file')
     .option('-c, --commit [commit]', 'The commit to upload the components for')
     .action(args => {

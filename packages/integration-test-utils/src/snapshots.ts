@@ -50,16 +50,29 @@ function toB64(str) {
   return Buffer.from(str).toString('base64');
 }
 
-export function snapShotFileJSON(filePath) {
+export function snapShotFileJSON(filePath: string) {
   expect(
     JSON.stringify(JSON.parse(fs.readFileSync(filePath, 'utf8')), null, ' ')
   ).toMatchSnapshot();
 }
 
-export function snapShotTmpFolder(basePath) {
+export function snapShotFile(filePath: string) {
+  expect(fs.readFileSync(filePath, 'utf8')).toMatchSnapshot();
+}
+
+export function snapShotTmpFolder(basePath: string) {
   const resultFolder = getResultFolder(basePath);
   snapShotFileJSON(path.resolve(resultFolder, 'manifest.json'));
   snapShotFileJSON(path.resolve(resultFolder, 'default', 'files.json'));
   snapShotFileJSON(path.resolve(resultFolder, 'default', 'stories.json'));
   snapShotFileJSON(path.resolve(resultFolder, 'default', 'dependencies.json'));
+}
+
+export function snapShotStaticFiles(basePath: string) {
+  const resultFolder = getResultFolder(basePath);
+  snapShotFile(path.resolve(resultFolder, 'default', 'files', 'index.html'));
+  snapShotFile(path.resolve(resultFolder, 'default', 'files', 'file.js'));
+  snapShotFile(path.resolve(resultFolder, 'default', 'files', 'videos', 'test.video'));
+  snapShotFile(path.resolve(resultFolder, 'default', 'files', 'images', 'headerImage.svg'));
+  snapShotFile(path.resolve(resultFolder, 'default', 'files', 'images', 'logo.svg'));
 }
