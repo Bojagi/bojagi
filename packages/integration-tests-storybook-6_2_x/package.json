@@ -1,13 +1,13 @@
 {
   "name": "@bojagi/integration-tests-storybook-6_2_x",
-  "version": "0.16.1",
+  "version": "0.16.2-next.0",
   "description": "storybook based integration tests",
   "main": "index.js",
   "private": true,
   "devDependencies": {
     "@babel/core": "7.12.10",
-    "@bojagi/cli": "^0.16.1",
-    "@bojagi/integration-test-utils": "^0.16.0",
+    "@bojagi/cli": "^0.16.2-next.0",
+    "@bojagi/integration-test-utils": "^0.16.2-next.0",
     "@storybook/addon-actions": "^6.2.0-beta.1",
     "@storybook/addon-essentials": "^6.2.0-beta.1",
     "@storybook/addon-links": "^6.2.0-beta.1",
