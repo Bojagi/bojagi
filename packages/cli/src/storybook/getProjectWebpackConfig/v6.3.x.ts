@@ -8,18 +8,24 @@ import { StorybookFramework } from '../types';
 
 import webpack = require('webpack');
 
+// reverse engineered from @storybook/core-server/dist/cjs/build-static.js
 async function getWebpackConfig(loadOptions) {
   // we have to load all those libs dynamically as they are all optional
   const {
     getPreviewBuilder,
     // eslint-disable-next-line import/no-extraneous-dependencies
   } = require('@storybook/core-server/dist/cjs/utils/get-preview-builder');
+  const {
+    getManagerBuilder,
+    // eslint-disable-next-line import/no-extraneous-dependencies
+  } = require('@storybook/core-server/dist/cjs/utils/get-manager-builder');
   // eslint-disable-next-line import/no-extraneous-dependencies
   const { loadAllPresets } = require('@storybook/core-common');
   const cliOptions = getSbCliOptions();
   const configDir = getSbOption('configDir', './.storybook');
 
   const previewBuilder = await getPreviewBuilder(configDir);
+  const managerBuilder = await getManagerBuilder(configDir);
 
   const coreOptions = {
     ...loadOptions,
@@ -35,7 +41,7 @@ async function getWebpackConfig(loadOptions) {
     ...coreOptions,
     corePresets: [
       require.resolve('@storybook/core-server/dist/cjs/presets/common-preset'),
-      require.resolve('@storybook/core-server/dist/cjs/presets/manager-preset'),
+      ...managerBuilder.corePresets,
       ...previewBuilder.corePresets,
       require.resolve('@storybook/core-server/dist/cjs/presets/babel-cache-preset'),
     ],
@@ -59,7 +65,7 @@ async function getWebpackConfig(loadOptions) {
 }
 
 // eslint-disable-next-line camelcase
-export async function getV_6_2_3_StorybookProjectWebpackConfig(
+export async function getV_6_3_X_StorybookProjectWebpackConfig(
   framework: StorybookFramework
 ): Promise<webpack.Configuration | void> {
   const loadConfig = getStorybookFrameworkLoadOptions(framework);

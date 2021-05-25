@@ -16,8 +16,8 @@ export async function getStorybookProjectWebpackConfig(): Promise<webpack.Config
     debug(`storybook framework detected: ${framework}`);
     const version = getStorybookVersion(framework);
     debug(`storybook version: ${version}`);
-    if (semver.satisfies(semver.coerce(version), '>=6.2.0 <=6.3.0')) {
-      debug('version >=6.2.0 <=6.3.0, using V_6_2_X configuration');
+    if (semver.satisfies(semver.coerce(version), '>=6.2.0 <6.3.0')) {
+      debug('version >=6.2.0 <6.3.0, using V_6_2_X configuration');
       return getV_6_2_X_StorybookProjectWebpackConfig(framework);
     }
     if (semver.satisfies(semver.coerce(version), '>=6.3.0')) {
@@ -27,5 +27,6 @@ export async function getStorybookProjectWebpackConfig(): Promise<webpack.Config
     debug('version below 6.2.0, using V_6_1_X configuration');
     return getV_6_1_X_StorybookProjectWebpackConfig(framework);
   }
+  debug('no storybook installed');
   return undefined;
 }

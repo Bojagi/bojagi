@@ -18,6 +18,7 @@ function preparePackages {
   preparePackage integration-tests
   preparePackage integration-tests-storybook-6_1_x
   preparePackage integration-tests-storybook-6_2_x
+  preparePackage integration-tests-storybook-6_3_x
 }
 
 function integration {
@@ -35,6 +36,9 @@ function integrationLocal {
 }
 
 case $1 in
+  preparePackages ) 
+    preparePackages
+    ;;
   integration )
     integration ${@:2}
     ;;
