@@ -4,6 +4,9 @@ set -e
 FILE_ROOT=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PROJECT_ROOT=$FILE_ROOT/..
 
+function removeDevDependencies {
+  node $PROJECT_ROOT/scripts/removeDevDependencies.js $1
+}
 
 function preparePackage {
   # we hard copy instead of link as its the only way to secure proper functionality
@@ -11,6 +14,7 @@ function preparePackage {
   rm -r $PROJECT_ROOT/packages/$1/node_modules/@bojagi/cli || true
   mkdir $PROJECT_ROOT/packages/$1/node_modules/@bojagi || true
   cp -r $PROJECT_ROOT/packages/cli $PROJECT_ROOT/packages/$1/node_modules/@bojagi/
+  removeDevDependencies $PROJECT_ROOT/packages/$1/node_modules/@bojagi/cli 
   ln -s $PROJECT_ROOT/packages/$1/node_modules/@bojagi/cli/bin/index.js $PROJECT_ROOT/packages/$1/node_modules/.bin/bojagi
 }
 
