@@ -18,79 +18,79 @@ exports[`run bundle command 1`] = `
 exports[`run bundle command 2`] = `
 "[
  {
-  \\"name\\": \\"vendors.beaf02eae9d72e23ceeb.js\\",
+  \\"name\\": \\"vendors.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/vendors.beaf02eae9d72e23ceeb.js\\"
+  \\"outputFilePath\\": \\"files/vendors.js\\"
  },
  {
-  \\"name\\": \\"runtime~src__Button.stories.js.beaf02eae9d72e23ceeb.js\\",
+  \\"name\\": \\"runtime~src__Button.stories.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~src__Button.stories.js.beaf02eae9d72e23ceeb.js\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Button.stories.js.js\\"
  },
  {
-  \\"name\\": \\"runtime~src__Header.stories.js.beaf02eae9d72e23ceeb.js\\",
+  \\"name\\": \\"runtime~src__Header.stories.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~src__Header.stories.js.beaf02eae9d72e23ceeb.js\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Header.stories.js.js\\"
  },
  {
-  \\"name\\": \\"runtime~src__Page.stories.js.beaf02eae9d72e23ceeb.js\\",
+  \\"name\\": \\"runtime~src__Page.stories.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~src__Page.stories.js.beaf02eae9d72e23ceeb.js\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Page.stories.js.js\\"
  },
  {
-  \\"name\\": \\"src__Button.stories.js.beaf02eae9d72e23ceeb.js\\",
+  \\"name\\": \\"src__Button.stories.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__Button.stories.js.beaf02eae9d72e23ceeb.js\\"
+  \\"outputFilePath\\": \\"files/src__Button.stories.js.js\\"
  },
  {
-  \\"name\\": \\"src__Header.stories.js.beaf02eae9d72e23ceeb.js\\",
+  \\"name\\": \\"src__Header.stories.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__Header.stories.js.beaf02eae9d72e23ceeb.js\\"
+  \\"outputFilePath\\": \\"files/src__Header.stories.js.js\\"
  },
  {
-  \\"name\\": \\"src__Page.stories.js.beaf02eae9d72e23ceeb.js\\",
+  \\"name\\": \\"src__Page.stories.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__Page.stories.js.beaf02eae9d72e23ceeb.js\\"
+  \\"outputFilePath\\": \\"files/src__Page.stories.js.js\\"
  },
  {
-  \\"name\\": \\"vendors.beaf02eae9d72e23ceeb.js.LICENSE.txt\\",
+  \\"name\\": \\"vendors.js.LICENSE.txt\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/vendors.beaf02eae9d72e23ceeb.js.LICENSE.txt\\"
+  \\"outputFilePath\\": \\"files/vendors.js.LICENSE.txt\\"
  },
  {
-  \\"name\\": \\"vendors.beaf02eae9d72e23ceeb.js.map\\",
+  \\"name\\": \\"vendors.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/vendors.beaf02eae9d72e23ceeb.js.map\\"
+  \\"outputFilePath\\": \\"files/vendors.js.map\\"
  },
  {
-  \\"name\\": \\"runtime~src__Button.stories.js.beaf02eae9d72e23ceeb.js.map\\",
+  \\"name\\": \\"runtime~src__Button.stories.js.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~src__Button.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Button.stories.js.js.map\\"
  },
  {
-  \\"name\\": \\"runtime~src__Header.stories.js.beaf02eae9d72e23ceeb.js.map\\",
+  \\"name\\": \\"runtime~src__Header.stories.js.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~src__Header.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Header.stories.js.js.map\\"
  },
  {
-  \\"name\\": \\"runtime~src__Page.stories.js.beaf02eae9d72e23ceeb.js.map\\",
+  \\"name\\": \\"runtime~src__Page.stories.js.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~src__Page.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Page.stories.js.js.map\\"
  },
  {
-  \\"name\\": \\"src__Button.stories.js.beaf02eae9d72e23ceeb.js.map\\",
+  \\"name\\": \\"src__Button.stories.js.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__Button.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+  \\"outputFilePath\\": \\"files/src__Button.stories.js.js.map\\"
  },
  {
-  \\"name\\": \\"src__Header.stories.js.beaf02eae9d72e23ceeb.js.map\\",
+  \\"name\\": \\"src__Header.stories.js.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__Header.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+  \\"outputFilePath\\": \\"files/src__Header.stories.js.js.map\\"
  },
  {
-  \\"name\\": \\"src__Page.stories.js.beaf02eae9d72e23ceeb.js.map\\",
+  \\"name\\": \\"src__Page.stories.js.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__Page.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+  \\"outputFilePath\\": \\"files/src__Page.stories.js.js.map\\"
  },
  {
   \\"name\\": \\"iframe.html\\",
@@ -148,12 +148,12 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Button.stories.js\\",
   \\"files\\": [
-   \\"runtime~src__Button.stories.js.beaf02eae9d72e23ceeb.js\\",
-   \\"runtime~src__Button.stories.js.beaf02eae9d72e23ceeb.js.map\\",
-   \\"vendors.beaf02eae9d72e23ceeb.js\\",
-   \\"vendors.beaf02eae9d72e23ceeb.js.map\\",
-   \\"src__Button.stories.js.beaf02eae9d72e23ceeb.js\\",
-   \\"src__Button.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+   \\"runtime~src__Button.stories.js.js\\",
+   \\"runtime~src__Button.stories.js.js.map\\",
+   \\"vendors.js\\",
+   \\"vendors.js.map\\",
+   \\"src__Button.stories.js.js\\",
+   \\"src__Button.stories.js.js.map\\"
   ]
  },
  {
@@ -184,12 +184,12 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Header.stories.js\\",
   \\"files\\": [
-   \\"runtime~src__Header.stories.js.beaf02eae9d72e23ceeb.js\\",
-   \\"runtime~src__Header.stories.js.beaf02eae9d72e23ceeb.js.map\\",
-   \\"vendors.beaf02eae9d72e23ceeb.js\\",
-   \\"vendors.beaf02eae9d72e23ceeb.js.map\\",
-   \\"src__Header.stories.js.beaf02eae9d72e23ceeb.js\\",
-   \\"src__Header.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+   \\"runtime~src__Header.stories.js.js\\",
+   \\"runtime~src__Header.stories.js.js.map\\",
+   \\"vendors.js\\",
+   \\"vendors.js.map\\",
+   \\"src__Header.stories.js.js\\",
+   \\"src__Header.stories.js.js.map\\"
   ]
  },
  {
@@ -224,12 +224,12 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Page.stories.js\\",
   \\"files\\": [
-   \\"runtime~src__Page.stories.js.beaf02eae9d72e23ceeb.js\\",
-   \\"runtime~src__Page.stories.js.beaf02eae9d72e23ceeb.js.map\\",
-   \\"vendors.beaf02eae9d72e23ceeb.js\\",
-   \\"vendors.beaf02eae9d72e23ceeb.js.map\\",
-   \\"src__Page.stories.js.beaf02eae9d72e23ceeb.js\\",
-   \\"src__Page.stories.js.beaf02eae9d72e23ceeb.js.map\\"
+   \\"runtime~src__Page.stories.js.js\\",
+   \\"runtime~src__Page.stories.js.js.map\\",
+   \\"vendors.js\\",
+   \\"vendors.js.map\\",
+   \\"src__Page.stories.js.js\\",
+   \\"src__Page.stories.js.js.map\\"
   ]
  }
 ]"

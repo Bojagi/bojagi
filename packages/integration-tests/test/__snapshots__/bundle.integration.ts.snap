@@ -23,9 +23,9 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/718ad8b72621629b68f4ea8458266766.png\\"
  },
  {
-  \\"name\\": \\"vendors.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"vendors.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/vendors.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/vendors.js\\"
  },
  {
   \\"name\\": \\"src__App.bojagi.js.css\\",
@@ -33,54 +33,54 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/src__App.bojagi.js.css\\"
  },
  {
-  \\"name\\": \\"src__App.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__App.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__App.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__App.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__Box.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__Box.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__Box.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Box.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__BoxWithButtons.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__BoxWithButtons.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__BoxWithButtons.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__BoxWithButtons.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__Button.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__Button.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__Button.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Button.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__Empty.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__Empty.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__Empty.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Empty.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__Hooks.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__Hooks.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__Hooks.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Hooks.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__Lazy.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__Lazy.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__Lazy.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Lazy.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__Logo.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__Logo.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__Logo.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Logo.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"src__components__PingPong.bojagi.js.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"src__components__PingPong.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/src__components__PingPong.bojagi.js.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/src__components__PingPong.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"10.3b1f4bb739288813742d.js\\",
+  \\"name\\": \\"10.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/10.3b1f4bb739288813742d.js\\"
+  \\"outputFilePath\\": \\"files/10.js\\"
  },
  {
   \\"name\\": \\"./index.html\\",
@@ -141,9 +141,9 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/App.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
+   \\"vendors.js\\",
    \\"src__App.bojagi.js.css\\",
-   \\"src__App.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"src__App.bojagi.js.js\\"
   ]
  },
  {
@@ -186,8 +186,8 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Box.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
-   \\"src__components__Box.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"vendors.js\\",
+   \\"src__components__Box.bojagi.js.js\\"
   ]
  },
  {
@@ -214,8 +214,8 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
-   \\"src__components__BoxWithButtons.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"vendors.js\\",
+   \\"src__components__BoxWithButtons.bojagi.js.js\\"
   ]
  },
  {
@@ -246,8 +246,8 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Button.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
-   \\"src__components__Button.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"vendors.js\\",
+   \\"src__components__Button.bojagi.js.js\\"
   ]
  },
  {
@@ -270,8 +270,8 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Hooks.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
-   \\"src__components__Hooks.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"vendors.js\\",
+   \\"src__components__Hooks.bojagi.js.js\\"
   ]
  },
  {
@@ -298,8 +298,8 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
-   \\"src__components__Lazy.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"vendors.js\\",
+   \\"src__components__Lazy.bojagi.js.js\\"
   ]
  },
  {
@@ -326,8 +326,8 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
-   \\"src__components__Logo.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"vendors.js\\",
+   \\"src__components__Logo.bojagi.js.js\\"
   ]
  },
  {
@@ -362,8 +362,8 @@ exports[`run bundle command 3`] = `
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
   \\"files\\": [
-   \\"vendors.3b1f4bb739288813742d.js\\",
-   \\"src__components__PingPong.bojagi.js.3b1f4bb739288813742d.js\\"
+   \\"vendors.js\\",
+   \\"src__components__PingPong.bojagi.js.js\\"
   ]
  }
 ]"
