@@ -23,7 +23,7 @@ const getEntrypointsFromFiles = (
 
       const fileName = matchResult[1];
       return {
-        name: fileName,
+        name: filePath.replace(/\//g, '__'),
         filePath,
         gitPath: gitPath || filePath,
         fileName,

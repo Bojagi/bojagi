@@ -18,49 +18,49 @@ exports[`run bundle command 1`] = `
 exports[`run bundle command 2`] = `
 "[
  {
-  \\"name\\": \\"vendors.js\\",
+  \\"name\\": \\"vendors.0b9ade441d1473d9b03f.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/vendors.js\\"
+  \\"outputFilePath\\": \\"files/vendors.0b9ade441d1473d9b03f.js\\"
  },
  {
-  \\"name\\": \\"Button.stories.js\\",
+  \\"name\\": \\"runtime~src__Button.stories.js.0b9ade441d1473d9b03f.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Button.stories.js\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Button.stories.js.0b9ade441d1473d9b03f.js\\"
  },
  {
-  \\"name\\": \\"Header.stories.js\\",
+  \\"name\\": \\"runtime~src__Header.stories.js.0b9ade441d1473d9b03f.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Header.stories.js\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Header.stories.js.0b9ade441d1473d9b03f.js\\"
  },
  {
-  \\"name\\": \\"Page.stories.js\\",
+  \\"name\\": \\"runtime~src__Page.stories.js.0b9ade441d1473d9b03f.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Page.stories.js\\"
+  \\"outputFilePath\\": \\"files/runtime~src__Page.stories.js.0b9ade441d1473d9b03f.js\\"
  },
  {
-  \\"name\\": \\"runtime~Button.stories.js\\",
+  \\"name\\": \\"src__Button.stories.js.0b9ade441d1473d9b03f.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~Button.stories.js\\"
+  \\"outputFilePath\\": \\"files/src__Button.stories.js.0b9ade441d1473d9b03f.js\\"
  },
  {
-  \\"name\\": \\"runtime~Header.stories.js\\",
+  \\"name\\": \\"src__Header.stories.js.0b9ade441d1473d9b03f.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~Header.stories.js\\"
+  \\"outputFilePath\\": \\"files/src__Header.stories.js.0b9ade441d1473d9b03f.js\\"
  },
  {
-  \\"name\\": \\"runtime~Page.stories.js\\",
+  \\"name\\": \\"src__Page.stories.js.0b9ade441d1473d9b03f.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/runtime~Page.stories.js\\"
+  \\"outputFilePath\\": \\"files/src__Page.stories.js.0b9ade441d1473d9b03f.js\\"
  },
  {
-  \\"name\\": \\"vendors.js.LICENSE.txt\\",
+  \\"name\\": \\"vendors.0b9ade441d1473d9b03f.js.LICENSE.txt\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/vendors.js.LICENSE.txt\\"
+  \\"outputFilePath\\": \\"files/vendors.0b9ade441d1473d9b03f.js.LICENSE.txt\\"
  },
  {
-  \\"name\\": \\"vendors.js.map\\",
+  \\"name\\": \\"vendors.0b9ade441d1473d9b03f.js.map\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/vendors.js.map\\"
+  \\"outputFilePath\\": \\"files/vendors.0b9ade441d1473d9b03f.js.map\\"
  },
  {
   \\"name\\": \\"iframe.html\\",
@@ -114,14 +114,14 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Button.stories.js\\",
-  \\"name\\": \\"Button.stories\\",
+  \\"name\\": \\"src__Button.stories.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Button.stories.js\\",
   \\"files\\": [
-   \\"runtime~Button.stories.js\\",
-   \\"vendors.js\\",
-   \\"vendors.js.map\\",
-   \\"Button.stories.js\\"
+   \\"runtime~src__Button.stories.js.0b9ade441d1473d9b03f.js\\",
+   \\"vendors.0b9ade441d1473d9b03f.js\\",
+   \\"vendors.0b9ade441d1473d9b03f.js.map\\",
+   \\"src__Button.stories.js.0b9ade441d1473d9b03f.js\\"
   ]
  },
  {
@@ -148,14 +148,14 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Header.stories.js\\",
-  \\"name\\": \\"Header.stories\\",
+  \\"name\\": \\"src__Header.stories.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Header.stories.js\\",
   \\"files\\": [
-   \\"runtime~Header.stories.js\\",
-   \\"vendors.js\\",
-   \\"vendors.js.map\\",
-   \\"Header.stories.js\\"
+   \\"runtime~src__Header.stories.js.0b9ade441d1473d9b03f.js\\",
+   \\"vendors.0b9ade441d1473d9b03f.js\\",
+   \\"vendors.0b9ade441d1473d9b03f.js.map\\",
+   \\"src__Header.stories.js.0b9ade441d1473d9b03f.js\\"
   ]
  },
  {
@@ -186,14 +186,14 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests-storybook-6_2_x/src/Page.stories.js\\",
-  \\"name\\": \\"Page.stories\\",
+  \\"name\\": \\"src__Page.stories.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/Page.stories.js\\",
   \\"files\\": [
-   \\"runtime~Page.stories.js\\",
-   \\"vendors.js\\",
-   \\"vendors.js.map\\",
-   \\"Page.stories.js\\"
+   \\"runtime~src__Page.stories.js.0b9ade441d1473d9b03f.js\\",
+   \\"vendors.0b9ade441d1473d9b03f.js\\",
+   \\"vendors.0b9ade441d1473d9b03f.js.map\\",
+   \\"src__Page.stories.js.0b9ade441d1473d9b03f.js\\"
   ]
  }
 ]"

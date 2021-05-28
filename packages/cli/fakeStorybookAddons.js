@@ -1,4 +1,5 @@
-const makeDecorator = () => story => story();
+const originalAddons = require('@storybook/addons');
+const makeDecorator = originalAddons.makeDecorator;
 const getChannel = () => ({
   addListener: () => {},
   addPeerListener: () => {},
@@ -12,7 +13,7 @@ const getChannel = () => ({
   removeListener: () => {},
   on: () => {},
   off: () => {},
-})
+});
 
 const addons = {
   makeDecorator,

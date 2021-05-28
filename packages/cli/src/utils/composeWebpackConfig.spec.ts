@@ -78,7 +78,7 @@ const testCases = [
       });
       expect(config.output).toEqual({
         path: `${process.cwd()}/bojagi`,
-        filename: '[name].js',
+        filename: '[name].[hash].js',
         publicPath: '__bojagi_public_path__/',
         globalObject: 'window',
       });
