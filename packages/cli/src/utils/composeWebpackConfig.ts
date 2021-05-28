@@ -64,7 +64,7 @@ const composeWebpackConfig = (
       entry,
       output: {
         path: pathUtils.join(process.cwd(), 'bojagi'),
-        filename: '[name].[hash].js',
+        filename: '[name].js',
         publicPath,
         globalObject: 'window',
       },
