@@ -45,7 +45,7 @@ async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOut
   const stories = getStepOutputStories(stepOutputs);
 
   stories.forEach(s =>
-    s.files.forEach(fileName => {
+    (s.files || []).forEach(fileName => {
       const foundFile = getStepOutputFiles(stepOutputs)
         .filter(file => JS_REGEXP.test(file.name))
         .find(file => file.name === fileName);

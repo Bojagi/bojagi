@@ -1,4 +1,7 @@
-const makeDecorator = () => story => story();
+// Questionmark is here to get around module replacement and load original module
+const originalAddons = require('@storybook/addons?');
+
+const makeDecorator = originalAddons.makeDecorator;
 const getChannel = () => ({
   addListener: () => {},
   addPeerListener: () => {},
@@ -12,7 +15,7 @@ const getChannel = () => ({
   removeListener: () => {},
   on: () => {},
   off: () => {},
-})
+});
 
 const addons = {
   makeDecorator,

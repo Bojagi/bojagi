@@ -11,7 +11,9 @@ export function pitch(remainingRequest) {
   if (this.cacheable) this.cacheable();
   if (!this.query) throw new Error('query parameter is missing');
 
-  const moduleName = JSON.stringify(this.query.substr(1));
+  // eslint-disable-next-line no-underscore-dangle
+  const moduleName = JSON.stringify(this._module.issuer.name);
+
   const componentHubFn = 'registerComponent';
   const requirePath = JSON.stringify(`-!${newRequestPath}`);
   const result = `

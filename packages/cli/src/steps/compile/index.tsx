@@ -95,7 +95,7 @@ async function action({
       name: sf.name,
       namespace,
       filePath: sf.filePath,
-      files: assets[sf.fileName],
+      files: assets[sf.name],
     })
   );
 

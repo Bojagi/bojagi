@@ -28,54 +28,54 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/vendors.js\\"
  },
  {
-  \\"name\\": \\"App.bojagi.css\\",
+  \\"name\\": \\"src__App.bojagi.js.css\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/App.bojagi.css\\"
+  \\"outputFilePath\\": \\"files/src__App.bojagi.js.css\\"
  },
  {
-  \\"name\\": \\"App.bojagi.js\\",
+  \\"name\\": \\"src__App.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/App.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__App.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"Box.bojagi.js\\",
+  \\"name\\": \\"src__components__Box.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Box.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Box.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"BoxWithButtons.bojagi.js\\",
+  \\"name\\": \\"src__components__BoxWithButtons.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/BoxWithButtons.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__BoxWithButtons.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"Button.bojagi.js\\",
+  \\"name\\": \\"src__components__Button.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Button.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Button.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"Empty.bojagi.js\\",
+  \\"name\\": \\"src__components__Empty.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Empty.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Empty.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"Hooks.bojagi.js\\",
+  \\"name\\": \\"src__components__Hooks.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Hooks.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Hooks.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"Lazy.bojagi.js\\",
+  \\"name\\": \\"src__components__Lazy.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Lazy.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Lazy.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"Logo.bojagi.js\\",
+  \\"name\\": \\"src__components__Logo.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/Logo.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__Logo.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"PingPong.bojagi.js\\",
+  \\"name\\": \\"src__components__PingPong.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/PingPong.bojagi.js\\"
+  \\"outputFilePath\\": \\"files/src__components__PingPong.bojagi.js.js\\"
  },
  {
   \\"name\\": \\"10.js\\",
@@ -118,7 +118,7 @@ exports[`run bundle command 2`] = `
 exports[`run bundle command 3`] = `
 "[
  {
-  \\"title\\": \\"App.bojagi\\",
+  \\"title\\": \\"Src__App.bojagi.js\\",
   \\"fileName\\": \\"App.bojagi\\",
   \\"storyItems\\": [
    {
@@ -137,17 +137,17 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/App.bojagi.js\\",
-  \\"name\\": \\"App.bojagi\\",
+  \\"name\\": \\"src__App.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/App.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"App.bojagi.css\\",
-   \\"App.bojagi.js\\"
+   \\"src__App.bojagi.js.css\\",
+   \\"src__App.bojagi.js.js\\"
   ]
  },
  {
-  \\"title\\": \\"Box.bojagi\\",
+  \\"title\\": \\"Src__components__Box.bojagi.js\\",
   \\"fileName\\": \\"Box.bojagi\\",
   \\"storyItems\\": [
    {
@@ -182,16 +182,16 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
-  \\"name\\": \\"Box.bojagi\\",
+  \\"name\\": \\"src__components__Box.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Box.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"Box.bojagi.js\\"
+   \\"src__components__Box.bojagi.js.js\\"
   ]
  },
  {
-  \\"title\\": \\"Box With Buttons.bojagi\\",
+  \\"title\\": \\"Src__components__Box With Buttons.bojagi.js\\",
   \\"fileName\\": \\"BoxWithButtons.bojagi\\",
   \\"storyItems\\": [
    {
@@ -210,16 +210,16 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
-  \\"name\\": \\"BoxWithButtons.bojagi\\",
+  \\"name\\": \\"src__components__BoxWithButtons.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"BoxWithButtons.bojagi.js\\"
+   \\"src__components__BoxWithButtons.bojagi.js.js\\"
   ]
  },
  {
-  \\"title\\": \\"Button.bojagi\\",
+  \\"title\\": \\"Src__components__Button.bojagi.js\\",
   \\"fileName\\": \\"Button.bojagi\\",
   \\"storyItems\\": [
    {
@@ -242,16 +242,16 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
-  \\"name\\": \\"Button.bojagi\\",
+  \\"name\\": \\"src__components__Button.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Button.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"Button.bojagi.js\\"
+   \\"src__components__Button.bojagi.js.js\\"
   ]
  },
  {
-  \\"title\\": \\"Hooks.bojagi\\",
+  \\"title\\": \\"Src__components__Hooks.bojagi.js\\",
   \\"fileName\\": \\"Hooks.bojagi\\",
   \\"storyItems\\": [
    {
@@ -266,16 +266,16 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",
-  \\"name\\": \\"Hooks.bojagi\\",
+  \\"name\\": \\"src__components__Hooks.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Hooks.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"Hooks.bojagi.js\\"
+   \\"src__components__Hooks.bojagi.js.js\\"
   ]
  },
  {
-  \\"title\\": \\"Lazy.bojagi\\",
+  \\"title\\": \\"Src__components__Lazy.bojagi.js\\",
   \\"fileName\\": \\"Lazy.bojagi\\",
   \\"storyItems\\": [
    {
@@ -294,16 +294,16 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
-  \\"name\\": \\"Lazy.bojagi\\",
+  \\"name\\": \\"src__components__Lazy.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"Lazy.bojagi.js\\"
+   \\"src__components__Lazy.bojagi.js.js\\"
   ]
  },
  {
-  \\"title\\": \\"Logo.bojagi\\",
+  \\"title\\": \\"Src__components__Logo.bojagi.js\\",
   \\"fileName\\": \\"Logo.bojagi\\",
   \\"storyItems\\": [
    {
@@ -322,16 +322,16 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
-  \\"name\\": \\"Logo.bojagi\\",
+  \\"name\\": \\"src__components__Logo.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"Logo.bojagi.js\\"
+   \\"src__components__Logo.bojagi.js.js\\"
   ]
  },
  {
-  \\"title\\": \\"Ping Pong.bojagi\\",
+  \\"title\\": \\"Src__components__Ping Pong.bojagi.js\\",
   \\"fileName\\": \\"PingPong.bojagi\\",
   \\"storyItems\\": [
    {
@@ -358,12 +358,12 @@ exports[`run bundle command 3`] = `
    }
   ],
   \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
-  \\"name\\": \\"PingPong.bojagi\\",
+  \\"name\\": \\"src__components__PingPong.bojagi.js\\",
   \\"namespace\\": \\"default\\",
   \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
   \\"files\\": [
    \\"vendors.js\\",
-   \\"PingPong.bojagi.js\\"
+   \\"src__components__PingPong.bojagi.js.js\\"
   ]
  }
 ]"
