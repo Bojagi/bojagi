@@ -144,6 +144,7 @@ export function getDependenciesForFilePath(
   modules: LocalDependency[],
   filePath: string
 ): DependencyReference[] {
-  const module = modules.find(m => m.filePath === filePath || `./${m.filePath}` === filePath);
+  const absoluteFilePath = path.resolve(filePath);
+  const module = modules.find(m => path.resolve(m.filePath) === absoluteFilePath);
   return (module && module.dependencies) || [];
 }
