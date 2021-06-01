@@ -28,7 +28,7 @@ export async function getWebpackConfig({
   const entrypoints = storyFiles.reduce(
     (prev, storyFile) => ({
       ...prev,
-      [storyFile.fileName]: [
+      [storyFile.name]: [
         storyFile.entrypoint,
         pathUtils.resolve(__dirname, '../storybook/getGlobals.js'),
         ...(decoratorFile ? [decoratorFile] : []),

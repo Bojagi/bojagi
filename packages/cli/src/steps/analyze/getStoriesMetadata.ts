@@ -6,11 +6,11 @@ export function getStoriesMetadata(
   componentModules: Map<string, Record<string, any>>
 ): Record<string, any> {
   return stories.reduce((acc, s) => {
-    const module = componentModules.get(s.fileName);
+    const module = componentModules.get(s.name);
     const metadata = module
       ? {
           title: (module.default && module.default.title) || camelCaseToSpaces(s.name),
-          fileName: s.fileName,
+          fileName: s.name,
           storyItems: Object.entries(module)
             .filter(([exportName]) => exportName !== 'default')
             .map(([exportName, storyFn]) => ({
