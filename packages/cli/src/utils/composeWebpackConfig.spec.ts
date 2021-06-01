@@ -50,11 +50,14 @@ const BASE_ENTRY = {
 };
 
 const BASE_INPUT = {
-  baseConfig: {
-    entry: BASE_CONFIG_ENTRY,
-    resolve: BASE_CONFIG_RESOLVE,
-    module: BASE_CONFIG_MODULE,
-    plugins: BASE_CONFIG_PLUGINS,
+  config: {
+    webpackConfig: {
+      entry: BASE_CONFIG_ENTRY,
+      resolve: BASE_CONFIG_RESOLVE,
+      module: BASE_CONFIG_MODULE,
+      plugins: BASE_CONFIG_PLUGINS,
+    },
+    executionPath: '/my/project/path',
   },
   entry: BASE_ENTRY,
   decoratorPath: undefined,
@@ -122,14 +125,13 @@ testCases.forEach(testCase => {
   });
 
   test(`getWebpackConfig - ${testCase.name}`, () => {
-    const { baseConfig, entry, decoratorPath } = testCase.input;
-    const config = composeWebpackConfig(
-      baseConfig,
+    const { config, entry, decoratorPath } = testCase.input;
+    const webpackConfig = composeWebpackConfig(
+      config as any,
       entry,
-      '/my/project/path',
       decoratorPath,
       getSbOptionMock
     );
-    testCase.test(config);
+    testCase.test(webpackConfig);
   });
 });

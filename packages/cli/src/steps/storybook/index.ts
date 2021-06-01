@@ -30,8 +30,8 @@ async function action({
   config,
   fs,
 }: StepRunnerActionOptions<DependencyStepOutputs>): Promise<StorybookStepOutput> {
-  const { namespace, executionPath } = config;
-  const sbConfigDir = getSbOption('configDir', './.storybook');
+  const { namespace, executionPath, storybookConfig } = config;
+  const sbConfigDir = getSbOption('configDir', storybookConfig);
   const previewHeadPath = path.join(executionPath, sbConfigDir, 'preview-head.html');
   const previewBodyPath = path.join(executionPath, sbConfigDir, 'preview-body.html');
   const files: OutputFileContent<FileContent>[] = [];

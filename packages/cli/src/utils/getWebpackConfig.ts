@@ -38,9 +38,8 @@ export async function getWebpackConfig({
   );
 
   const webpackConfig = composeWebpackConfig(
-    config.webpackConfig,
+    config,
     entrypoints,
-    config.executionPath,
     decoratorFile,
     getSbOption,
     publicPath

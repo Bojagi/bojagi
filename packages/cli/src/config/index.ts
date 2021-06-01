@@ -39,7 +39,7 @@ export const getConfig: (customConfig: Partial<CustomConfig>) => Promise<Config>
   const provisionalConfig: ProvisionalConfig = {
     ...(await getGitSettings(configFile.executionPath || defaultConfig.executionPath)),
     ...defaultConfig,
-    ...getConfigFromStorybook(),
+    ...getConfigFromStorybook(defaultConfig, configFile, customConfig),
     ...configFile,
   };
 

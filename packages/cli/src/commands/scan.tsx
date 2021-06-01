@@ -11,6 +11,7 @@ export default function scan(program) {
   program
     .command('scan')
     .option('--storyPath [pathPattern]', 'path pattern to search for stories in')
+    .option('--storybookConfig [path]', 'Path to the storybook config folder')
     .description('Scans for components')
     .action(args => {
       render(

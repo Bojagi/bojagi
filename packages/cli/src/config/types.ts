@@ -6,6 +6,7 @@ export type BaseConfig = {
   dryRun: boolean;
   namespace: 'default';
   webpackConfig?: string;
+  storybookConfig?: string;
   executionPath: string;
   decoratorPath: string;
   uploadApiUrl: string;

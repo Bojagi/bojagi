@@ -6,6 +6,7 @@ export const defaultConfig: Omit<BaseConfig, 'webpackConfig'> = {
   namespace: 'default',
   staticDir: [],
   decoratorPath: '.bojagi/decorator.@(tsx|ts|jsx|js)',
+  storybookConfig: './.storybook',
   storyPath: ['src/**/*.stories.@(tsx|ts|jsx|js)', 'src/**/*.bojagi.@(tsx|ts|jsx|js)'],
   storyPathIgnorePatterns: [],
   uploadApiUrl: process.env.BOJAGI_API_URL || 'https://upload.bojagi.io',

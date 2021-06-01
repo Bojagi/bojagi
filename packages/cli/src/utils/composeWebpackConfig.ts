@@ -1,18 +1,18 @@
 import * as webpack from 'webpack';
 import * as pathUtils from 'path';
 import { merge } from 'webpack-merge';
+import { Config } from '../config';
 
 const BLACKLISTED_PLUGINS = ['ManifestPlugin'];
 
 const composeWebpackConfig = (
-  baseConfig: webpack.Configuration,
+  config: Config,
   entry: webpack.Entry,
-  executionPath: string,
   decoratorFile: string | undefined,
   getSbOption: <T>(key: string, fallbackValue: T) => T,
   publicPath: string = '__bojagi_public_path__/'
 ): webpack.Configuration => {
-  const { entry: baseEntry, plugins, ...baseConfigWithoutEntry } = baseConfig;
+  const { entry: baseEntry, plugins, ...baseConfigWithoutEntry } = config.webpackConfig;
   const filteredPlugins = plugins?.filter(
     plugin => !BLACKLISTED_PLUGINS.includes(plugin.constructor?.name)
   );
@@ -24,7 +24,7 @@ const composeWebpackConfig = (
         rules: decoratorFile
           ? [
               {
-                test: pathUtils.resolve(executionPath, decoratorFile),
+                test: pathUtils.resolve(config.executionPath, decoratorFile),
                 use: [
                   {
                     loader: `bojagi-expose-loader`,
@@ -70,7 +70,9 @@ const composeWebpackConfig = (
       },
       resolve: {
         alias: {
-          'storybook-folder': pathUtils.resolve(getSbOption('configDir', './.storybook') || ''),
+          'storybook-folder': pathUtils.resolve(
+            getSbOption('configDir', config.storybookConfig) || ''
+          ),
         },
       },
       resolveLoader: {

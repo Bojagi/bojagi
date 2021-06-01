@@ -17,16 +17,17 @@ export async function getDecoratorFile(
     return pathUtils.resolve(config.executionPath, bojagiDecoratorFiles[0]);
   }
 
-  const sbDecoratorFile = getSbDecoratorFile(innerGetSbOption, innerFs);
+  const sbDecoratorFile = getSbDecoratorFile(innerGetSbOption, innerFs, config);
   process.env.STORYBOOK_FOLDER = sbDecoratorFile;
   return sbDecoratorFile || undefined;
 }
 
 function getSbDecoratorFile(
   innerGetSbOption: typeof getSbOption,
-  innerFs: typeof fs
+  innerFs: typeof fs,
+  config: Config
 ): string | undefined {
-  const configDir = innerGetSbOption('configDir', './.storybook');
+  const configDir = innerGetSbOption('configDir', config.storybookConfig);
 
   if (!configDir) {
     return undefined;
