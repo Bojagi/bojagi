@@ -5,11 +5,12 @@ import { getSbOption, getSbCliOptions } from '../getSbOption';
 import { getPackageFolder } from '../../utils/getPackageFolder';
 import { replaceDefaultMediaLoader } from './replaceLoaders';
 import { StorybookFramework } from '../types';
+import { BaseConfig } from '../../config';
 
 import webpack = require('webpack');
 
 // reverse engineered from @storybook/core-server/dist/cjs/build-static.js
-async function getWebpackConfig(loadOptions) {
+async function getWebpackConfig(loadOptions, config: BaseConfig) {
   // we have to load all those libs dynamically as they are all optional
   const {
     getPreviewBuilder,
@@ -22,7 +23,7 @@ async function getWebpackConfig(loadOptions) {
   // eslint-disable-next-line import/no-extraneous-dependencies
   const { loadAllPresets } = require('@storybook/core-common');
   const cliOptions = getSbCliOptions();
-  const configDir = getSbOption('configDir', './.storybook');
+  const configDir = getSbOption('configDir', config.storybookConfig);
 
   const previewBuilder = await getPreviewBuilder(configDir);
   const managerBuilder = await getManagerBuilder(configDir);
@@ -66,11 +67,12 @@ async function getWebpackConfig(loadOptions) {
 
 // eslint-disable-next-line camelcase
 export async function getV_6_3_X_StorybookProjectWebpackConfig(
-  framework: StorybookFramework
+  framework: StorybookFramework,
+  config: BaseConfig
 ): Promise<webpack.Configuration | void> {
   const loadConfig = getStorybookFrameworkLoadOptions(framework);
 
-  return getWebpackConfig(loadConfig);
+  return getWebpackConfig(loadConfig, config);
 }
 
 function getOutputDir(givenOutputDir) {

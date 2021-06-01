@@ -24,6 +24,7 @@ export default function bundle(program) {
     .option('--storyPath [pathPattern]', 'path pattern to search for stories in')
     .option('-s, --staticDir [paths]', 'path(s) to copy static files from')
     .option('--webpackConfig [path]', 'Path to the webpack config file')
+    .option('--storybookConfig [path]', 'Path to the storybook config folder')
     .description('bundles your marked components (does NOT upload to Bojagi)')
     .action(args => {
       render(

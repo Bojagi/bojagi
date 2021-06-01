@@ -1,17 +1,26 @@
 import * as path from 'path';
 import * as fs from 'fs';
 
-import { BaseConfig } from '../config';
+import { BaseConfig, CustomConfig } from '../config';
 import { getSbOption } from './getSbOption';
 import { storybookIsInstalled } from './storybookUtils';
 import { ValidationError } from '../errors';
 
-export function getConfigFromStorybook(): Partial<BaseConfig> {
+export function getConfigFromStorybook(
+  defaultConfig: Partial<BaseConfig>,
+  configFileConfig: Partial<BaseConfig>,
+  customConfig: Partial<CustomConfig>
+): Partial<BaseConfig> {
   if (!storybookIsInstalled()) {
     return {};
   }
 
-  const configDir = getSbOption('configDir', './.storybook');
+  const storybookConfig =
+    customConfig.storybookConfig ||
+    configFileConfig.storybookConfig ||
+    defaultConfig.storybookConfig;
+
+  const configDir = getSbOption('configDir', storybookConfig);
   const configFile = path.resolve(configDir, 'main.js');
 
   if (!fs.existsSync(configFile)) {
@@ -22,7 +31,7 @@ export function getConfigFromStorybook(): Partial<BaseConfig> {
 
   const sbConfig = require(configFile);
 
-  const storyPath = sbConfig.stories.map(p => p.replace(/^\.\.\//, ''));
+  const storyPath = sbConfig.stories.map(p => path.resolve(configDir, p));
 
   return {
     storyPath,
