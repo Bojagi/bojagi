@@ -17,11 +17,15 @@ const getChannel = () => ({
   off: () => {},
 });
 
+const setConfig = () => {};
+
 const addons = {
   makeDecorator,
   getChannel,
+  setConfig,
 };
 
 module.exports.addons = addons;
 module.exports.makeDecorator = makeDecorator;
 module.exports.getChannel = getChannel;
+module.exports.setConfig = setConfig;
