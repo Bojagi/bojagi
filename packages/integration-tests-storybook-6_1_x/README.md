@@ -1,6 +1,6 @@
 # Bojagi - Bring your designers to code review ✅
 
-<img src="https://bojagi.io/images/bojagi-logo-full.svg" alt="Bojagi Logo" height="140" />
+<img src="https://bojagi.io/images/bojagi-logo-full.svg?v2" alt="Bojagi Logo" height="140" />
 
 [Documentation](https://bojagi.io/docs) ◆ [Bojagi Website](https://bojagi.io) ◆ [Join the open beta](https://bojagi.io/register)
 
