@@ -5,6 +5,9 @@ import { getStoriesMetadata } from './getStoriesMetadata';
 import { setupFakeBrowserEnvironment } from './setupFakeBrowserEnvironment';
 import { getStepOutputStories } from '../../utils/getOutputStories';
 import { getStepOutputFiles } from '../../utils/getOutputFiles';
+import debuggers, { DebugNamespaces } from '../../debug';
+
+const debug = debuggers[DebugNamespaces.ANALYZE];
 
 export type StoryItem = {
   exportName: string;
@@ -50,7 +53,14 @@ async function action({ stepOutputs }: StepRunnerActionOptions<DependencyStepOut
         .filter(file => JS_REGEXP.test(file.name))
         .find(file => file.name === fileName);
       if (foundFile) {
-        require(foundFile.fullOutputFilePath);
+        try {
+          // some modules have problems being required, but in most cases analysis still works
+          // so we ignore errors and hope for the best
+          require(foundFile.fullOutputFilePath);
+        } catch (e) {
+          debug('error importing file %s', foundFile.name);
+          debug('error %s %O', e.message, e.stack);
+        }
       }
     })
   );
