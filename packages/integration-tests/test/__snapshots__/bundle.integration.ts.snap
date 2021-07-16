@@ -68,6 +68,11 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/src__components__Lazy.bojagi.js.js\\"
  },
  {
+  \\"name\\": \\"src__components__LocalStorage.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__LocalStorage.bojagi.js.js\\"
+ },
+ {
   \\"name\\": \\"src__components__Logo.bojagi.js.js\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/src__components__Logo.bojagi.js.js\\"
@@ -78,9 +83,9 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/src__components__PingPong.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"10.js\\",
+  \\"name\\": \\"11.js\\",
   \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/10.js\\"
+  \\"outputFilePath\\": \\"files/11.js\\"
  },
  {
   \\"name\\": \\"./index.html\\",
@@ -300,6 +305,30 @@ exports[`run bundle command 3`] = `
   \\"files\\": [
    \\"vendors.js\\",
    \\"src__components__Lazy.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Local Storage.bojagi.js\\",
+  \\"fileName\\": \\"LocalStorage.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"localStorage\\",
+    \\"storyName\\": \\"Local Storage\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\",
+  \\"name\\": \\"src__components__LocalStorage.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/LocalStorage.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__LocalStorage.bojagi.js.js\\"
   ]
  },
  {
@@ -616,6 +645,19 @@ exports[`run bundle command 4`] = `
    {
     \\"request\\": \\"./Lazy\\",
     \\"dependency\\": \\"packages/integration-tests/src/components/Lazy.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/LocalStorage.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
    }
   ]
  },
