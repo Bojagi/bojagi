@@ -20,12 +20,13 @@ const getEntrypointsFromFiles = (
       const fullFilePath = path.resolve(filePath);
       const gitPath = gitPathPrefix && path.relative(gitPathPrefix, fullFilePath);
       const absoluteFilePath = path.resolve(config.executionPath, filePath);
+      const relativeFilePath = path.relative(config.executionPath, absoluteFilePath);
 
       const fileName = matchResult[1];
       return {
-        name: filePath.replace(/\//g, '__'),
+        name: relativeFilePath.replace(/\//g, '__'),
         filePath,
-        gitPath: gitPath || filePath,
+        gitPath: gitPath || relativeFilePath,
         fileName,
         entrypoint: `component-extract-loader?${fileName}!${absoluteFilePath}`,
       };
