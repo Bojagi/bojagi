@@ -8,13 +8,9 @@ const remainingRequest =
 beforeEach(() => {
   self = {
     cacheable: jest.fn(),
+    rootContext: '/home/MyAccount/project',
     context: '/home/MyAccount/project/Abc',
     resourcePath: '/home/MyAccount/project/Abc/Abc.jsx',
-    _module: {
-      issuer: {
-        name: 'MyComponent',
-      },
-    },
     query: '?MyComponentQuery',
   };
   pitch = _pitch.bind(self);
@@ -24,7 +20,7 @@ test('happy path', () => {
   const result = pitch(remainingRequest);
   expect(result).toBe(`
     var componentModule = require("-!/home/MyAccount/project/node_modules/babel-loader/lib/index.js??ref--0!./Abc.jsx");
-    registerComponent("MyComponent", componentModule);
+    registerComponent("Abc__Abc.jsx", componentModule);
     module.exports = componentModule;
   `);
   expect(self.cacheable.mock.calls.length).toBe(1);
