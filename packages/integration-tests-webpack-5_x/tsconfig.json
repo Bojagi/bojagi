@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "lib"
+  },
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["src/**/__testHelpers__/*", "node_modules"],
+  "references": [
+    {
+      "path": "../cli"
+    }
+  ]
+}

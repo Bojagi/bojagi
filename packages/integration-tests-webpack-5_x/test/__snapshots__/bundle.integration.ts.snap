@@ -1,0 +1,790 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`run bundle command 1`] = `
+"{
+ \\"version\\": \\"4\\",
+ \\"namespaces\\": [
+  {
+   \\"name\\": \\"default\\",
+   \\"framework\\": {
+    \\"name\\": \\"react\\",
+    \\"version\\": \\"16.12.0\\"
+   }
+  }
+ ]
+}"
+`;
+
+exports[`run bundle command 2`] = `
+"[
+ {
+  \\"name\\": \\"718ad8b72621629b68f4ea8458266766.png\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/718ad8b72621629b68f4ea8458266766.png\\"
+ },
+ {
+  \\"name\\": \\"vendors.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/vendors.js\\"
+ },
+ {
+  \\"name\\": \\"src__App.bojagi.js.css\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__App.bojagi.js.css\\"
+ },
+ {
+  \\"name\\": \\"src__App.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__App.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__Box.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__Box.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__BoxWithButtons.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__BoxWithButtons.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__Button.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__Button.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__Empty.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__Empty.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__Hooks.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__Hooks.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__Lazy.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__Lazy.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__LocalStorage.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__LocalStorage.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__Logo.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__Logo.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"src__components__PingPong.bojagi.js.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/src__components__PingPong.bojagi.js.js\\"
+ },
+ {
+  \\"name\\": \\"./index.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"outputFilePath\\": \\"files/index.html\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/file.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"file.js\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/videos/test.video\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"videos/test.video\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/images/headerImage.svg\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"images/headerImage.svg\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/images/logo.svg\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"images/logo.svg\\"
+ },
+ {
+  \\"outputFilePath\\": \\"files/index.html\\",
+  \\"namespace\\": \\"default\\",
+  \\"name\\": \\"index.html\\"
+ }
+]"
+`;
+
+exports[`run bundle command 3`] = `
+"[
+ {
+  \\"title\\": \\"Src__App.bojagi.js\\",
+  \\"fileName\\": \\"App.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"RenderApp\\",
+    \\"storyName\\": \\"Render App\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./App\\",
+    \\"dependency\\": \\"packages/integration-tests/src/App.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/App.bojagi.js\\",
+  \\"name\\": \\"src__App.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/App.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__App.bojagi.js.css\\",
+   \\"src__App.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Box.bojagi.js\\",
+  \\"fileName\\": \\"Box.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"yellow\\",
+    \\"storyName\\": \\"Yellow\\"
+   },
+   {
+    \\"exportName\\": \\"green\\",
+    \\"storyName\\": \\"Green\\"
+   },
+   {
+    \\"exportName\\": \\"red\\",
+    \\"storyName\\": \\"Red\\"
+   },
+   {
+    \\"exportName\\": \\"blue\\",
+    \\"storyName\\": \\"Blue\\"
+   },
+   {
+    \\"exportName\\": \\"brown\\",
+    \\"storyName\\": \\"Brown\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Box\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
+  \\"name\\": \\"src__components__Box.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Box.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__Box.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Box With Buttons.bojagi.js\\",
+  \\"fileName\\": \\"BoxWithButtons.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"trafficLight\\",
+    \\"storyName\\": \\"Traffic Light\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./BoxWithButtons\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
+  \\"name\\": \\"src__components__BoxWithButtons.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__BoxWithButtons.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Button.bojagi.js\\",
+  \\"fileName\\": \\"Button.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"buttonYellow\\",
+    \\"storyName\\": \\"Button Yellow\\"
+   },
+   {
+    \\"exportName\\": \\"buttonGreen\\",
+    \\"storyName\\": \\"Button Green\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
+  \\"name\\": \\"src__components__Button.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Button.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__Button.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Hooks.bojagi.js\\",
+  \\"fileName\\": \\"Hooks.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"Hooks\\",
+    \\"storyName\\": \\"Hooks\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",
+  \\"name\\": \\"src__components__Hooks.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Hooks.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__Hooks.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Lazy.bojagi.js\\",
+  \\"fileName\\": \\"Lazy.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"lazy\\",
+    \\"storyName\\": \\"Lazy\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Lazy\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Lazy.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
+  \\"name\\": \\"src__components__Lazy.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__Lazy.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Local Storage.bojagi.js\\",
+  \\"fileName\\": \\"LocalStorage.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"localStorage\\",
+    \\"storyName\\": \\"Local Storage\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\",
+  \\"name\\": \\"src__components__LocalStorage.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/LocalStorage.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__LocalStorage.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Logo.bojagi.js\\",
+  \\"fileName\\": \\"Logo.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"logo\\",
+    \\"storyName\\": \\"Logo\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Logo\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Logo.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
+  \\"name\\": \\"src__components__Logo.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__Logo.bojagi.js.js\\"
+  ]
+ },
+ {
+  \\"title\\": \\"Src__components__Ping Pong.bojagi.js\\",
+  \\"fileName\\": \\"PingPong.bojagi\\",
+  \\"storyItems\\": [
+   {
+    \\"exportName\\": \\"PingPong\\",
+    \\"storyName\\": \\"Ping Pong\\"
+   },
+   {
+    \\"exportName\\": \\"PongPing\\",
+    \\"storyName\\": \\"Pong Ping\\"
+   }
+  ],
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Ping\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Ping.js\\"
+   },
+   {
+    \\"request\\": \\"./Pong\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Pong.js\\"
+   }
+  ],
+  \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
+  \\"name\\": \\"src__components__PingPong.bojagi.js\\",
+  \\"namespace\\": \\"default\\",
+  \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
+  \\"files\\": [
+   \\"vendors.js\\",
+   \\"src__components__PingPong.bojagi.js.js\\"
+  ]
+ }
+]"
+`;
+
+exports[`run bundle command 4`] = `
+"{
+ \\"packages/integration-tests/src/App.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/App.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/App.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/App.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./App\\",
+    \\"dependency\\": \\"packages/integration-tests/src/App.js\\"
+   }
+  ]
+ },
+ \\"react\\": {
+  \\"id\\": \\"react\\",
+  \\"isExternal\\": true,
+  \\"isNodeModule\\": false,
+  \\"packageName\\": \\"react\\",
+  \\"dependencies\\": []
+ },
+ \\"packages/integration-tests/src/App.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/App.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/App.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/App.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./components/Box\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
+   },
+   {
+    \\"request\\": \\"./components/Button\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
+   },
+   {
+    \\"request\\": \\"./components/BoxWithButtons\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\"
+   },
+   {
+    \\"request\\": \\"./App.css\\",
+    \\"dependency\\": \\"packages/integration-tests/src/App.css\\"
+   },
+   {
+    \\"request\\": \\"./components/Lazy\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Lazy.js\\"
+   }
+  ]
+ },
+ \\"styled-components\\": {
+  \\"id\\": \\"styled-components\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": true,
+  \\"packageName\\": \\"styled-components\\",
+  \\"dependencies\\": []
+ },
+ \\"react-is\\": {
+  \\"id\\": \\"react-is\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": true,
+  \\"packageName\\": \\"react-is\\",
+  \\"dependencies\\": []
+ },
+ \\"packages/integration-tests/src/components/Box.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Box.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Box.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Box.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Button.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Button.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Button.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Button.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/BoxWithButtons.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/BoxWithButtons.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./Box\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/App.css\\": {
+  \\"id\\": \\"packages/integration-tests/src/App.css\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/App.css\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/App.css\\",
+  \\"dependencies\\": []
+ },
+ \\"packages/integration-tests/src/components/Lazy.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Lazy.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Lazy.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Box.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Box.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Box.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Box\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Box.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/BoxWithButtons.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/BoxWithButtons.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./BoxWithButtons\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/BoxWithButtons.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Button.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Button.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Button.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Button.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Empty.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Empty.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Empty.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Empty.bojagi.js\\",
+  \\"dependencies\\": []
+ },
+ \\"packages/integration-tests/src/components/Hooks.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Hooks.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Hooks.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Lazy.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Lazy.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Lazy.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Lazy\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Lazy.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/LocalStorage.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/LocalStorage.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Logo.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Logo.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Logo\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Logo.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Logo.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Logo.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Logo.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Logo.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./img/logo.png\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/img/logo.png\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/img/logo.png\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/img/logo.png\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/img/logo.png\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/img/logo.png\\",
+  \\"dependencies\\": []
+ },
+ \\"packages/integration-tests/src/components/PingPong.bojagi.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/PingPong.bojagi.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/PingPong.bojagi.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Ping\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Ping.js\\"
+   },
+   {
+    \\"request\\": \\"./Pong\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Pong.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Ping.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Ping.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Ping.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Ping.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./Pong\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Pong.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests/src/components/Pong.js\\": {
+  \\"id\\": \\"packages/integration-tests/src/components/Pong.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/components/Pong.js\\",
+  \\"gitPath\\": \\"packages/integration-tests/src/components/Pong.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"styled-components\\",
+    \\"dependency\\": \\"styled-components\\"
+   },
+   {
+    \\"request\\": \\"./Ping\\",
+    \\"dependency\\": \\"packages/integration-tests/src/components/Ping.js\\"
+   }
+  ]
+ }
+}"
+`;
+
+exports[`run bundle command 5`] = `
+"<html><body>index</body></html>
+"
+`;
+
+exports[`run bundle command 6`] = `
+"const abc = file;
+"
+`;
+
+exports[`run bundle command 7`] = `
+"I'm a test video
+"
+`;
+
+exports[`run bundle command 8`] = `
+"<svg id=\\"headerImage\\"></svg>
+"
+`;
+
+exports[`run bundle command 9`] = `
+"<svg id=\\"logo\\"></svg>
+"
+`;

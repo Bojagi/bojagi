@@ -19,7 +19,8 @@ function preparePackage {
 }
 
 function preparePackages {
-  preparePackage integration-tests
+  preparePackage integration-tests-webpack-4_x
+  preparePackage integration-tests-webpack-5_x
   preparePackage integration-tests-storybook-6_1_x
   preparePackage integration-tests-storybook-6_2_x
   preparePackage integration-tests-storybook-6_3_x
