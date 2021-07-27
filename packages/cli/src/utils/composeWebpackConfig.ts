@@ -1,10 +1,12 @@
 import * as webpack from 'webpack';
 import * as pathUtils from 'path';
+import * as semver from 'semver';
 import { merge } from 'webpack-merge';
 import { Config } from '../config';
 
-const BLACKLISTED_PLUGINS = ['ManifestPlugin'];
+const webpackVersion = require('webpack/package.json').version;
 
+const BLACKLISTED_PLUGINS = ['ManifestPlugin'];
 const composeWebpackConfig = (
   config: Config,
   entry: webpack.Entry,
@@ -87,8 +89,14 @@ const composeWebpackConfig = (
         'react-dom': 'reactDom',
       },
       optimization: {
-        minimize: true,
+        minimize: !process.env.DEBUG,
         concatenateModules: false,
+        ...(semver.satisfies(semver.coerce(webpackVersion), '>=5.0.0')
+          ? {
+              innerGraph: false, // to prevent undefined requires in chunks
+            }
+          : {}),
+        moduleIds: process.env.DEBUG ? 'named' : 'natural', // easier read in debug mode
         splitChunks: {
           cacheGroups: {
             vendors: {
@@ -108,8 +116,13 @@ const composeWebpackConfig = (
           /@storybook\/react$/,
           require.resolve('@bojagi/cli/fakeStorybookReact.js')
         ),
+        new webpack.optimize.LimitChunkCountPlugin({
+          // if set to more, innerGraph does nothing and this issue reoccurs:
+          // https://github.com/webpack/webpack/issues/11770#issuecomment-717048094
+          maxChunks: 2,
+        }),
       ],
-    }
+    } as any
   );
 };
 

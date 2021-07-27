@@ -83,11 +83,6 @@ exports[`run bundle command 2`] = `
   \\"outputFilePath\\": \\"files/src__components__PingPong.bojagi.js.js\\"
  },
  {
-  \\"name\\": \\"11.js\\",
-  \\"namespace\\": \\"default\\",
-  \\"outputFilePath\\": \\"files/11.js\\"
- },
- {
   \\"name\\": \\"./index.html\\",
   \\"namespace\\": \\"default\\",
   \\"outputFilePath\\": \\"files/index.html\\"

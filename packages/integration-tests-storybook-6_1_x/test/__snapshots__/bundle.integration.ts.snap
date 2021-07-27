@@ -237,20 +237,20 @@ exports[`run bundle command 3`] = `
 
 exports[`run bundle command 4`] = `
 "{
- \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\",
+ \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\",
   \\"isExternal\\": false,
   \\"isNodeModule\\": false,
-  \\"filePath\\": \\"src/Header.stories.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\",
+  \\"filePath\\": \\"src/Button.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\",
   \\"dependencies\\": [
    {
     \\"request\\": \\"react\\",
     \\"dependency\\": \\"react\\"
    },
    {
-    \\"request\\": \\"./Header\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\"
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\"
    }
   ]
  },
@@ -260,27 +260,6 @@ exports[`run bundle command 4`] = `
   \\"isNodeModule\\": false,
   \\"packageName\\": \\"react\\",
   \\"dependencies\\": []
- },
- \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\",
-  \\"isExternal\\": false,
-  \\"isNodeModule\\": false,
-  \\"filePath\\": \\"src/Header.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\",
-  \\"dependencies\\": [
-   {
-    \\"request\\": \\"react\\",
-    \\"dependency\\": \\"react\\"
-   },
-   {
-    \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\"
-   },
-   {
-    \\"request\\": \\"./header.css\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\"
-   }
-  ]
  },
  \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\": {
   \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\",
@@ -312,6 +291,44 @@ exports[`run bundle command 4`] = `
    }
   ]
  },
+ \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Header.stories.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.stories.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Header\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\"
+   }
+  ]
+ },
+ \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\": {
+  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\",
+  \\"isExternal\\": false,
+  \\"isNodeModule\\": false,
+  \\"filePath\\": \\"src/Header.js\\",
+  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Header.js\\",
+  \\"dependencies\\": [
+   {
+    \\"request\\": \\"react\\",
+    \\"dependency\\": \\"react\\"
+   },
+   {
+    \\"request\\": \\"./Button\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\"
+   },
+   {
+    \\"request\\": \\"./header.css\\",
+    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\"
+   }
+  ]
+ },
  \\"packages/integration-tests-storybook-6_1_x/src/header.css\\": {
   \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\",
   \\"isExternal\\": false,
@@ -322,23 +339,6 @@ exports[`run bundle command 4`] = `
    {
     \\"request\\": \\"./header.css\\",
     \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/header.css\\"
-   }
-  ]
- },
- \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\": {
-  \\"id\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\",
-  \\"isExternal\\": false,
-  \\"isNodeModule\\": false,
-  \\"filePath\\": \\"src/Button.stories.js\\",
-  \\"gitPath\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.stories.js\\",
-  \\"dependencies\\": [
-   {
-    \\"request\\": \\"react\\",
-    \\"dependency\\": \\"react\\"
-   },
-   {
-    \\"request\\": \\"./Button\\",
-    \\"dependency\\": \\"packages/integration-tests-storybook-6_1_x/src/Button.js\\"
    }
   ]
  },
