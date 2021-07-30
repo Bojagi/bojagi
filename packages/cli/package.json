@@ -1,6 +1,6 @@
 {
   "name": "@bojagi/cli",
-  "version": "0.18.1-next.0",
+  "version": "0.18.1",
   "description": "bojagi cli",
   "homepage": "https://bojagi.io/docs",
   "main": "lib/index.js",
