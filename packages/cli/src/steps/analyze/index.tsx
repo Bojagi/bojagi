@@ -9,20 +9,28 @@ import debuggers, { DebugNamespaces } from '../../debug';
 
 const debug = debuggers[DebugNamespaces.ANALYZE];
 
-export type StoryItem = {
+export interface StoryItem {
   exportName: string;
   storyName: string;
-};
+}
 
-export type StoryCollectionMetadata = {
+export type StoryLayout = 'padded' | 'centered' | 'fullscreen';
+
+export interface BojagiParameters {
+  layout?: StoryLayout;
+  figmaUrl?: string;
+}
+
+export interface StoryCollectionMetadata {
   title: string;
   fileName: string;
+  parameters?: BojagiParameters;
   storyItems: StoryItem[];
-};
+}
 
-export type AnalyzeStepOutput = StepOutput & {
+export interface AnalyzeStepOutput extends StepOutput {
   storiesMetadata: Record<string, StoryCollectionMetadata>;
-};
+}
 
 export const analyzeStep: StepRunnerStep<AnalyzeStepOutput> = {
   action,

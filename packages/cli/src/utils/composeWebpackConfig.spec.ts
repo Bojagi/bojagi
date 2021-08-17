@@ -35,6 +35,17 @@ const INNER_BASE_CONFIG_RULES = [
       },
     ],
   },
+  {
+    test: `${process.cwd()}/packages/cli/src/storybook/getParameters.js`,
+    use: [
+      {
+        loader: 'bojagi-expose-loader',
+        options: {
+          symbol: 'bojagiSbParameters',
+        },
+      },
+    ],
+  },
 ];
 
 const BASE_CONFIG_PLUGINS = [
