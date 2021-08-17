@@ -53,6 +53,17 @@ const composeWebpackConfig = (
               },
             ],
           },
+          {
+            test: pathUtils.resolve(__dirname, '../storybook/getParameters.js'),
+            use: [
+              {
+                loader: `bojagi-expose-loader`,
+                options: {
+                  symbol: 'bojagiSbParameters',
+                },
+              },
+            ],
+          },
         ],
       },
     },

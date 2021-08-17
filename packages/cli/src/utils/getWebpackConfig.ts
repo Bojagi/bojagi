@@ -31,6 +31,7 @@ export async function getWebpackConfig({
       [storyFile.name]: [
         storyFile.entrypoint,
         pathUtils.resolve(__dirname, '../storybook/getGlobals.js'),
+        pathUtils.resolve(__dirname, '../storybook/getParameters.js'),
         ...(decoratorFile ? [decoratorFile] : []),
       ],
     }),
