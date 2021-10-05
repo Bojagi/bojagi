@@ -22,9 +22,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "resolutions": {
-    "ink-spinner/cli-spinners": "2.6.0"
-  },
   "dependencies": {
     "@bojagi/types": "^0.9.0",
     "adm-zip": "^0.4.13",
