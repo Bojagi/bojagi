@@ -25,7 +25,7 @@
   "dependencies": {
     "@bojagi/types": "^0.9.0",
     "adm-zip": "^0.4.13",
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "chalk": "2.4.2",
     "commander": "4.1.1",
     "connect-history-api-fallback": "^1.6.0",
