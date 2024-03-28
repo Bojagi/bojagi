@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "differencify": "1.5.5",
-    "node-fetch": "2.6.1",
-    "playwright-chromium": "1.5.1"
+    "node-fetch": "2.7.0",
+    "playwright-chromium": "1.42.1"
   }
 }
